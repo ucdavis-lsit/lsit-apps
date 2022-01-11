@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+"aws-cdk.core" = "*"
+"aws-cdk.aws-iam" = "*"
+"aws-cdk.aws-ecs" = "*"
+"aws-cdk.aws-ecr" = "*"
+"aws-cdk.aws-apigateway" = "*"
+"aws_cdk.aws_lambda" = "*"
+"aws_cdk.aws_s3" = "*"
+"aws_cdk.aws_kms" = "*"
+"aws-cdk.aws-cognito" = "*"
+"aws-cdk.aws-rds" = "*"
+
+[dev-packages]
+bandit = "*"
+
+[requires]
+python_version = "3.9"
