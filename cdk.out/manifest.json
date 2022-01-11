@@ -1,0 +1,860 @@
+{
+  "version": "15.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "NetworkStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "NetworkStack.template.json",
+        "validateOnSynth": false
+      },
+      "metadata": {
+        "/NetworkStack/LSITZoomQueueVpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpc20AD45C9",
+            "trace": [
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:386:25)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueueIsolatedSubnetSubnet1Subnet29091347",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:735:24)",
+              "new PrivateSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:945:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:642:44",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:597:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueueIsolatedSubnetSubnet1RouteTable6591D621",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:751:23)",
+              "new PrivateSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:945:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:642:44",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:597:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueueIsolatedSubnetSubnet1RouteTableAssociation51853847",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:756:9)",
+              "new PrivateSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:945:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:642:44",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:597:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueueIsolatedSubnetSubnet2Subnet3DD9B17B",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:735:24)",
+              "new PrivateSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:945:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:642:44",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:597:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueueIsolatedSubnetSubnet2RouteTable4B61D3CF",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:751:23)",
+              "new PrivateSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:945:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:642:44",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:597:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueueIsolatedSubnetSubnet2RouteTableAssociationD2B9A679",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:756:9)",
+              "new PrivateSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:945:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:642:44",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:597:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:735:24)",
+              "new PublicSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:903:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:632:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:602:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1RouteTable50D3609B",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:751:23)",
+              "new PublicSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:903:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:632:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:602:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1RouteTableAssociation005F9994",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:756:9)",
+              "new PublicSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:903:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:632:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:602:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1DefaultRouteB7629013",
+            "trace": [
+              "PublicSubnet.addDefaultInternetRoute (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:792:23)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:424:30",
+              "Array.forEach (<anonymous>)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:423:32)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1EIP49F7B386",
+            "trace": [
+              "PublicSubnet.addNatGateway (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:925:102)",
+              "NatGatewayProvider.configureNat (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/nat.js:86:33)",
+              "Vpc.createNatGateways (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:580:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:429:22)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1NATGateway6A82024D",
+            "trace": [
+              "PublicSubnet.addNatGateway (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:923:21)",
+              "NatGatewayProvider.configureNat (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/nat.js:86:33)",
+              "Vpc.createNatGateways (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:580:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:429:22)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:735:24)",
+              "new PublicSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:903:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:632:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:602:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2RouteTableF2F9532B",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:751:23)",
+              "new PublicSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:903:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:632:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:602:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2RouteTableAssociationE1DCB22E",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:756:9)",
+              "new PublicSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:903:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:632:42",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:602:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2DefaultRoute6CD1947B",
+            "trace": [
+              "PublicSubnet.addDefaultInternetRoute (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:792:23)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:424:30",
+              "Array.forEach (<anonymous>)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:423:32)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2EIPE1214881",
+            "trace": [
+              "PublicSubnet.addNatGateway (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:925:102)",
+              "NatGatewayProvider.configureNat (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/nat.js:86:33)",
+              "Vpc.createNatGateways (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:580:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:429:22)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2NATGateway4F89318F",
+            "trace": [
+              "PublicSubnet.addNatGateway (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:923:21)",
+              "NatGatewayProvider.configureNat (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/nat.js:86:33)",
+              "Vpc.createNatGateways (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:580:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:429:22)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:735:24)",
+              "new PrivateSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:945:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:637:43",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:602:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1RouteTable88191391",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:751:23)",
+              "new PrivateSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:945:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:637:43",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:602:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1RouteTableAssociation8A40007C",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:756:9)",
+              "new PrivateSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:945:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:637:43",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:602:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1DefaultRoute43FFC690",
+            "trace": [
+              "PrivateSubnet.addRoute (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:840:23)",
+              "NatGatewayProvider.configureSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/nat.js:98:16)",
+              "NatGatewayProvider.configureNat (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/nat.js:92:18)",
+              "Vpc.createNatGateways (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:580:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:429:22)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:735:24)",
+              "new PrivateSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:945:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:637:43",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:602:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2RouteTableE73D55D1",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:751:23)",
+              "new PrivateSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:945:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:637:43",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:602:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2RouteTableAssociationF8F765B4",
+            "trace": [
+              "new Subnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:756:9)",
+              "new PrivateSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:945:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:637:43",
+              "Array.forEach (<anonymous>)",
+              "Vpc.createSubnetResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:606:32)",
+              "Vpc.createSubnets (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:602:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:412:14)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2DefaultRouteED1A71BF",
+            "trace": [
+              "PrivateSubnet.addRoute (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:840:23)",
+              "NatGatewayProvider.configureSubnet (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/nat.js:98:16)",
+              "NatGatewayProvider.configureNat (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/nat.js:92:18)",
+              "Vpc.createNatGateways (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:580:18)",
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:429:22)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcIGW3A5D3C82",
+            "trace": [
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:416:25)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueVpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueVpcVPCGWB8499F64",
+            "trace": [
+              "new Vpc (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/vpc.js:419:25)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueSecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueSecurityGroupE353981D",
+            "trace": [
+              "new SecurityGroup (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/security-group.js:228:30)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueuePublicLoadBalancer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueuePublicLoadBalancerB18D5339",
+            "trace": [
+              "new BaseLoadBalancer (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/shared/base-load-balancer.js:37:26)",
+              "new ApplicationLoadBalancer (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-elasticloadbalancingv2/lib/alb/application-load-balancer.js:29:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/SubnetGroup/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueDevelopmentPostgresDatabaseSubnetGroupECCBE8D7",
+            "trace": [
+              "new SubnetGroup (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-rds/lib/subnet-group.js:26:29)",
+              "new DatabaseInstanceNew (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-rds/lib/instance.js:177:87)",
+              "new DatabaseInstanceSource (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-rds/lib/instance.js:283:9)",
+              "new DatabaseInstance (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-rds/lib/instance.js:386:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueDevelopmentPostgresDatabaseSecurityGroup0245FE79",
+            "trace": [
+              "new SecurityGroup (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-ec2/lib/security-group.js:228:30)",
+              "new DatabaseInstanceNew (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-rds/lib/instance.js:183:57)",
+              "new DatabaseInstanceSource (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-rds/lib/instance.js:283:9)",
+              "new DatabaseInstance (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-rds/lib/instance.js:386:9)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/Secret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NetworkStackLSITZoomQueueDevelopmentPostgresDatabaseSecretBF5830E63fdaad7efa858a3daf9490cf0a702aeb",
+            "trace": [
+              "new Secret (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-secretsmanager/lib/secret.js:207:26)",
+              "new DatabaseSecret (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-rds/lib/database-secret.js:25:9)",
+              "Object.renderCredentials (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-rds/lib/private/util.js:73:62)",
+              "new DatabaseInstance (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-rds/lib/instance.js:388:36)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/Secret/Attachment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueDevelopmentPostgresDatabaseSecretAttachment1700B4B5",
+            "trace": [
+              "new SecretTargetAttachment (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-secretsmanager/lib/secret.js:437:28)",
+              "DatabaseSecret.attach (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-secretsmanager/lib/secret.js:176:16)",
+              "new DatabaseInstance (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-rds/lib/instance.js:406:34)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueDevelopmentPostgresDatabaseE2BAC0F7",
+            "trace": [
+              "new DatabaseInstance (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/aws-rds/lib/instance.js:390:26)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueDBEndpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueDBEndpoint",
+            "trace": [
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/LSITZoomQueueDBSecretName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LSITZoomQueueDBSecretName",
+            "trace": [
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:58",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "Kernel._create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8432:34)",
+              "Kernel.create (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8173:29)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:22:30)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/private/synthesis.js:139:9",
+              "visit (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
+              "visit (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
+              "injectMetadataResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:5)",
+              "Object.synthesize (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8248:107",
+              "Kernel._ensureSync (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8841:28)",
+              "Kernel.invoke (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ],
+        "/NetworkStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable",
+            "trace": [
+              "new MetadataResource (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/private/metadata-resource.js:30:35)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/private/synthesis.js:139:9",
+              "visit (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/private/synthesis.js:200:9)",
+              "visit (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/private/synthesis.js:197:9)",
+              "injectMetadataResources (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/private/synthesis.js:128:5)",
+              "Object.synthesize (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/private/synthesis.js:17:5)",
+              "App.synth (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/jsii-kernel-HjakfF/node_modules/@aws-cdk/core/lib/stage.js:103:41)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8248:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8860:24)",
+              "/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8248:107",
+              "Kernel._ensureSync (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8841:28)",
+              "Kernel.invoke (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:8248:34)",
+              "KernelHost.processRequest (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9757:36)",
+              "KernelHost.run (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9720:22)",
+              "Immediate._onImmediate (/private/var/folders/ms/89n6w3w15z3514jlt45d28xr0000gr/T/tmpyjspvv26/lib/program.js:9721:46)",
+              "processImmediate (internal/timers.js:462:21)"
+            ]
+          }
+        ]
+      },
+      "displayName": "NetworkStack"
+    }
+  }
+}

@@ -14,8 +14,7 @@ NetworkStack(
     app,
     "NetworkStack",
     {
-        "app_name": "networkstack",
-        "app_env": "development",
+        "aws_account_name": "LSITZoomQueue"
     }
 )
 

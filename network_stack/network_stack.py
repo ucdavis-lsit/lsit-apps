@@ -17,11 +17,7 @@ class NetworkStack(cdk.Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         # Required props
-        app_name = app_props["app_name"]
-        app_env = app_props["app_env"]
-
-        # Calculated props
-        app_prefix = app_name.capitalize() + app_env.capitalize()
+        prefix = app_props["aws_account_name"]
 
         """
         Creates VPC with 2 public subnets and 2 private subnets, one of each in two availability zones (A and B)
@@ -29,18 +25,18 @@ class NetworkStack(cdk.Stack):
         """
         vpc = ec2.Vpc(
             self,
-            "{app_prefix}Vpc".format(app_prefix=app_prefix),
+            "{prefix}Vpc".format(prefix=prefix),
             subnet_configuration=[
                 ec2.SubnetConfiguration(
-                    name="{app_prefix}PublicSubnet".format(app_prefix=app_prefix),
+                    name="{prefix}PublicSubnet".format(prefix=prefix),
                     subnet_type=ec2.SubnetType.PUBLIC
                 ),
                 ec2.SubnetConfiguration(
-                    name="{app_prefix}PrivateSubnet".format(app_prefix=app_prefix),
+                    name="{prefix}PrivateSubnet".format(prefix=prefix),
                     subnet_type=ec2.SubnetType.PRIVATE
                 ),
                 ec2.SubnetConfiguration(
-                    name="{app_prefix}IsolatedSubnet".format(app_prefix=app_prefix),
+                    name="{prefix}IsolatedSubnet".format(prefix=prefix),
                     cidr_mask=27,
                     subnet_type=ec2.SubnetType.ISOLATED
                 )
@@ -53,9 +49,9 @@ class NetworkStack(cdk.Stack):
         """
         security_group = ec2.SecurityGroup(
             self,
-            "{app_prefix}SecurityGroup".format(app_prefix=app_prefix),
+            "{prefix}SecurityGroup".format(prefix=prefix),
             allow_all_outbound=True,
-            security_group_name=app_prefix,
+            security_group_name=prefix,
             vpc=vpc
         )
         security_group.add_ingress_rule(
@@ -64,17 +60,17 @@ class NetworkStack(cdk.Stack):
         )
         public_load_balancer = ApplicationLoadBalancer(
             self,
-            "{app_prefix}PublicLoadBalancer".format(app_prefix=app_prefix),
+            "{prefix}PublicLoadBalancer".format(prefix=prefix),
             vpc=vpc,
             security_group=security_group,
             internet_facing=True,
         )
 
 
-        # Create a postgres DB in the isolated subnets
+        # Create a postgres DB for Zoom Queue app
         database = rds.DatabaseInstance(
             self,
-            "{app_prefix}PostgresDatabase".format(app_prefix=app_prefix),
+            "{prefix}DevelopmentPostgresDatabase".format(prefix=prefix),
             vpc=vpc,
             vpc_subnets={
                 "subnet_type": ec2.SubnetType.PUBLIC,
@@ -96,11 +92,11 @@ class NetworkStack(cdk.Stack):
 
         cdk.CfnOutput(
             self,
-            "{app_prefix}DBEndpoint".format(app_prefix=app_prefix),
+            "{prefix}DBEndpoint".format(prefix=prefix),
             value=database.instance_endpoint.hostname
         )
         cdk.CfnOutput(
             self,
-            "{app_prefix}DBSecretName".format(app_prefix=app_prefix),
+            "{prefix}DBSecretName".format(prefix=prefix),
             value=database.secret.secret_name
         )

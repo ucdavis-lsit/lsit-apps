@@ -1,0 +1,1206 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Construct",
+          "version": "1.136.0"
+        }
+      },
+      "NetworkStack": {
+        "id": "NetworkStack",
+        "path": "NetworkStack",
+        "children": {
+          "LSITZoomQueueVpc": {
+            "id": "LSITZoomQueueVpc",
+            "path": "NetworkStack/LSITZoomQueueVpc",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "NetworkStack/LSITZoomQueueVpc/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
+                  "aws:cdk:cloudformation:props": {
+                    "cidrBlock": "10.0.0.0/16",
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "instanceTenancy": "default",
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "NetworkStack/LSITZoomQueueVpc"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.CfnVPC",
+                  "version": "1.136.0"
+                }
+              },
+              "LSITZoomQueueIsolatedSubnetSubnet1": {
+                "id": "LSITZoomQueueIsolatedSubnetSubnet1",
+                "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.0.0/27",
+                        "vpcId": {
+                          "Ref": "LSITZoomQueueVpc20AD45C9"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "LSITZoomQueueIsolatedSubnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet1/Acl",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.Resource",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "LSITZoomQueueVpc20AD45C9"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueueIsolatedSubnetSubnet1RouteTable6591D621"
+                        },
+                        "subnetId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueueIsolatedSubnetSubnet1Subnet29091347"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
+                      "version": "1.136.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.PrivateSubnet",
+                  "version": "1.136.0"
+                }
+              },
+              "LSITZoomQueueIsolatedSubnetSubnet2": {
+                "id": "LSITZoomQueueIsolatedSubnetSubnet2",
+                "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.0.32/27",
+                        "vpcId": {
+                          "Ref": "LSITZoomQueueVpc20AD45C9"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            1,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "LSITZoomQueueIsolatedSubnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet2/Acl",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.Resource",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "LSITZoomQueueVpc20AD45C9"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueueIsolatedSubnetSubnet2RouteTable4B61D3CF"
+                        },
+                        "subnetId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueueIsolatedSubnetSubnet2Subnet3DD9B17B"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
+                      "version": "1.136.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.PrivateSubnet",
+                  "version": "1.136.0"
+                }
+              },
+              "LSITZoomQueuePublicSubnetSubnet1": {
+                "id": "LSITZoomQueuePublicSubnetSubnet1",
+                "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.32.0/19",
+                        "vpcId": {
+                          "Ref": "LSITZoomQueueVpc20AD45C9"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "LSITZoomQueuePublicSubnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/Acl",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.Resource",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "LSITZoomQueueVpc20AD45C9"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1RouteTable50D3609B"
+                        },
+                        "subnetId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1RouteTable50D3609B"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "LSITZoomQueueVpcIGW3A5D3C82"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnRoute",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "EIP": {
+                    "id": "EIP",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/EIP",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::EIP",
+                      "aws:cdk:cloudformation:props": {
+                        "domain": "vpc",
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnEIP",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "NATGateway": {
+                    "id": "NATGateway",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/NATGateway",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::NatGateway",
+                      "aws:cdk:cloudformation:props": {
+                        "subnetId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7"
+                        },
+                        "allocationId": {
+                          "Fn::GetAtt": [
+                            "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1EIP49F7B386",
+                            "AllocationId"
+                          ]
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnNatGateway",
+                      "version": "1.136.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.PublicSubnet",
+                  "version": "1.136.0"
+                }
+              },
+              "LSITZoomQueuePublicSubnetSubnet2": {
+                "id": "LSITZoomQueuePublicSubnetSubnet2",
+                "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.64.0/19",
+                        "vpcId": {
+                          "Ref": "LSITZoomQueueVpc20AD45C9"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            1,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "LSITZoomQueuePublicSubnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/Acl",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.Resource",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "LSITZoomQueueVpc20AD45C9"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2RouteTableF2F9532B"
+                        },
+                        "subnetId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2RouteTableF2F9532B"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "LSITZoomQueueVpcIGW3A5D3C82"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnRoute",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "EIP": {
+                    "id": "EIP",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/EIP",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::EIP",
+                      "aws:cdk:cloudformation:props": {
+                        "domain": "vpc",
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnEIP",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "NATGateway": {
+                    "id": "NATGateway",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/NATGateway",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::NatGateway",
+                      "aws:cdk:cloudformation:props": {
+                        "subnetId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0"
+                        },
+                        "allocationId": {
+                          "Fn::GetAtt": [
+                            "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2EIPE1214881",
+                            "AllocationId"
+                          ]
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnNatGateway",
+                      "version": "1.136.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.PublicSubnet",
+                  "version": "1.136.0"
+                }
+              },
+              "LSITZoomQueuePrivateSubnetSubnet1": {
+                "id": "LSITZoomQueuePrivateSubnetSubnet1",
+                "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.96.0/19",
+                        "vpcId": {
+                          "Ref": "LSITZoomQueueVpc20AD45C9"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "LSITZoomQueuePrivateSubnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet1/Acl",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.Resource",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "LSITZoomQueueVpc20AD45C9"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1RouteTable88191391"
+                        },
+                        "subnetId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet1/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1RouteTable88191391"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "natGatewayId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1NATGateway6A82024D"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnRoute",
+                      "version": "1.136.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.PrivateSubnet",
+                  "version": "1.136.0"
+                }
+              },
+              "LSITZoomQueuePrivateSubnetSubnet2": {
+                "id": "LSITZoomQueuePrivateSubnetSubnet2",
+                "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet2",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet2/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.128.0/19",
+                        "vpcId": {
+                          "Ref": "LSITZoomQueueVpc20AD45C9"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            1,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "LSITZoomQueuePrivateSubnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Private"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet2/Acl",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.Resource",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet2/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "LSITZoomQueueVpc20AD45C9"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet2/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2RouteTableE73D55D1"
+                        },
+                        "subnetId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet2/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2RouteTableE73D55D1"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "natGatewayId": {
+                          "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2NATGateway4F89318F"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnRoute",
+                      "version": "1.136.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.PrivateSubnet",
+                  "version": "1.136.0"
+                }
+              },
+              "IGW": {
+                "id": "IGW",
+                "path": "NetworkStack/LSITZoomQueueVpc/IGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "NetworkStack/LSITZoomQueueVpc"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.CfnInternetGateway",
+                  "version": "1.136.0"
+                }
+              },
+              "VPCGW": {
+                "id": "VPCGW",
+                "path": "NetworkStack/LSITZoomQueueVpc/VPCGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
+                  "aws:cdk:cloudformation:props": {
+                    "vpcId": {
+                      "Ref": "LSITZoomQueueVpc20AD45C9"
+                    },
+                    "internetGatewayId": {
+                      "Ref": "LSITZoomQueueVpcIGW3A5D3C82"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.CfnVPCGatewayAttachment",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ec2.Vpc",
+              "version": "1.136.0"
+            }
+          },
+          "LSITZoomQueueSecurityGroup": {
+            "id": "LSITZoomQueueSecurityGroup",
+            "path": "NetworkStack/LSITZoomQueueSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "NetworkStack/LSITZoomQueueSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "NetworkStack/LSITZoomQueueSecurityGroup",
+                    "groupName": "LSITZoomQueue",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Ref": "LSITZoomQueueVpc20AD45C9"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
+              "version": "1.136.0"
+            }
+          },
+          "LSITZoomQueuePublicLoadBalancer": {
+            "id": "LSITZoomQueuePublicLoadBalancer",
+            "path": "NetworkStack/LSITZoomQueuePublicLoadBalancer",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "NetworkStack/LSITZoomQueuePublicLoadBalancer/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+                  "aws:cdk:cloudformation:props": {
+                    "loadBalancerAttributes": [
+                      {
+                        "key": "deletion_protection.enabled",
+                        "value": "false"
+                      }
+                    ],
+                    "scheme": "internet-facing",
+                    "securityGroups": [
+                      {
+                        "Fn::GetAtt": [
+                          "LSITZoomQueueSecurityGroupE353981D",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnets": [
+                      {
+                        "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7"
+                      },
+                      {
+                        "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0"
+                      }
+                    ],
+                    "type": "application"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnLoadBalancer",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationLoadBalancer",
+              "version": "1.136.0"
+            }
+          },
+          "LSITZoomQueueDevelopmentPostgresDatabase": {
+            "id": "LSITZoomQueueDevelopmentPostgresDatabase",
+            "path": "NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase",
+            "children": {
+              "SubnetGroup": {
+                "id": "SubnetGroup",
+                "path": "NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/SubnetGroup",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/SubnetGroup/Default",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::RDS::DBSubnetGroup",
+                      "aws:cdk:cloudformation:props": {
+                        "dbSubnetGroupDescription": "Subnet group for LSITZoomQueueDevelopmentPostgresDatabase database",
+                        "subnetIds": [
+                          {
+                            "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7"
+                          },
+                          {
+                            "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-rds.CfnDBSubnetGroup",
+                      "version": "1.136.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-rds.SubnetGroup",
+                  "version": "1.136.0"
+                }
+              },
+              "SecurityGroup": {
+                "id": "SecurityGroup",
+                "path": "NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/SecurityGroup",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/SecurityGroup/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                      "aws:cdk:cloudformation:props": {
+                        "groupDescription": "Security group for LSITZoomQueueDevelopmentPostgresDatabase database",
+                        "securityGroupEgress": [
+                          {
+                            "cidrIp": "0.0.0.0/0",
+                            "description": "Allow all outbound traffic by default",
+                            "ipProtocol": "-1"
+                          }
+                        ],
+                        "securityGroupIngress": [
+                          {
+                            "cidrIp": "0.0.0.0/0",
+                            "ipProtocol": "tcp",
+                            "fromPort": 5432,
+                            "toPort": 5432,
+                            "description": "from 0.0.0.0/0:5432"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "LSITZoomQueueVpc20AD45C9"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
+                      "version": "1.136.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
+                  "version": "1.136.0"
+                }
+              },
+              "Secret": {
+                "id": "Secret",
+                "path": "NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/Secret",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/Secret/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SecretsManager::Secret",
+                      "aws:cdk:cloudformation:props": {
+                        "description": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              "Generated by the CDK for stack: ",
+                              {
+                                "Ref": "AWS::StackName"
+                              }
+                            ]
+                          ]
+                        },
+                        "generateSecretString": {
+                          "passwordLength": 30,
+                          "secretStringTemplate": "{\"username\":\"postgres\"}",
+                          "generateStringKey": "password",
+                          "excludeCharacters": " %+~`#$&*()|[]{}:;<>?!'/@\"\\"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-secretsmanager.CfnSecret",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "Attachment": {
+                    "id": "Attachment",
+                    "path": "NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/Secret/Attachment",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/Secret/Attachment/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::SecretsManager::SecretTargetAttachment",
+                          "aws:cdk:cloudformation:props": {
+                            "secretId": {
+                              "Ref": "NetworkStackLSITZoomQueueDevelopmentPostgresDatabaseSecretBF5830E63fdaad7efa858a3daf9490cf0a702aeb"
+                            },
+                            "targetId": {
+                              "Ref": "LSITZoomQueueDevelopmentPostgresDatabaseE2BAC0F7"
+                            },
+                            "targetType": "AWS::RDS::DBInstance"
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-secretsmanager.CfnSecretTargetAttachment",
+                          "version": "1.136.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-secretsmanager.SecretTargetAttachment",
+                      "version": "1.136.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-rds.DatabaseSecret",
+                  "version": "1.136.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::RDS::DBInstance",
+                  "aws:cdk:cloudformation:props": {
+                    "dbInstanceClass": "db.t3.micro",
+                    "allocatedStorage": "100",
+                    "backupRetentionPeriod": 0,
+                    "copyTagsToSnapshot": true,
+                    "dbName": "postgres",
+                    "dbSubnetGroupName": {
+                      "Ref": "LSITZoomQueueDevelopmentPostgresDatabaseSubnetGroupECCBE8D7"
+                    },
+                    "deleteAutomatedBackups": true,
+                    "deletionProtection": false,
+                    "engine": "postgres",
+                    "engineVersion": "13.1",
+                    "masterUsername": "postgres",
+                    "masterUserPassword": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "{{resolve:secretsmanager:",
+                          {
+                            "Ref": "NetworkStackLSITZoomQueueDevelopmentPostgresDatabaseSecretBF5830E63fdaad7efa858a3daf9490cf0a702aeb"
+                          },
+                          ":SecretString:password::}}"
+                        ]
+                      ]
+                    },
+                    "publiclyAccessible": true,
+                    "storageType": "gp2",
+                    "vpcSecurityGroups": [
+                      {
+                        "Fn::GetAtt": [
+                          "LSITZoomQueueDevelopmentPostgresDatabaseSecurityGroup0245FE79",
+                          "GroupId"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-rds.CfnDBInstance",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-rds.DatabaseInstance",
+              "version": "1.136.0"
+            }
+          },
+          "LSITZoomQueueDBEndpoint": {
+            "id": "LSITZoomQueueDBEndpoint",
+            "path": "NetworkStack/LSITZoomQueueDBEndpoint",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.136.0"
+            }
+          },
+          "LSITZoomQueueDBSecretName": {
+            "id": "LSITZoomQueueDBSecretName",
+            "path": "NetworkStack/LSITZoomQueueDBSecretName",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.CfnOutput",
+              "version": "1.136.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "NetworkStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "NetworkStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.136.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "NetworkStack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnCondition",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.136.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.136.0"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "@aws-cdk/core.App",
+      "version": "1.136.0"
+    }
+  }
+}
