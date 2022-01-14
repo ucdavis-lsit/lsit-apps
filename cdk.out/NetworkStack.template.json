@@ -25,14 +25,7 @@
         "VpcId": {
           "Ref": "LSITZoomQueueVpc20AD45C9"
         },
-        "AvailabilityZone": {
-          "Fn::Select": [
-            0,
-            {
-              "Fn::GetAZs": ""
-            }
-          ]
-        },
+        "AvailabilityZone": "us-west-2a",
         "MapPublicIpOnLaunch": false,
         "Tags": [
           {
@@ -91,14 +84,7 @@
         "VpcId": {
           "Ref": "LSITZoomQueueVpc20AD45C9"
         },
-        "AvailabilityZone": {
-          "Fn::Select": [
-            1,
-            {
-              "Fn::GetAZs": ""
-            }
-          ]
-        },
+        "AvailabilityZone": "us-west-2b",
         "MapPublicIpOnLaunch": false,
         "Tags": [
           {
@@ -157,14 +143,7 @@
         "VpcId": {
           "Ref": "LSITZoomQueueVpc20AD45C9"
         },
-        "AvailabilityZone": {
-          "Fn::Select": [
-            0,
-            {
-              "Fn::GetAZs": ""
-            }
-          ]
-        },
+        "AvailabilityZone": "us-west-2a",
         "MapPublicIpOnLaunch": true,
         "Tags": [
           {
@@ -279,14 +258,7 @@
         "VpcId": {
           "Ref": "LSITZoomQueueVpc20AD45C9"
         },
-        "AvailabilityZone": {
-          "Fn::Select": [
-            1,
-            {
-              "Fn::GetAZs": ""
-            }
-          ]
-        },
+        "AvailabilityZone": "us-west-2b",
         "MapPublicIpOnLaunch": true,
         "Tags": [
           {
@@ -401,14 +373,7 @@
         "VpcId": {
           "Ref": "LSITZoomQueueVpc20AD45C9"
         },
-        "AvailabilityZone": {
-          "Fn::Select": [
-            0,
-            {
-              "Fn::GetAZs": ""
-            }
-          ]
-        },
+        "AvailabilityZone": "us-west-2a",
         "MapPublicIpOnLaunch": false,
         "Tags": [
           {
@@ -482,14 +447,7 @@
         "VpcId": {
           "Ref": "LSITZoomQueueVpc20AD45C9"
         },
-        "AvailabilityZone": {
-          "Fn::Select": [
-            1,
-            {
-              "Fn::GetAZs": ""
-            }
-          ]
-        },
+        "AvailabilityZone": "us-west-2b",
         "MapPublicIpOnLaunch": false,
         "Tags": [
           {
@@ -779,15 +737,25 @@
         "aws:cdk:path": "NetworkStack/LSITZoomQueueDevelopmentPostgresDatabase/Resource"
       }
     },
+    "lsitzoomqueueenvvars54C18833": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "lsit-zoom-queue-env-vars"
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "NetworkStack/lsit-zoom-queue-env-vars/Resource"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Q0W7CMAz8Ft5DGEOaxNuATghp2ipAvLupBxklqRwHhKr8+5J2QMWT47uzfZexHE/e5MvgHS5uqMrjqFGWUDYbBnUUa3TWk0Kx+DHfnmvPYmGNY/KKE9bnI1Fq1tYEkXY1qF5ls6tV4nb5QuSkz8C48YXBdvjxWlvPuIWiwgf+wGbOWaUhrRa5LyqtnibT42OVp/IFvIxHLnBN3cowUlT2oOjkv5txjHg4oWGxQeVJ83VJ1tethT4QBFbgWKvKQllABUZpsz/HdLO6jm5aZ5+Rm7ccUtrQ74Og0skmA4YCHK7iByZcdDHuR7N5H7ipoxXqsmbz22QQrkXdCQzskWTTeU7CrmyB9si9iHfBMxNCEPmVD9aMJnIqp4Nfp/WQvGF9Qrnu6h/5ZkYDJgIAAA=="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Q0W7CMAz8Ft5DGEOaxNsonRDStFWAeHeDBxklqRIHhKL8+5JmQMWT7btzfJcxH0/e+MvgHS52KHbHkRfaIPdrAnFkK7TaGYFsrpUl4wSx+Y/6dtS6rrvxgaV1j+KV+20rErWt5qwy8gyEa1cr7PSPbqUd4QbqBh/4A5tZq4UEklqxytWNFE+bqflYVql8AS3ikQtc07RUhCYqe1B08j/NKKY6nFARW6NwRtJ1YbRrOwt9IDBswJIUjYZdDQ0oIdX+HNPN2ja66Zx9Rq7oODTphf4cmNlZ7ksgqMHiMv5ewlmOcT9aFn3gpo5WTM5aFrfNwGyH2hMo2KPhPntOwlw2YPZIvYh3wTMT35pwXzhxzFdyF0Jg1ZUOWo0mfMqng18r5dA4RfKEfJXrH8fhF3svAgAA"
       },
       "Metadata": {
         "aws:cdk:path": "NetworkStack/CDKMetadata/Default"
-      },
-      "Condition": "CDKMetadataAvailable"
+      }
     }
   },
   "Outputs": {
@@ -853,200 +821,41 @@
           ]
         ]
       }
-    }
-  },
-  "Conditions": {
-    "CDKMetadataAvailable": {
-      "Fn::Or": [
-        {
-          "Fn::Or": [
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "af-south-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-east-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-northeast-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-northeast-2"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-south-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-southeast-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ap-southeast-2"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "ca-central-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "cn-north-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "cn-northwest-1"
-              ]
-            }
-          ]
-        },
-        {
-          "Fn::Or": [
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-central-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-north-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-south-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-west-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-west-2"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "eu-west-3"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "me-south-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "sa-east-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "us-east-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "us-east-2"
-              ]
-            }
-          ]
-        },
-        {
-          "Fn::Or": [
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "us-west-1"
-              ]
-            },
-            {
-              "Fn::Equals": [
-                {
-                  "Ref": "AWS::Region"
-                },
-                "us-west-2"
-              ]
-            }
-          ]
-        }
-      ]
+    },
+    "ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7": {
+      "Value": {
+        "Fn::GetAtt": [
+          "lsitzoomqueueenvvars54C18833",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+      }
+    },
+    "ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F": {
+      "Value": {
+        "Ref": "LSITZoomQueueVpc20AD45C9"
+      },
+      "Export": {
+        "Name": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+      }
+    },
+    "ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7A5D57971": {
+      "Value": {
+        "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7"
+      },
+      "Export": {
+        "Name": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7A5D57971"
+      }
+    },
+    "ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0A051945B": {
+      "Value": {
+        "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0"
+      },
+      "Export": {
+        "Name": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0A051945B"
+      }
     }
   }
 }

@@ -23,9 +23,10 @@ class NetworkStack(cdk.Stack):
         Creates VPC with 2 public subnets and 2 private subnets, one of each in two availability zones (A and B)
         Creates 2 NAT gateways, one for each availability zone, which each have an Elastic IP address
         """
-        vpc = ec2.Vpc(
+        self.vpc = ec2.Vpc(
             self,
             "{prefix}Vpc".format(prefix=prefix),
+            max_azs=2,
             subnet_configuration=[
                 ec2.SubnetConfiguration(
                     name="{prefix}PublicSubnet".format(prefix=prefix),
@@ -52,7 +53,7 @@ class NetworkStack(cdk.Stack):
             "{prefix}SecurityGroup".format(prefix=prefix),
             allow_all_outbound=True,
             security_group_name=prefix,
-            vpc=vpc
+            vpc=self.vpc
         )
         security_group.add_ingress_rule(
             peer=ec2.Peer.any_ipv4(),
@@ -61,7 +62,7 @@ class NetworkStack(cdk.Stack):
         public_load_balancer = ApplicationLoadBalancer(
             self,
             "{prefix}PublicLoadBalancer".format(prefix=prefix),
-            vpc=vpc,
+            vpc=self.vpc,
             security_group=security_group,
             internet_facing=True,
         )
@@ -71,7 +72,7 @@ class NetworkStack(cdk.Stack):
         database = rds.DatabaseInstance(
             self,
             "{prefix}DevelopmentPostgresDatabase".format(prefix=prefix),
-            vpc=vpc,
+            vpc=self.vpc,
             vpc_subnets={
                 "subnet_type": ec2.SubnetType.PUBLIC,
             },
@@ -90,6 +91,14 @@ class NetworkStack(cdk.Stack):
         )
         database.connections.allow_from_any_ipv4(ec2.Port.tcp(5432))
 
+        # Environment Variable Bucket
+        self.bucket = Bucket(
+            self,
+            "lsit-zoom-queue-env-vars",
+            bucket_name="lsit-zoom-queue-env-vars"
+        )
+
+        # Outputs
         cdk.CfnOutput(
             self,
             "{prefix}DBEndpoint".format(prefix=prefix),
