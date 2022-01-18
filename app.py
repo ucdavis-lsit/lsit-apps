@@ -33,5 +33,19 @@ LSITStack(
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
+LSITStack(
+    app,
+    "ZoomQueueFrontendDevelopmentStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    {
+        "app_name": "zoom-queue-frontend",
+        "app_env": "development",
+        "task_port": 80,
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/zoom-queue-frontend-development:latest",
+        "load_balancer_port": 3000
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
 
 app.synth()

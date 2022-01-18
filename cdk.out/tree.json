@@ -1845,6 +1845,631 @@
           "fqn": "@aws-cdk/core.Stack",
           "version": "1.136.0"
         }
+      },
+      "ZoomQueueFrontendDevelopmentStack": {
+        "id": "ZoomQueueFrontendDevelopmentStack",
+        "path": "ZoomQueueFrontendDevelopmentStack",
+        "children": {
+          "Zoom-queue-frontendDevelopmentRole": {
+            "id": "Zoom-queue-frontendDevelopmentRole",
+            "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows zoom-queue-frontend-development tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Zoom-queue-frontendDevelopmentECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                  "version": "1.136.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "ZoomqueuefrontendDevelopmentLogGroupEB559E50",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "ZoomqueuefrontendDevelopmentRoleDefaultPolicyF9121DA3",
+                        "roles": [
+                          {
+                            "Ref": "ZoomqueuefrontendDevelopmentRole84E2575D"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                      "version": "1.136.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Policy",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.Role",
+              "version": "1.136.0"
+            }
+          },
+          "Zoom-queue-frontendDevelopmentPolicy": {
+            "id": "Zoom-queue-frontendDevelopmentPolicy",
+            "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/zoom-queue-frontend/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Zoom-queue-frontendDevelopmentConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "ZoomqueuefrontendDevelopmentRole84E2575D"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.Policy",
+              "version": "1.136.0"
+            }
+          },
+          "Zoom-queue-frontendDevelopmentTask": {
+            "id": "Zoom-queue-frontendDevelopmentTask",
+            "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/zoom-queue-frontend-development:latest",
+                        "memory": 512,
+                        "name": "zoom-queue-frontend-development",
+                        "portMappings": [
+                          {
+                            "containerPort": 80,
+                            "hostPort": 80,
+                            "protocol": "tcp"
+                          }
+                        ],
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "ZoomqueuefrontendDevelopmentLogGroupEB559E50"
+                            },
+                            "awslogs-stream-prefix": "zoom-queue-frontend-development",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:aws:s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/zoom-queue-frontend/development.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "ZoomqueuefrontendDevelopmentRole84E2575D",
+                        "Arn"
+                      ]
+                    },
+                    "family": "zoom-queue-frontend-development",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "ZoomqueuefrontendDevelopmentRole84E2575D",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
+                  "version": "1.136.0"
+                }
+              },
+              "zoom-queue-frontend-development": {
+                "id": "zoom-queue-frontend-development",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentTask/zoom-queue-frontend-development",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
+              "version": "1.136.0"
+            }
+          },
+          "Zoom-queue-frontendDevelopmentLogGroup": {
+            "id": "Zoom-queue-frontendDevelopmentLogGroup",
+            "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/zoom-queue-frontend-development",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-logs.LogGroup",
+              "version": "1.136.0"
+            }
+          },
+          "Zoom-queue-frontendDevelopmentBucket": {
+            "id": "Zoom-queue-frontendDevelopmentBucket",
+            "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentBucket",
+            "children": {
+              "Notifications": {
+                "id": "Notifications",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentBucket/Notifications",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-s3.BucketBase",
+              "version": "1.136.0"
+            }
+          },
+          "Zoom-queue-frontendDevelopmentSecurityGroup": {
+            "id": "Zoom-queue-frontendDevelopmentSecurityGroup",
+            "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentSecurityGroup",
+                    "groupName": "zoom-queue-frontend-development",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      },
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 3000,
+                        "toPort": 3000,
+                        "description": "Allow from anyone on port 3000"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
+                  "version": "1.136.0"
+                }
+              },
+              "from ZoomQueueFrontendDevelopmentStackZoomqueuefrontendDevelopmentSecurityGroup0F7110CE:80": {
+                "id": "from ZoomQueueFrontendDevelopmentStackZoomqueuefrontendDevelopmentSecurityGroup0F7110CE:80",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentSecurityGroup/from ZoomQueueFrontendDevelopmentStackZoomqueuefrontendDevelopmentSecurityGroup0F7110CE:80",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
+                  "aws:cdk:cloudformation:props": {
+                    "ipProtocol": "tcp",
+                    "description": "Load balancer to target",
+                    "fromPort": 80,
+                    "groupId": {
+                      "Fn::GetAtt": [
+                        "ZoomqueuefrontendDevelopmentSecurityGroup5DDA5821",
+                        "GroupId"
+                      ]
+                    },
+                    "sourceSecurityGroupId": {
+                      "Fn::GetAtt": [
+                        "ZoomqueuefrontendDevelopmentSecurityGroup5DDA5821",
+                        "GroupId"
+                      ]
+                    },
+                    "toPort": 80
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroupIngress",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
+              "version": "1.136.0"
+            }
+          },
+          "Zoom-queue-frontendDevelopmentCluster": {
+            "id": "Zoom-queue-frontendDevelopmentCluster",
+            "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentCluster",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentCluster/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Cluster",
+                  "aws:cdk:cloudformation:props": {}
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ecs.CfnCluster",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ecs.Cluster",
+              "version": "1.136.0"
+            }
+          },
+          "Zoom-queue-frontendDevelopmentLoadBalancer": {
+            "id": "Zoom-queue-frontendDevelopmentLoadBalancer",
+            "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentLoadBalancer",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentLoadBalancer/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+                  "aws:cdk:cloudformation:props": {
+                    "loadBalancerAttributes": [
+                      {
+                        "key": "deletion_protection.enabled",
+                        "value": "false"
+                      }
+                    ],
+                    "scheme": "internet-facing",
+                    "securityGroups": [
+                      {
+                        "Fn::GetAtt": [
+                          "ZoomqueuefrontendDevelopmentSecurityGroup5DDA5821",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnets": [
+                      {
+                        "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7A5D57971"
+                      },
+                      {
+                        "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0A051945B"
+                      }
+                    ],
+                    "type": "application"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnLoadBalancer",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationLoadBalancer",
+              "version": "1.136.0"
+            }
+          },
+          "Zoom-queue-frontendDevelopmentService": {
+            "id": "Zoom-queue-frontendDevelopmentService",
+            "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentService",
+            "children": {
+              "Service": {
+                "id": "Service",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentService/Service",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Service",
+                  "aws:cdk:cloudformation:props": {
+                    "cluster": {
+                      "Ref": "ZoomqueuefrontendDevelopmentClusterF8CF93C1"
+                    },
+                    "deploymentConfiguration": {
+                      "maximumPercent": 200,
+                      "minimumHealthyPercent": 50
+                    },
+                    "desiredCount": 1,
+                    "enableEcsManagedTags": false,
+                    "healthCheckGracePeriodSeconds": 60,
+                    "launchType": "FARGATE",
+                    "loadBalancers": [
+                      {
+                        "targetGroupArn": {
+                          "Ref": "ZoomqueuefrontendDevelopmentTargetGroup48C60272"
+                        },
+                        "containerName": "zoom-queue-frontend-development",
+                        "containerPort": 80
+                      }
+                    ],
+                    "networkConfiguration": {
+                      "awsvpcConfiguration": {
+                        "assignPublicIp": "ENABLED",
+                        "subnets": [
+                          {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7A5D57971"
+                          },
+                          {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0A051945B"
+                          }
+                        ],
+                        "securityGroups": [
+                          {
+                            "Fn::GetAtt": [
+                              "ZoomqueuefrontendDevelopmentSecurityGroup5DDA5821",
+                              "GroupId"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "serviceName": "zoom-queue-frontend-development",
+                    "taskDefinition": {
+                      "Ref": "ZoomqueuefrontendDevelopmentTask03B936F0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ecs.CfnService",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ecs.FargateService",
+              "version": "1.136.0"
+            }
+          },
+          "Zoom-queue-frontendDevelopmentTargetGroup": {
+            "id": "Zoom-queue-frontendDevelopmentTargetGroup",
+            "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentTargetGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentTargetGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "name": "ecs-zoom-queue-frontend-developm",
+                    "port": 80,
+                    "protocol": "HTTP",
+                    "targetGroupAttributes": [
+                      {
+                        "key": "stickiness.enabled",
+                        "value": "false"
+                      }
+                    ],
+                    "targetType": "ip",
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnTargetGroup",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationTargetGroup",
+              "version": "1.136.0"
+            }
+          },
+          "Zoom-queue-frontendDevelopmentListener": {
+            "id": "Zoom-queue-frontendDevelopmentListener",
+            "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentListener",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentListener/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::Listener",
+                  "aws:cdk:cloudformation:props": {
+                    "defaultActions": [
+                      {
+                        "type": "forward",
+                        "targetGroupArn": {
+                          "Ref": "ZoomqueuefrontendDevelopmentTargetGroup48C60272"
+                        }
+                      }
+                    ],
+                    "loadBalancerArn": {
+                      "Ref": "ZoomqueuefrontendDevelopmentLoadBalancerA4000CE9"
+                    },
+                    "port": 3000,
+                    "protocol": "HTTP"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListener",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListener",
+              "version": "1.136.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "ZoomQueueFrontendDevelopmentStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "ZoomQueueFrontendDevelopmentStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.136.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.136.0"
+        }
       }
     },
     "constructInfo": {

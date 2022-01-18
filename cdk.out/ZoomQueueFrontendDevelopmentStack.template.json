@@ -1,0 +1,418 @@
+{
+  "Resources": {
+    "ZoomqueuefrontendDevelopmentRole84E2575D": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ecs-tasks.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "Description": "Allows zoom-queue-frontend-development tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+              ]
+            ]
+          }
+        ],
+        "RoleName": "Zoom-queue-frontendDevelopmentECSTaskExecutionRole"
+      },
+      "Metadata": {
+        "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentRole/Resource"
+      }
+    },
+    "ZoomqueuefrontendDevelopmentRoleDefaultPolicyF9121DA3": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "ZoomqueuefrontendDevelopmentLogGroupEB559E50",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "ZoomqueuefrontendDevelopmentRoleDefaultPolicyF9121DA3",
+        "Roles": [
+          {
+            "Ref": "ZoomqueuefrontendDevelopmentRole84E2575D"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentRole/DefaultPolicy/Resource"
+      }
+    },
+    "ZoomqueuefrontendDevelopmentPolicyC3548863": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:GetBucketLocation",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+              }
+            },
+            {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                    },
+                    "/zoom-queue-frontend/*"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "Zoom-queue-frontendDevelopmentConfigRead",
+        "Roles": [
+          {
+            "Ref": "ZoomqueuefrontendDevelopmentRole84E2575D"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentPolicy/Resource"
+      }
+    },
+    "ZoomqueuefrontendDevelopmentTask03B936F0": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "Cpu": 256,
+            "EnvironmentFiles": [
+              {
+                "Type": "s3",
+                "Value": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:s3:::",
+                      {
+                        "Fn::Select": [
+                          0,
+                          {
+                            "Fn::Split": [
+                              "/",
+                              {
+                                "Fn::Select": [
+                                  5,
+                                  {
+                                    "Fn::Split": [
+                                      ":",
+                                      {
+                                        "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "/zoom-queue-frontend/development.env"
+                    ]
+                  ]
+                }
+              }
+            ],
+            "Essential": true,
+            "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/zoom-queue-frontend-development:latest",
+            "LogConfiguration": {
+              "LogDriver": "awslogs",
+              "Options": {
+                "awslogs-group": {
+                  "Ref": "ZoomqueuefrontendDevelopmentLogGroupEB559E50"
+                },
+                "awslogs-stream-prefix": "zoom-queue-frontend-development",
+                "awslogs-region": "us-west-2"
+              }
+            },
+            "Memory": 512,
+            "Name": "zoom-queue-frontend-development",
+            "PortMappings": [
+              {
+                "ContainerPort": 80,
+                "HostPort": 80,
+                "Protocol": "tcp"
+              }
+            ]
+          }
+        ],
+        "Cpu": "256",
+        "ExecutionRoleArn": {
+          "Fn::GetAtt": [
+            "ZoomqueuefrontendDevelopmentRole84E2575D",
+            "Arn"
+          ]
+        },
+        "Family": "zoom-queue-frontend-development",
+        "Memory": "512",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": [
+          "FARGATE"
+        ],
+        "TaskRoleArn": {
+          "Fn::GetAtt": [
+            "ZoomqueuefrontendDevelopmentRole84E2575D",
+            "Arn"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentTask/Resource"
+      }
+    },
+    "ZoomqueuefrontendDevelopmentLogGroupEB559E50": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/ecs/zoom-queue-frontend-development",
+        "RetentionInDays": 731
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentLogGroup/Resource"
+      }
+    },
+    "ZoomqueuefrontendDevelopmentSecurityGroup5DDA5821": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentSecurityGroup",
+        "GroupName": "zoom-queue-frontend-development",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1"
+          }
+        ],
+        "SecurityGroupIngress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "from 0.0.0.0/0:ALL TRAFFIC",
+            "IpProtocol": "-1"
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 3000",
+            "FromPort": 3000,
+            "IpProtocol": "tcp",
+            "ToPort": 3000
+          }
+        ],
+        "VpcId": {
+          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentSecurityGroup/Resource"
+      }
+    },
+    "ZoomqueuefrontendDevelopmentSecurityGroupfromZoomQueueFrontendDevelopmentStackZoomqueuefrontendDevelopmentSecurityGroup0F7110CE80BE28AE69": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "IpProtocol": "tcp",
+        "Description": "Load balancer to target",
+        "FromPort": 80,
+        "GroupId": {
+          "Fn::GetAtt": [
+            "ZoomqueuefrontendDevelopmentSecurityGroup5DDA5821",
+            "GroupId"
+          ]
+        },
+        "SourceSecurityGroupId": {
+          "Fn::GetAtt": [
+            "ZoomqueuefrontendDevelopmentSecurityGroup5DDA5821",
+            "GroupId"
+          ]
+        },
+        "ToPort": 80
+      },
+      "Metadata": {
+        "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentSecurityGroup/from ZoomQueueFrontendDevelopmentStackZoomqueuefrontendDevelopmentSecurityGroup0F7110CE:80"
+      }
+    },
+    "ZoomqueuefrontendDevelopmentClusterF8CF93C1": {
+      "Type": "AWS::ECS::Cluster",
+      "Metadata": {
+        "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentCluster/Resource"
+      }
+    },
+    "ZoomqueuefrontendDevelopmentLoadBalancerA4000CE9": {
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+      "Properties": {
+        "LoadBalancerAttributes": [
+          {
+            "Key": "deletion_protection.enabled",
+            "Value": "false"
+          }
+        ],
+        "Scheme": "internet-facing",
+        "SecurityGroups": [
+          {
+            "Fn::GetAtt": [
+              "ZoomqueuefrontendDevelopmentSecurityGroup5DDA5821",
+              "GroupId"
+            ]
+          }
+        ],
+        "Subnets": [
+          {
+            "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7A5D57971"
+          },
+          {
+            "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0A051945B"
+          }
+        ],
+        "Type": "application"
+      },
+      "Metadata": {
+        "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentLoadBalancer/Resource"
+      }
+    },
+    "ZoomqueuefrontendDevelopmentService320EF827": {
+      "Type": "AWS::ECS::Service",
+      "Properties": {
+        "Cluster": {
+          "Ref": "ZoomqueuefrontendDevelopmentClusterF8CF93C1"
+        },
+        "DeploymentConfiguration": {
+          "MaximumPercent": 200,
+          "MinimumHealthyPercent": 50
+        },
+        "DesiredCount": 1,
+        "EnableECSManagedTags": false,
+        "HealthCheckGracePeriodSeconds": 60,
+        "LaunchType": "FARGATE",
+        "LoadBalancers": [
+          {
+            "ContainerName": "zoom-queue-frontend-development",
+            "ContainerPort": 80,
+            "TargetGroupArn": {
+              "Ref": "ZoomqueuefrontendDevelopmentTargetGroup48C60272"
+            }
+          }
+        ],
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "AssignPublicIp": "ENABLED",
+            "SecurityGroups": [
+              {
+                "Fn::GetAtt": [
+                  "ZoomqueuefrontendDevelopmentSecurityGroup5DDA5821",
+                  "GroupId"
+                ]
+              }
+            ],
+            "Subnets": [
+              {
+                "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7A5D57971"
+              },
+              {
+                "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0A051945B"
+              }
+            ]
+          }
+        },
+        "ServiceName": "zoom-queue-frontend-development",
+        "TaskDefinition": {
+          "Ref": "ZoomqueuefrontendDevelopmentTask03B936F0"
+        }
+      },
+      "DependsOn": [
+        "ZoomqueuefrontendDevelopmentListenerDCA757E2"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentService/Service"
+      }
+    },
+    "ZoomqueuefrontendDevelopmentTargetGroup48C60272": {
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+      "Properties": {
+        "Name": "ecs-zoom-queue-frontend-developm",
+        "Port": 80,
+        "Protocol": "HTTP",
+        "TargetGroupAttributes": [
+          {
+            "Key": "stickiness.enabled",
+            "Value": "false"
+          }
+        ],
+        "TargetType": "ip",
+        "VpcId": {
+          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentTargetGroup/Resource"
+      }
+    },
+    "ZoomqueuefrontendDevelopmentListenerDCA757E2": {
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+      "Properties": {
+        "DefaultActions": [
+          {
+            "TargetGroupArn": {
+              "Ref": "ZoomqueuefrontendDevelopmentTargetGroup48C60272"
+            },
+            "Type": "forward"
+          }
+        ],
+        "LoadBalancerArn": {
+          "Ref": "ZoomqueuefrontendDevelopmentLoadBalancerA4000CE9"
+        },
+        "Port": 3000,
+        "Protocol": "HTTP"
+      },
+      "Metadata": {
+        "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentListener/Resource"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/31PQW7CMBB8C3djSiNV4taGqlUlDijwga1ZwjbGjuw1VRT577VJQGkPPe3szmhmZymXxZN8mD3Dt5+rQ7PolXUo+x2DasTaGs8uKBbro6nQ2+AURpG1PcFZ9pXVeOXy3FpNqsvrgKJA5WX/Bq4Gxj345hWPZIjJmqz6e7GGgQy66U0Hz+iy+gZHux26C6lr+Aij0LZOeRtbvzsb2kzdcBS+kGVQDXIJHtNjj6kjquCIu7v6/8OHqR16n1pp8ExKWzh8ggajyNSX5PfStqk25Mc3iSuv3PD8r32i26cyyPe86Tp1o9TcjE4jjjGKbccnaxaFXMnV7MsTzV0wTGeU1TB/AHj4Mj7eAQAA"
+      },
+      "Metadata": {
+        "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/CDKMetadata/Default"
+      }
+    }
+  }
+}
