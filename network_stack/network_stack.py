@@ -6,6 +6,7 @@ from aws_cdk import aws_ecs as ecs
 from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_iam as iam
 from aws_cdk import aws_rds as rds
+from aws_cdk import aws_dynamodb as dynamodb
 from aws_cdk.aws_elasticloadbalancing import LoadBalancer, LoadBalancerListener
 from aws_cdk.aws_elasticloadbalancingv2 import ApplicationListener, ApplicationListenerAttributes, ApplicationLoadBalancer, ApplicationProtocol, ApplicationTargetGroup, ListenerAction, ListenerCertificate, ListenerCondition, TargetGroupBase, TargetType, ApplicationListenerRule
 from aws_cdk.aws_logs import LogGroup
@@ -59,12 +60,23 @@ class NetworkStack(cdk.Stack):
             peer=ec2.Peer.any_ipv4(),
             connection=ec2.Port.all_traffic()
         )
-        public_load_balancer = ApplicationLoadBalancer(
+
+
+        self.development_cluster = ecs.Cluster(
             self,
-            "{prefix}PublicLoadBalancer".format(prefix=prefix),
+            "{prefix}DevelopmentCluster".format(prefix=prefix),
+            vpc=self.vpc,
+            cluster_name="{prefix}DevelopmentCluster".format(prefix=prefix),
+        )
+
+        # Development load balancer
+        self.development_load_balancer = ApplicationLoadBalancer(
+            self,
+            "{prefix}DevPublicLB".format(prefix=prefix),
             vpc=self.vpc,
             security_group=security_group,
             internet_facing=True,
+            load_balancer_name="{prefix}DevPublicLB".format(prefix=prefix),
         )
 
 

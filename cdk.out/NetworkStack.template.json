@@ -559,6 +559,41 @@
             "CidrIp": "0.0.0.0/0",
             "Description": "from 0.0.0.0/0:ALL TRAFFIC",
             "IpProtocol": "-1"
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 80",
+            "FromPort": 80,
+            "IpProtocol": "tcp",
+            "ToPort": 80
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 3000",
+            "FromPort": 3000,
+            "IpProtocol": "tcp",
+            "ToPort": 3000
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 3001",
+            "FromPort": 3001,
+            "IpProtocol": "tcp",
+            "ToPort": 3001
+          },
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 8080",
+            "FromPort": 8080,
+            "IpProtocol": "tcp",
+            "ToPort": 8080
           }
         ],
         "VpcId": {
@@ -569,7 +604,16 @@
         "aws:cdk:path": "NetworkStack/LSITZoomQueueSecurityGroup/Resource"
       }
     },
-    "LSITZoomQueuePublicLoadBalancerB18D5339": {
+    "LSITZoomQueueDevelopmentClusterCD7CCE95": {
+      "Type": "AWS::ECS::Cluster",
+      "Properties": {
+        "ClusterName": "LSITZoomQueueDevelopmentCluster"
+      },
+      "Metadata": {
+        "aws:cdk:path": "NetworkStack/LSITZoomQueueDevelopmentCluster/Resource"
+      }
+    },
+    "LSITZoomQueueDevPublicLB4051B741": {
       "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
       "Properties": {
         "LoadBalancerAttributes": [
@@ -578,6 +622,7 @@
             "Value": "false"
           }
         ],
+        "Name": "LSITZoomQueueDevPublicLB",
         "Scheme": "internet-facing",
         "SecurityGroups": [
           {
@@ -602,7 +647,7 @@
         "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2DefaultRoute6CD1947B"
       ],
       "Metadata": {
-        "aws:cdk:path": "NetworkStack/LSITZoomQueuePublicLoadBalancer/Resource"
+        "aws:cdk:path": "NetworkStack/LSITZoomQueueDevPublicLB/Resource"
       }
     },
     "LSITZoomQueueDevelopmentPostgresDatabaseSubnetGroupECCBE8D7": {
@@ -751,7 +796,7 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Q0W7CMAz8Ft5DGEOaxNsonRDStFWAeHeDBxklqRIHhKL8+5JmQMWT7btzfJcxH0/e+MvgHS52KHbHkRfaIPdrAnFkK7TaGYFsrpUl4wSx+Y/6dtS6rrvxgaV1j+KV+20rErWt5qwy8gyEa1cr7PSPbqUd4QbqBh/4A5tZq4UEklqxytWNFE+bqflYVql8AS3ikQtc07RUhCYqe1B08j/NKKY6nFARW6NwRtJ1YbRrOwt9IDBswJIUjYZdDQ0oIdX+HNPN2ja66Zx9Rq7oODTphf4cmNlZ7ksgqMHiMv5ewlmOcT9aFn3gpo5WTM5aFrfNwGyH2hMo2KPhPntOwlw2YPZIvYh3wTMT35pwXzhxzFdyF0Jg1ZUOWo0mfMqng18r5dA4RfKEfJXrH8fhF3svAgAA"
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Qy27CMBD8Fu7GlNIeuJWECiFVbQSI+8bZgkuwI3sNQpH/vXbMI+K0uzOz6xmP+fjtnb8MPuBsh6I6jFqhDfJ2TSAObIVWOyOQ5b/qx1HjiOVaWTJOUMRuvGdxvUXxytttIyK1LXJWGHkCwrUrFXb6R7fSjnADZY0P/IHNrNVCAkmtWOHKWoqnzdh8LotYvoEW4ZEzXOK0VIQmKHtQcHKdZhRS7Y+oiK1ROCPpsjDaNZ2FPuAZCsvbvHY2nIv0tQ1EDZakqDVUJdSghFS7U4g9a5pgs7P8Fbis49Juf/bMVOHyHAhKsLgMnxlxlvLd3cyzPnBTB48mfcI8u216ZjvUHkHBDk1w3YWJwlQ2YHZIvex3wTMTbk14mzlxSK+kznvPigvttRpN+JRPB39WyqFxiuQR+SrVf5it6TJIAgAA"
       },
       "Metadata": {
         "aws:cdk:path": "NetworkStack/CDKMetadata/Default"
@@ -841,6 +886,25 @@
         "Name": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
       }
     },
+    "ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471": {
+      "Value": {
+        "Fn::GetAtt": [
+          "LSITZoomQueueSecurityGroupE353981D",
+          "GroupId"
+        ]
+      },
+      "Export": {
+        "Name": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
+      }
+    },
+    "ExportsOutputRefLSITZoomQueueDevelopmentClusterCD7CCE951AD3B1F8": {
+      "Value": {
+        "Ref": "LSITZoomQueueDevelopmentClusterCD7CCE95"
+      },
+      "Export": {
+        "Name": "NetworkStack:ExportsOutputRefLSITZoomQueueDevelopmentClusterCD7CCE951AD3B1F8"
+      }
+    },
     "ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7A5D57971": {
       "Value": {
         "Ref": "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7"
@@ -855,6 +919,25 @@
       },
       "Export": {
         "Name": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0A051945B"
+      }
+    },
+    "ExportsOutputRefLSITZoomQueueDevPublicLB4051B7414DCA8F4C": {
+      "Value": {
+        "Ref": "LSITZoomQueueDevPublicLB4051B741"
+      },
+      "Export": {
+        "Name": "NetworkStack:ExportsOutputRefLSITZoomQueueDevPublicLB4051B7414DCA8F4C"
+      }
+    },
+    "ExportsOutputFnGetAttLSITZoomQueueDevelopmentClusterCD7CCE95ArnE9FC663E": {
+      "Value": {
+        "Fn::GetAtt": [
+          "LSITZoomQueueDevelopmentClusterCD7CCE95",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueDevelopmentClusterCD7CCE95ArnE9FC663E"
       }
     }
   }

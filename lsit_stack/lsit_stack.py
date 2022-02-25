@@ -12,7 +12,7 @@ from aws_cdk.aws_s3 import Bucket
 
 class LSITStack(cdk.Stack):
 
-    def __init__(self, scope: cdk.Construct, construct_id: str, vpc: ec2.Vpc, bucket: Bucket, app_props: dict, **kwargs) -> None:
+    def __init__(self, scope: cdk.Construct, construct_id: str, vpc: ec2.Vpc, bucket: Bucket, cluster: ecs.Cluster, load_balancer: LoadBalancer, app_props: dict, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
         # Required props
@@ -29,18 +29,18 @@ class LSITStack(cdk.Stack):
         host_headers = app_props.get("host_headers")
         task_port = app_props.get("task_port", 80)
         resource_multiplier = app_props.get("resource_multiplier", 1)
-        cluster_arn = app_props.get("cluster_arn")
-        if cluster_arn:
-            cluster_name = cluster_arn.rsplit('/', 1)[-1]
-        else:
+        if not cluster:    
             cluster_name = task_name
-        load_balancer_arn = app_props.get("load_balancer_arn")
+        else:
+            cluster_name = cluster.cluster_name
         https_load_balancer_priority = app_props.get("https_load_balancer_priority", 1)
         http_load_balancer_priority = app_props.get("http_load_balancer_priority", 1)
         load_balancer_port = app_props.get("load_balancer_port")
-        https_listener_arn = app_props.get("https_listener_arn")
-        http_listener_arn = app_props.get("http_listener_arn")
+        self.https_listener = app_props.get("https_listener")
+        self.http_listener = app_props.get("http_listener")
+        print("listeners",self.http_listener,self.https_listener)
         certificate_arn = app_props.get("certificate_arn")
+        health_check_path = app_props.get("health_check_path","/health")
 
         role = iam.Role(
             self,
@@ -125,30 +125,14 @@ class LSITStack(cdk.Stack):
             connection=ec2.Port.all_traffic()
         )
 
-        if cluster_arn:
-            cluster = ecs.Cluster.from_cluster_attributes(
-                self,
-                "cluster",
-                cluster_arn=cluster_arn,
-                cluster_name=cluster_name,
-                security_groups=[security_group],
-                vpc=vpc
-            )
-        else:
+        if not cluster:
             cluster = ecs.Cluster(
                 self,
                 "{app_prefix}Cluster".format(app_prefix=app_prefix),
                 vpc=vpc
             )
 
-        if load_balancer_arn:
-            load_balancer = ApplicationLoadBalancer.from_lookup(
-                self,
-                "{app_prefix}LoadBalancer".format(app_prefix=app_prefix),
-                load_balancer_arn=load_balancer_arn
-            )
-        else:
-            
+        if not load_balancer:
             load_balancer = ApplicationLoadBalancer(
                 self,
                 "{app_prefix}LoadBalancer".format(app_prefix=app_prefix),
@@ -176,23 +160,20 @@ class LSITStack(cdk.Stack):
             self,
             "{app_prefix}TargetGroup".format(app_prefix=app_prefix),
             target_type=TargetType.IP,
-            target_group_name='ecs-{cluster_name}-{task_name}'.format(cluster_name=cluster_name, task_name=task_name)[:32],
+            target_group_name='ecs-{task_name}-{app_env}'.format(task_name=task_name, app_env=app_env)[:32],
             protocol=ApplicationProtocol.HTTP,
             port=80,
             vpc=vpc
+        )
+        target_group.configure_health_check(
+            path=health_check_path
         )
 
         service.attach_to_application_target_group(target_group)
         target_group.load_balancer_attached
    
         if host_headers:
-            if https_listener_arn:
-                https_listener = ApplicationListener.from_lookup(
-                    self,
-                    "{app_prefix}ExistingHttpsListener".format(app_prefix=app_prefix),
-                    listener_arn=https_listener_arn
-                )
-            elif certificate_arn:
+            if not self.https_listener:
                 fixed_response_json = {
                     "fixedResponseConfig" : {
                         "contentType": "text/plain",
@@ -200,8 +181,7 @@ class LSITStack(cdk.Stack):
                     },
                     "type" : "fixed-response"
                 }
-
-                https_listener = ApplicationListener(
+                self.https_listener = ApplicationListener(
                     self,
                     "{app_prefix}HttpsListener".format(app_prefix=app_prefix),
                     load_balancer=load_balancer,
@@ -209,25 +189,24 @@ class LSITStack(cdk.Stack):
                     default_action=ListenerAction(fixed_response_json),
                     certificate_arns=[certificate_arn]
                 )
+                
+            if certificate_arn:
+                self.https_listener.add_certificate_arns(
+                    "{app_prefix}Certtificates".format(app_prefix=app_prefix),
+                    [certificate_arn]
+                )    
 
-            if https_listener_arn or certificate_arn:
-                ApplicationListenerRule(
-                    self,
-                    "{app_prefix}HttpsListenerRule".format(app_prefix=app_prefix),
-                    listener=https_listener,
-                    conditions=[ListenerCondition.host_headers(host_headers)],
-                    priority=https_load_balancer_priority,
-                    target_groups=[target_group]
-                )
+            ApplicationListenerRule(
+                self,
+                "{app_prefix}HttpsListenerRule".format(app_prefix=app_prefix),
+                listener=self.https_listener,
+                conditions=[ListenerCondition.host_headers(host_headers)],
+                priority=https_load_balancer_priority,
+                target_groups=[target_group]
+            )
 
             # HTTP listener
-            if http_listener_arn:
-                http_listener = ApplicationListener.from_lookup(
-                    self,
-                    "{app_prefix}ExistingHttpListener".format(app_prefix=app_prefix),
-                    listener_arn=http_listener_arn
-                )
-            else:
+            if not self.http_listener:
                 fixed_response_json = {
                     "fixedResponseConfig" : {
                         "contentType": "text/plain",
@@ -236,7 +215,7 @@ class LSITStack(cdk.Stack):
                     "type" : "fixed-response"
                 }
 
-                http_listener = ApplicationListener(
+                self.http_listener = ApplicationListener(
                     self,
                     "{app_prefix}HttpListener".format(app_prefix=app_prefix),
                     load_balancer=load_balancer,
@@ -255,7 +234,7 @@ class LSITStack(cdk.Stack):
             ApplicationListenerRule(
                 self,
                 "{app_prefix}HttpListenerRule".format(app_prefix=app_prefix),
-                listener=http_listener,
+                listener=self.http_listener,
                 conditions=[ListenerCondition.host_headers(host_headers)],
                 priority=http_load_balancer_priority,
                 action=ListenerAction(listener_action_json)
