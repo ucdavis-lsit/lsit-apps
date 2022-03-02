@@ -62,6 +62,7 @@ class NetworkStack(cdk.Stack):
         )
 
 
+        # Development cluster
         self.development_cluster = ecs.Cluster(
             self,
             "{prefix}DevelopmentCluster".format(prefix=prefix),
@@ -103,21 +104,79 @@ class NetworkStack(cdk.Stack):
         )
         database.connections.allow_from_any_ipv4(ec2.Port.tcp(5432))
 
+        # Prod/Staging load balancer
+        self.load_balancer = ApplicationLoadBalancer(
+            self,
+            "{prefix}PublicLB".format(prefix=prefix),
+            vpc=self.vpc,
+            security_group=security_group,
+            internet_facing=True,
+            load_balancer_name="{prefix}PublicLB".format(prefix=prefix),
+        )
+
+        # Create a postgres DB for prod/staging frontdesk app
+        database = rds.DatabaseInstance(
+            self,
+            "{prefix}FrontdeskDatabase".format(prefix=prefix),
+            vpc=self.vpc,
+            vpc_subnets={
+                "subnet_type": ec2.SubnetType.ISOLATED,
+            },
+            engine=rds.DatabaseInstanceEngine.postgres(version=rds.PostgresEngineVersion.VER_13_1),
+            credentials=rds.Credentials.from_generated_secret("frontdeskadmin",secret_name="frontdeskcredentials"),
+            instance_type=ec2.InstanceType.of(
+                ec2.InstanceClass.BURSTABLE3,
+                ec2.InstanceSize.SMALL
+            ),
+            backup_retention=cdk.Duration.days(3),
+            delete_automated_backups=True,
+            removal_policy=cdk.RemovalPolicy.RETAIN,
+            deletion_protection=True,
+            database_name="frontdesk",
+            publicly_accessible=True,
+            instance_identifier="frontdeskapp"
+        )
+        database.connections.allow_from_any_ipv4(ec2.Port.tcp(5432))
+
+        self.cluster = ecs.Cluster(
+            self,
+            "{prefix}Cluster".format(prefix=prefix),
+            vpc=self.vpc,
+            cluster_name="LSITFrontDeskCluster",
+        )
+
+        # VPC Endpoints for prod/staging
+        ec2.InterfaceVpcEndpoint(
+            self,
+            "{prefix}ECRVPCEndpoint".format(prefix=prefix),
+            vpc=self.vpc,
+            service=ec2.InterfaceVpcEndpointAwsService.ECR,
+            subnets=ec2.SubnetSelection(
+                subnets=self.vpc.private_subnets
+            ),
+        )
+
+        ec2.InterfaceVpcEndpoint(
+            self,
+            "{prefix}ECRDockerVPCEndpoint".format(prefix=prefix),
+            vpc=self.vpc,
+            service=ec2.InterfaceVpcEndpointAwsService.ECR_DOCKER,
+            subnets=ec2.SubnetSelection(
+                subnets=self.vpc.private_subnets
+            ),
+        )
+
+        ec2.GatewayVpcEndpoint(
+            self,
+            "{prefix}S3VPCEndpoint".format(prefix=prefix),
+            vpc=self.vpc,
+            service=ec2.GatewayVpcEndpointAwsService.S3,
+            subnets=self.vpc.private_subnets
+        )
+
         # Environment Variable Bucket
         self.bucket = Bucket(
             self,
             "lsit-zoom-queue-env-vars",
             bucket_name="lsit-zoom-queue-env-vars"
-        )
-
-        # Outputs
-        cdk.CfnOutput(
-            self,
-            "{prefix}DBEndpoint".format(prefix=prefix),
-            value=database.instance_endpoint.hostname
-        )
-        cdk.CfnOutput(
-            self,
-            "{prefix}DBSecretName".format(prefix=prefix),
-            value=database.secret.secret_name
         )

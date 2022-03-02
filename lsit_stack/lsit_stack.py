@@ -29,6 +29,7 @@ class LSITStack(cdk.Stack):
         host_headers = app_props.get("host_headers")
         task_port = app_props.get("task_port", 80)
         resource_multiplier = app_props.get("resource_multiplier", 1)
+        is_private = app_props.get("is_private", False)
         if not cluster:    
             cluster_name = task_name
         else:
@@ -141,19 +142,33 @@ class LSITStack(cdk.Stack):
                 internet_facing=True
             )
 
-        service = ecs.FargateService(
-            self,
-            "{app_prefix}Service".format(app_prefix=app_prefix),
-            assign_public_ip=True,
-            security_group=security_group,
-            vpc_subnets=ec2.SubnetSelection(
-                subnets=vpc.public_subnets
-            ),
-            desired_count=1,
-            task_definition=task,
-            cluster=cluster,
-            service_name=task_name
-        )
+        if is_private:
+            service = ecs.FargateService(
+                self,
+                "{app_prefix}Service".format(app_prefix=app_prefix),
+                security_group=security_group,
+                vpc_subnets=ec2.SubnetSelection(
+                    subnets=vpc.private_subnets
+                ),
+                desired_count=1,
+                task_definition=task,
+                cluster=cluster,
+                service_name=task_name
+            )
+        else:
+            service = ecs.FargateService(
+                self,
+                "{app_prefix}Service".format(app_prefix=app_prefix),
+                assign_public_ip=True,
+                security_group=security_group,
+                vpc_subnets=ec2.SubnetSelection(
+                    subnets=vpc.public_subnets
+                ),
+                desired_count=1,
+                task_definition=task,
+                cluster=cluster,
+                service_name=task_name
+            )
 
 
         target_group = ApplicationTargetGroup(
