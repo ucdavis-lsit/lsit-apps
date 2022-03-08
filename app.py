@@ -100,6 +100,22 @@ ScheudledTaskStack(
         "app_name": "zoom-queue-cleanup-cron",
         "app_env": "development",
         "image_uri": "curlimages/curl:latest",
+        "command_override": ["sh","-c","curl -XDELETE https://dev.api.frontdesk.lsit.ucdavis.edu/api/guest?key=$API_KEY"]
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+ScheudledTaskStack(
+    app,
+    "ZoomQueueDevelopmentCleanupAnnouncements",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.development_cluster,
+    {
+        "app_name": "zoom-queue-cleanup-announcements",
+        "app_env": "development",
+        "image_uri": "curlimages/curl:latest",
+        "command_override": ["sh","-c","curl -XDELETE https://dev.api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY"]
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -118,7 +134,6 @@ frontdesk_frontend_stack = LSITStack(
         "app_env": "production",
         "task_port": 3000,
         "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-client-prod:latest",
-        "load_balancer_port": 3000,
         "health_check_path": "/api/health",
         "https_load_balancer_priority": 1,
         "http_load_balancer_priority": 1,
@@ -141,7 +156,6 @@ LSITStack(
         "app_env": "production",
         "task_port": 3001,
         "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
-        "load_balancer_port": 3001,
         "https_listener": frontdesk_frontend_stack.https_listener,
         "http_listener": frontdesk_frontend_stack.http_listener,
         "https_load_balancer_priority": 2,
@@ -165,13 +179,83 @@ LSITStack(
         "app_env": "production",
         "task_port": 80,
         "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-websocket-prod:latest",
-        "load_balancer_port": 8080,
         "https_listener": frontdesk_frontend_stack.https_listener,
         "http_listener": frontdesk_frontend_stack.http_listener,
         "https_load_balancer_priority": 3,
         "http_load_balancer_priority": 3,
         "host_headers": ["websocket.frontdesk.lsit.ucdavis.edu"],
         "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/9ee190dd-6d07-4bfd-a293-dc3048c56c6b",
+        "is_private": True
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+# Staging
+LSITStack(
+    app,
+    "FrontDeskAppClientStagingStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    network_stack.load_balancer,
+    {
+        "app_name": "frontdesk-app-client",
+        "app_env": "staging",
+        "task_port": 3000,
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-client-staging:latest",
+        "health_check_path": "/api/health",
+        "https_listener": frontdesk_frontend_stack.https_listener,
+        "http_listener": frontdesk_frontend_stack.http_listener,
+        "https_load_balancer_priority": 4,
+        "http_load_balancer_priority": 4,
+        "host_headers": ["stage.advisingfrontdesk.lsit.ucdavis.edu"],
+        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/42f3fc26-59c4-495f-9166-9e8180d95e6b",
+        "is_private": True
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+LSITStack(
+    app,
+    "FrontDeskAppServerStagingStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    network_stack.load_balancer,
+    {
+        "app_name": "frontdesk-app-server",
+        "app_env": "staging",
+        "task_port": 3001,
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-staging:latest",
+        "https_listener": frontdesk_frontend_stack.https_listener,
+        "http_listener": frontdesk_frontend_stack.http_listener,
+        "https_load_balancer_priority": 5,
+        "http_load_balancer_priority": 5,
+        "host_headers": ["stage.api.frontdesk.lsit.ucdavis.edu"],
+        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/1ae579ad-54ac-4a6e-bcb7-3e4a547b3a08",
+        "is_private": True
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+LSITStack(
+    app,
+    "FrontDeskAppWebsocketStagingStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    network_stack.load_balancer,
+    {
+        "app_name": "frontdesk-app-websocket",
+        "app_env": "staging",
+        "task_port": 80,
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-websocket-staging:latest",
+        "https_listener": frontdesk_frontend_stack.https_listener,
+        "http_listener": frontdesk_frontend_stack.http_listener,
+        "https_load_balancer_priority": 6,
+        "http_load_balancer_priority": 6,
+        "host_headers": ["stage.websocket.frontdesk.lsit.ucdavis.edu"],
+        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/3e9d0032-9e87-4210-853d-31bec7f931cd",
         "is_private": True
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),

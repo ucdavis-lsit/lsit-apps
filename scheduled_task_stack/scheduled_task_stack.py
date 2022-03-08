@@ -24,6 +24,9 @@ class ScheudledTaskStack(cdk.Stack):
 
         # Optional
         resource_multiplier = app_props.get("resource_multiplier", 1)
+        is_private = app_props.get("is_private", False)
+        command_override = app_props.get("command_override", [])
+        schedule = app_props.get("schedule", {"minute": "0", "hour": "8"})
 
         role = iam.Role(
             self,
@@ -112,31 +115,36 @@ class ScheudledTaskStack(cdk.Stack):
             description="Allows {task_name} scheduled tasks to run in ECS.".format(task_name=task_name)
         )
 
+        if is_private:
+            subnet_selection = ec2.SubnetSelection(
+                subnets=vpc.private_subnets
+            )
+        else:
+            subnet_selection = ec2.SubnetSelection(
+                subnets=vpc.public_subnets
+            )
+
         ecs_task_target = EcsTask(
             cluster=cluster,
             task_definition=task,
             role=event_role,
             platform_version=ecs.FargatePlatformVersion.LATEST,
             security_groups=[security_group],
-            subnet_selection=ec2.SubnetSelection(
-                subnets=vpc.public_subnets
-            ),
+            subnet_selection=subnet_selection,
             container_overrides=[ContainerOverride(
                 container_name=task_name,
-                command=["sh","-c","curl -XDELETE https://dev.api.frontdesk.lsit.ucdavis.edu/api/guest?key=$API_KEY"]
+                command=command_override
             )]
         )
         scheduled_task = events.Rule(
             self,
              "{app_prefix}ScheduledTask".format(app_prefix=app_prefix),
-            schedule=events.Schedule.cron(
-                minute="0",
-                hour="8"
-            ),
+            schedule=events.Schedule.cron(**schedule),
             targets=[ecs_task_target]
         )
-        # DO NOT use public subnets out of development.  Instead setup VPC endpoints as needed
-        scheduled_task.node.default_child.add_override(
-            "Properties.Targets.0.EcsParameters.NetworkConfiguration.AwsVpcConfiguration.AssignPublicIp",
-            "ENABLED"
-        )
+        if not is_private:
+            # DO NOT use public subnets out of development.  Instead setup VPC endpoints as needed
+            scheduled_task.node.default_child.add_override(
+                "Properties.Targets.0.EcsParameters.NetworkConfiguration.AwsVpcConfiguration.AssignPublicIp",
+                "ENABLED"
+            )

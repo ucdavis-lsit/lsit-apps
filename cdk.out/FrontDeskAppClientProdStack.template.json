@@ -313,8 +313,7 @@
         }
       },
       "DependsOn": [
-        "FrontdeskappclientProductionHttpsListenerRule5CBF48FA",
-        "FrontdeskappclientProductionListenerC5EAFE56"
+        "FrontdeskappclientProductionHttpsListenerRule5CBF48FA"
       ],
       "Metadata": {
         "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionService/Service"
@@ -417,6 +416,54 @@
         "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-websocketProductionCerttificates1/Resource"
       }
     },
+    "FrontdeskappclientProductionHttpsListenerFrontdeskappclientStagingCerttificates1A8BC97FA": {
+      "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+      "Properties": {
+        "Certificates": [
+          {
+            "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/42f3fc26-59c4-495f-9166-9e8180d95e6b"
+          }
+        ],
+        "ListenerArn": {
+          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientStagingCerttificates1/Resource"
+      }
+    },
+    "FrontdeskappclientProductionHttpsListenerFrontdeskappserverStagingCerttificates1D5A08490": {
+      "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+      "Properties": {
+        "Certificates": [
+          {
+            "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/1ae579ad-54ac-4a6e-bcb7-3e4a547b3a08"
+          }
+        ],
+        "ListenerArn": {
+          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-serverStagingCerttificates1/Resource"
+      }
+    },
+    "FrontdeskappclientProductionHttpsListenerFrontdeskappwebsocketStagingCerttificates19C44CCD8": {
+      "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+      "Properties": {
+        "Certificates": [
+          {
+            "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/3e9d0032-9e87-4210-853d-31bec7f931cd"
+          }
+        ],
+        "ListenerArn": {
+          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-websocketStagingCerttificates1/Resource"
+      }
+    },
     "FrontdeskappclientProductionHttpsListenerRule5CBF48FA": {
       "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
       "Properties": {
@@ -498,27 +545,6 @@
       },
       "Metadata": {
         "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule/Resource"
-      }
-    },
-    "FrontdeskappclientProductionListenerC5EAFE56": {
-      "Type": "AWS::ElasticLoadBalancingV2::Listener",
-      "Properties": {
-        "DefaultActions": [
-          {
-            "TargetGroupArn": {
-              "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
-            },
-            "Type": "forward"
-          }
-        ],
-        "LoadBalancerArn": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueuePublicLB6F0A6C15386A461C"
-        },
-        "Port": 3000,
-        "Protocol": "HTTP"
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionListener/Resource"
       }
     },
     "CDKMetadata": {

@@ -1,6 +1,6 @@
 {
   "Resources": {
-    "FrontdeskappserverProductionRole7CAE5038": {
+    "FrontdeskappclientStagingRole2C8458A9": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -15,7 +15,7 @@
           ],
           "Version": "2012-10-17"
         },
-        "Description": "Allows frontdesk-app-server-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+        "Description": "Allows frontdesk-app-client-staging tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
         "ManagedPolicyArns": [
           {
             "Fn::Join": [
@@ -30,13 +30,13 @@
             ]
           }
         ],
-        "RoleName": "Frontdesk-app-serverProductionECSTaskExecutionRole"
+        "RoleName": "Frontdesk-app-clientStagingECSTaskExecutionRole"
       },
       "Metadata": {
-        "aws:cdk:path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionRole/Resource"
+        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingRole/Resource"
       }
     },
-    "FrontdeskappserverProductionRoleDefaultPolicyA0E8B724": {
+    "FrontdeskappclientStagingRoleDefaultPolicy27EC228E": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -49,7 +49,7 @@
               "Effect": "Allow",
               "Resource": {
                 "Fn::GetAtt": [
-                  "FrontdeskappserverProductionLogGroup04615385",
+                  "FrontdeskappclientStagingLogGroup8D30E6F6",
                   "Arn"
                 ]
               }
@@ -57,18 +57,18 @@
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "FrontdeskappserverProductionRoleDefaultPolicyA0E8B724",
+        "PolicyName": "FrontdeskappclientStagingRoleDefaultPolicy27EC228E",
         "Roles": [
           {
-            "Ref": "FrontdeskappserverProductionRole7CAE5038"
+            "Ref": "FrontdeskappclientStagingRole2C8458A9"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingRole/DefaultPolicy/Resource"
       }
     },
-    "FrontdeskappserverProductionPolicy82F7FE4C": {
+    "FrontdeskappclientStagingPolicyBA590B5D": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -90,7 +90,7 @@
                     {
                       "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
                     },
-                    "/frontdesk-app-server/*"
+                    "/frontdesk-app-client/*"
                   ]
                 ]
               }
@@ -98,18 +98,18 @@
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "Frontdesk-app-serverProductionConfigRead",
+        "PolicyName": "Frontdesk-app-clientStagingConfigRead",
         "Roles": [
           {
-            "Ref": "FrontdeskappserverProductionRole7CAE5038"
+            "Ref": "FrontdeskappclientStagingRole2C8458A9"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionPolicy/Resource"
+        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingPolicy/Resource"
       }
     },
-    "FrontdeskappserverProductionTask1E90E5EC": {
+    "FrontdeskappclientStagingTask66E32AE1": {
       "Type": "AWS::ECS::TaskDefinition",
       "Properties": {
         "ContainerDefinitions": [
@@ -150,30 +150,30 @@
                           }
                         ]
                       },
-                      "/frontdesk-app-server/production.env"
+                      "/frontdesk-app-client/staging.env"
                     ]
                   ]
                 }
               }
             ],
             "Essential": true,
-            "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
+            "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-client-staging:latest",
             "LogConfiguration": {
               "LogDriver": "awslogs",
               "Options": {
                 "awslogs-group": {
-                  "Ref": "FrontdeskappserverProductionLogGroup04615385"
+                  "Ref": "FrontdeskappclientStagingLogGroup8D30E6F6"
                 },
-                "awslogs-stream-prefix": "frontdesk-app-server-production",
+                "awslogs-stream-prefix": "frontdesk-app-client-staging",
                 "awslogs-region": "us-west-2"
               }
             },
             "Memory": 512,
-            "Name": "frontdesk-app-server-production",
+            "Name": "frontdesk-app-client-staging",
             "PortMappings": [
               {
-                "ContainerPort": 3001,
-                "HostPort": 3001,
+                "ContainerPort": 3000,
+                "HostPort": 3000,
                 "Protocol": "tcp"
               }
             ]
@@ -182,11 +182,11 @@
         "Cpu": "256",
         "ExecutionRoleArn": {
           "Fn::GetAtt": [
-            "FrontdeskappserverProductionRole7CAE5038",
+            "FrontdeskappclientStagingRole2C8458A9",
             "Arn"
           ]
         },
-        "Family": "frontdesk-app-server-production",
+        "Family": "frontdesk-app-client-staging",
         "Memory": "512",
         "NetworkMode": "awsvpc",
         "RequiresCompatibilities": [
@@ -194,32 +194,32 @@
         ],
         "TaskRoleArn": {
           "Fn::GetAtt": [
-            "FrontdeskappserverProductionRole7CAE5038",
+            "FrontdeskappclientStagingRole2C8458A9",
             "Arn"
           ]
         }
       },
       "Metadata": {
-        "aws:cdk:path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionTask/Resource"
+        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingTask/Resource"
       }
     },
-    "FrontdeskappserverProductionLogGroup04615385": {
+    "FrontdeskappclientStagingLogGroup8D30E6F6": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/ecs/frontdesk-app-server-production",
+        "LogGroupName": "/ecs/frontdesk-app-client-staging",
         "RetentionInDays": 731
       },
       "UpdateReplacePolicy": "Delete",
       "DeletionPolicy": "Delete",
       "Metadata": {
-        "aws:cdk:path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionLogGroup/Resource"
+        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingLogGroup/Resource"
       }
     },
-    "FrontdeskappserverProductionSecurityGroup56CD5C50": {
+    "FrontdeskappclientStagingSecurityGroup7A2252E4": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionSecurityGroup",
-        "GroupName": "frontdesk-app-server-production",
+        "GroupDescription": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingSecurityGroup",
+        "GroupName": "frontdesk-app-client-staging",
         "SecurityGroupEgress": [
           {
             "CidrIp": "0.0.0.0/0",
@@ -239,31 +239,31 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionSecurityGroup/Resource"
+        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingSecurityGroup/Resource"
       }
     },
-    "FrontdeskappserverProductionSecurityGroupfromNetworkStackLSITZoomQueueSecurityGroup211C74673001C9B2C24D": {
+    "FrontdeskappclientStagingSecurityGroupfromNetworkStackLSITZoomQueueSecurityGroup211C746730009E4C2441": {
       "Type": "AWS::EC2::SecurityGroupIngress",
       "Properties": {
         "IpProtocol": "tcp",
         "Description": "Load balancer to target",
-        "FromPort": 3001,
+        "FromPort": 3000,
         "GroupId": {
           "Fn::GetAtt": [
-            "FrontdeskappserverProductionSecurityGroup56CD5C50",
+            "FrontdeskappclientStagingSecurityGroup7A2252E4",
             "GroupId"
           ]
         },
         "SourceSecurityGroupId": {
           "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
         },
-        "ToPort": 3001
+        "ToPort": 3000
       },
       "Metadata": {
-        "aws:cdk:path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionSecurityGroup/from NetworkStackLSITZoomQueueSecurityGroup211C7467:3001"
+        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingSecurityGroup/from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000"
       }
     },
-    "FrontdeskappserverProductionService314ABA86": {
+    "FrontdeskappclientStagingService2116B712": {
       "Type": "AWS::ECS::Service",
       "Properties": {
         "Cluster": {
@@ -279,10 +279,10 @@
         "LaunchType": "FARGATE",
         "LoadBalancers": [
           {
-            "ContainerName": "frontdesk-app-server-production",
-            "ContainerPort": 3001,
+            "ContainerName": "frontdesk-app-client-staging",
+            "ContainerPort": 3000,
             "TargetGroupArn": {
-              "Ref": "FrontdeskappserverProductionTargetGroup63539297"
+              "Ref": "FrontdeskappclientStagingTargetGroup98F7B686"
             }
           }
         ],
@@ -292,7 +292,7 @@
             "SecurityGroups": [
               {
                 "Fn::GetAtt": [
-                  "FrontdeskappserverProductionSecurityGroup56CD5C50",
+                  "FrontdeskappclientStagingSecurityGroup7A2252E4",
                   "GroupId"
                 ]
               }
@@ -307,23 +307,23 @@
             ]
           }
         },
-        "ServiceName": "frontdesk-app-server-production",
+        "ServiceName": "frontdesk-app-client-staging",
         "TaskDefinition": {
-          "Ref": "FrontdeskappserverProductionTask1E90E5EC"
+          "Ref": "FrontdeskappclientStagingTask66E32AE1"
         }
       },
       "DependsOn": [
-        "FrontdeskappserverProductionHttpsListenerRule8C78A130"
+        "FrontdeskappclientStagingHttpsListenerRule6A03FDFE"
       ],
       "Metadata": {
-        "aws:cdk:path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionService/Service"
+        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingService/Service"
       }
     },
-    "FrontdeskappserverProductionTargetGroup63539297": {
+    "FrontdeskappclientStagingTargetGroup98F7B686": {
       "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
       "Properties": {
-        "HealthCheckPath": "/health",
-        "Name": "ecs-frontdesk-app-server-product",
+        "HealthCheckPath": "/api/health",
+        "Name": "ecs-frontdesk-app-client-staging",
         "Port": 80,
         "Protocol": "HTTP",
         "TargetGroupAttributes": [
@@ -338,16 +338,16 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionTargetGroup/Resource"
+        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingTargetGroup/Resource"
       }
     },
-    "FrontdeskappserverProductionHttpsListenerRule8C78A130": {
+    "FrontdeskappclientStagingHttpsListenerRule6A03FDFE": {
       "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
       "Properties": {
         "Actions": [
           {
             "TargetGroupArn": {
-              "Ref": "FrontdeskappserverProductionTargetGroup63539297"
+              "Ref": "FrontdeskappclientStagingTargetGroup98F7B686"
             },
             "Type": "forward"
           }
@@ -357,7 +357,7 @@
             "Field": "host-header",
             "HostHeaderConfig": {
               "Values": [
-                "api.frontdesk.lsit.ucdavis.edu"
+                "stage.advisingfrontdesk.lsit.ucdavis.edu"
               ]
             }
           }
@@ -365,13 +365,13 @@
         "ListenerArn": {
           "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE"
         },
-        "Priority": 2
+        "Priority": 4
       },
       "Metadata": {
-        "aws:cdk:path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionHttpsListenerRule/Resource"
+        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingHttpsListenerRule/Resource"
       }
     },
-    "FrontdeskappserverProductionHttpListenerRuleE9EF5CF4": {
+    "FrontdeskappclientStagingHttpListenerRuleF8C7A29B": {
       "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
       "Properties": {
         "Actions": [
@@ -388,7 +388,7 @@
             "Field": "host-header",
             "HostHeaderConfig": {
               "Values": [
-                "api.frontdesk.lsit.ucdavis.edu"
+                "stage.advisingfrontdesk.lsit.ucdavis.edu"
               ]
             }
           }
@@ -396,10 +396,10 @@
         "ListenerArn": {
           "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A"
         },
-        "Priority": 2
+        "Priority": 4
       },
       "Metadata": {
-        "aws:cdk:path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionHttpListenerRule/Resource"
+        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingHttpListenerRule/Resource"
       }
     },
     "CDKMetadata": {
@@ -408,7 +408,7 @@
         "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QQW4CMQx8C/cQSmkP3FqoWlXigBY+4AazdTckq9ihWq3y9yYsRaseerJnPBl7Mtfzh0d9N3mCb56aQzPrjQ+o+52AadTaO5YQjaj10VXIPgaDSRVtT3DSfeUtXmalbr0l0xU4dEmhYd2/QqhBcA/cvOCRHAl5V1R/Ge8EyGEYcde3OwxnMpdN1zYp6+tsvvH1W/CxLaPfPile6FU0DcoKGPMV9zkQmhhIupv6f+Ld1QGZcwQLLGSsh8MHWHCGXH3Ofs9tmzNCuXKfj0S5+YzhSLUhFszpqjh82RinlNS2k0/vZgu91MvJFxNNQ3RCJ9TVUH8A2eyG3qsBAAA="
       },
       "Metadata": {
-        "aws:cdk:path": "FrontDeskAppServerProdStack/CDKMetadata/Default"
+        "aws:cdk:path": "FrontDeskAppClientStagingStack/CDKMetadata/Default"
       }
     }
   }

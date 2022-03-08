@@ -313,8 +313,7 @@
         }
       },
       "DependsOn": [
-        "FrontdeskappwebsocketProductionHttpsListenerRuleF15897CC",
-        "FrontdeskappwebsocketProductionListenerD5F50CD1"
+        "FrontdeskappwebsocketProductionHttpsListenerRuleF15897CC"
       ],
       "Metadata": {
         "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionService/Service"
@@ -403,31 +402,10 @@
         "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionHttpListenerRule/Resource"
       }
     },
-    "FrontdeskappwebsocketProductionListenerD5F50CD1": {
-      "Type": "AWS::ElasticLoadBalancingV2::Listener",
-      "Properties": {
-        "DefaultActions": [
-          {
-            "TargetGroupArn": {
-              "Ref": "FrontdeskappwebsocketProductionTargetGroupE86D685B"
-            },
-            "Type": "forward"
-          }
-        ],
-        "LoadBalancerArn": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueuePublicLB6F0A6C15386A461C"
-        },
-        "Port": 8080,
-        "Protocol": "HTTP"
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionListener/Resource"
-      }
-    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QwU4CMRD9Fu6liOiBm4LRmHAgCz8wlmEdt3Q27RRDNv13WxbJaoynmffm9c28TvX07l7fjB7gM4zNrpl0hj3qbiNgGrVkF8RHI2q5dxUGjt5gUkXbERx0V7HF86zUNVsypwL7Lik0QXfP4GsQ3EJonnBPjoTYFdVvhp0AOfQD7vJ2g/5I5rzp0iZluc7mK65fPMe2jL77pMJML6JpUBYQMF9xmwOhiZ7kdFX/T7y62mMIOYKFIGQsw+4NLDhDrj5mv8e2zRmhXLnNR6JcfYZwoFpREMzpqth/2Q/8h26oSSmp9Une2U1meq7no49ANPbRCR1QV339Am2GyL3LAQAA"
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QQW4CMQx8C/cQSmkP3FqoWlXigBY+4AazdTckq9ihWq3y9yYsRaseerJnPBl7Mtfzh0d9N3mCb56aQzPrjQ+o+52AadTaO5YQjaj10VXIPgaDSRVtT3DSfeUtXmalbr0l0xU4dEmhYd2/QqhBcA/cvOCRHAl5V1R/Ge8EyGEYcde3OwxnMpdN1zYp6+tsvvH1W/CxLaPfPile6FU0DcoKGPMV9zkQmhhIupv6f+Ld1QGZcwQLLGSsh8MHWHCGXH3Ofs9tmzNCuXKfj0S5+YzhSLUhFszpqjh82RinlNS2k0/vZgu91MvJFxNNQ3RCJ9TVUH8A2eyG3qsBAAA="
       },
       "Metadata": {
         "aws:cdk:path": "FrontDeskAppWebsocketProdStack/CDKMetadata/Default"
