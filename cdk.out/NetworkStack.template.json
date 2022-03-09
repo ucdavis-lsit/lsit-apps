@@ -1276,6 +1276,17 @@
       "Export": {
         "Name": "NetworkStack:ExportsOutputRefLSITZoomQueuePublicLB6F0A6C15386A461C"
       }
+    },
+    "ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26": {
+      "Value": {
+        "Fn::GetAtt": [
+          "LSITZoomQueueCluster2091D93B",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+      }
     }
   }
 }

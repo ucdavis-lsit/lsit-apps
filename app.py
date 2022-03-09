@@ -190,6 +190,38 @@ LSITStack(
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
+ScheudledTaskStack(
+    app,
+    "FrontDeskAppProdCleanupGuests",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "frontdesk-app-cleanup-guests",
+        "app_env": "production",
+        "image_uri": "curlimages/curl:latest",
+        "command_override": ["sh","-c","curl -XDELETE https://api.frontdesk.lsit.ucdavis.edu/api/guest?key=$API_KEY"],
+        "is_private": True
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+ScheudledTaskStack(
+    app,
+    "FrontDeskAppProdCleanupAnnouncements",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "frontdesk-app-cleanup-announcements",
+        "app_env": "production",
+        "image_uri": "curlimages/curl:latest",
+        "command_override": ["sh","-c","curl -XDELETE https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY"],
+        "is_private": True
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
 # Staging
 LSITStack(
     app,
@@ -261,5 +293,36 @@ LSITStack(
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
+ScheudledTaskStack(
+    app,
+    "FrontDeskAppStagingCleanupGuests",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "frontdesk-app-cleanup-guests",
+        "app_env": "staging",
+        "image_uri": "curlimages/curl:latest",
+        "command_override": ["sh","-c","curl -XDELETE https://stage.api.frontdesk.lsit.ucdavis.edu/api/guest?key=$API_KEY"],
+        "is_private": True
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+ScheudledTaskStack(
+    app,
+    "FrontDeskAppStagingCleanupAnnouncements",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "frontdesk-app-cleanup-announcements",
+        "app_env": "staging",
+        "image_uri": "curlimages/curl:latest",
+        "command_override": ["sh","-c","curl -XDELETE https://stage.api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY"],
+        "is_private": True
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
 
 app.synth()

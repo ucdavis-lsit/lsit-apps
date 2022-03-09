@@ -33,7 +33,7 @@ class ScheudledTaskStack(cdk.Stack):
             "{app_prefix}Role".format(app_prefix=app_prefix),
             assumed_by=iam.ServicePrincipal("ecs-tasks.amazonaws.com"),
             managed_policies=[iam.ManagedPolicy.from_aws_managed_policy_name("service-role/AmazonECSTaskExecutionRolePolicy")],
-            role_name="{app_prefix}ECSTaskExecutionRole".format(app_prefix=app_prefix),
+            role_name="{app_prefix}ECSTaskExecutionRole".format(app_prefix=app_prefix)[0:63],
             description="Allows {task_name} tasks to run in ECS and be able to read config files from the appropriate S3 bucket.".format(task_name=task_name)
         )
 
