@@ -8220,6 +8220,551 @@
           "version": "1.145.0"
         }
       },
+      "FrontDeskAppProdCleanupExpiredGuests": {
+        "id": "FrontDeskAppProdCleanupExpiredGuests",
+        "path": "FrontDeskAppProdCleanupExpiredGuests",
+        "children": {
+          "Frontdesk-app-cleanup-expired-guestsProductionRole": {
+            "id": "Frontdesk-app-cleanup-expired-guestsProductionRole",
+            "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows frontdesk-app-cleanup-expired-guests-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Frontdesk-app-cleanup-expired-guestsProductionECSTaskExecutionR"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                  "version": "1.145.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "FrontdeskappcleanupexpiredguestsProductionLogGroupB587D470",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "FrontdeskappcleanupexpiredguestsProductionRoleDefaultPolicy3013E159",
+                        "roles": [
+                          {
+                            "Ref": "FrontdeskappcleanupexpiredguestsProductionRole0E094FC7"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                      "version": "1.145.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Policy",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.Role",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsProductionPolicy": {
+            "id": "Frontdesk-app-cleanup-expired-guestsProductionPolicy",
+            "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/frontdesk-app-cleanup-expired-guests/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Frontdesk-app-cleanup-expired-guestsProductionConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "FrontdeskappcleanupexpiredguestsProductionRole0E094FC7"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.Policy",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsProductionTask": {
+            "id": "Frontdesk-app-cleanup-expired-guestsProductionTask",
+            "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "curlimages/curl:latest",
+                        "memory": 512,
+                        "name": "frontdesk-app-cleanup-expired-guests-production",
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "FrontdeskappcleanupexpiredguestsProductionLogGroupB587D470"
+                            },
+                            "awslogs-stream-prefix": "frontdesk-app-cleanup-expired-guests-production",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/frontdesk-app-cleanup-expired-guests/production.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "FrontdeskappcleanupexpiredguestsProductionRole0E094FC7",
+                        "Arn"
+                      ]
+                    },
+                    "family": "frontdesk-app-cleanup-expired-guests-production",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "FrontdeskappcleanupexpiredguestsProductionRole0E094FC7",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
+                  "version": "1.145.0"
+                }
+              },
+              "frontdesk-app-cleanup-expired-guests-production": {
+                "id": "frontdesk-app-cleanup-expired-guests-production",
+                "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionTask/frontdesk-app-cleanup-expired-guests-production",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsProductionLogGroup": {
+            "id": "Frontdesk-app-cleanup-expired-guestsProductionLogGroup",
+            "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/frontdesk-app-cleanup-expired-guests-production",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-logs.LogGroup",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsProductionBucket": {
+            "id": "Frontdesk-app-cleanup-expired-guestsProductionBucket",
+            "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionBucket",
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-s3.BucketBase",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsProductionSecurityGroup": {
+            "id": "Frontdesk-app-cleanup-expired-guestsProductionSecurityGroup",
+            "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionSecurityGroup",
+                    "groupName": "frontdesk-app-cleanup-expired-guests-production",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsProductionEventRole": {
+            "id": "Frontdesk-app-cleanup-expired-guestsProductionEventRole",
+            "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionEventRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionEventRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "events.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows frontdesk-app-cleanup-expired-guests-production scheduled tasks to run in ECS.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Frontdesk-app-cleanup-expired-guestsProductionEventRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                  "version": "1.145.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionEventRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionEventRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "ecs:RunTask",
+                              "Condition": {
+                                "ArnEquals": {
+                                  "ecs:cluster": {
+                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                                  }
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Ref": "FrontdeskappcleanupexpiredguestsProductionTaskC4C375C6"
+                              }
+                            },
+                            {
+                              "Action": "iam:PassRole",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "FrontdeskappcleanupexpiredguestsProductionRole0E094FC7",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "FrontdeskappcleanupexpiredguestsProductionEventRoleDefaultPolicy4042980A",
+                        "roles": [
+                          {
+                            "Ref": "FrontdeskappcleanupexpiredguestsProductionEventRoleE8BA1ADA"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                      "version": "1.145.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Policy",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.Role",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsProductionScheduledTask": {
+            "id": "Frontdesk-app-cleanup-expired-guestsProductionScheduledTask",
+            "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionScheduledTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionScheduledTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                  "aws:cdk:cloudformation:props": {
+                    "scheduleExpression": "cron(* * * * ? *)",
+                    "state": "ENABLED",
+                    "targets": [
+                      {
+                        "id": "Target0",
+                        "arn": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                        },
+                        "roleArn": {
+                          "Fn::GetAtt": [
+                            "FrontdeskappcleanupexpiredguestsProductionEventRoleE8BA1ADA",
+                            "Arn"
+                          ]
+                        },
+                        "ecsParameters": {
+                          "taskCount": 1,
+                          "taskDefinitionArn": {
+                            "Ref": "FrontdeskappcleanupexpiredguestsProductionTaskC4C375C6"
+                          },
+                          "launchType": "FARGATE",
+                          "platformVersion": "LATEST",
+                          "networkConfiguration": {
+                            "awsVpcConfiguration": {
+                              "subnets": [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+                                },
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+                                }
+                              ],
+                              "assignPublicIp": "DISABLED",
+                              "securityGroups": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "FrontdeskappcleanupexpiredguestsProductionSecurityGroup417AB26D",
+                                    "GroupId"
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "input": "{\"containerOverrides\":[{\"name\":\"frontdesk-app-cleanup-expired-guests-production\",\"command\":[\"sh\",\"-c\",\"curl -XDELETE https://api.frontdesk.lsit.ucdavis.edu/api/expiredGuests?key=$API_KEY\"]}]}"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-events.CfnRule",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-events.Rule",
+              "version": "1.145.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "FrontDeskAppProdCleanupExpiredGuests/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "FrontDeskAppProdCleanupExpiredGuests/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.145.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.145.0"
+        }
+      },
       "FrontDeskAppClientStagingStack": {
         "id": "FrontDeskAppClientStagingStack",
         "path": "FrontDeskAppClientStagingStack",
@@ -11081,6 +11626,551 @@
               "Default": {
                 "id": "Default",
                 "path": "FrontDeskAppStagingCleanupAnnouncements/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.145.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.145.0"
+        }
+      },
+      "FrontDeskAppStagingCleanupExpiredGuests": {
+        "id": "FrontDeskAppStagingCleanupExpiredGuests",
+        "path": "FrontDeskAppStagingCleanupExpiredGuests",
+        "children": {
+          "Frontdesk-app-cleanup-expired-guestsStagingRole": {
+            "id": "Frontdesk-app-cleanup-expired-guestsStagingRole",
+            "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows frontdesk-app-cleanup-expired-guests-staging tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Frontdesk-app-cleanup-expired-guestsStagingECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                  "version": "1.145.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "FrontdeskappcleanupexpiredguestsStagingLogGroup66839371",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "FrontdeskappcleanupexpiredguestsStagingRoleDefaultPolicy27373A75",
+                        "roles": [
+                          {
+                            "Ref": "FrontdeskappcleanupexpiredguestsStagingRole720E503D"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                      "version": "1.145.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Policy",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.Role",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsStagingPolicy": {
+            "id": "Frontdesk-app-cleanup-expired-guestsStagingPolicy",
+            "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/frontdesk-app-cleanup-expired-guests/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Frontdesk-app-cleanup-expired-guestsStagingConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "FrontdeskappcleanupexpiredguestsStagingRole720E503D"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.Policy",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsStagingTask": {
+            "id": "Frontdesk-app-cleanup-expired-guestsStagingTask",
+            "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "curlimages/curl:latest",
+                        "memory": 512,
+                        "name": "frontdesk-app-cleanup-expired-guests-staging",
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "FrontdeskappcleanupexpiredguestsStagingLogGroup66839371"
+                            },
+                            "awslogs-stream-prefix": "frontdesk-app-cleanup-expired-guests-staging",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/frontdesk-app-cleanup-expired-guests/staging.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "FrontdeskappcleanupexpiredguestsStagingRole720E503D",
+                        "Arn"
+                      ]
+                    },
+                    "family": "frontdesk-app-cleanup-expired-guests-staging",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "FrontdeskappcleanupexpiredguestsStagingRole720E503D",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
+                  "version": "1.145.0"
+                }
+              },
+              "frontdesk-app-cleanup-expired-guests-staging": {
+                "id": "frontdesk-app-cleanup-expired-guests-staging",
+                "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingTask/frontdesk-app-cleanup-expired-guests-staging",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsStagingLogGroup": {
+            "id": "Frontdesk-app-cleanup-expired-guestsStagingLogGroup",
+            "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/frontdesk-app-cleanup-expired-guests-staging",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-logs.LogGroup",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsStagingBucket": {
+            "id": "Frontdesk-app-cleanup-expired-guestsStagingBucket",
+            "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingBucket",
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-s3.BucketBase",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsStagingSecurityGroup": {
+            "id": "Frontdesk-app-cleanup-expired-guestsStagingSecurityGroup",
+            "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingSecurityGroup",
+                    "groupName": "frontdesk-app-cleanup-expired-guests-staging",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsStagingEventRole": {
+            "id": "Frontdesk-app-cleanup-expired-guestsStagingEventRole",
+            "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingEventRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingEventRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "events.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows frontdesk-app-cleanup-expired-guests-staging scheduled tasks to run in ECS.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Frontdesk-app-cleanup-expired-guestsStagingEventRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                  "version": "1.145.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingEventRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingEventRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "ecs:RunTask",
+                              "Condition": {
+                                "ArnEquals": {
+                                  "ecs:cluster": {
+                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                                  }
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Ref": "FrontdeskappcleanupexpiredguestsStagingTask8B0F8AF1"
+                              }
+                            },
+                            {
+                              "Action": "iam:PassRole",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "FrontdeskappcleanupexpiredguestsStagingRole720E503D",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "FrontdeskappcleanupexpiredguestsStagingEventRoleDefaultPolicy975AEB2F",
+                        "roles": [
+                          {
+                            "Ref": "FrontdeskappcleanupexpiredguestsStagingEventRole9C23189A"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                      "version": "1.145.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Policy",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.Role",
+              "version": "1.145.0"
+            }
+          },
+          "Frontdesk-app-cleanup-expired-guestsStagingScheduledTask": {
+            "id": "Frontdesk-app-cleanup-expired-guestsStagingScheduledTask",
+            "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingScheduledTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingScheduledTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                  "aws:cdk:cloudformation:props": {
+                    "scheduleExpression": "cron(* * * * ? *)",
+                    "state": "ENABLED",
+                    "targets": [
+                      {
+                        "id": "Target0",
+                        "arn": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                        },
+                        "roleArn": {
+                          "Fn::GetAtt": [
+                            "FrontdeskappcleanupexpiredguestsStagingEventRole9C23189A",
+                            "Arn"
+                          ]
+                        },
+                        "ecsParameters": {
+                          "taskCount": 1,
+                          "taskDefinitionArn": {
+                            "Ref": "FrontdeskappcleanupexpiredguestsStagingTask8B0F8AF1"
+                          },
+                          "launchType": "FARGATE",
+                          "platformVersion": "LATEST",
+                          "networkConfiguration": {
+                            "awsVpcConfiguration": {
+                              "subnets": [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+                                },
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+                                }
+                              ],
+                              "assignPublicIp": "DISABLED",
+                              "securityGroups": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "FrontdeskappcleanupexpiredguestsStagingSecurityGroup97163FC4",
+                                    "GroupId"
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "input": "{\"containerOverrides\":[{\"name\":\"frontdesk-app-cleanup-expired-guests-staging\",\"command\":[\"sh\",\"-c\",\"curl -XDELETE https://stage.api.frontdesk.lsit.ucdavis.edu/api/expiredGuests?key=$API_KEY\"]}]}"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-events.CfnRule",
+                  "version": "1.145.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-events.Rule",
+              "version": "1.145.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "FrontDeskAppStagingCleanupExpiredGuests/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "FrontDeskAppStagingCleanupExpiredGuests/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
                   "version": "1.145.0"

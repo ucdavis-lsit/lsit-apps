@@ -222,6 +222,23 @@ ScheudledTaskStack(
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
+ScheudledTaskStack(
+    app,
+    "FrontDeskAppProdCleanupExpiredGuests",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "frontdesk-app-cleanup-expired-guests",
+        "app_env": "production",
+        "image_uri": "curlimages/curl:latest",
+        "command_override": ["sh","-c","curl -XDELETE https://api.frontdesk.lsit.ucdavis.edu/api/expiredGuests?key=$API_KEY"],
+        "is_private": True,
+        "schedule": {"minute": "*"}
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
 # Staging
 LSITStack(
     app,
@@ -321,6 +338,23 @@ ScheudledTaskStack(
         "image_uri": "curlimages/curl:latest",
         "command_override": ["sh","-c","curl -XDELETE https://stage.api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY"],
         "is_private": True
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+ScheudledTaskStack(
+    app,
+    "FrontDeskAppStagingCleanupExpiredGuests",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "frontdesk-app-cleanup-expired-guests",
+        "app_env": "staging",
+        "image_uri": "curlimages/curl:latest",
+        "command_override": ["sh","-c","curl -XDELETE https://stage.api.frontdesk.lsit.ucdavis.edu/api/expiredGuests?key=$API_KEY"],
+        "is_private": True,
+        "schedule": {"minute": "*"}
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
