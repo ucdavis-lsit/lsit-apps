@@ -17,6 +17,7 @@ name = "pypi"
 "aws-cdk.aws-dynamodb" = "*"
 "aws-cdk.aws-events" = "*"
 "aws-cdk.aws-events-targets" = "*"
+"aws-cdk.aws_sns" = "*"
 
 [dev-packages]
 bandit = "*"

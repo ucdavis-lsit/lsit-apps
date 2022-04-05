@@ -6,6 +6,7 @@ from aws_cdk import core
 from lsit_stack.lsit_stack import LSITStack
 from network_stack.network_stack import NetworkStack
 from scheduled_task_stack.scheduled_task_stack import ScheudledTaskStack    
+from monitoring_stack.monitoring_stack import MonitoringStack
 
 CDK_DEFAULT_ACCOUNT=os.environ["CDK_DEFAULT_ACCOUNT"]
 CDK_DEFAULT_REGION=os.environ["CDK_DEFAULT_REGION"]
@@ -356,6 +357,13 @@ ScheudledTaskStack(
         "is_private": True,
         "schedule": {"minute": "*"}
     },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+# Monitoring
+MonitoringStack(
+    app,
+    "ECSMonitoringStack",
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 

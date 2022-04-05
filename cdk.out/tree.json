@@ -9,7 +9,7 @@
         "path": "Tree",
         "constructInfo": {
           "fqn": "@aws-cdk/core.Construct",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "NetworkStack": {
@@ -40,7 +40,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnVPC",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "LSITZoomQueueIsolatedSubnetSubnet1": {
@@ -53,11 +53,11 @@
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
                       "aws:cdk:cloudformation:props": {
-                        "cidrBlock": "10.0.0.0/27",
                         "vpcId": {
                           "Ref": "LSITZoomQueueVpc20AD45C9"
                         },
                         "availabilityZone": "us-west-2a",
+                        "cidrBlock": "10.0.0.0/27",
                         "mapPublicIpOnLaunch": false,
                         "tags": [
                           {
@@ -77,7 +77,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "Acl": {
@@ -85,7 +85,7 @@
                     "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet1/Acl",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Resource",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "RouteTable": {
@@ -107,7 +107,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "RouteTableAssociation": {
@@ -126,13 +126,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.PrivateSubnet",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "LSITZoomQueueIsolatedSubnetSubnet2": {
@@ -145,11 +145,11 @@
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
                       "aws:cdk:cloudformation:props": {
-                        "cidrBlock": "10.0.0.32/27",
                         "vpcId": {
                           "Ref": "LSITZoomQueueVpc20AD45C9"
                         },
                         "availabilityZone": "us-west-2b",
+                        "cidrBlock": "10.0.0.32/27",
                         "mapPublicIpOnLaunch": false,
                         "tags": [
                           {
@@ -169,7 +169,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "Acl": {
@@ -177,7 +177,7 @@
                     "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueueIsolatedSubnetSubnet2/Acl",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Resource",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "RouteTable": {
@@ -199,7 +199,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "RouteTableAssociation": {
@@ -218,13 +218,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.PrivateSubnet",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "LSITZoomQueuePublicSubnetSubnet1": {
@@ -237,11 +237,11 @@
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
                       "aws:cdk:cloudformation:props": {
-                        "cidrBlock": "10.0.32.0/19",
                         "vpcId": {
                           "Ref": "LSITZoomQueueVpc20AD45C9"
                         },
                         "availabilityZone": "us-west-2a",
+                        "cidrBlock": "10.0.32.0/19",
                         "mapPublicIpOnLaunch": true,
                         "tags": [
                           {
@@ -261,7 +261,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "Acl": {
@@ -269,7 +269,7 @@
                     "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet1/Acl",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Resource",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "RouteTable": {
@@ -291,7 +291,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "RouteTableAssociation": {
@@ -310,7 +310,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "DefaultRoute": {
@@ -330,7 +330,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnRoute",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "EIP": {
@@ -350,7 +350,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnEIP",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "NATGateway": {
@@ -378,13 +378,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnNatGateway",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.PublicSubnet",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "LSITZoomQueuePublicSubnetSubnet2": {
@@ -397,11 +397,11 @@
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
                       "aws:cdk:cloudformation:props": {
-                        "cidrBlock": "10.0.64.0/19",
                         "vpcId": {
                           "Ref": "LSITZoomQueueVpc20AD45C9"
                         },
                         "availabilityZone": "us-west-2b",
+                        "cidrBlock": "10.0.64.0/19",
                         "mapPublicIpOnLaunch": true,
                         "tags": [
                           {
@@ -421,7 +421,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "Acl": {
@@ -429,7 +429,7 @@
                     "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePublicSubnetSubnet2/Acl",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Resource",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "RouteTable": {
@@ -451,7 +451,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "RouteTableAssociation": {
@@ -470,7 +470,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "DefaultRoute": {
@@ -490,7 +490,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnRoute",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "EIP": {
@@ -510,7 +510,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnEIP",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "NATGateway": {
@@ -538,13 +538,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnNatGateway",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.PublicSubnet",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "LSITZoomQueuePrivateSubnetSubnet1": {
@@ -557,11 +557,11 @@
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
                       "aws:cdk:cloudformation:props": {
-                        "cidrBlock": "10.0.96.0/19",
                         "vpcId": {
                           "Ref": "LSITZoomQueueVpc20AD45C9"
                         },
                         "availabilityZone": "us-west-2a",
+                        "cidrBlock": "10.0.96.0/19",
                         "mapPublicIpOnLaunch": false,
                         "tags": [
                           {
@@ -581,7 +581,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "Acl": {
@@ -589,7 +589,7 @@
                     "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet1/Acl",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Resource",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "RouteTable": {
@@ -611,7 +611,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "RouteTableAssociation": {
@@ -630,7 +630,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "DefaultRoute": {
@@ -650,13 +650,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnRoute",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.PrivateSubnet",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "LSITZoomQueuePrivateSubnetSubnet2": {
@@ -669,11 +669,11 @@
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
                       "aws:cdk:cloudformation:props": {
-                        "cidrBlock": "10.0.128.0/19",
                         "vpcId": {
                           "Ref": "LSITZoomQueueVpc20AD45C9"
                         },
                         "availabilityZone": "us-west-2b",
+                        "cidrBlock": "10.0.128.0/19",
                         "mapPublicIpOnLaunch": false,
                         "tags": [
                           {
@@ -693,7 +693,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "Acl": {
@@ -701,7 +701,7 @@
                     "path": "NetworkStack/LSITZoomQueueVpc/LSITZoomQueuePrivateSubnetSubnet2/Acl",
                     "constructInfo": {
                       "fqn": "@aws-cdk/core.Resource",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "RouteTable": {
@@ -723,7 +723,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "RouteTableAssociation": {
@@ -742,7 +742,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "DefaultRoute": {
@@ -762,13 +762,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnRoute",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.PrivateSubnet",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "IGW": {
@@ -787,7 +787,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnInternetGateway",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "VPCGW": {
@@ -806,13 +806,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnVPCGatewayAttachment",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.Vpc",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "LSITZoomQueueSecurityGroup": {
@@ -883,13 +883,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "LSITZoomQueueDevelopmentCluster": {
@@ -907,13 +907,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnCluster",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.Cluster",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "LSITZoomQueueDevPublicLB": {
@@ -955,13 +955,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnLoadBalancer",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationLoadBalancer",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "LSITZoomQueueDevelopmentPostgresDatabase": {
@@ -991,13 +991,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-rds.CfnDBSubnetGroup",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-rds.SubnetGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "SecurityGroup": {
@@ -1034,13 +1034,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Secret": {
@@ -1074,7 +1074,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-secretsmanager.CfnSecret",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "Attachment": {
@@ -1098,19 +1098,19 @@
                         },
                         "constructInfo": {
                           "fqn": "@aws-cdk/aws-secretsmanager.CfnSecretTargetAttachment",
-                          "version": "1.145.0"
+                          "version": "1.150.0"
                         }
                       }
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-secretsmanager.SecretTargetAttachment",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-rds.DatabaseSecret",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Resource": {
@@ -1158,13 +1158,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-rds.CfnDBInstance",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-rds.DatabaseInstance",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "LSITZoomQueuePublicLB": {
@@ -1206,13 +1206,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnLoadBalancer",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationLoadBalancer",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "LSITZoomQueueFrontdeskDatabase": {
@@ -1242,13 +1242,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-rds.CfnDBSubnetGroup",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-rds.SubnetGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "SecurityGroup": {
@@ -1285,13 +1285,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Secret": {
@@ -1326,7 +1326,7 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-secretsmanager.CfnSecret",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   },
                   "Attachment": {
@@ -1350,19 +1350,19 @@
                         },
                         "constructInfo": {
                           "fqn": "@aws-cdk/aws-secretsmanager.CfnSecretTargetAttachment",
-                          "version": "1.145.0"
+                          "version": "1.150.0"
                         }
                       }
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-secretsmanager.SecretTargetAttachment",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-rds.DatabaseSecret",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Resource": {
@@ -1411,13 +1411,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-rds.CfnDBInstance",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-rds.DatabaseInstance",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "LSITZoomQueueCluster": {
@@ -1435,13 +1435,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnCluster",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.Cluster",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "LSITZoomQueueECRVPCEndpoint": {
@@ -1501,13 +1501,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Resource": {
@@ -1542,13 +1542,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnVPCEndpoint",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.InterfaceVpcEndpoint",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "LSITZoomQueueECRDockerVPCEndpoint": {
@@ -1608,13 +1608,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Resource": {
@@ -1649,13 +1649,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnVPCEndpoint",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.InterfaceVpcEndpoint",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "LSITZoomQueueS3VPCEndpoint": {
@@ -1696,13 +1696,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnVPCEndpoint",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.GatewayVpcEndpoint",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "lsit-zoom-queue-env-vars": {
@@ -1720,13 +1720,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-s3.CfnBucket",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.Bucket",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -1738,13 +1738,13 @@
                 "path": "NetworkStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Exports": {
@@ -1756,7 +1756,7 @@
                 "path": "NetworkStack/Exports/Output{\"Fn::GetAtt\":[\"lsitzoomqueueenvvars54C18833\",\"Arn\"]}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Ref\":\"LSITZoomQueueVpc20AD45C9\"}": {
@@ -1764,7 +1764,7 @@
                 "path": "NetworkStack/Exports/Output{\"Ref\":\"LSITZoomQueueVpc20AD45C9\"}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Fn::GetAtt\":[\"LSITZoomQueueSecurityGroupE353981D\",\"GroupId\"]}": {
@@ -1772,7 +1772,7 @@
                 "path": "NetworkStack/Exports/Output{\"Fn::GetAtt\":[\"LSITZoomQueueSecurityGroupE353981D\",\"GroupId\"]}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Ref\":\"LSITZoomQueueDevelopmentClusterCD7CCE95\"}": {
@@ -1780,7 +1780,7 @@
                 "path": "NetworkStack/Exports/Output{\"Ref\":\"LSITZoomQueueDevelopmentClusterCD7CCE95\"}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Ref\":\"LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7\"}": {
@@ -1788,7 +1788,7 @@
                 "path": "NetworkStack/Exports/Output{\"Ref\":\"LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7\"}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Ref\":\"LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0\"}": {
@@ -1796,7 +1796,7 @@
                 "path": "NetworkStack/Exports/Output{\"Ref\":\"LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0\"}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Ref\":\"LSITZoomQueueDevPublicLB4051B741\"}": {
@@ -1804,7 +1804,7 @@
                 "path": "NetworkStack/Exports/Output{\"Ref\":\"LSITZoomQueueDevPublicLB4051B741\"}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Fn::GetAtt\":[\"LSITZoomQueueDevelopmentClusterCD7CCE95\",\"Arn\"]}": {
@@ -1812,7 +1812,7 @@
                 "path": "NetworkStack/Exports/Output{\"Fn::GetAtt\":[\"LSITZoomQueueDevelopmentClusterCD7CCE95\",\"Arn\"]}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Ref\":\"LSITZoomQueueCluster2091D93B\"}": {
@@ -1820,7 +1820,7 @@
                 "path": "NetworkStack/Exports/Output{\"Ref\":\"LSITZoomQueueCluster2091D93B\"}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Ref\":\"LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC\"}": {
@@ -1828,7 +1828,7 @@
                 "path": "NetworkStack/Exports/Output{\"Ref\":\"LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC\"}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Ref\":\"LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343\"}": {
@@ -1836,7 +1836,7 @@
                 "path": "NetworkStack/Exports/Output{\"Ref\":\"LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343\"}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Ref\":\"LSITZoomQueuePublicLB6F0A6C15\"}": {
@@ -1844,7 +1844,7 @@
                 "path": "NetworkStack/Exports/Output{\"Ref\":\"LSITZoomQueuePublicLB6F0A6C15\"}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Fn::GetAtt\":[\"LSITZoomQueueCluster2091D93B\",\"Arn\"]}": {
@@ -1852,19 +1852,19 @@
                 "path": "NetworkStack/Exports/Output{\"Fn::GetAtt\":[\"LSITZoomQueueCluster2091D93B\",\"Arn\"]}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "ZoomQueueFrontendDevelopmentStack": {
@@ -1913,7 +1913,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -1954,19 +1954,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-frontendDevelopmentPolicy": {
@@ -2016,13 +2016,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-frontendDevelopmentTask": {
@@ -2125,7 +2125,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "zoom-queue-frontend-development": {
@@ -2133,13 +2133,13 @@
                 "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentTask/zoom-queue-frontend-development",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-frontendDevelopmentLogGroup": {
@@ -2158,13 +2158,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-frontendDevelopmentBucket": {
@@ -2172,7 +2172,7 @@
             "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-frontendDevelopmentSecurityGroup": {
@@ -2208,7 +2208,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000": {
@@ -2234,13 +2234,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroupIngress",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-frontendDevelopmentService": {
@@ -2302,13 +2302,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnService",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateService",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-frontendDevelopmentTargetGroup": {
@@ -2339,13 +2339,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnTargetGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationTargetGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-frontendDevelopmentHttpsListener": {
@@ -2381,7 +2381,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListener",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Zoom-queue-frontendDevelopmentCerttificates1": {
@@ -2406,13 +2406,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerCertificate",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerCertificate",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Zoom-queue-backendDevelopmentCerttificates1": {
@@ -2437,13 +2437,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerCertificate",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerCertificate",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Zoom-queue-websocketDevelopmentCerttificates1": {
@@ -2468,19 +2468,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerCertificate",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerCertificate",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListener",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-frontendDevelopmentHttpsListenerRule": {
@@ -2519,13 +2519,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-frontendDevelopmentHttpListener": {
@@ -2556,13 +2556,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListener",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListener",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-frontendDevelopmentHttpListenerRule": {
@@ -2602,13 +2602,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-frontendDevelopmentListener": {
@@ -2638,13 +2638,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListener",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListener",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -2656,13 +2656,13 @@
                 "path": "ZoomQueueFrontendDevelopmentStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Exports": {
@@ -2674,7 +2674,7 @@
                 "path": "ZoomQueueFrontendDevelopmentStack/Exports/Output{\"Ref\":\"ZoomqueuefrontendDevelopmentHttpsListenerAEE97BBB\"}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Ref\":\"ZoomqueuefrontendDevelopmentHttpListener99A0B6CA\"}": {
@@ -2682,19 +2682,19 @@
                 "path": "ZoomQueueFrontendDevelopmentStack/Exports/Output{\"Ref\":\"ZoomqueuefrontendDevelopmentHttpListener99A0B6CA\"}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "ZoomQueueBackendDevelopmentStack": {
@@ -2743,7 +2743,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -2784,19 +2784,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-backendDevelopmentPolicy": {
@@ -2846,13 +2846,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-backendDevelopmentTask": {
@@ -2955,7 +2955,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "zoom-queue-backend-development": {
@@ -2963,13 +2963,13 @@
                 "path": "ZoomQueueBackendDevelopmentStack/Zoom-queue-backendDevelopmentTask/zoom-queue-backend-development",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-backendDevelopmentLogGroup": {
@@ -2988,13 +2988,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-backendDevelopmentBucket": {
@@ -3002,7 +3002,7 @@
             "path": "ZoomQueueBackendDevelopmentStack/Zoom-queue-backendDevelopmentBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-backendDevelopmentSecurityGroup": {
@@ -3038,7 +3038,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "from NetworkStackLSITZoomQueueSecurityGroup211C7467:3001": {
@@ -3064,13 +3064,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroupIngress",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-backendDevelopmentService": {
@@ -3132,13 +3132,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnService",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateService",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-backendDevelopmentTargetGroup": {
@@ -3169,13 +3169,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnTargetGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationTargetGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-backendDevelopmentHttpsListenerRule": {
@@ -3214,13 +3214,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-backendDevelopmentHttpListenerRule": {
@@ -3260,13 +3260,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-backendDevelopmentListener": {
@@ -3296,13 +3296,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListener",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListener",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -3314,19 +3314,19 @@
                 "path": "ZoomQueueBackendDevelopmentStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "ZoomQueueWebsocketDevelopmentStack": {
@@ -3375,7 +3375,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -3416,19 +3416,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-websocketDevelopmentPolicy": {
@@ -3478,13 +3478,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-websocketDevelopmentTask": {
@@ -3587,7 +3587,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "zoom-queue-websocket-development": {
@@ -3595,13 +3595,13 @@
                 "path": "ZoomQueueWebsocketDevelopmentStack/Zoom-queue-websocketDevelopmentTask/zoom-queue-websocket-development",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-websocketDevelopmentLogGroup": {
@@ -3620,13 +3620,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-websocketDevelopmentBucket": {
@@ -3634,7 +3634,7 @@
             "path": "ZoomQueueWebsocketDevelopmentStack/Zoom-queue-websocketDevelopmentBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-websocketDevelopmentSecurityGroup": {
@@ -3670,7 +3670,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "from NetworkStackLSITZoomQueueSecurityGroup211C7467:80": {
@@ -3696,13 +3696,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroupIngress",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-websocketDevelopmentService": {
@@ -3764,13 +3764,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnService",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateService",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-websocketDevelopmentTargetGroup": {
@@ -3801,13 +3801,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnTargetGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationTargetGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-websocketDevelopmentHttpsListenerRule": {
@@ -3846,13 +3846,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-websocketDevelopmentHttpListenerRule": {
@@ -3892,13 +3892,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-websocketDevelopmentListener": {
@@ -3928,13 +3928,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListener",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListener",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -3946,19 +3946,19 @@
                 "path": "ZoomQueueWebsocketDevelopmentStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "ZoomQueueDevelopmentCleanupCron": {
@@ -4007,7 +4007,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -4048,19 +4048,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-cronDevelopmentPolicy": {
@@ -4110,13 +4110,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-cronDevelopmentTask": {
@@ -4212,7 +4212,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "zoom-queue-cleanup-cron-development": {
@@ -4220,13 +4220,13 @@
                 "path": "ZoomQueueDevelopmentCleanupCron/Zoom-queue-cleanup-cronDevelopmentTask/zoom-queue-cleanup-cron-development",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-cronDevelopmentLogGroup": {
@@ -4245,13 +4245,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-cronDevelopmentBucket": {
@@ -4259,7 +4259,7 @@
             "path": "ZoomQueueDevelopmentCleanupCron/Zoom-queue-cleanup-cronDevelopmentBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-cronDevelopmentSecurityGroup": {
@@ -4295,13 +4295,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-cronDevelopmentEventRole": {
@@ -4346,7 +4346,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -4398,19 +4398,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-cronDevelopmentScheduledTask": {
@@ -4473,13 +4473,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-events.CfnRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-events.Rule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -4491,19 +4491,19 @@
                 "path": "ZoomQueueDevelopmentCleanupCron/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "ZoomQueueDevelopmentCleanupAnnouncements": {
@@ -4552,7 +4552,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -4593,19 +4593,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-announcementsDevelopmentPolicy": {
@@ -4655,13 +4655,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-announcementsDevelopmentTask": {
@@ -4757,7 +4757,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "zoom-queue-cleanup-announcements-development": {
@@ -4765,13 +4765,13 @@
                 "path": "ZoomQueueDevelopmentCleanupAnnouncements/Zoom-queue-cleanup-announcementsDevelopmentTask/zoom-queue-cleanup-announcements-development",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-announcementsDevelopmentLogGroup": {
@@ -4790,13 +4790,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-announcementsDevelopmentBucket": {
@@ -4804,7 +4804,7 @@
             "path": "ZoomQueueDevelopmentCleanupAnnouncements/Zoom-queue-cleanup-announcementsDevelopmentBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-announcementsDevelopmentSecurityGroup": {
@@ -4840,13 +4840,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-announcementsDevelopmentEventRole": {
@@ -4891,7 +4891,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -4943,19 +4943,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Zoom-queue-cleanup-announcementsDevelopmentScheduledTask": {
@@ -5018,13 +5018,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-events.CfnRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-events.Rule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -5036,19 +5036,19 @@
                 "path": "ZoomQueueDevelopmentCleanupAnnouncements/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "FrontDeskAppClientProdStack": {
@@ -5097,7 +5097,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -5138,19 +5138,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientProductionPolicy": {
@@ -5200,13 +5200,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientProductionTask": {
@@ -5309,7 +5309,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "frontdesk-app-client-production": {
@@ -5317,13 +5317,13 @@
                 "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionTask/frontdesk-app-client-production",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientProductionLogGroup": {
@@ -5342,13 +5342,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientProductionBucket": {
@@ -5356,7 +5356,7 @@
             "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientProductionSecurityGroup": {
@@ -5392,7 +5392,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000": {
@@ -5418,13 +5418,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroupIngress",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientProductionService": {
@@ -5486,13 +5486,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnService",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateService",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientProductionTargetGroup": {
@@ -5523,13 +5523,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnTargetGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationTargetGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientProductionHttpsListener": {
@@ -5565,7 +5565,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListener",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Frontdesk-app-clientProductionCerttificates1": {
@@ -5590,13 +5590,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerCertificate",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerCertificate",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Frontdesk-app-serverProductionCerttificates1": {
@@ -5621,13 +5621,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerCertificate",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerCertificate",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Frontdesk-app-websocketProductionCerttificates1": {
@@ -5652,13 +5652,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerCertificate",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerCertificate",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Frontdesk-app-clientStagingCerttificates1": {
@@ -5683,13 +5683,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerCertificate",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerCertificate",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Frontdesk-app-serverStagingCerttificates1": {
@@ -5714,13 +5714,13 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerCertificate",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerCertificate",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Frontdesk-app-websocketStagingCerttificates1": {
@@ -5745,19 +5745,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerCertificate",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerCertificate",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListener",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientProductionHttpsListenerRule": {
@@ -5796,13 +5796,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientProductionHttpListener": {
@@ -5833,13 +5833,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListener",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListener",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientProductionHttpListenerRule": {
@@ -5879,13 +5879,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -5897,13 +5897,13 @@
                 "path": "FrontDeskAppClientProdStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Exports": {
@@ -5915,7 +5915,7 @@
                 "path": "FrontDeskAppClientProdStack/Exports/Output{\"Ref\":\"FrontdeskappclientProductionHttpsListener997DB417\"}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "Output{\"Ref\":\"FrontdeskappclientProductionHttpListenerCB1B66FA\"}": {
@@ -5923,19 +5923,19 @@
                 "path": "FrontDeskAppClientProdStack/Exports/Output{\"Ref\":\"FrontdeskappclientProductionHttpListenerCB1B66FA\"}",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnOutput",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "FrontDeskAppServerProdStack": {
@@ -5984,7 +5984,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -6025,19 +6025,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverProductionPolicy": {
@@ -6087,13 +6087,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverProductionTask": {
@@ -6196,7 +6196,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "frontdesk-app-server-production": {
@@ -6204,13 +6204,13 @@
                 "path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionTask/frontdesk-app-server-production",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverProductionLogGroup": {
@@ -6229,13 +6229,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverProductionBucket": {
@@ -6243,7 +6243,7 @@
             "path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverProductionSecurityGroup": {
@@ -6279,7 +6279,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "from NetworkStackLSITZoomQueueSecurityGroup211C7467:3001": {
@@ -6305,13 +6305,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroupIngress",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverProductionService": {
@@ -6373,13 +6373,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnService",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateService",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverProductionTargetGroup": {
@@ -6410,13 +6410,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnTargetGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationTargetGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverProductionHttpsListenerRule": {
@@ -6455,13 +6455,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverProductionHttpListenerRule": {
@@ -6501,13 +6501,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -6519,19 +6519,19 @@
                 "path": "FrontDeskAppServerProdStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "FrontDeskAppWebsocketProdStack": {
@@ -6580,7 +6580,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -6621,19 +6621,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketProductionPolicy": {
@@ -6683,13 +6683,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketProductionTask": {
@@ -6792,7 +6792,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "frontdesk-app-websocket-production": {
@@ -6800,13 +6800,13 @@
                 "path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionTask/frontdesk-app-websocket-production",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketProductionLogGroup": {
@@ -6825,13 +6825,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketProductionBucket": {
@@ -6839,7 +6839,7 @@
             "path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketProductionSecurityGroup": {
@@ -6875,7 +6875,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "from NetworkStackLSITZoomQueueSecurityGroup211C7467:80": {
@@ -6901,13 +6901,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroupIngress",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketProductionService": {
@@ -6969,13 +6969,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnService",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateService",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketProductionTargetGroup": {
@@ -7006,13 +7006,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnTargetGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationTargetGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketProductionHttpsListenerRule": {
@@ -7051,13 +7051,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketProductionHttpListenerRule": {
@@ -7097,13 +7097,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -7115,19 +7115,19 @@
                 "path": "FrontDeskAppWebsocketProdStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "FrontDeskAppProdCleanupGuests": {
@@ -7176,7 +7176,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -7217,19 +7217,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsProductionPolicy": {
@@ -7279,13 +7279,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsProductionTask": {
@@ -7381,7 +7381,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "frontdesk-app-cleanup-guests-production": {
@@ -7389,13 +7389,13 @@
                 "path": "FrontDeskAppProdCleanupGuests/Frontdesk-app-cleanup-guestsProductionTask/frontdesk-app-cleanup-guests-production",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsProductionLogGroup": {
@@ -7414,13 +7414,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsProductionBucket": {
@@ -7428,7 +7428,7 @@
             "path": "FrontDeskAppProdCleanupGuests/Frontdesk-app-cleanup-guestsProductionBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsProductionSecurityGroup": {
@@ -7464,13 +7464,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsProductionEventRole": {
@@ -7515,7 +7515,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -7567,19 +7567,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsProductionScheduledTask": {
@@ -7642,13 +7642,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-events.CfnRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-events.Rule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -7660,19 +7660,19 @@
                 "path": "FrontDeskAppProdCleanupGuests/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "FrontDeskAppProdCleanupAnnouncements": {
@@ -7721,7 +7721,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -7762,19 +7762,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsProductionPolicy": {
@@ -7824,13 +7824,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsProductionTask": {
@@ -7926,7 +7926,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "frontdesk-app-cleanup-announcements-production": {
@@ -7934,13 +7934,13 @@
                 "path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionTask/frontdesk-app-cleanup-announcements-production",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsProductionLogGroup": {
@@ -7959,13 +7959,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsProductionBucket": {
@@ -7973,7 +7973,7 @@
             "path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsProductionSecurityGroup": {
@@ -8009,13 +8009,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsProductionEventRole": {
@@ -8060,7 +8060,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -8112,19 +8112,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsProductionScheduledTask": {
@@ -8187,13 +8187,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-events.CfnRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-events.Rule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -8205,19 +8205,19 @@
                 "path": "FrontDeskAppProdCleanupAnnouncements/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "FrontDeskAppProdCleanupExpiredGuests": {
@@ -8266,7 +8266,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -8307,19 +8307,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsProductionPolicy": {
@@ -8369,13 +8369,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsProductionTask": {
@@ -8471,7 +8471,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "frontdesk-app-cleanup-expired-guests-production": {
@@ -8479,13 +8479,13 @@
                 "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionTask/frontdesk-app-cleanup-expired-guests-production",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsProductionLogGroup": {
@@ -8504,13 +8504,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsProductionBucket": {
@@ -8518,7 +8518,7 @@
             "path": "FrontDeskAppProdCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsProductionBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsProductionSecurityGroup": {
@@ -8554,13 +8554,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsProductionEventRole": {
@@ -8605,7 +8605,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -8657,19 +8657,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsProductionScheduledTask": {
@@ -8732,13 +8732,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-events.CfnRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-events.Rule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -8750,19 +8750,19 @@
                 "path": "FrontDeskAppProdCleanupExpiredGuests/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "FrontDeskAppClientStagingStack": {
@@ -8811,7 +8811,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -8852,19 +8852,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientStagingPolicy": {
@@ -8914,13 +8914,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientStagingTask": {
@@ -9023,7 +9023,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "frontdesk-app-client-staging": {
@@ -9031,13 +9031,13 @@
                 "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingTask/frontdesk-app-client-staging",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientStagingLogGroup": {
@@ -9056,13 +9056,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientStagingBucket": {
@@ -9070,7 +9070,7 @@
             "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientStagingSecurityGroup": {
@@ -9106,7 +9106,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000": {
@@ -9132,13 +9132,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroupIngress",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientStagingService": {
@@ -9200,13 +9200,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnService",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateService",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientStagingTargetGroup": {
@@ -9237,13 +9237,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnTargetGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationTargetGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientStagingHttpsListenerRule": {
@@ -9282,13 +9282,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-clientStagingHttpListenerRule": {
@@ -9328,13 +9328,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -9346,19 +9346,19 @@
                 "path": "FrontDeskAppClientStagingStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "FrontDeskAppServerStagingStack": {
@@ -9407,7 +9407,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -9448,19 +9448,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverStagingPolicy": {
@@ -9510,13 +9510,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverStagingTask": {
@@ -9619,7 +9619,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "frontdesk-app-server-staging": {
@@ -9627,13 +9627,13 @@
                 "path": "FrontDeskAppServerStagingStack/Frontdesk-app-serverStagingTask/frontdesk-app-server-staging",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverStagingLogGroup": {
@@ -9652,13 +9652,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverStagingBucket": {
@@ -9666,7 +9666,7 @@
             "path": "FrontDeskAppServerStagingStack/Frontdesk-app-serverStagingBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverStagingSecurityGroup": {
@@ -9702,7 +9702,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "from NetworkStackLSITZoomQueueSecurityGroup211C7467:3001": {
@@ -9728,13 +9728,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroupIngress",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverStagingService": {
@@ -9796,13 +9796,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnService",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateService",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverStagingTargetGroup": {
@@ -9833,13 +9833,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnTargetGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationTargetGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverStagingHttpsListenerRule": {
@@ -9878,13 +9878,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-serverStagingHttpListenerRule": {
@@ -9924,13 +9924,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -9942,19 +9942,19 @@
                 "path": "FrontDeskAppServerStagingStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "FrontDeskAppWebsocketStagingStack": {
@@ -10003,7 +10003,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -10044,19 +10044,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketStagingPolicy": {
@@ -10106,13 +10106,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketStagingTask": {
@@ -10215,7 +10215,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "frontdesk-app-websocket-staging": {
@@ -10223,13 +10223,13 @@
                 "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingTask/frontdesk-app-websocket-staging",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketStagingLogGroup": {
@@ -10248,13 +10248,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketStagingBucket": {
@@ -10262,7 +10262,7 @@
             "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketStagingSecurityGroup": {
@@ -10298,7 +10298,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "from NetworkStackLSITZoomQueueSecurityGroup211C7467:80": {
@@ -10324,13 +10324,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroupIngress",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketStagingService": {
@@ -10392,13 +10392,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnService",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateService",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketStagingTargetGroup": {
@@ -10429,13 +10429,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnTargetGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationTargetGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketStagingHttpsListenerRule": {
@@ -10474,13 +10474,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-websocketStagingHttpListenerRule": {
@@ -10520,13 +10520,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -10538,19 +10538,19 @@
                 "path": "FrontDeskAppWebsocketStagingStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "FrontDeskAppStagingCleanupGuests": {
@@ -10599,7 +10599,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -10640,19 +10640,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsStagingPolicy": {
@@ -10702,13 +10702,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsStagingTask": {
@@ -10804,7 +10804,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "frontdesk-app-cleanup-guests-staging": {
@@ -10812,13 +10812,13 @@
                 "path": "FrontDeskAppStagingCleanupGuests/Frontdesk-app-cleanup-guestsStagingTask/frontdesk-app-cleanup-guests-staging",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsStagingLogGroup": {
@@ -10837,13 +10837,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsStagingBucket": {
@@ -10851,7 +10851,7 @@
             "path": "FrontDeskAppStagingCleanupGuests/Frontdesk-app-cleanup-guestsStagingBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsStagingSecurityGroup": {
@@ -10887,13 +10887,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsStagingEventRole": {
@@ -10938,7 +10938,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -10990,19 +10990,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-guestsStagingScheduledTask": {
@@ -11065,13 +11065,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-events.CfnRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-events.Rule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -11083,19 +11083,19 @@
                 "path": "FrontDeskAppStagingCleanupGuests/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "FrontDeskAppStagingCleanupAnnouncements": {
@@ -11144,7 +11144,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -11185,19 +11185,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsStagingPolicy": {
@@ -11247,13 +11247,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsStagingTask": {
@@ -11349,7 +11349,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "frontdesk-app-cleanup-announcements-staging": {
@@ -11357,13 +11357,13 @@
                 "path": "FrontDeskAppStagingCleanupAnnouncements/Frontdesk-app-cleanup-announcementsStagingTask/frontdesk-app-cleanup-announcements-staging",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsStagingLogGroup": {
@@ -11382,13 +11382,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsStagingBucket": {
@@ -11396,7 +11396,7 @@
             "path": "FrontDeskAppStagingCleanupAnnouncements/Frontdesk-app-cleanup-announcementsStagingBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsStagingSecurityGroup": {
@@ -11432,13 +11432,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsStagingEventRole": {
@@ -11483,7 +11483,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -11535,19 +11535,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-announcementsStagingScheduledTask": {
@@ -11610,13 +11610,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-events.CfnRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-events.Rule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -11628,19 +11628,19 @@
                 "path": "FrontDeskAppStagingCleanupAnnouncements/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
         }
       },
       "FrontDeskAppStagingCleanupExpiredGuests": {
@@ -11689,7 +11689,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -11730,19 +11730,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsStagingPolicy": {
@@ -11792,13 +11792,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Policy",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsStagingTask": {
@@ -11894,7 +11894,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "frontdesk-app-cleanup-expired-guests-staging": {
@@ -11902,13 +11902,13 @@
                 "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingTask/frontdesk-app-cleanup-expired-guests-staging",
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsStagingLogGroup": {
@@ -11927,13 +11927,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-logs.LogGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsStagingBucket": {
@@ -11941,7 +11941,7 @@
             "path": "FrontDeskAppStagingCleanupExpiredGuests/Frontdesk-app-cleanup-expired-guestsStagingBucket",
             "constructInfo": {
               "fqn": "@aws-cdk/aws-s3.BucketBase",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsStagingSecurityGroup": {
@@ -11977,13 +11977,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsStagingEventRole": {
@@ -12028,7 +12028,7 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.CfnRole",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               },
               "DefaultPolicy": {
@@ -12080,19 +12080,19 @@
                     },
                     "constructInfo": {
                       "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                      "version": "1.145.0"
+                      "version": "1.150.0"
                     }
                   }
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-iam.Policy",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-iam.Role",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "Frontdesk-app-cleanup-expired-guestsStagingScheduledTask": {
@@ -12155,13 +12155,13 @@
                 },
                 "constructInfo": {
                   "fqn": "@aws-cdk/aws-events.CfnRule",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/aws-events.Rule",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           },
           "CDKMetadata": {
@@ -12173,25 +12173,197 @@
                 "path": "FrontDeskAppStagingCleanupExpiredGuests/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.145.0"
+                  "version": "1.150.0"
                 }
               }
             },
             "constructInfo": {
               "fqn": "@aws-cdk/core.Construct",
-              "version": "1.145.0"
+              "version": "1.150.0"
             }
           }
         },
         "constructInfo": {
           "fqn": "@aws-cdk/core.Stack",
-          "version": "1.145.0"
+          "version": "1.150.0"
+        }
+      },
+      "ECSMonitoringStack": {
+        "id": "ECSMonitoringStack",
+        "path": "ECSMonitoringStack",
+        "children": {
+          "ECSAlerts": {
+            "id": "ECSAlerts",
+            "path": "ECSMonitoringStack/ECSAlerts",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ECSMonitoringStack/ECSAlerts/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  "aws:cdk:cloudformation:props": {}
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-sns.CfnTopic",
+                  "version": "1.150.0"
+                }
+              },
+              "dssit-devs-exceptions@ucdavis.edu": {
+                "id": "dssit-devs-exceptions@ucdavis.edu",
+                "path": "ECSMonitoringStack/ECSAlerts/dssit-devs-exceptions@ucdavis.edu",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "ECSMonitoringStack/ECSAlerts/dssit-devs-exceptions@ucdavis.edu/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
+                      "aws:cdk:cloudformation:props": {
+                        "protocol": "email",
+                        "topicArn": {
+                          "Ref": "ECSAlerts6D168A96"
+                        },
+                        "endpoint": "dssit-devs-exceptions@ucdavis.edu"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-sns.CfnSubscription",
+                      "version": "1.150.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-sns.Subscription",
+                  "version": "1.150.0"
+                }
+              },
+              "Policy": {
+                "id": "Policy",
+                "path": "ECSMonitoringStack/ECSAlerts/Policy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "ECSMonitoringStack/ECSAlerts/Policy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SNS::TopicPolicy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sns:Publish",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "events.amazonaws.com"
+                              },
+                              "Resource": {
+                                "Ref": "ECSAlerts6D168A96"
+                              },
+                              "Sid": "0"
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "topics": [
+                          {
+                            "Ref": "ECSAlerts6D168A96"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-sns.CfnTopicPolicy",
+                      "version": "1.150.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-sns.TopicPolicy",
+                  "version": "1.150.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-sns.Topic",
+              "version": "1.150.0"
+            }
+          },
+          "ECSTaskStoppedRule": {
+            "id": "ECSTaskStoppedRule",
+            "path": "ECSMonitoringStack/ECSTaskStoppedRule",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ECSMonitoringStack/ECSTaskStoppedRule/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                  "aws:cdk:cloudformation:props": {
+                    "eventPattern": {
+                      "detail": {
+                        "lastStatus": [
+                          "STOPPED"
+                        ],
+                        "group": [
+                          "service:frontdesk-app-websocket-production",
+                          "service:frontdesk-app-server-production",
+                          "service:frontdesk-app-client-production"
+                        ]
+                      },
+                      "detail-type": [
+                        "ECS Task State Change"
+                      ],
+                      "source": [
+                        "aws.ecs"
+                      ]
+                    },
+                    "state": "ENABLED",
+                    "targets": [
+                      {
+                        "id": "Target0",
+                        "arn": {
+                          "Ref": "ECSAlerts6D168A96"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-events.CfnRule",
+                  "version": "1.150.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-events.Rule",
+              "version": "1.150.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "ECSMonitoringStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "ECSMonitoringStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.150.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.150.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.150.0"
         }
       }
     },
     "constructInfo": {
       "fqn": "@aws-cdk/core.App",
-      "version": "1.145.0"
+      "version": "1.150.0"
     }
   }
 }

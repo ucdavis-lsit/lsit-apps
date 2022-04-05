@@ -1,0 +1,96 @@
+{
+  "Resources": {
+    "ECSAlerts6D168A96": {
+      "Type": "AWS::SNS::Topic",
+      "Metadata": {
+        "aws:cdk:path": "ECSMonitoringStack/ECSAlerts/Resource"
+      }
+    },
+    "ECSAlertsdssitdevsexceptionsucdavisedu2EA2FD31": {
+      "Type": "AWS::SNS::Subscription",
+      "Properties": {
+        "Protocol": "email",
+        "TopicArn": {
+          "Ref": "ECSAlerts6D168A96"
+        },
+        "Endpoint": "dssit-devs-exceptions@ucdavis.edu"
+      },
+      "Metadata": {
+        "aws:cdk:path": "ECSMonitoringStack/ECSAlerts/dssit-devs-exceptions@ucdavis.edu/Resource"
+      }
+    },
+    "ECSAlertsPolicyBBC4D254": {
+      "Type": "AWS::SNS::TopicPolicy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sns:Publish",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "events.amazonaws.com"
+              },
+              "Resource": {
+                "Ref": "ECSAlerts6D168A96"
+              },
+              "Sid": "0"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "Topics": [
+          {
+            "Ref": "ECSAlerts6D168A96"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "ECSMonitoringStack/ECSAlerts/Policy/Resource"
+      }
+    },
+    "ECSTaskStoppedRule0E4A62EF": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "EventPattern": {
+          "detail": {
+            "lastStatus": [
+              "STOPPED"
+            ],
+            "group": [
+              "service:frontdesk-app-websocket-production",
+              "service:frontdesk-app-server-production",
+              "service:frontdesk-app-client-production"
+            ]
+          },
+          "detail-type": [
+            "ECS Task State Change"
+          ],
+          "source": [
+            "aws.ecs"
+          ]
+        },
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Ref": "ECSAlerts6D168A96"
+            },
+            "Id": "Target0"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "ECSMonitoringStack/ECSTaskStoppedRule/Resource"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WNTQ6CQAyFz8J+qBDjgp0JFyDgBbDWWMGWzI+GTObu8pOYuHr93nttSyhPBRTZuf+4HG/DIaJagtj5HgdTqzhvA3pT36Ulp8EiJbN2oxMH8aIT4xruQxeuDi1PnlVW94+3SqMj4/zb2DEZepP45V4bRtp+LZpSMs3sHyqHI1RQZU/HnNsgnl8E7a5fMLtWW8AAAAA="
+      },
+      "Metadata": {
+        "aws:cdk:path": "ECSMonitoringStack/CDKMetadata/Default"
+      }
+    }
+  }
+}

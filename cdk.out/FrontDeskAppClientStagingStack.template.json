@@ -405,7 +405,7 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QQW4CMQx8C/cQSmkP3FqoWlXigBY+4AazdTckq9ihWq3y9yYsRaseerJnPBl7Mtfzh0d9N3mCb56aQzPrjQ+o+52AadTaO5YQjaj10VXIPgaDSRVtT3DSfeUtXmalbr0l0xU4dEmhYd2/QqhBcA/cvOCRHAl5V1R/Ge8EyGEYcde3OwxnMpdN1zYp6+tsvvH1W/CxLaPfPile6FU0DcoKGPMV9zkQmhhIupv6f+Ld1QGZcwQLLGSsh8MHWHCGXH3Ofs9tmzNCuXKfj0S5+YzhSLUhFszpqjh82RinlNS2k0/vZgu91MvJFxNNQ3RCJ9TVUH8A2eyG3qsBAAA="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QQW4CMQx8C/cQoKgHbi1UrSpxQAsfcI3ZuhuSVeJQrVb5exOWolUPPdkznow9WejF41zPJ0/wHaZ4bGY9Ok+63wtgozbOBvERRW1OtqLgokdKqmh7hrPuK2foOit15wxjV+DQJUUYdP8KvgahA4TmhU5sWdjZovrLOCvAlvyIu73dk78wXjfd2qSMq7P51tVv3sW2jH77pMJSryM2JGsIlK94yIEIo2fp7ur/iXdbewohRzAQhNE4OH6AAYts60v2e27bnBHKlYd8JMndZwxHqi0HoZyuisOXjXFKSe06+XR2ttQrvZp8Beapj1b4TLoa6g+aqlQcqwEAAA=="
       },
       "Metadata": {
         "aws:cdk:path": "FrontDeskAppClientStagingStack/CDKMetadata/Default"

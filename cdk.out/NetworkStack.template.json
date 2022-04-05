@@ -21,11 +21,11 @@
     "LSITZoomQueueVpcLSITZoomQueueIsolatedSubnetSubnet1Subnet29091347": {
       "Type": "AWS::EC2::Subnet",
       "Properties": {
-        "CidrBlock": "10.0.0.0/27",
         "VpcId": {
           "Ref": "LSITZoomQueueVpc20AD45C9"
         },
         "AvailabilityZone": "us-west-2a",
+        "CidrBlock": "10.0.0.0/27",
         "MapPublicIpOnLaunch": false,
         "Tags": [
           {
@@ -80,11 +80,11 @@
     "LSITZoomQueueVpcLSITZoomQueueIsolatedSubnetSubnet2Subnet3DD9B17B": {
       "Type": "AWS::EC2::Subnet",
       "Properties": {
-        "CidrBlock": "10.0.0.32/27",
         "VpcId": {
           "Ref": "LSITZoomQueueVpc20AD45C9"
         },
         "AvailabilityZone": "us-west-2b",
+        "CidrBlock": "10.0.0.32/27",
         "MapPublicIpOnLaunch": false,
         "Tags": [
           {
@@ -139,11 +139,11 @@
     "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7": {
       "Type": "AWS::EC2::Subnet",
       "Properties": {
-        "CidrBlock": "10.0.32.0/19",
         "VpcId": {
           "Ref": "LSITZoomQueueVpc20AD45C9"
         },
         "AvailabilityZone": "us-west-2a",
+        "CidrBlock": "10.0.32.0/19",
         "MapPublicIpOnLaunch": true,
         "Tags": [
           {
@@ -254,11 +254,11 @@
     "LSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0": {
       "Type": "AWS::EC2::Subnet",
       "Properties": {
-        "CidrBlock": "10.0.64.0/19",
         "VpcId": {
           "Ref": "LSITZoomQueueVpc20AD45C9"
         },
         "AvailabilityZone": "us-west-2b",
+        "CidrBlock": "10.0.64.0/19",
         "MapPublicIpOnLaunch": true,
         "Tags": [
           {
@@ -369,11 +369,11 @@
     "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC": {
       "Type": "AWS::EC2::Subnet",
       "Properties": {
-        "CidrBlock": "10.0.96.0/19",
         "VpcId": {
           "Ref": "LSITZoomQueueVpc20AD45C9"
         },
         "AvailabilityZone": "us-west-2a",
+        "CidrBlock": "10.0.96.0/19",
         "MapPublicIpOnLaunch": false,
         "Tags": [
           {
@@ -443,11 +443,11 @@
     "LSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343": {
       "Type": "AWS::EC2::Subnet",
       "Properties": {
-        "CidrBlock": "10.0.128.0/19",
         "VpcId": {
           "Ref": "LSITZoomQueueVpc20AD45C9"
         },
         "AvailabilityZone": "us-west-2b",
+        "CidrBlock": "10.0.128.0/19",
         "MapPublicIpOnLaunch": false,
         "Tags": [
           {
@@ -1164,7 +1164,7 @@
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/11RwW7CMAz9Fu4hjLEduI0WhJCmqQLE3U0NZJSkShwQqvLvS9oCHSfbz88vfs6Yjz8++dvgC652KIrTqBbaIK83BOLE1mi1MwJZqpUl4wSxdK/uqGdxqEbxzutdJWJrl6UsM/IChBuXK2z4z2ytHeEW8hKf+BObWauFBJJasczlpRQvkzFZrLIYfoCW4ZEr3GK1UoQmMHtQ2KSrZhS8HM+oiG1QOCPptjTaVc0K/4BGZg8Cg5uFKiotFXVaj7IT7TE8Q2F5nZbOhvHI79LQKMGSFKWGIocSlJDqcAnXmlVVcNc4/Q69pOm1s/3aM1ME5TkQ5GBxFf4g4qw9y8PEPOkDd3awZtrbzZP7pGe2Qe0ZFBzQhK2bG0RiG7ZgDki9kz0Ir52gNeF14sSpfaXNvPcsu9FRq9GET/l08GulHBqnSJ6Rr9v4B88N6+p1AgAA"
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/11RwW7CMAz9Fu4hwNAO3EYLQkjTVAHi7qYGMkpSJQ4IVf33JWmBjpPt5+cXP2fCJ59jPh58wc0ORXEe1UIb5PWWQJzZBq12RiBLtbJknCCWHtQDbVgYqlF88HpfidDaZynLjLwC4dblCiP/lW20I9xBXuILf2Fza7WQQFIrlrm8lOJtMiTLdRbCD9DKP3KDe6jWitB4Zg/ym3TVnLyX0wUVsS0KZyTdV0a7Kq7wD4gyBxDo3SxVUWmpqNN6lp1oj9EwFJbXaemsHw/8LvWNEixJUWoocihBCamOV3+teVV5d9Hpt+8lsdfO9uuGmcIrL4AgB4tr/wcBZ+1ZniYWSR94sL01095ukTwmG2Yjai+g4IjGbx1vEIht2IE5IvVO9iS8d7zWlNeJE+f2lTZrmoZldzppNZryGZ8Nfq2UQ+MUyQvyTRv/AJPlbjV1AgAA"
       },
       "Metadata": {
         "aws:cdk:path": "NetworkStack/CDKMetadata/Default"
