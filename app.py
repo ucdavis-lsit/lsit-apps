@@ -7,6 +7,8 @@ from lsit_stack.lsit_stack import LSITStack
 from network_stack.network_stack import NetworkStack
 from scheduled_task_stack.scheduled_task_stack import ScheudledTaskStack    
 from monitoring_stack.monitoring_stack import MonitoringStack
+from getvfd_stack.getvfd_stack import GetVFDStack
+
 
 CDK_DEFAULT_ACCOUNT=os.environ["CDK_DEFAULT_ACCOUNT"]
 CDK_DEFAULT_REGION=os.environ["CDK_DEFAULT_REGION"]
@@ -116,7 +118,7 @@ ScheudledTaskStack(
         "app_name": "zoom-queue-cleanup-announcements",
         "app_env": "development",
         "image_uri": "curlimages/curl:latest",
-        "command_override": ["sh","-c","curl -XDELETE https://dev.api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY"]
+        "command_override": ["sh","-c",'curl -XDELETE "https://dev.api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY&domain=$DOMAIN"']
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -217,7 +219,7 @@ ScheudledTaskStack(
         "app_name": "frontdesk-app-cleanup-announcements",
         "app_env": "production",
         "image_uri": "curlimages/curl:latest",
-        "command_override": ["sh","-c","curl -XDELETE https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY"],
+        "command_override": ["sh","-c",'curl -XDELETE "https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY&domain=$DOMAIN"'],
         "is_private": True
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
@@ -236,6 +238,23 @@ ScheudledTaskStack(
         "command_override": ["sh","-c","curl -XDELETE https://api.frontdesk.lsit.ucdavis.edu/api/expiredGuests?key=$API_KEY"],
         "is_private": True,
         "schedule": {"minute": "*"}
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+ScheudledTaskStack(
+    app,
+    "FrontDeskAppProductionProcessGuestEvents",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "frontdesk-app-process-guest-events",
+        "app_env": "production",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
+        "command_override": ["npm","run","processGuestEvents"],
+        "is_private": True,
+        "schedule": {"minute": "*/15"}
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -337,7 +356,7 @@ ScheudledTaskStack(
         "app_name": "frontdesk-app-cleanup-announcements",
         "app_env": "staging",
         "image_uri": "curlimages/curl:latest",
-        "command_override": ["sh","-c","curl -XDELETE https://stage.api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY"],
+        "command_override": ["sh","-c",'curl -XDELETE "https://stage.api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY&domain=$DOMAIN"'],
         "is_private": True
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
@@ -360,11 +379,45 @@ ScheudledTaskStack(
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
+ScheudledTaskStack(
+    app,
+    "FrontDeskAppStagingProcessGuestEvents",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "frontdesk-app-process-guest-events",
+        "app_env": "staging",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-staging:latest",
+        "command_override": ["npm","run","processGuestEvents"],
+        "is_private": True,
+        "schedule": {"minute": "*/15"}
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
 # Monitoring
 MonitoringStack(
     app,
     "ECSMonitoringStack",
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+# Get VFD
+GetVFDStack(
+    app,
+    "GetVFDStack",
+    {
+        "app_name": "frontdesk-app-getvfd",
+        "app_env": "production",
+        "https_listener": frontdesk_frontend_stack.https_listener,
+        "http_listener": frontdesk_frontend_stack.http_listener,
+        "https_load_balancer_priority": 7,
+        "http_load_balancer_priority": 7,
+        "host_headers": ["getvfd.ucdavis.edu"],
+        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/a4fdc45f-ed12-41ec-aadc-f7367c8edd02",
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
 )
 
 app.synth()

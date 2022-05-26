@@ -464,6 +464,22 @@
         "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-websocketStagingCerttificates1/Resource"
       }
     },
+    "FrontdeskappclientProductionHttpsListenerFrontdeskappgetvfdProductionCerttificates1CD40B73B": {
+      "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+      "Properties": {
+        "Certificates": [
+          {
+            "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a4fdc45f-ed12-41ec-aadc-f7367c8edd02"
+          }
+        ],
+        "ListenerArn": {
+          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-getvfdProductionCerttificates1/Resource"
+      }
+    },
     "FrontdeskappclientProductionHttpsListenerRule5CBF48FA": {
       "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
       "Properties": {

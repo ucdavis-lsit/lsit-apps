@@ -354,7 +354,7 @@
               }
             },
             "Id": "Target0",
-            "Input": "{\"containerOverrides\":[{\"name\":\"frontdesk-app-cleanup-announcements-staging\",\"command\":[\"sh\",\"-c\",\"curl -XDELETE https://stage.api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY\"]}]}",
+            "Input": "{\"containerOverrides\":[{\"name\":\"frontdesk-app-cleanup-announcements-staging\",\"command\":[\"sh\",\"-c\",\"curl -XDELETE \\\"https://stage.api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY&domain=$DOMAIN\\\"\"]}]}",
             "RoleArn": {
               "Fn::GetAtt": [
                 "FrontdeskappcleanupannouncementsStagingEventRoleF0918AD0",

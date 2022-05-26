@@ -1,6 +1,6 @@
 {
   "Resources": {
-    "ZoomqueuecleanupannouncementsDevelopmentRoleCE957A8A": {
+    "FrontdeskappprocessguesteventsProductionRole9B4E00BD": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -15,7 +15,7 @@
           ],
           "Version": "2012-10-17"
         },
-        "Description": "Allows zoom-queue-cleanup-announcements-development tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+        "Description": "Allows frontdesk-app-process-guest-events-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
         "ManagedPolicyArns": [
           {
             "Fn::Join": [
@@ -30,13 +30,13 @@
             ]
           }
         ],
-        "RoleName": "Zoom-queue-cleanup-announcementsDevelopmentECSTaskExecutionRole"
+        "RoleName": "Frontdesk-app-process-guest-eventsProductionECSTaskExecutionRol"
       },
       "Metadata": {
-        "aws:cdk:path": "ZoomQueueDevelopmentCleanupAnnouncements/Zoom-queue-cleanup-announcementsDevelopmentRole/Resource"
+        "aws:cdk:path": "FrontDeskAppProductionProcessGuestEvents/Frontdesk-app-process-guest-eventsProductionRole/Resource"
       }
     },
-    "ZoomqueuecleanupannouncementsDevelopmentRoleDefaultPolicy58669ADF": {
+    "FrontdeskappprocessguesteventsProductionRoleDefaultPolicy32248C8F": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -49,7 +49,7 @@
               "Effect": "Allow",
               "Resource": {
                 "Fn::GetAtt": [
-                  "ZoomqueuecleanupannouncementsDevelopmentLogGroup18450C5D",
+                  "FrontdeskappprocessguesteventsProductionLogGroupBEE3F4BE",
                   "Arn"
                 ]
               }
@@ -57,18 +57,18 @@
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "ZoomqueuecleanupannouncementsDevelopmentRoleDefaultPolicy58669ADF",
+        "PolicyName": "FrontdeskappprocessguesteventsProductionRoleDefaultPolicy32248C8F",
         "Roles": [
           {
-            "Ref": "ZoomqueuecleanupannouncementsDevelopmentRoleCE957A8A"
+            "Ref": "FrontdeskappprocessguesteventsProductionRole9B4E00BD"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "ZoomQueueDevelopmentCleanupAnnouncements/Zoom-queue-cleanup-announcementsDevelopmentRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "FrontDeskAppProductionProcessGuestEvents/Frontdesk-app-process-guest-eventsProductionRole/DefaultPolicy/Resource"
       }
     },
-    "ZoomqueuecleanupannouncementsDevelopmentPolicy9960B242": {
+    "FrontdeskappprocessguesteventsProductionPolicyC3D20CBB": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -90,7 +90,7 @@
                     {
                       "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
                     },
-                    "/zoom-queue-cleanup-announcements/*"
+                    "/frontdesk-app-process-guest-events/*"
                   ]
                 ]
               }
@@ -98,18 +98,18 @@
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "Zoom-queue-cleanup-announcementsDevelopmentConfigRead",
+        "PolicyName": "Frontdesk-app-process-guest-eventsProductionConfigRead",
         "Roles": [
           {
-            "Ref": "ZoomqueuecleanupannouncementsDevelopmentRoleCE957A8A"
+            "Ref": "FrontdeskappprocessguesteventsProductionRole9B4E00BD"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "ZoomQueueDevelopmentCleanupAnnouncements/Zoom-queue-cleanup-announcementsDevelopmentPolicy/Resource"
+        "aws:cdk:path": "FrontDeskAppProductionProcessGuestEvents/Frontdesk-app-process-guest-eventsProductionPolicy/Resource"
       }
     },
-    "ZoomqueuecleanupannouncementsDevelopmentTask2CD4F246": {
+    "FrontdeskappprocessguesteventsProductionTask86FF1DCC": {
       "Type": "AWS::ECS::TaskDefinition",
       "Properties": {
         "ContainerDefinitions": [
@@ -150,36 +150,36 @@
                           }
                         ]
                       },
-                      "/zoom-queue-cleanup-announcements/development.env"
+                      "/frontdesk-app-process-guest-events/production.env"
                     ]
                   ]
                 }
               }
             ],
             "Essential": true,
-            "Image": "curlimages/curl:latest",
+            "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
             "LogConfiguration": {
               "LogDriver": "awslogs",
               "Options": {
                 "awslogs-group": {
-                  "Ref": "ZoomqueuecleanupannouncementsDevelopmentLogGroup18450C5D"
+                  "Ref": "FrontdeskappprocessguesteventsProductionLogGroupBEE3F4BE"
                 },
-                "awslogs-stream-prefix": "zoom-queue-cleanup-announcements-development",
+                "awslogs-stream-prefix": "frontdesk-app-process-guest-events-production",
                 "awslogs-region": "us-west-2"
               }
             },
             "Memory": 512,
-            "Name": "zoom-queue-cleanup-announcements-development"
+            "Name": "frontdesk-app-process-guest-events-production"
           }
         ],
         "Cpu": "256",
         "ExecutionRoleArn": {
           "Fn::GetAtt": [
-            "ZoomqueuecleanupannouncementsDevelopmentRoleCE957A8A",
+            "FrontdeskappprocessguesteventsProductionRole9B4E00BD",
             "Arn"
           ]
         },
-        "Family": "zoom-queue-cleanup-announcements-development",
+        "Family": "frontdesk-app-process-guest-events-production",
         "Memory": "512",
         "NetworkMode": "awsvpc",
         "RequiresCompatibilities": [
@@ -187,32 +187,32 @@
         ],
         "TaskRoleArn": {
           "Fn::GetAtt": [
-            "ZoomqueuecleanupannouncementsDevelopmentRoleCE957A8A",
+            "FrontdeskappprocessguesteventsProductionRole9B4E00BD",
             "Arn"
           ]
         }
       },
       "Metadata": {
-        "aws:cdk:path": "ZoomQueueDevelopmentCleanupAnnouncements/Zoom-queue-cleanup-announcementsDevelopmentTask/Resource"
+        "aws:cdk:path": "FrontDeskAppProductionProcessGuestEvents/Frontdesk-app-process-guest-eventsProductionTask/Resource"
       }
     },
-    "ZoomqueuecleanupannouncementsDevelopmentLogGroup18450C5D": {
+    "FrontdeskappprocessguesteventsProductionLogGroupBEE3F4BE": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/ecs/zoom-queue-cleanup-announcements-development",
+        "LogGroupName": "/ecs/frontdesk-app-process-guest-events-production",
         "RetentionInDays": 731
       },
       "UpdateReplacePolicy": "Delete",
       "DeletionPolicy": "Delete",
       "Metadata": {
-        "aws:cdk:path": "ZoomQueueDevelopmentCleanupAnnouncements/Zoom-queue-cleanup-announcementsDevelopmentLogGroup/Resource"
+        "aws:cdk:path": "FrontDeskAppProductionProcessGuestEvents/Frontdesk-app-process-guest-eventsProductionLogGroup/Resource"
       }
     },
-    "ZoomqueuecleanupannouncementsDevelopmentSecurityGroup3EE6707C": {
+    "FrontdeskappprocessguesteventsProductionSecurityGroup138AD025": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "ZoomQueueDevelopmentCleanupAnnouncements/Zoom-queue-cleanup-announcementsDevelopmentSecurityGroup",
-        "GroupName": "zoom-queue-cleanup-announcements-development",
+        "GroupDescription": "FrontDeskAppProductionProcessGuestEvents/Frontdesk-app-process-guest-eventsProductionSecurityGroup",
+        "GroupName": "frontdesk-app-process-guest-events-production",
         "SecurityGroupEgress": [
           {
             "CidrIp": "0.0.0.0/0",
@@ -232,10 +232,10 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "ZoomQueueDevelopmentCleanupAnnouncements/Zoom-queue-cleanup-announcementsDevelopmentSecurityGroup/Resource"
+        "aws:cdk:path": "FrontDeskAppProductionProcessGuestEvents/Frontdesk-app-process-guest-eventsProductionSecurityGroup/Resource"
       }
     },
-    "ZoomqueuecleanupannouncementsDevelopmentEventRoleDDB2D2B8": {
+    "FrontdeskappprocessguesteventsProductionEventRole65A341A5": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -250,7 +250,7 @@
           ],
           "Version": "2012-10-17"
         },
-        "Description": "Allows zoom-queue-cleanup-announcements-development scheduled tasks to run in ECS.",
+        "Description": "Allows frontdesk-app-process-guest-events-production scheduled tasks to run in ECS.",
         "ManagedPolicyArns": [
           {
             "Fn::Join": [
@@ -265,13 +265,13 @@
             ]
           }
         ],
-        "RoleName": "Zoom-queue-cleanup-announcementsDevelopmentEventRole"
+        "RoleName": "Frontdesk-app-process-guest-eventsProductionEventRole"
       },
       "Metadata": {
-        "aws:cdk:path": "ZoomQueueDevelopmentCleanupAnnouncements/Zoom-queue-cleanup-announcementsDevelopmentEventRole/Resource"
+        "aws:cdk:path": "FrontDeskAppProductionProcessGuestEvents/Frontdesk-app-process-guest-eventsProductionEventRole/Resource"
       }
     },
-    "ZoomqueuecleanupannouncementsDevelopmentEventRoleDefaultPolicyA329C8EA": {
+    "FrontdeskappprocessguesteventsProductionEventRoleDefaultPolicy42657C29": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyDocument": {
@@ -281,13 +281,13 @@
               "Condition": {
                 "ArnEquals": {
                   "ecs:cluster": {
-                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueDevelopmentClusterCD7CCE95ArnE9FC663E"
+                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
                   }
                 }
               },
               "Effect": "Allow",
               "Resource": {
-                "Ref": "ZoomqueuecleanupannouncementsDevelopmentTask2CD4F246"
+                "Ref": "FrontdeskappprocessguesteventsProductionTask86FF1DCC"
               }
             },
             {
@@ -295,7 +295,7 @@
               "Effect": "Allow",
               "Resource": {
                 "Fn::GetAtt": [
-                  "ZoomqueuecleanupannouncementsDevelopmentRoleCE957A8A",
+                  "FrontdeskappprocessguesteventsProductionRole9B4E00BD",
                   "Arn"
                 ]
               }
@@ -303,46 +303,46 @@
           ],
           "Version": "2012-10-17"
         },
-        "PolicyName": "ZoomqueuecleanupannouncementsDevelopmentEventRoleDefaultPolicyA329C8EA",
+        "PolicyName": "FrontdeskappprocessguesteventsProductionEventRoleDefaultPolicy42657C29",
         "Roles": [
           {
-            "Ref": "ZoomqueuecleanupannouncementsDevelopmentEventRoleDDB2D2B8"
+            "Ref": "FrontdeskappprocessguesteventsProductionEventRole65A341A5"
           }
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "ZoomQueueDevelopmentCleanupAnnouncements/Zoom-queue-cleanup-announcementsDevelopmentEventRole/DefaultPolicy/Resource"
+        "aws:cdk:path": "FrontDeskAppProductionProcessGuestEvents/Frontdesk-app-process-guest-eventsProductionEventRole/DefaultPolicy/Resource"
       }
     },
-    "ZoomqueuecleanupannouncementsDevelopmentScheduledTaskA5BBCA78": {
+    "FrontdeskappprocessguesteventsProductionScheduledTask8B642B22": {
       "Type": "AWS::Events::Rule",
       "Properties": {
-        "ScheduleExpression": "cron(0 8 * * ? *)",
+        "ScheduleExpression": "cron(*/15 * * * ? *)",
         "State": "ENABLED",
         "Targets": [
           {
             "Arn": {
-              "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueDevelopmentClusterCD7CCE95ArnE9FC663E"
+              "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
             },
             "EcsParameters": {
               "LaunchType": "FARGATE",
               "NetworkConfiguration": {
                 "AwsVpcConfiguration": {
-                  "AssignPublicIp": "ENABLED",
+                  "AssignPublicIp": "DISABLED",
                   "SecurityGroups": [
                     {
                       "Fn::GetAtt": [
-                        "ZoomqueuecleanupannouncementsDevelopmentSecurityGroup3EE6707C",
+                        "FrontdeskappprocessguesteventsProductionSecurityGroup138AD025",
                         "GroupId"
                       ]
                     }
                   ],
                   "Subnets": [
                     {
-                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7A5D57971"
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
                     },
                     {
-                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet2SubnetA70642D0A051945B"
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
                     }
                   ]
                 }
@@ -350,14 +350,14 @@
               "PlatformVersion": "LATEST",
               "TaskCount": 1,
               "TaskDefinitionArn": {
-                "Ref": "ZoomqueuecleanupannouncementsDevelopmentTask2CD4F246"
+                "Ref": "FrontdeskappprocessguesteventsProductionTask86FF1DCC"
               }
             },
             "Id": "Target0",
-            "Input": "{\"containerOverrides\":[{\"name\":\"zoom-queue-cleanup-announcements-development\",\"command\":[\"sh\",\"-c\",\"curl -XDELETE \\\"https://dev.api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY&domain=$DOMAIN\\\"\"]}]}",
+            "Input": "{\"containerOverrides\":[{\"name\":\"frontdesk-app-process-guest-events-production\",\"command\":[\"npm\",\"run\",\"processGuestEvents\"]}]}",
             "RoleArn": {
               "Fn::GetAtt": [
-                "ZoomqueuecleanupannouncementsDevelopmentEventRoleDDB2D2B8",
+                "FrontdeskappprocessguesteventsProductionEventRole65A341A5",
                 "Arn"
               ]
             }
@@ -365,7 +365,7 @@
         ]
       },
       "Metadata": {
-        "aws:cdk:path": "ZoomQueueDevelopmentCleanupAnnouncements/Zoom-queue-cleanup-announcementsDevelopmentScheduledTask/Resource"
+        "aws:cdk:path": "FrontDeskAppProductionProcessGuestEvents/Frontdesk-app-process-guest-eventsProductionScheduledTask/Resource"
       }
     },
     "CDKMetadata": {
@@ -374,7 +374,7 @@
         "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Oy04DMQz8lt5Tt6Xi0BtqUblwqBZ+IDLuYnZro8RptYry7ySUh+A04/F4PCtY3S5hObvzlzjHl2GRUQNBfjKPg9upRAsJze2O0lHUFJCKa97M/gS505E+dw0POjJObbyy4ggj5L0PvTd69nG4pyMLG6s0139FxTwLhV+tuFH7GvGo/UPQ9N6uvnlxcQ3bhAPZ1keqv25qbcIU2KYf9x+hFjqTWA3s0lfviqUUd5jsVWWxhg1sZm+ReR6SGJ8Iuit+AGWmm9goAQAA"
       },
       "Metadata": {
-        "aws:cdk:path": "ZoomQueueDevelopmentCleanupAnnouncements/CDKMetadata/Default"
+        "aws:cdk:path": "FrontDeskAppProductionProcessGuestEvents/CDKMetadata/Default"
       }
     }
   }
