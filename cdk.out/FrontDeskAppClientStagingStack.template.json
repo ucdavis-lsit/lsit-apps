@@ -1,415 +1,421 @@
 {
-  "Resources": {
-    "FrontdeskappclientStagingRole2C8458A9": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "ecs-tasks.amazonaws.com"
-              }
-            }
-          ],
-          "Version": "2012-10-17"
+ "Resources": {
+  "FrontdeskappclientStagingRole2C8458A9": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Allows frontdesk-app-client-staging tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
         },
-        "Description": "Allows frontdesk-app-client-staging tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
-        "ManagedPolicyArns": [
+        ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+       ]
+      ]
+     }
+    ],
+    "RoleName": "Frontdesk-app-clientStagingECSTaskExecutionRole"
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingRole/Resource"
+   }
+  },
+  "FrontdeskappclientStagingRoleDefaultPolicy27EC228E": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "FrontdeskappclientStagingLogGroup8D30E6F6",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "FrontdeskappclientStagingRoleDefaultPolicy27EC228E",
+    "Roles": [
+     {
+      "Ref": "FrontdeskappclientStagingRole2C8458A9"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingRole/DefaultPolicy/Resource"
+   }
+  },
+  "FrontdeskappclientStagingPolicyBA590B5D": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:GetBucketLocation",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+       }
+      },
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
           {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition"
-                },
-                ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+           "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+          },
+          "/frontdesk-app-client/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "Frontdesk-app-clientStagingConfigRead",
+    "Roles": [
+     {
+      "Ref": "FrontdeskappclientStagingRole2C8458A9"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingPolicy/Resource"
+   }
+  },
+  "FrontdeskappclientStagingTask66E32AE1": {
+   "Type": "AWS::ECS::TaskDefinition",
+   "Properties": {
+    "ContainerDefinitions": [
+     {
+      "Cpu": 256,
+      "EnvironmentFiles": [
+       {
+        "Type": "s3",
+        "Value": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::",
+           {
+            "Fn::Select": [
+             0,
+             {
+              "Fn::Split": [
+               "/",
+               {
+                "Fn::Select": [
+                 5,
+                 {
+                  "Fn::Split": [
+                   ":",
+                   {
+                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                   }
+                  ]
+                 }
+                ]
+               }
               ]
+             }
             ]
-          }
-        ],
-        "RoleName": "Frontdesk-app-clientStagingECSTaskExecutionRole"
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingRole/Resource"
-      }
-    },
-    "FrontdeskappclientStagingRoleDefaultPolicy27EC228E": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-              ],
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "FrontdeskappclientStagingLogGroup8D30E6F6",
-                  "Arn"
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "FrontdeskappclientStagingRoleDefaultPolicy27EC228E",
-        "Roles": [
-          {
-            "Ref": "FrontdeskappclientStagingRole2C8458A9"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingRole/DefaultPolicy/Resource"
-      }
-    },
-    "FrontdeskappclientStagingPolicyBA590B5D": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": "s3:GetBucketLocation",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
-              }
-            },
-            {
-              "Action": "s3:GetObject",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    {
-                      "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
-                    },
-                    "/frontdesk-app-client/*"
-                  ]
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "Frontdesk-app-clientStagingConfigRead",
-        "Roles": [
-          {
-            "Ref": "FrontdeskappclientStagingRole2C8458A9"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingPolicy/Resource"
-      }
-    },
-    "FrontdeskappclientStagingTask66E32AE1": {
-      "Type": "AWS::ECS::TaskDefinition",
-      "Properties": {
-        "ContainerDefinitions": [
-          {
-            "Cpu": 256,
-            "EnvironmentFiles": [
-              {
-                "Type": "s3",
-                "Value": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":s3:::",
-                      {
-                        "Fn::Select": [
-                          0,
-                          {
-                            "Fn::Split": [
-                              "/",
-                              {
-                                "Fn::Select": [
-                                  5,
-                                  {
-                                    "Fn::Split": [
-                                      ":",
-                                      {
-                                        "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      "/frontdesk-app-client/staging.env"
-                    ]
-                  ]
-                }
-              }
-            ],
-            "Essential": true,
-            "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-client-staging:latest",
-            "LogConfiguration": {
-              "LogDriver": "awslogs",
-              "Options": {
-                "awslogs-group": {
-                  "Ref": "FrontdeskappclientStagingLogGroup8D30E6F6"
-                },
-                "awslogs-stream-prefix": "frontdesk-app-client-staging",
-                "awslogs-region": "us-west-2"
-              }
-            },
-            "Memory": 512,
-            "Name": "frontdesk-app-client-staging",
-            "PortMappings": [
-              {
-                "ContainerPort": 3000,
-                "HostPort": 3000,
-                "Protocol": "tcp"
-              }
-            ]
-          }
-        ],
-        "Cpu": "256",
-        "ExecutionRoleArn": {
-          "Fn::GetAtt": [
-            "FrontdeskappclientStagingRole2C8458A9",
-            "Arn"
+           },
+           "/frontdesk-app-client/staging.env"
           ]
-        },
-        "Family": "frontdesk-app-client-staging",
-        "Memory": "512",
-        "NetworkMode": "awsvpc",
-        "RequiresCompatibilities": [
-          "FARGATE"
-        ],
-        "TaskRoleArn": {
-          "Fn::GetAtt": [
-            "FrontdeskappclientStagingRole2C8458A9",
-            "Arn"
-          ]
+         ]
         }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingTask/Resource"
-      }
-    },
-    "FrontdeskappclientStagingLogGroup8D30E6F6": {
-      "Type": "AWS::Logs::LogGroup",
-      "Properties": {
-        "LogGroupName": "/ecs/frontdesk-app-client-staging",
-        "RetentionInDays": 731
-      },
-      "UpdateReplacePolicy": "Delete",
-      "DeletionPolicy": "Delete",
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingLogGroup/Resource"
-      }
-    },
-    "FrontdeskappclientStagingSecurityGroup7A2252E4": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingSecurityGroup",
-        "GroupName": "frontdesk-app-client-staging",
-        "SecurityGroupEgress": [
-          {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "Allow all outbound traffic by default",
-            "IpProtocol": "-1"
-          }
-        ],
-        "SecurityGroupIngress": [
-          {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "from 0.0.0.0/0:ALL TRAFFIC",
-            "IpProtocol": "-1"
-          }
-        ],
-        "VpcId": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingSecurityGroup/Resource"
-      }
-    },
-    "FrontdeskappclientStagingSecurityGroupfromNetworkStackLSITZoomQueueSecurityGroup211C746730009E4C2441": {
-      "Type": "AWS::EC2::SecurityGroupIngress",
-      "Properties": {
-        "IpProtocol": "tcp",
-        "Description": "Load balancer to target",
-        "FromPort": 3000,
-        "GroupId": {
-          "Fn::GetAtt": [
-            "FrontdeskappclientStagingSecurityGroup7A2252E4",
-            "GroupId"
-          ]
-        },
-        "SourceSecurityGroupId": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
-        },
-        "ToPort": 3000
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingSecurityGroup/from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000"
-      }
-    },
-    "FrontdeskappclientStagingService2116B712": {
-      "Type": "AWS::ECS::Service",
-      "Properties": {
-        "Cluster": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
-        },
-        "DeploymentConfiguration": {
-          "MaximumPercent": 200,
-          "MinimumHealthyPercent": 50
-        },
-        "DesiredCount": 1,
-        "EnableECSManagedTags": false,
-        "HealthCheckGracePeriodSeconds": 60,
-        "LaunchType": "FARGATE",
-        "LoadBalancers": [
-          {
-            "ContainerName": "frontdesk-app-client-staging",
-            "ContainerPort": 3000,
-            "TargetGroupArn": {
-              "Ref": "FrontdeskappclientStagingTargetGroup98F7B686"
-            }
-          }
-        ],
-        "NetworkConfiguration": {
-          "AwsvpcConfiguration": {
-            "AssignPublicIp": "DISABLED",
-            "SecurityGroups": [
-              {
-                "Fn::GetAtt": [
-                  "FrontdeskappclientStagingSecurityGroup7A2252E4",
-                  "GroupId"
-                ]
-              }
-            ],
-            "Subnets": [
-              {
-                "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
-              },
-              {
-                "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
-              }
-            ]
-          }
-        },
-        "ServiceName": "frontdesk-app-client-staging",
-        "TaskDefinition": {
-          "Ref": "FrontdeskappclientStagingTask66E32AE1"
-        }
-      },
-      "DependsOn": [
-        "FrontdeskappclientStagingHttpsListenerRule6A03FDFE"
+       }
       ],
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingService/Service"
-      }
-    },
-    "FrontdeskappclientStagingTargetGroup98F7B686": {
-      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
-      "Properties": {
-        "HealthCheckPath": "/api/health",
-        "Name": "ecs-frontdesk-app-client-staging",
-        "Port": 80,
-        "Protocol": "HTTP",
-        "TargetGroupAttributes": [
-          {
-            "Key": "stickiness.enabled",
-            "Value": "false"
-          }
-        ],
-        "TargetType": "ip",
-        "VpcId": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingTargetGroup/Resource"
-      }
-    },
-    "FrontdeskappclientStagingHttpsListenerRule6A03FDFE": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
-      "Properties": {
-        "Actions": [
-          {
-            "TargetGroupArn": {
-              "Ref": "FrontdeskappclientStagingTargetGroup98F7B686"
-            },
-            "Type": "forward"
-          }
-        ],
-        "Conditions": [
-          {
-            "Field": "host-header",
-            "HostHeaderConfig": {
-              "Values": [
-                "stage.advisingfrontdesk.lsit.ucdavis.edu"
-              ]
-            }
-          }
-        ],
-        "ListenerArn": {
-          "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE"
+      "Essential": true,
+      "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-client-staging:latest",
+      "LogConfiguration": {
+       "LogDriver": "awslogs",
+       "Options": {
+        "awslogs-group": {
+         "Ref": "FrontdeskappclientStagingLogGroup8D30E6F6"
         },
-        "Priority": 4
+        "awslogs-stream-prefix": "frontdesk-app-client-staging",
+        "awslogs-region": "us-west-2"
+       }
       },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingHttpsListenerRule/Resource"
-      }
+      "Memory": 512,
+      "Name": "frontdesk-app-client-staging",
+      "PortMappings": [
+       {
+        "ContainerPort": 3000,
+        "HostPort": 3000,
+        "Protocol": "tcp"
+       }
+      ]
+     }
+    ],
+    "Cpu": "256",
+    "ExecutionRoleArn": {
+     "Fn::GetAtt": [
+      "FrontdeskappclientStagingRole2C8458A9",
+      "Arn"
+     ]
     },
-    "FrontdeskappclientStagingHttpListenerRuleF8C7A29B": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
-      "Properties": {
-        "Actions": [
-          {
-            "RedirectConfig": {
-              "Port": "443",
-              "StatusCode": "HTTP_301"
-            },
-            "Type": "redirect"
-          }
-        ],
-        "Conditions": [
-          {
-            "Field": "host-header",
-            "HostHeaderConfig": {
-              "Values": [
-                "stage.advisingfrontdesk.lsit.ucdavis.edu"
-              ]
-            }
-          }
-        ],
-        "ListenerArn": {
-          "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A"
-        },
-        "Priority": 4
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingHttpListenerRule/Resource"
-      }
-    },
-    "CDKMetadata": {
-      "Type": "AWS::CDK::Metadata",
-      "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QQW4CMQx8C/cQoKgHbi1UrSpxQAsfcI3ZuhuSVeJQrVb5exOWolUPPdkznow9WejF41zPJ0/wHaZ4bGY9Ok+63wtgozbOBvERRW1OtqLgokdKqmh7hrPuK2foOit15wxjV+DQJUUYdP8KvgahA4TmhU5sWdjZovrLOCvAlvyIu73dk78wXjfd2qSMq7P51tVv3sW2jH77pMJSryM2JGsIlK94yIEIo2fp7ur/iXdbewohRzAQhNE4OH6AAYts60v2e27bnBHKlYd8JMndZwxHqi0HoZyuisOXjXFKSe06+XR2ttQrvZp8Beapj1b4TLoa6g+aqlQcqwEAAA=="
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientStagingStack/CDKMetadata/Default"
-      }
+    "Family": "frontdesk-app-client-staging",
+    "Memory": "512",
+    "NetworkMode": "awsvpc",
+    "RequiresCompatibilities": [
+     "FARGATE"
+    ],
+    "TaskRoleArn": {
+     "Fn::GetAtt": [
+      "FrontdeskappclientStagingRole2C8458A9",
+      "Arn"
+     ]
     }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingTask/Resource"
+   }
+  },
+  "FrontdeskappclientStagingLogGroup8D30E6F6": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/ecs/frontdesk-app-client-staging",
+    "RetentionInDays": 731
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingLogGroup/Resource"
+   }
+  },
+  "FrontdeskappclientStagingSecurityGroup7A2252E4": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingSecurityGroup",
+    "GroupName": "frontdesk-app-client-staging",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "from 0.0.0.0/0:ALL TRAFFIC",
+      "IpProtocol": "-1"
+     }
+    ],
+    "VpcId": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingSecurityGroup/Resource"
+   }
+  },
+  "FrontdeskappclientStagingSecurityGroupfromNetworkStackLSITZoomQueueSecurityGroup211C746730009E4C2441": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "IpProtocol": "tcp",
+    "Description": "Load balancer to target",
+    "FromPort": 3000,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "FrontdeskappclientStagingSecurityGroup7A2252E4",
+      "GroupId"
+     ]
+    },
+    "SourceSecurityGroupId": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
+    },
+    "ToPort": 3000
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingSecurityGroup/from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000"
+   }
+  },
+  "FrontdeskappclientStagingService2116B712": {
+   "Type": "AWS::ECS::Service",
+   "Properties": {
+    "Cluster": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+    },
+    "DeploymentConfiguration": {
+     "MaximumPercent": 200,
+     "MinimumHealthyPercent": 50
+    },
+    "DesiredCount": 1,
+    "EnableECSManagedTags": false,
+    "HealthCheckGracePeriodSeconds": 60,
+    "LaunchType": "FARGATE",
+    "LoadBalancers": [
+     {
+      "ContainerName": "frontdesk-app-client-staging",
+      "ContainerPort": 3000,
+      "TargetGroupArn": {
+       "Ref": "FrontdeskappclientStagingTargetGroup98F7B686"
+      }
+     }
+    ],
+    "NetworkConfiguration": {
+     "AwsvpcConfiguration": {
+      "AssignPublicIp": "DISABLED",
+      "SecurityGroups": [
+       {
+        "Fn::GetAtt": [
+         "FrontdeskappclientStagingSecurityGroup7A2252E4",
+         "GroupId"
+        ]
+       }
+      ],
+      "Subnets": [
+       {
+        "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+       },
+       {
+        "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+       }
+      ]
+     }
+    },
+    "ServiceName": "frontdesk-app-client-staging",
+    "TaskDefinition": {
+     "Ref": "FrontdeskappclientStagingTask66E32AE1"
+    }
+   },
+   "DependsOn": [
+    "FrontdeskappclientStagingHttpsListenerRule6A03FDFE"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingService/Service"
+   }
+  },
+  "FrontdeskappclientStagingTargetGroup98F7B686": {
+   "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+   "Properties": {
+    "HealthCheckPath": "/api/health",
+    "Name": "ecs-frontdesk-app-client-staging",
+    "Port": 80,
+    "Protocol": "HTTP",
+    "TargetGroupAttributes": [
+     {
+      "Key": "stickiness.enabled",
+      "Value": "false"
+     }
+    ],
+    "TargetType": "ip",
+    "VpcId": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingTargetGroup/Resource"
+   }
+  },
+  "FrontdeskappclientStagingHttpsListenerRule6A03FDFE": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "FrontdeskappclientStagingTargetGroup98F7B686"
+      },
+      "Type": "forward"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "stage.advisingfrontdesk.lsit.ucdavis.edu",
+        "uea.stage.advisingfrontdesk.lsit.ucdavis.edu",
+        "lsit.stage.advisingfrontdesk.lsit.ucdavis.edu",
+        "grad.stage.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE"
+    },
+    "Priority": 4
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingHttpsListenerRule/Resource"
+   }
+  },
+  "FrontdeskappclientStagingHttpListenerRuleF8C7A29B": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "RedirectConfig": {
+       "Port": "443",
+       "StatusCode": "HTTP_301"
+      },
+      "Type": "redirect"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "stage.advisingfrontdesk.lsit.ucdavis.edu",
+        "uea.stage.advisingfrontdesk.lsit.ucdavis.edu",
+        "lsit.stage.advisingfrontdesk.lsit.ucdavis.edu",
+        "grad.stage.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A"
+    },
+    "Priority": 4
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingHttpListenerRule/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QQW4CMQx8C/cQSlFVcWuhalWJA1r4gBvM1t2QrGKHarXK35uwFK166Mme8WTsyVzPHx713eQJvnlqDs2sNz6g7ncCplFr71hCNKLWR1ch+xgMJlW0PcFJ95W3eJmVuvWWTFfg0CWFhnX/CqEGwT1w84JHciTkXVH9ZbwTIIdhxF3f7jCcyVw2XdukrK+z+cbXb8HHtox++6R4oVfRNCgrYMxX3OdAaGIg6W7q/4l3VwdkzhEssJCxHg4fYMEZcvU5+z23bc4I5cp9PhLl5jOGI9WGWDCnq+LwZWOcUlLbTj69my30Ui8nX0w0DdEJnVBXQ/0BDyhu56sBAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/CDKMetadata/Default"
+   }
   }
+ }
 }

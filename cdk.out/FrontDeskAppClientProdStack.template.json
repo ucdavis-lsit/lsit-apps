@@ -1,594 +1,610 @@
 {
-  "Resources": {
-    "FrontdeskappclientProductionRole5A8F4A11": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "ecs-tasks.amazonaws.com"
-              }
-            }
-          ],
-          "Version": "2012-10-17"
+ "Resources": {
+  "FrontdeskappclientProductionRole5A8F4A11": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Allows frontdesk-app-client-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
         },
-        "Description": "Allows frontdesk-app-client-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
-        "ManagedPolicyArns": [
-          {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition"
-                },
-                ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
-              ]
-            ]
-          }
-        ],
-        "RoleName": "Frontdesk-app-clientProductionECSTaskExecutionRole"
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionRole/Resource"
-      }
-    },
-    "FrontdeskappclientProductionRoleDefaultPolicy20DD2DC7": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-              ],
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "FrontdeskappclientProductionLogGroup73FD6456",
-                  "Arn"
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "FrontdeskappclientProductionRoleDefaultPolicy20DD2DC7",
-        "Roles": [
-          {
-            "Ref": "FrontdeskappclientProductionRole5A8F4A11"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionRole/DefaultPolicy/Resource"
-      }
-    },
-    "FrontdeskappclientProductionPolicy0DC291E0": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": "s3:GetBucketLocation",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
-              }
-            },
-            {
-              "Action": "s3:GetObject",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    {
-                      "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
-                    },
-                    "/frontdesk-app-client/*"
-                  ]
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "Frontdesk-app-clientProductionConfigRead",
-        "Roles": [
-          {
-            "Ref": "FrontdeskappclientProductionRole5A8F4A11"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionPolicy/Resource"
-      }
-    },
-    "FrontdeskappclientProductionTask3EBC3836": {
-      "Type": "AWS::ECS::TaskDefinition",
-      "Properties": {
-        "ContainerDefinitions": [
-          {
-            "Cpu": 256,
-            "EnvironmentFiles": [
-              {
-                "Type": "s3",
-                "Value": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":s3:::",
-                      {
-                        "Fn::Select": [
-                          0,
-                          {
-                            "Fn::Split": [
-                              "/",
-                              {
-                                "Fn::Select": [
-                                  5,
-                                  {
-                                    "Fn::Split": [
-                                      ":",
-                                      {
-                                        "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      "/frontdesk-app-client/production.env"
-                    ]
-                  ]
-                }
-              }
-            ],
-            "Essential": true,
-            "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-client-prod:latest",
-            "LogConfiguration": {
-              "LogDriver": "awslogs",
-              "Options": {
-                "awslogs-group": {
-                  "Ref": "FrontdeskappclientProductionLogGroup73FD6456"
-                },
-                "awslogs-stream-prefix": "frontdesk-app-client-production",
-                "awslogs-region": "us-west-2"
-              }
-            },
-            "Memory": 512,
-            "Name": "frontdesk-app-client-production",
-            "PortMappings": [
-              {
-                "ContainerPort": 3000,
-                "HostPort": 3000,
-                "Protocol": "tcp"
-              }
-            ]
-          }
-        ],
-        "Cpu": "256",
-        "ExecutionRoleArn": {
-          "Fn::GetAtt": [
-            "FrontdeskappclientProductionRole5A8F4A11",
-            "Arn"
-          ]
-        },
-        "Family": "frontdesk-app-client-production",
-        "Memory": "512",
-        "NetworkMode": "awsvpc",
-        "RequiresCompatibilities": [
-          "FARGATE"
-        ],
-        "TaskRoleArn": {
-          "Fn::GetAtt": [
-            "FrontdeskappclientProductionRole5A8F4A11",
-            "Arn"
-          ]
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionTask/Resource"
-      }
-    },
-    "FrontdeskappclientProductionLogGroup73FD6456": {
-      "Type": "AWS::Logs::LogGroup",
-      "Properties": {
-        "LogGroupName": "/ecs/frontdesk-app-client-production",
-        "RetentionInDays": 731
-      },
-      "UpdateReplacePolicy": "Delete",
-      "DeletionPolicy": "Delete",
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionLogGroup/Resource"
-      }
-    },
-    "FrontdeskappclientProductionSecurityGroupD051DBA7": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionSecurityGroup",
-        "GroupName": "frontdesk-app-client-production",
-        "SecurityGroupEgress": [
-          {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "Allow all outbound traffic by default",
-            "IpProtocol": "-1"
-          }
-        ],
-        "SecurityGroupIngress": [
-          {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "from 0.0.0.0/0:ALL TRAFFIC",
-            "IpProtocol": "-1"
-          }
-        ],
-        "VpcId": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionSecurityGroup/Resource"
-      }
-    },
-    "FrontdeskappclientProductionSecurityGroupfromNetworkStackLSITZoomQueueSecurityGroup211C746730007E69015B": {
-      "Type": "AWS::EC2::SecurityGroupIngress",
-      "Properties": {
-        "IpProtocol": "tcp",
-        "Description": "Load balancer to target",
-        "FromPort": 3000,
-        "GroupId": {
-          "Fn::GetAtt": [
-            "FrontdeskappclientProductionSecurityGroupD051DBA7",
-            "GroupId"
-          ]
-        },
-        "SourceSecurityGroupId": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
-        },
-        "ToPort": 3000
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionSecurityGroup/from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000"
-      }
-    },
-    "FrontdeskappclientProductionService34EFD446": {
-      "Type": "AWS::ECS::Service",
-      "Properties": {
-        "Cluster": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
-        },
-        "DeploymentConfiguration": {
-          "MaximumPercent": 200,
-          "MinimumHealthyPercent": 50
-        },
-        "DesiredCount": 1,
-        "EnableECSManagedTags": false,
-        "HealthCheckGracePeriodSeconds": 60,
-        "LaunchType": "FARGATE",
-        "LoadBalancers": [
-          {
-            "ContainerName": "frontdesk-app-client-production",
-            "ContainerPort": 3000,
-            "TargetGroupArn": {
-              "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
-            }
-          }
-        ],
-        "NetworkConfiguration": {
-          "AwsvpcConfiguration": {
-            "AssignPublicIp": "DISABLED",
-            "SecurityGroups": [
-              {
-                "Fn::GetAtt": [
-                  "FrontdeskappclientProductionSecurityGroupD051DBA7",
-                  "GroupId"
-                ]
-              }
-            ],
-            "Subnets": [
-              {
-                "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
-              },
-              {
-                "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
-              }
-            ]
-          }
-        },
-        "ServiceName": "frontdesk-app-client-production",
-        "TaskDefinition": {
-          "Ref": "FrontdeskappclientProductionTask3EBC3836"
-        }
-      },
-      "DependsOn": [
-        "FrontdeskappclientProductionHttpsListenerRule5CBF48FA"
-      ],
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionService/Service"
-      }
-    },
-    "FrontdeskappclientProductionTargetGroup408F5B4D": {
-      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
-      "Properties": {
-        "HealthCheckPath": "/api/health",
-        "Name": "ecs-frontdesk-app-client-product",
-        "Port": 80,
-        "Protocol": "HTTP",
-        "TargetGroupAttributes": [
-          {
-            "Key": "stickiness.enabled",
-            "Value": "false"
-          }
-        ],
-        "TargetType": "ip",
-        "VpcId": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionTargetGroup/Resource"
-      }
-    },
-    "FrontdeskappclientProductionHttpsListener997DB417": {
-      "Type": "AWS::ElasticLoadBalancingV2::Listener",
-      "Properties": {
-        "DefaultActions": [
-          {
-            "FixedResponseConfig": {
-              "ContentType": "text/plain",
-              "StatusCode": "503"
-            },
-            "Type": "fixed-response"
-          }
-        ],
-        "LoadBalancerArn": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueuePublicLB6F0A6C15386A461C"
-        },
-        "Certificates": [
-          {
-            "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616"
-          }
-        ],
-        "Port": 443,
-        "Protocol": "HTTPS"
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Resource"
-      }
-    },
-    "FrontdeskappclientProductionHttpsListenerFrontdeskappclientProductionCerttificates172E25684": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-      "Properties": {
-        "Certificates": [
-          {
-            "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616"
-          }
-        ],
-        "ListenerArn": {
-          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates1/Resource"
-      }
-    },
-    "FrontdeskappclientProductionHttpsListenerFrontdeskappserverProductionCerttificates17A7E67C0": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-      "Properties": {
-        "Certificates": [
-          {
-            "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/4c608488-49d4-4fb8-9310-982170d9a394"
-          }
-        ],
-        "ListenerArn": {
-          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-serverProductionCerttificates1/Resource"
-      }
-    },
-    "FrontdeskappclientProductionHttpsListenerFrontdeskappwebsocketProductionCerttificates1EF3D0D29": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-      "Properties": {
-        "Certificates": [
-          {
-            "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/9ee190dd-6d07-4bfd-a293-dc3048c56c6b"
-          }
-        ],
-        "ListenerArn": {
-          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-websocketProductionCerttificates1/Resource"
-      }
-    },
-    "FrontdeskappclientProductionHttpsListenerFrontdeskappclientStagingCerttificates1A8BC97FA": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-      "Properties": {
-        "Certificates": [
-          {
-            "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/42f3fc26-59c4-495f-9166-9e8180d95e6b"
-          }
-        ],
-        "ListenerArn": {
-          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientStagingCerttificates1/Resource"
-      }
-    },
-    "FrontdeskappclientProductionHttpsListenerFrontdeskappserverStagingCerttificates1D5A08490": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-      "Properties": {
-        "Certificates": [
-          {
-            "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/1ae579ad-54ac-4a6e-bcb7-3e4a547b3a08"
-          }
-        ],
-        "ListenerArn": {
-          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-serverStagingCerttificates1/Resource"
-      }
-    },
-    "FrontdeskappclientProductionHttpsListenerFrontdeskappwebsocketStagingCerttificates19C44CCD8": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-      "Properties": {
-        "Certificates": [
-          {
-            "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/3e9d0032-9e87-4210-853d-31bec7f931cd"
-          }
-        ],
-        "ListenerArn": {
-          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-websocketStagingCerttificates1/Resource"
-      }
-    },
-    "FrontdeskappclientProductionHttpsListenerFrontdeskappgetvfdProductionCerttificates1CD40B73B": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-      "Properties": {
-        "Certificates": [
-          {
-            "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a4fdc45f-ed12-41ec-aadc-f7367c8edd02"
-          }
-        ],
-        "ListenerArn": {
-          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-getvfdProductionCerttificates1/Resource"
-      }
-    },
-    "FrontdeskappclientProductionHttpsListenerRule5CBF48FA": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
-      "Properties": {
-        "Actions": [
-          {
-            "TargetGroupArn": {
-              "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
-            },
-            "Type": "forward"
-          }
-        ],
-        "Conditions": [
-          {
-            "Field": "host-header",
-            "HostHeaderConfig": {
-              "Values": [
-                "advisingfrontdesk.lsit.ucdavis.edu"
-              ]
-            }
-          }
-        ],
-        "ListenerArn": {
-          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-        },
-        "Priority": 1
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule/Resource"
-      }
-    },
-    "FrontdeskappclientProductionHttpListenerCB1B66FA": {
-      "Type": "AWS::ElasticLoadBalancingV2::Listener",
-      "Properties": {
-        "DefaultActions": [
-          {
-            "FixedResponseConfig": {
-              "ContentType": "text/plain",
-              "StatusCode": "503"
-            },
-            "Type": "fixed-response"
-          }
-        ],
-        "LoadBalancerArn": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueuePublicLB6F0A6C15386A461C"
-        },
-        "Port": 80,
-        "Protocol": "HTTP"
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListener/Resource"
-      }
-    },
-    "FrontdeskappclientProductionHttpListenerRule8B6D4266": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
-      "Properties": {
-        "Actions": [
-          {
-            "RedirectConfig": {
-              "Port": "443",
-              "StatusCode": "HTTP_301"
-            },
-            "Type": "redirect"
-          }
-        ],
-        "Conditions": [
-          {
-            "Field": "host-header",
-            "HostHeaderConfig": {
-              "Values": [
-                "advisingfrontdesk.lsit.ucdavis.edu"
-              ]
-            }
-          }
-        ],
-        "ListenerArn": {
-          "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
-        },
-        "Priority": 1
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule/Resource"
-      }
-    },
-    "CDKMetadata": {
-      "Type": "AWS::CDK::Metadata",
-      "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/31PTW/CMAz9LdxDgKEduG102jSJAyr8AS+4ndeQVInDVFX570vKh7oJ7eTn52f7vYVcPM7lfPIE336qDs2sV9ah7HcMqhGFNZ5dUCyKypTobXAKo8januAo+9JqHGa5bq0m1eX2jKJA5WX/Cq4Gxj345gUrMsRkTVb9ZaxhIINuxF12d+hOpIZPFxiFtnU6vrH1m7OhzaMrjsIv5TqoBnkNHpOLhxQIVXDE3U39P/FuaofepwgaPJPSFg4foMEoMvUp3Xtu25QRsst9Mol8uzNuR6oNecaUbnB6xXfmBTqmKpM4lo7pO1tl0L/kuY8xim3Hn9bMlnIlV5MvTzR1wTAdUZbn+gMaLqboAQIAAA=="
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppClientProdStack/CDKMetadata/Default"
-      }
-    }
+        ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+       ]
+      ]
+     }
+    ],
+    "RoleName": "Frontdesk-app-clientProductionECSTaskExecutionRole"
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionRole/Resource"
+   }
   },
-  "Outputs": {
-    "ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE": {
-      "Value": {
-        "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-      },
-      "Export": {
-        "Name": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE"
+  "FrontdeskappclientProductionRoleDefaultPolicy20DD2DC7": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "FrontdeskappclientProductionLogGroup73FD6456",
+         "Arn"
+        ]
+       }
       }
+     ],
+     "Version": "2012-10-17"
     },
-    "ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A": {
-      "Value": {
-        "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
+    "PolicyName": "FrontdeskappclientProductionRoleDefaultPolicy20DD2DC7",
+    "Roles": [
+     {
+      "Ref": "FrontdeskappclientProductionRole5A8F4A11"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionRole/DefaultPolicy/Resource"
+   }
+  },
+  "FrontdeskappclientProductionPolicy0DC291E0": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:GetBucketLocation",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+       }
       },
-      "Export": {
-        "Name": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A"
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+          },
+          "/frontdesk-app-client/*"
+         ]
+        ]
+       }
       }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "Frontdesk-app-clientProductionConfigRead",
+    "Roles": [
+     {
+      "Ref": "FrontdeskappclientProductionRole5A8F4A11"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionPolicy/Resource"
+   }
+  },
+  "FrontdeskappclientProductionTask3EBC3836": {
+   "Type": "AWS::ECS::TaskDefinition",
+   "Properties": {
+    "ContainerDefinitions": [
+     {
+      "Cpu": 256,
+      "EnvironmentFiles": [
+       {
+        "Type": "s3",
+        "Value": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::",
+           {
+            "Fn::Select": [
+             0,
+             {
+              "Fn::Split": [
+               "/",
+               {
+                "Fn::Select": [
+                 5,
+                 {
+                  "Fn::Split": [
+                   ":",
+                   {
+                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           "/frontdesk-app-client/production.env"
+          ]
+         ]
+        }
+       }
+      ],
+      "Essential": true,
+      "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-client-prod:latest",
+      "LogConfiguration": {
+       "LogDriver": "awslogs",
+       "Options": {
+        "awslogs-group": {
+         "Ref": "FrontdeskappclientProductionLogGroup73FD6456"
+        },
+        "awslogs-stream-prefix": "frontdesk-app-client-production",
+        "awslogs-region": "us-west-2"
+       }
+      },
+      "Memory": 512,
+      "Name": "frontdesk-app-client-production",
+      "PortMappings": [
+       {
+        "ContainerPort": 3000,
+        "HostPort": 3000,
+        "Protocol": "tcp"
+       }
+      ]
+     }
+    ],
+    "Cpu": "256",
+    "ExecutionRoleArn": {
+     "Fn::GetAtt": [
+      "FrontdeskappclientProductionRole5A8F4A11",
+      "Arn"
+     ]
+    },
+    "Family": "frontdesk-app-client-production",
+    "Memory": "512",
+    "NetworkMode": "awsvpc",
+    "RequiresCompatibilities": [
+     "FARGATE"
+    ],
+    "TaskRoleArn": {
+     "Fn::GetAtt": [
+      "FrontdeskappclientProductionRole5A8F4A11",
+      "Arn"
+     ]
     }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionTask/Resource"
+   }
+  },
+  "FrontdeskappclientProductionLogGroup73FD6456": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/ecs/frontdesk-app-client-production",
+    "RetentionInDays": 731
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionLogGroup/Resource"
+   }
+  },
+  "FrontdeskappclientProductionSecurityGroupD051DBA7": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionSecurityGroup",
+    "GroupName": "frontdesk-app-client-production",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "from 0.0.0.0/0:ALL TRAFFIC",
+      "IpProtocol": "-1"
+     }
+    ],
+    "VpcId": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionSecurityGroup/Resource"
+   }
+  },
+  "FrontdeskappclientProductionSecurityGroupfromNetworkStackLSITZoomQueueSecurityGroup211C746730007E69015B": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "IpProtocol": "tcp",
+    "Description": "Load balancer to target",
+    "FromPort": 3000,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "FrontdeskappclientProductionSecurityGroupD051DBA7",
+      "GroupId"
+     ]
+    },
+    "SourceSecurityGroupId": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
+    },
+    "ToPort": 3000
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionSecurityGroup/from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000"
+   }
+  },
+  "FrontdeskappclientProductionService34EFD446": {
+   "Type": "AWS::ECS::Service",
+   "Properties": {
+    "Cluster": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+    },
+    "DeploymentConfiguration": {
+     "MaximumPercent": 200,
+     "MinimumHealthyPercent": 50
+    },
+    "DesiredCount": 1,
+    "EnableECSManagedTags": false,
+    "HealthCheckGracePeriodSeconds": 60,
+    "LaunchType": "FARGATE",
+    "LoadBalancers": [
+     {
+      "ContainerName": "frontdesk-app-client-production",
+      "ContainerPort": 3000,
+      "TargetGroupArn": {
+       "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
+      }
+     }
+    ],
+    "NetworkConfiguration": {
+     "AwsvpcConfiguration": {
+      "AssignPublicIp": "DISABLED",
+      "SecurityGroups": [
+       {
+        "Fn::GetAtt": [
+         "FrontdeskappclientProductionSecurityGroupD051DBA7",
+         "GroupId"
+        ]
+       }
+      ],
+      "Subnets": [
+       {
+        "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+       },
+       {
+        "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+       }
+      ]
+     }
+    },
+    "ServiceName": "frontdesk-app-client-production",
+    "TaskDefinition": {
+     "Ref": "FrontdeskappclientProductionTask3EBC3836"
+    }
+   },
+   "DependsOn": [
+    "FrontdeskappclientProductionHttpsListenerRule5CBF48FA"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionService/Service"
+   }
+  },
+  "FrontdeskappclientProductionTargetGroup408F5B4D": {
+   "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+   "Properties": {
+    "HealthCheckPath": "/api/health",
+    "Name": "ecs-frontdesk-app-client-product",
+    "Port": 80,
+    "Protocol": "HTTP",
+    "TargetGroupAttributes": [
+     {
+      "Key": "stickiness.enabled",
+      "Value": "false"
+     }
+    ],
+    "TargetType": "ip",
+    "VpcId": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionTargetGroup/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListener997DB417": {
+   "Type": "AWS::ElasticLoadBalancingV2::Listener",
+   "Properties": {
+    "DefaultActions": [
+     {
+      "FixedResponseConfig": {
+       "ContentType": "text/plain",
+       "StatusCode": "503"
+      },
+      "Type": "fixed-response"
+     }
+    ],
+    "LoadBalancerArn": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueuePublicLB6F0A6C15386A461C"
+    },
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616"
+     }
+    ],
+    "Port": 443,
+    "Protocol": "HTTPS"
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerFrontdeskappclientProductionCerttificates172E25684": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+   "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616"
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates1/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerFrontdeskappserverProductionCerttificates17A7E67C0": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+   "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/4c608488-49d4-4fb8-9310-982170d9a394"
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-serverProductionCerttificates1/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerFrontdeskappwebsocketProductionCerttificates1EF3D0D29": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+   "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/9ee190dd-6d07-4bfd-a293-dc3048c56c6b"
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-websocketProductionCerttificates1/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerFrontdeskappclientStagingCerttificates1A8BC97FA": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+   "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/42f3fc26-59c4-495f-9166-9e8180d95e6b"
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientStagingCerttificates1/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerFrontdeskappclientStagingCerttificates2494FC634": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+   "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/c49d425c-7018-4e7e-92e8-efa15017bfdc"
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientStagingCerttificates2/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerFrontdeskappserverStagingCerttificates1D5A08490": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+   "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/1ae579ad-54ac-4a6e-bcb7-3e4a547b3a08"
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-serverStagingCerttificates1/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerFrontdeskappwebsocketStagingCerttificates19C44CCD8": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+   "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/3e9d0032-9e87-4210-853d-31bec7f931cd"
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-websocketStagingCerttificates1/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerFrontdeskappgetvfdProductionCerttificates1CD40B73B": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+   "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a4fdc45f-ed12-41ec-aadc-f7367c8edd02"
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-getvfdProductionCerttificates1/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerRule5CBF48FA": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
+      },
+      "Type": "forward"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    },
+    "Priority": 1
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpListenerCB1B66FA": {
+   "Type": "AWS::ElasticLoadBalancingV2::Listener",
+   "Properties": {
+    "DefaultActions": [
+     {
+      "FixedResponseConfig": {
+       "ContentType": "text/plain",
+       "StatusCode": "503"
+      },
+      "Type": "fixed-response"
+     }
+    ],
+    "LoadBalancerArn": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueuePublicLB6F0A6C15386A461C"
+    },
+    "Port": 80,
+    "Protocol": "HTTP"
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListener/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpListenerRule8B6D4266": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "RedirectConfig": {
+       "Port": "443",
+       "StatusCode": "HTTP_301"
+      },
+      "Type": "redirect"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
+    },
+    "Priority": 1
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31PXU/DMAz8LXvPMsaE0N5gRSCkPUzd/oDJ3GKaJVXiDFVV/jtJ96GCJp58Pp/tu7mcPzzKu8kTfPup2jezXlmHst8yqEYU1nh2QbEoKlOit8EpjCJre4KD7EurcZjlurGaVJfbE4oClZf9K7gaGHfgmxesyBCTNVn1l7GGgQy6EXfe3aI7kho+nWEU2tbp+NrWb86GNo8uOAq/kKugGuQVeEwu7lMgVMERd1f1/8S7qR16nyJo8ExKW9h/gAajyNTHdO+5bVNGyC53ySTy9c64HanW5BlTusHpBd+YF+iYqkziWDqmb2yVQf+S5z7GKDYdf1ozW8ilXE6+PNHUBcN0QFme6g8+fyY5AQIAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/CDKMetadata/Default"
+   }
   }
+ },
+ "Outputs": {
+  "ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE": {
+   "Value": {
+    "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+   },
+   "Export": {
+    "Name": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE"
+   }
+  },
+  "ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A": {
+   "Value": {
+    "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
+   },
+   "Export": {
+    "Name": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A"
+   }
+  }
+ }
 }

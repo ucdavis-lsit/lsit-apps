@@ -1,381 +1,381 @@
 {
-  "Resources": {
-    "FrontdeskappcleanupannouncementsProductionRoleAD3BD6DB": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "ecs-tasks.amazonaws.com"
-              }
-            }
-          ],
-          "Version": "2012-10-17"
+ "Resources": {
+  "FrontdeskappcleanupannouncementsProductionRoleAD3BD6DB": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Allows frontdesk-app-cleanup-announcements-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
         },
-        "Description": "Allows frontdesk-app-cleanup-announcements-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
-        "ManagedPolicyArns": [
+        ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+       ]
+      ]
+     }
+    ],
+    "RoleName": "Frontdesk-app-cleanup-announcementsProductionECSTaskExecutionRo"
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionRole/Resource"
+   }
+  },
+  "FrontdeskappcleanupannouncementsProductionRoleDefaultPolicy8F31C508": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "FrontdeskappcleanupannouncementsProductionLogGroupD7972E62",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "FrontdeskappcleanupannouncementsProductionRoleDefaultPolicy8F31C508",
+    "Roles": [
+     {
+      "Ref": "FrontdeskappcleanupannouncementsProductionRoleAD3BD6DB"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionRole/DefaultPolicy/Resource"
+   }
+  },
+  "FrontdeskappcleanupannouncementsProductionPolicy11D13392": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:GetBucketLocation",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+       }
+      },
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
           {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition"
-                },
-                ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+           "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+          },
+          "/frontdesk-app-cleanup-announcements/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "Frontdesk-app-cleanup-announcementsProductionConfigRead",
+    "Roles": [
+     {
+      "Ref": "FrontdeskappcleanupannouncementsProductionRoleAD3BD6DB"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionPolicy/Resource"
+   }
+  },
+  "FrontdeskappcleanupannouncementsProductionTask37898283": {
+   "Type": "AWS::ECS::TaskDefinition",
+   "Properties": {
+    "ContainerDefinitions": [
+     {
+      "Cpu": 256,
+      "EnvironmentFiles": [
+       {
+        "Type": "s3",
+        "Value": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::",
+           {
+            "Fn::Select": [
+             0,
+             {
+              "Fn::Split": [
+               "/",
+               {
+                "Fn::Select": [
+                 5,
+                 {
+                  "Fn::Split": [
+                   ":",
+                   {
+                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                   }
+                  ]
+                 }
+                ]
+               }
               ]
+             }
             ]
-          }
-        ],
-        "RoleName": "Frontdesk-app-cleanup-announcementsProductionECSTaskExecutionRo"
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionRole/Resource"
-      }
-    },
-    "FrontdeskappcleanupannouncementsProductionRoleDefaultPolicy8F31C508": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-              ],
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "FrontdeskappcleanupannouncementsProductionLogGroupD7972E62",
-                  "Arn"
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "FrontdeskappcleanupannouncementsProductionRoleDefaultPolicy8F31C508",
-        "Roles": [
-          {
-            "Ref": "FrontdeskappcleanupannouncementsProductionRoleAD3BD6DB"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionRole/DefaultPolicy/Resource"
-      }
-    },
-    "FrontdeskappcleanupannouncementsProductionPolicy11D13392": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": "s3:GetBucketLocation",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
-              }
-            },
-            {
-              "Action": "s3:GetObject",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    {
-                      "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
-                    },
-                    "/frontdesk-app-cleanup-announcements/*"
-                  ]
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "Frontdesk-app-cleanup-announcementsProductionConfigRead",
-        "Roles": [
-          {
-            "Ref": "FrontdeskappcleanupannouncementsProductionRoleAD3BD6DB"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionPolicy/Resource"
-      }
-    },
-    "FrontdeskappcleanupannouncementsProductionTask37898283": {
-      "Type": "AWS::ECS::TaskDefinition",
-      "Properties": {
-        "ContainerDefinitions": [
-          {
-            "Cpu": 256,
-            "EnvironmentFiles": [
-              {
-                "Type": "s3",
-                "Value": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":s3:::",
-                      {
-                        "Fn::Select": [
-                          0,
-                          {
-                            "Fn::Split": [
-                              "/",
-                              {
-                                "Fn::Select": [
-                                  5,
-                                  {
-                                    "Fn::Split": [
-                                      ":",
-                                      {
-                                        "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      "/frontdesk-app-cleanup-announcements/production.env"
-                    ]
-                  ]
-                }
-              }
-            ],
-            "Essential": true,
-            "Image": "curlimages/curl:latest",
-            "LogConfiguration": {
-              "LogDriver": "awslogs",
-              "Options": {
-                "awslogs-group": {
-                  "Ref": "FrontdeskappcleanupannouncementsProductionLogGroupD7972E62"
-                },
-                "awslogs-stream-prefix": "frontdesk-app-cleanup-announcements-production",
-                "awslogs-region": "us-west-2"
-              }
-            },
-            "Memory": 512,
-            "Name": "frontdesk-app-cleanup-announcements-production"
-          }
-        ],
-        "Cpu": "256",
-        "ExecutionRoleArn": {
-          "Fn::GetAtt": [
-            "FrontdeskappcleanupannouncementsProductionRoleAD3BD6DB",
-            "Arn"
+           },
+           "/frontdesk-app-cleanup-announcements/production.env"
           ]
-        },
-        "Family": "frontdesk-app-cleanup-announcements-production",
-        "Memory": "512",
-        "NetworkMode": "awsvpc",
-        "RequiresCompatibilities": [
-          "FARGATE"
-        ],
-        "TaskRoleArn": {
-          "Fn::GetAtt": [
-            "FrontdeskappcleanupannouncementsProductionRoleAD3BD6DB",
-            "Arn"
-          ]
+         ]
         }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionTask/Resource"
-      }
-    },
-    "FrontdeskappcleanupannouncementsProductionLogGroupD7972E62": {
-      "Type": "AWS::Logs::LogGroup",
-      "Properties": {
-        "LogGroupName": "/ecs/frontdesk-app-cleanup-announcements-production",
-        "RetentionInDays": 731
-      },
-      "UpdateReplacePolicy": "Delete",
-      "DeletionPolicy": "Delete",
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionLogGroup/Resource"
-      }
-    },
-    "FrontdeskappcleanupannouncementsProductionSecurityGroup659FA8EF": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionSecurityGroup",
-        "GroupName": "frontdesk-app-cleanup-announcements-production",
-        "SecurityGroupEgress": [
-          {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "Allow all outbound traffic by default",
-            "IpProtocol": "-1"
-          }
-        ],
-        "SecurityGroupIngress": [
-          {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "from 0.0.0.0/0:ALL TRAFFIC",
-            "IpProtocol": "-1"
-          }
-        ],
-        "VpcId": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionSecurityGroup/Resource"
-      }
-    },
-    "FrontdeskappcleanupannouncementsProductionEventRoleD9BF0350": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "events.amazonaws.com"
-              }
-            }
-          ],
-          "Version": "2012-10-17"
+       }
+      ],
+      "Essential": true,
+      "Image": "curlimages/curl:latest",
+      "LogConfiguration": {
+       "LogDriver": "awslogs",
+       "Options": {
+        "awslogs-group": {
+         "Ref": "FrontdeskappcleanupannouncementsProductionLogGroupD7972E62"
         },
-        "Description": "Allows frontdesk-app-cleanup-announcements-production scheduled tasks to run in ECS.",
-        "ManagedPolicyArns": [
-          {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition"
-                },
-                ":iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole"
-              ]
-            ]
-          }
-        ],
-        "RoleName": "Frontdesk-app-cleanup-announcementsProductionEventRole"
+        "awslogs-stream-prefix": "frontdesk-app-cleanup-announcements-production",
+        "awslogs-region": "us-west-2"
+       }
       },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionEventRole/Resource"
-      }
+      "Memory": 512,
+      "Name": "frontdesk-app-cleanup-announcements-production"
+     }
+    ],
+    "Cpu": "256",
+    "ExecutionRoleArn": {
+     "Fn::GetAtt": [
+      "FrontdeskappcleanupannouncementsProductionRoleAD3BD6DB",
+      "Arn"
+     ]
     },
-    "FrontdeskappcleanupannouncementsProductionEventRoleDefaultPolicy6A37C4F5": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": "ecs:RunTask",
-              "Condition": {
-                "ArnEquals": {
-                  "ecs:cluster": {
-                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
-                  }
-                }
-              },
-              "Effect": "Allow",
-              "Resource": {
-                "Ref": "FrontdeskappcleanupannouncementsProductionTask37898283"
-              }
-            },
-            {
-              "Action": "iam:PassRole",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "FrontdeskappcleanupannouncementsProductionRoleAD3BD6DB",
-                  "Arn"
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "FrontdeskappcleanupannouncementsProductionEventRoleDefaultPolicy6A37C4F5",
-        "Roles": [
-          {
-            "Ref": "FrontdeskappcleanupannouncementsProductionEventRoleD9BF0350"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionEventRole/DefaultPolicy/Resource"
-      }
-    },
-    "FrontdeskappcleanupannouncementsProductionScheduledTaskDBB7B914": {
-      "Type": "AWS::Events::Rule",
-      "Properties": {
-        "ScheduleExpression": "cron(0 8 * * ? *)",
-        "State": "ENABLED",
-        "Targets": [
-          {
-            "Arn": {
-              "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
-            },
-            "EcsParameters": {
-              "LaunchType": "FARGATE",
-              "NetworkConfiguration": {
-                "AwsVpcConfiguration": {
-                  "AssignPublicIp": "DISABLED",
-                  "SecurityGroups": [
-                    {
-                      "Fn::GetAtt": [
-                        "FrontdeskappcleanupannouncementsProductionSecurityGroup659FA8EF",
-                        "GroupId"
-                      ]
-                    }
-                  ],
-                  "Subnets": [
-                    {
-                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
-                    },
-                    {
-                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
-                    }
-                  ]
-                }
-              },
-              "PlatformVersion": "LATEST",
-              "TaskCount": 1,
-              "TaskDefinitionArn": {
-                "Ref": "FrontdeskappcleanupannouncementsProductionTask37898283"
-              }
-            },
-            "Id": "Target0",
-            "Input": "{\"containerOverrides\":[{\"name\":\"frontdesk-app-cleanup-announcements-production\",\"command\":[\"sh\",\"-c\",\"curl -XDELETE \\\"https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY&domain=$DOMAIN\\\"\"]}]}",
-            "RoleArn": {
-              "Fn::GetAtt": [
-                "FrontdeskappcleanupannouncementsProductionEventRoleD9BF0350",
-                "Arn"
-              ]
-            }
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionScheduledTask/Resource"
-      }
-    },
-    "CDKMetadata": {
-      "Type": "AWS::CDK::Metadata",
-      "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Oy04DMQz8lt5Tt6Xi0BtqUblwqBZ+IDLuYnZro8RptYry7ySUh+A04/F4PCtY3S5hObvzlzjHl2GRUQNBfjKPg9upRAsJze2O0lHUFJCKa97M/gS505E+dw0POjJObbyy4ggj5L0PvTd69nG4pyMLG6s0139FxTwLhV+tuFH7GvGo/UPQ9N6uvnlxcQ3bhAPZ1keqv25qbcIU2KYf9x+hFjqTWA3s0lfviqUUd5jsVWWxhg1sZm+ReR6SGJ8Iuit+AGWmm9goAQAA"
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/CDKMetadata/Default"
-      }
+    "Family": "frontdesk-app-cleanup-announcements-production",
+    "Memory": "512",
+    "NetworkMode": "awsvpc",
+    "RequiresCompatibilities": [
+     "FARGATE"
+    ],
+    "TaskRoleArn": {
+     "Fn::GetAtt": [
+      "FrontdeskappcleanupannouncementsProductionRoleAD3BD6DB",
+      "Arn"
+     ]
     }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionTask/Resource"
+   }
+  },
+  "FrontdeskappcleanupannouncementsProductionLogGroupD7972E62": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/ecs/frontdesk-app-cleanup-announcements-production",
+    "RetentionInDays": 731
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionLogGroup/Resource"
+   }
+  },
+  "FrontdeskappcleanupannouncementsProductionSecurityGroup659FA8EF": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionSecurityGroup",
+    "GroupName": "frontdesk-app-cleanup-announcements-production",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "from 0.0.0.0/0:ALL TRAFFIC",
+      "IpProtocol": "-1"
+     }
+    ],
+    "VpcId": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionSecurityGroup/Resource"
+   }
+  },
+  "FrontdeskappcleanupannouncementsProductionEventRoleD9BF0350": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "events.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Allows frontdesk-app-cleanup-announcements-production scheduled tasks to run in ECS.",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole"
+       ]
+      ]
+     }
+    ],
+    "RoleName": "Frontdesk-app-cleanup-announcementsProductionEventRole"
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionEventRole/Resource"
+   }
+  },
+  "FrontdeskappcleanupannouncementsProductionEventRoleDefaultPolicy6A37C4F5": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "ecs:RunTask",
+       "Condition": {
+        "ArnEquals": {
+         "ecs:cluster": {
+          "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+         }
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "FrontdeskappcleanupannouncementsProductionTask37898283"
+       }
+      },
+      {
+       "Action": "iam:PassRole",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "FrontdeskappcleanupannouncementsProductionRoleAD3BD6DB",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "FrontdeskappcleanupannouncementsProductionEventRoleDefaultPolicy6A37C4F5",
+    "Roles": [
+     {
+      "Ref": "FrontdeskappcleanupannouncementsProductionEventRoleD9BF0350"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionEventRole/DefaultPolicy/Resource"
+   }
+  },
+  "FrontdeskappcleanupannouncementsProductionScheduledTaskDBB7B914": {
+   "Type": "AWS::Events::Rule",
+   "Properties": {
+    "ScheduleExpression": "cron(0 8 * * ? *)",
+    "State": "ENABLED",
+    "Targets": [
+     {
+      "Arn": {
+       "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+      },
+      "EcsParameters": {
+       "LaunchType": "FARGATE",
+       "NetworkConfiguration": {
+        "AwsVpcConfiguration": {
+         "AssignPublicIp": "DISABLED",
+         "SecurityGroups": [
+          {
+           "Fn::GetAtt": [
+            "FrontdeskappcleanupannouncementsProductionSecurityGroup659FA8EF",
+            "GroupId"
+           ]
+          }
+         ],
+         "Subnets": [
+          {
+           "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+          },
+          {
+           "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+          }
+         ]
+        }
+       },
+       "PlatformVersion": "LATEST",
+       "TaskCount": 1,
+       "TaskDefinitionArn": {
+        "Ref": "FrontdeskappcleanupannouncementsProductionTask37898283"
+       }
+      },
+      "Id": "Target0",
+      "Input": "{\"containerOverrides\":[{\"name\":\"frontdesk-app-cleanup-announcements-production\",\"command\":[\"sh\",\"-c\",\"curl -XDELETE \\\"https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY&domain=$DOMAIN\\\"\"]}]}",
+      "RoleArn": {
+       "Fn::GetAtt": [
+        "FrontdeskappcleanupannouncementsProductionEventRoleD9BF0350",
+        "Arn"
+       ]
+      }
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/Frontdesk-app-cleanup-announcementsProductionScheduledTask/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Oy04DMQz8lt5Tl1Ih1BtqEVx6qBZ+IDLu4u7WrhIHtIry7ySUh+A04/F4PEtY3tzC1ezOv8c5vgyLjBoI8pN5HNxWJVpIaG57kI6ipoBUXPNm9ifInY70uWu415FxauOFFUcYIT/40HujZx+HezqwsLFKc/1XVMyzUPjVihu1rxE77R+DpnO7+ubFxRVsEg5kGx+p/rqutQlTYJt+3H+EWuiNxGpgl756VyyluP1kryqLFaxhPTtG5nlIYnwi6C74AaWzIMYoAQAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/CDKMetadata/Default"
+   }
   }
+ }
 }

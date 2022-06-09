@@ -5,9 +5,11 @@ from aws_cdk import core
 
 from lsit_stack.lsit_stack import LSITStack
 from network_stack.network_stack import NetworkStack
+from queue_stack.queue_stack import QueueStack
 from scheduled_task_stack.scheduled_task_stack import ScheudledTaskStack    
 from monitoring_stack.monitoring_stack import MonitoringStack
 from getvfd_stack.getvfd_stack import GetVFDStack
+from queue_stack.queue_stack import QueueStack
 
 
 CDK_DEFAULT_ACCOUNT=os.environ["CDK_DEFAULT_ACCOUNT"]
@@ -42,7 +44,7 @@ dev_frontdesk_frontend_stack = LSITStack(
         "https_load_balancer_priority": 1,
         "http_load_balancer_priority": 1,
         "host_headers": ["dev.advisingfrontdesk.lsit.ucdavis.edu"],
-        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/d18674bd-6a83-41aa-b10f-e379c2f8a1fa"
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/d18674bd-6a83-41aa-b10f-e379c2f8a1fa"]
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -65,7 +67,7 @@ LSITStack(
         "https_load_balancer_priority": 2,
         "http_load_balancer_priority": 2,
         "host_headers": ["dev.api.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/2e50e559-3efd-444e-8937-8feadec6003b"
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/2e50e559-3efd-444e-8937-8feadec6003b"]
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -88,7 +90,7 @@ LSITStack(
         "https_load_balancer_priority": 3,
         "http_load_balancer_priority": 3,
         "host_headers": ["dev.websocket.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/697571d7-e696-4c3c-9c42-d47f538fea7a"
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/697571d7-e696-4c3c-9c42-d47f538fea7a"]
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -141,7 +143,7 @@ frontdesk_frontend_stack = LSITStack(
         "https_load_balancer_priority": 1,
         "http_load_balancer_priority": 1,
         "host_headers": ["advisingfrontdesk.lsit.ucdavis.edu"],
-        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616",
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616"],
         "is_private": True
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
@@ -164,7 +166,7 @@ LSITStack(
         "https_load_balancer_priority": 2,
         "http_load_balancer_priority": 2,
         "host_headers": ["api.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/4c608488-49d4-4fb8-9310-982170d9a394",
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/4c608488-49d4-4fb8-9310-982170d9a394"],
         "is_private": True
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
@@ -187,7 +189,7 @@ LSITStack(
         "https_load_balancer_priority": 3,
         "http_load_balancer_priority": 3,
         "host_headers": ["websocket.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/9ee190dd-6d07-4bfd-a293-dc3048c56c6b",
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/9ee190dd-6d07-4bfd-a293-dc3048c56c6b"],
         "is_private": True
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
@@ -277,8 +279,8 @@ LSITStack(
         "http_listener": frontdesk_frontend_stack.http_listener,
         "https_load_balancer_priority": 4,
         "http_load_balancer_priority": 4,
-        "host_headers": ["stage.advisingfrontdesk.lsit.ucdavis.edu"],
-        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/42f3fc26-59c4-495f-9166-9e8180d95e6b",
+        "host_headers": ["stage.advisingfrontdesk.lsit.ucdavis.edu", "uea.stage.advisingfrontdesk.lsit.ucdavis.edu", "lsit.stage.advisingfrontdesk.lsit.ucdavis.edu", "grad.stage.advisingfrontdesk.lsit.ucdavis.edu"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/42f3fc26-59c4-495f-9166-9e8180d95e6b", "arn:aws:acm:us-west-2:042277129213:certificate/c49d425c-7018-4e7e-92e8-efa15017bfdc"],
         "is_private": True
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
@@ -301,7 +303,7 @@ LSITStack(
         "https_load_balancer_priority": 5,
         "http_load_balancer_priority": 5,
         "host_headers": ["stage.api.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/1ae579ad-54ac-4a6e-bcb7-3e4a547b3a08",
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/1ae579ad-54ac-4a6e-bcb7-3e4a547b3a08"],
         "is_private": True
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
@@ -324,7 +326,7 @@ LSITStack(
         "https_load_balancer_priority": 6,
         "http_load_balancer_priority": 6,
         "host_headers": ["stage.websocket.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/3e9d0032-9e87-4210-853d-31bec7f931cd",
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/3e9d0032-9e87-4210-853d-31bec7f931cd"],
         "is_private": True
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
@@ -415,7 +417,17 @@ GetVFDStack(
         "https_load_balancer_priority": 7,
         "http_load_balancer_priority": 7,
         "host_headers": ["getvfd.ucdavis.edu"],
-        "certificate_arn": "arn:aws:acm:us-west-2:042277129213:certificate/a4fdc45f-ed12-41ec-aadc-f7367c8edd02",
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/a4fdc45f-ed12-41ec-aadc-f7367c8edd02"],
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
+)
+
+# Queue Stack
+QueueStack(
+    app,
+    "QueueStack",
+    {
+        "queue_name": "GuestEventsQueue",
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
 )

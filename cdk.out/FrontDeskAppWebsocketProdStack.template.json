@@ -1,415 +1,415 @@
 {
-  "Resources": {
-    "FrontdeskappwebsocketProductionRole945C53C7": {
-      "Type": "AWS::IAM::Role",
-      "Properties": {
-        "AssumeRolePolicyDocument": {
-          "Statement": [
-            {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": {
-                "Service": "ecs-tasks.amazonaws.com"
-              }
-            }
-          ],
-          "Version": "2012-10-17"
+ "Resources": {
+  "FrontdeskappwebsocketProductionRole945C53C7": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Description": "Allows frontdesk-app-websocket-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
         },
-        "Description": "Allows frontdesk-app-websocket-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
-        "ManagedPolicyArns": [
+        ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+       ]
+      ]
+     }
+    ],
+    "RoleName": "Frontdesk-app-websocketProductionECSTaskExecutionRole"
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionRole/Resource"
+   }
+  },
+  "FrontdeskappwebsocketProductionRoleDefaultPolicyDBD79616": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "FrontdeskappwebsocketProductionLogGroupC250F79B",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "FrontdeskappwebsocketProductionRoleDefaultPolicyDBD79616",
+    "Roles": [
+     {
+      "Ref": "FrontdeskappwebsocketProductionRole945C53C7"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionRole/DefaultPolicy/Resource"
+   }
+  },
+  "FrontdeskappwebsocketProductionPolicyB58A75F0": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:GetBucketLocation",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+       }
+      },
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
           {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition"
-                },
-                ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+           "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+          },
+          "/frontdesk-app-websocket/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "Frontdesk-app-websocketProductionConfigRead",
+    "Roles": [
+     {
+      "Ref": "FrontdeskappwebsocketProductionRole945C53C7"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionPolicy/Resource"
+   }
+  },
+  "FrontdeskappwebsocketProductionTask429D12E0": {
+   "Type": "AWS::ECS::TaskDefinition",
+   "Properties": {
+    "ContainerDefinitions": [
+     {
+      "Cpu": 256,
+      "EnvironmentFiles": [
+       {
+        "Type": "s3",
+        "Value": {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::",
+           {
+            "Fn::Select": [
+             0,
+             {
+              "Fn::Split": [
+               "/",
+               {
+                "Fn::Select": [
+                 5,
+                 {
+                  "Fn::Split": [
+                   ":",
+                   {
+                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                   }
+                  ]
+                 }
+                ]
+               }
               ]
+             }
             ]
-          }
-        ],
-        "RoleName": "Frontdesk-app-websocketProductionECSTaskExecutionRole"
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionRole/Resource"
-      }
-    },
-    "FrontdeskappwebsocketProductionRoleDefaultPolicyDBD79616": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": [
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-              ],
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::GetAtt": [
-                  "FrontdeskappwebsocketProductionLogGroupC250F79B",
-                  "Arn"
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "FrontdeskappwebsocketProductionRoleDefaultPolicyDBD79616",
-        "Roles": [
-          {
-            "Ref": "FrontdeskappwebsocketProductionRole945C53C7"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionRole/DefaultPolicy/Resource"
-      }
-    },
-    "FrontdeskappwebsocketProductionPolicyB58A75F0": {
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyDocument": {
-          "Statement": [
-            {
-              "Action": "s3:GetBucketLocation",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
-              }
-            },
-            {
-              "Action": "s3:GetObject",
-              "Effect": "Allow",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    {
-                      "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
-                    },
-                    "/frontdesk-app-websocket/*"
-                  ]
-                ]
-              }
-            }
-          ],
-          "Version": "2012-10-17"
-        },
-        "PolicyName": "Frontdesk-app-websocketProductionConfigRead",
-        "Roles": [
-          {
-            "Ref": "FrontdeskappwebsocketProductionRole945C53C7"
-          }
-        ]
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionPolicy/Resource"
-      }
-    },
-    "FrontdeskappwebsocketProductionTask429D12E0": {
-      "Type": "AWS::ECS::TaskDefinition",
-      "Properties": {
-        "ContainerDefinitions": [
-          {
-            "Cpu": 256,
-            "EnvironmentFiles": [
-              {
-                "Type": "s3",
-                "Value": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":s3:::",
-                      {
-                        "Fn::Select": [
-                          0,
-                          {
-                            "Fn::Split": [
-                              "/",
-                              {
-                                "Fn::Select": [
-                                  5,
-                                  {
-                                    "Fn::Split": [
-                                      ":",
-                                      {
-                                        "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      "/frontdesk-app-websocket/production.env"
-                    ]
-                  ]
-                }
-              }
-            ],
-            "Essential": true,
-            "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-websocket-prod:latest",
-            "LogConfiguration": {
-              "LogDriver": "awslogs",
-              "Options": {
-                "awslogs-group": {
-                  "Ref": "FrontdeskappwebsocketProductionLogGroupC250F79B"
-                },
-                "awslogs-stream-prefix": "frontdesk-app-websocket-production",
-                "awslogs-region": "us-west-2"
-              }
-            },
-            "Memory": 512,
-            "Name": "frontdesk-app-websocket-production",
-            "PortMappings": [
-              {
-                "ContainerPort": 80,
-                "HostPort": 80,
-                "Protocol": "tcp"
-              }
-            ]
-          }
-        ],
-        "Cpu": "256",
-        "ExecutionRoleArn": {
-          "Fn::GetAtt": [
-            "FrontdeskappwebsocketProductionRole945C53C7",
-            "Arn"
+           },
+           "/frontdesk-app-websocket/production.env"
           ]
-        },
-        "Family": "frontdesk-app-websocket-production",
-        "Memory": "512",
-        "NetworkMode": "awsvpc",
-        "RequiresCompatibilities": [
-          "FARGATE"
-        ],
-        "TaskRoleArn": {
-          "Fn::GetAtt": [
-            "FrontdeskappwebsocketProductionRole945C53C7",
-            "Arn"
-          ]
+         ]
         }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionTask/Resource"
-      }
-    },
-    "FrontdeskappwebsocketProductionLogGroupC250F79B": {
-      "Type": "AWS::Logs::LogGroup",
-      "Properties": {
-        "LogGroupName": "/ecs/frontdesk-app-websocket-production",
-        "RetentionInDays": 731
-      },
-      "UpdateReplacePolicy": "Delete",
-      "DeletionPolicy": "Delete",
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionLogGroup/Resource"
-      }
-    },
-    "FrontdeskappwebsocketProductionSecurityGroup5639A7B2": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionSecurityGroup",
-        "GroupName": "frontdesk-app-websocket-production",
-        "SecurityGroupEgress": [
-          {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "Allow all outbound traffic by default",
-            "IpProtocol": "-1"
-          }
-        ],
-        "SecurityGroupIngress": [
-          {
-            "CidrIp": "0.0.0.0/0",
-            "Description": "from 0.0.0.0/0:ALL TRAFFIC",
-            "IpProtocol": "-1"
-          }
-        ],
-        "VpcId": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionSecurityGroup/Resource"
-      }
-    },
-    "FrontdeskappwebsocketProductionSecurityGroupfromNetworkStackLSITZoomQueueSecurityGroup211C746780EDC8A9A7": {
-      "Type": "AWS::EC2::SecurityGroupIngress",
-      "Properties": {
-        "IpProtocol": "tcp",
-        "Description": "Load balancer to target",
-        "FromPort": 80,
-        "GroupId": {
-          "Fn::GetAtt": [
-            "FrontdeskappwebsocketProductionSecurityGroup5639A7B2",
-            "GroupId"
-          ]
-        },
-        "SourceSecurityGroupId": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
-        },
-        "ToPort": 80
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionSecurityGroup/from NetworkStackLSITZoomQueueSecurityGroup211C7467:80"
-      }
-    },
-    "FrontdeskappwebsocketProductionService52E97BCB": {
-      "Type": "AWS::ECS::Service",
-      "Properties": {
-        "Cluster": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
-        },
-        "DeploymentConfiguration": {
-          "MaximumPercent": 200,
-          "MinimumHealthyPercent": 50
-        },
-        "DesiredCount": 1,
-        "EnableECSManagedTags": false,
-        "HealthCheckGracePeriodSeconds": 60,
-        "LaunchType": "FARGATE",
-        "LoadBalancers": [
-          {
-            "ContainerName": "frontdesk-app-websocket-production",
-            "ContainerPort": 80,
-            "TargetGroupArn": {
-              "Ref": "FrontdeskappwebsocketProductionTargetGroupE86D685B"
-            }
-          }
-        ],
-        "NetworkConfiguration": {
-          "AwsvpcConfiguration": {
-            "AssignPublicIp": "DISABLED",
-            "SecurityGroups": [
-              {
-                "Fn::GetAtt": [
-                  "FrontdeskappwebsocketProductionSecurityGroup5639A7B2",
-                  "GroupId"
-                ]
-              }
-            ],
-            "Subnets": [
-              {
-                "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
-              },
-              {
-                "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
-              }
-            ]
-          }
-        },
-        "ServiceName": "frontdesk-app-websocket-production",
-        "TaskDefinition": {
-          "Ref": "FrontdeskappwebsocketProductionTask429D12E0"
-        }
-      },
-      "DependsOn": [
-        "FrontdeskappwebsocketProductionHttpsListenerRuleF15897CC"
+       }
       ],
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionService/Service"
-      }
-    },
-    "FrontdeskappwebsocketProductionTargetGroupE86D685B": {
-      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
-      "Properties": {
-        "HealthCheckPath": "/health",
-        "Name": "ecs-frontdesk-app-websocket-prod",
-        "Port": 80,
-        "Protocol": "HTTP",
-        "TargetGroupAttributes": [
-          {
-            "Key": "stickiness.enabled",
-            "Value": "false"
-          }
-        ],
-        "TargetType": "ip",
-        "VpcId": {
-          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionTargetGroup/Resource"
-      }
-    },
-    "FrontdeskappwebsocketProductionHttpsListenerRuleF15897CC": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
-      "Properties": {
-        "Actions": [
-          {
-            "TargetGroupArn": {
-              "Ref": "FrontdeskappwebsocketProductionTargetGroupE86D685B"
-            },
-            "Type": "forward"
-          }
-        ],
-        "Conditions": [
-          {
-            "Field": "host-header",
-            "HostHeaderConfig": {
-              "Values": [
-                "websocket.frontdesk.lsit.ucdavis.edu"
-              ]
-            }
-          }
-        ],
-        "ListenerArn": {
-          "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE"
+      "Essential": true,
+      "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-websocket-prod:latest",
+      "LogConfiguration": {
+       "LogDriver": "awslogs",
+       "Options": {
+        "awslogs-group": {
+         "Ref": "FrontdeskappwebsocketProductionLogGroupC250F79B"
         },
-        "Priority": 3
+        "awslogs-stream-prefix": "frontdesk-app-websocket-production",
+        "awslogs-region": "us-west-2"
+       }
       },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionHttpsListenerRule/Resource"
-      }
+      "Memory": 512,
+      "Name": "frontdesk-app-websocket-production",
+      "PortMappings": [
+       {
+        "ContainerPort": 80,
+        "HostPort": 80,
+        "Protocol": "tcp"
+       }
+      ]
+     }
+    ],
+    "Cpu": "256",
+    "ExecutionRoleArn": {
+     "Fn::GetAtt": [
+      "FrontdeskappwebsocketProductionRole945C53C7",
+      "Arn"
+     ]
     },
-    "FrontdeskappwebsocketProductionHttpListenerRule6618B0A2": {
-      "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
-      "Properties": {
-        "Actions": [
-          {
-            "RedirectConfig": {
-              "Port": "443",
-              "StatusCode": "HTTP_301"
-            },
-            "Type": "redirect"
-          }
-        ],
-        "Conditions": [
-          {
-            "Field": "host-header",
-            "HostHeaderConfig": {
-              "Values": [
-                "websocket.frontdesk.lsit.ucdavis.edu"
-              ]
-            }
-          }
-        ],
-        "ListenerArn": {
-          "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A"
-        },
-        "Priority": 3
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionHttpListenerRule/Resource"
-      }
-    },
-    "CDKMetadata": {
-      "Type": "AWS::CDK::Metadata",
-      "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QQW4CMQx8C/cQoKgHbi1UrSpxQAsfcI3ZuhuSVeJQrVb5exOWolUPPdkznow9WejF41zPJ0/wHaZ4bGY9Ok+63wtgozbOBvERRW1OtqLgokdKqmh7hrPuK2foOit15wxjV+DQJUUYdP8KvgahA4TmhU5sWdjZovrLOCvAlvyIu73dk78wXjfd2qSMq7P51tVv3sW2jH77pMJSryM2JGsIlK94yIEIo2fp7ur/iXdbewohRzAQhNE4OH6AAYts60v2e27bnBHKlYd8JMndZwxHqi0HoZyuisOXjXFKSe06+XR2ttQrvZp8Beapj1b4TLoa6g+aqlQcqwEAAA=="
-      },
-      "Metadata": {
-        "aws:cdk:path": "FrontDeskAppWebsocketProdStack/CDKMetadata/Default"
-      }
+    "Family": "frontdesk-app-websocket-production",
+    "Memory": "512",
+    "NetworkMode": "awsvpc",
+    "RequiresCompatibilities": [
+     "FARGATE"
+    ],
+    "TaskRoleArn": {
+     "Fn::GetAtt": [
+      "FrontdeskappwebsocketProductionRole945C53C7",
+      "Arn"
+     ]
     }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionTask/Resource"
+   }
+  },
+  "FrontdeskappwebsocketProductionLogGroupC250F79B": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/ecs/frontdesk-app-websocket-production",
+    "RetentionInDays": 731
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionLogGroup/Resource"
+   }
+  },
+  "FrontdeskappwebsocketProductionSecurityGroup5639A7B2": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionSecurityGroup",
+    "GroupName": "frontdesk-app-websocket-production",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "from 0.0.0.0/0:ALL TRAFFIC",
+      "IpProtocol": "-1"
+     }
+    ],
+    "VpcId": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionSecurityGroup/Resource"
+   }
+  },
+  "FrontdeskappwebsocketProductionSecurityGroupfromNetworkStackLSITZoomQueueSecurityGroup211C746780EDC8A9A7": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "IpProtocol": "tcp",
+    "Description": "Load balancer to target",
+    "FromPort": 80,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "FrontdeskappwebsocketProductionSecurityGroup5639A7B2",
+      "GroupId"
+     ]
+    },
+    "SourceSecurityGroupId": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
+    },
+    "ToPort": 80
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionSecurityGroup/from NetworkStackLSITZoomQueueSecurityGroup211C7467:80"
+   }
+  },
+  "FrontdeskappwebsocketProductionService52E97BCB": {
+   "Type": "AWS::ECS::Service",
+   "Properties": {
+    "Cluster": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+    },
+    "DeploymentConfiguration": {
+     "MaximumPercent": 200,
+     "MinimumHealthyPercent": 50
+    },
+    "DesiredCount": 1,
+    "EnableECSManagedTags": false,
+    "HealthCheckGracePeriodSeconds": 60,
+    "LaunchType": "FARGATE",
+    "LoadBalancers": [
+     {
+      "ContainerName": "frontdesk-app-websocket-production",
+      "ContainerPort": 80,
+      "TargetGroupArn": {
+       "Ref": "FrontdeskappwebsocketProductionTargetGroupE86D685B"
+      }
+     }
+    ],
+    "NetworkConfiguration": {
+     "AwsvpcConfiguration": {
+      "AssignPublicIp": "DISABLED",
+      "SecurityGroups": [
+       {
+        "Fn::GetAtt": [
+         "FrontdeskappwebsocketProductionSecurityGroup5639A7B2",
+         "GroupId"
+        ]
+       }
+      ],
+      "Subnets": [
+       {
+        "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+       },
+       {
+        "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+       }
+      ]
+     }
+    },
+    "ServiceName": "frontdesk-app-websocket-production",
+    "TaskDefinition": {
+     "Ref": "FrontdeskappwebsocketProductionTask429D12E0"
+    }
+   },
+   "DependsOn": [
+    "FrontdeskappwebsocketProductionHttpsListenerRuleF15897CC"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionService/Service"
+   }
+  },
+  "FrontdeskappwebsocketProductionTargetGroupE86D685B": {
+   "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+   "Properties": {
+    "HealthCheckPath": "/health",
+    "Name": "ecs-frontdesk-app-websocket-prod",
+    "Port": 80,
+    "Protocol": "HTTP",
+    "TargetGroupAttributes": [
+     {
+      "Key": "stickiness.enabled",
+      "Value": "false"
+     }
+    ],
+    "TargetType": "ip",
+    "VpcId": {
+     "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionTargetGroup/Resource"
+   }
+  },
+  "FrontdeskappwebsocketProductionHttpsListenerRuleF15897CC": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "FrontdeskappwebsocketProductionTargetGroupE86D685B"
+      },
+      "Type": "forward"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "websocket.frontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE"
+    },
+    "Priority": 3
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionHttpsListenerRule/Resource"
+   }
+  },
+  "FrontdeskappwebsocketProductionHttpListenerRule6618B0A2": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "RedirectConfig": {
+       "Port": "443",
+       "StatusCode": "HTTP_301"
+      },
+      "Type": "redirect"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "websocket.frontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A"
+    },
+    "Priority": 3
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionHttpListenerRule/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QQW4CMQx8C/cQSlFVcWuhalWJA1r4gBvM1t2QrGKHarXK35uwFK166Mme8WTsyVzPHx713eQJvnlqDs2sNz6g7ncCplFr71hCNKLWR1ch+xgMJlW0PcFJ95W3eJmVuvWWTFfg0CWFhnX/CqEGwT1w84JHciTkXVH9ZbwTIIdhxF3f7jCcyVw2XdukrK+z+cbXb8HHtox++6R4oVfRNCgrYMxX3OdAaGIg6W7q/4l3VwdkzhEssJCxHg4fYMEZcvU5+z23bc4I5cp9PhLl5jOGI9WGWDCnq+LwZWOcUlLbTj69my30Ui8nX0w0DdEJnVBXQ/0BDyhu56sBAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppWebsocketProdStack/CDKMetadata/Default"
+   }
   }
+ }
 }

@@ -18,6 +18,7 @@ name = "pypi"
 "aws-cdk.aws-events" = "*"
 "aws-cdk.aws-events-targets" = "*"
 "aws-cdk.aws_sns" = "*"
+"aws-cdk.aws-sqs" = "*"
 
 [dev-packages]
 bandit = "*"

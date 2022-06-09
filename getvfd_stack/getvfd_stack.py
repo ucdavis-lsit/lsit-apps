@@ -10,7 +10,7 @@ class GetVFDStack(cdk.Stack):
         app_name = app_props["app_name"]
         app_env = app_props["app_env"]
         host_headers = app_props["host_headers"]
-        certificate_arn = app_props["certificate_arn"]
+        certificate_arns = app_props["certificate_arns"]
         self.https_listener = app_props["https_listener"]
         self.http_listener = app_props["http_listener"]
         https_load_balancer_priority = app_props["https_load_balancer_priority"]
@@ -21,7 +21,7 @@ class GetVFDStack(cdk.Stack):
    
         self.https_listener.add_certificate_arns(
                     "{app_prefix}Certtificates".format(app_prefix=app_prefix),
-                    [certificate_arn]
+                    certificate_arns
                 )  
         
         

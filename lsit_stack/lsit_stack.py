@@ -40,7 +40,7 @@ class LSITStack(cdk.Stack):
         self.https_listener = app_props.get("https_listener")
         self.http_listener = app_props.get("http_listener")
         print("listeners",self.http_listener,self.https_listener)
-        certificate_arn = app_props.get("certificate_arn")
+        certificate_arns = app_props.get("certificate_arns")
         health_check_path = app_props.get("health_check_path","/health")
 
         role = iam.Role(
@@ -202,13 +202,13 @@ class LSITStack(cdk.Stack):
                     load_balancer=load_balancer,
                     port=443,
                     default_action=ListenerAction(fixed_response_json),
-                    certificate_arns=[certificate_arn]
+                    certificate_arns=certificate_arns
                 )
                 
-            if certificate_arn:
+            if certificate_arns:
                 self.https_listener.add_certificate_arns(
                     "{app_prefix}Certtificates".format(app_prefix=app_prefix),
-                    [certificate_arn]
+                    certificate_arns
                 )    
 
             ApplicationListenerRule(
