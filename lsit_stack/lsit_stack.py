@@ -30,6 +30,9 @@ class LSITStack(cdk.Stack):
         task_port = app_props.get("task_port", 80)
         resource_multiplier = app_props.get("resource_multiplier", 1)
         is_private = app_props.get("is_private", False)
+        command = app_props.get("command")
+        public_facing = app_props.get("is_public_facing", True)
+
         if not cluster:    
             cluster_name = task_name
         else:
@@ -39,7 +42,6 @@ class LSITStack(cdk.Stack):
         load_balancer_port = app_props.get("load_balancer_port")
         self.https_listener = app_props.get("https_listener")
         self.http_listener = app_props.get("http_listener")
-        print("listeners",self.http_listener,self.https_listener)
         certificate_arns = app_props.get("certificate_arns")
         health_check_path = app_props.get("health_check_path","/health")
 
@@ -107,7 +109,8 @@ class LSITStack(cdk.Stack):
                     key="{app_name}/{environment}.env".format(app_name=app_name, environment=app_env)
                 )
             ],
-            container_name=task_name
+            container_name=task_name,
+            command=command
         )
 
 
@@ -131,15 +134,6 @@ class LSITStack(cdk.Stack):
                 self,
                 "{app_prefix}Cluster".format(app_prefix=app_prefix),
                 vpc=vpc
-            )
-
-        if not load_balancer:
-            load_balancer = ApplicationLoadBalancer(
-                self,
-                "{app_prefix}LoadBalancer".format(app_prefix=app_prefix),
-                vpc=vpc,
-                security_group=security_group,
-                internet_facing=True
             )
 
         if is_private:
@@ -170,98 +164,108 @@ class LSITStack(cdk.Stack):
                 service_name=task_name
             )
 
+        if public_facing:
 
-        target_group = ApplicationTargetGroup(
-            self,
-            "{app_prefix}TargetGroup".format(app_prefix=app_prefix),
-            target_type=TargetType.IP,
-            target_group_name='ecs-{task_name}-{app_env}'.format(task_name=task_name, app_env=app_env)[:32],
-            protocol=ApplicationProtocol.HTTP,
-            port=80,
-            vpc=vpc
-        )
-        target_group.configure_health_check(
-            path=health_check_path
-        )
-
-        service.attach_to_application_target_group(target_group)
-        target_group.load_balancer_attached
-   
-        if host_headers:
-            if not self.https_listener:
-                fixed_response_json = {
-                    "fixedResponseConfig" : {
-                        "contentType": "text/plain",
-                        "statusCode" : "503"
-                    },
-                    "type" : "fixed-response"
-                }
-                self.https_listener = ApplicationListener(
+            if not load_balancer:
+                load_balancer = ApplicationLoadBalancer(
                     self,
-                    "{app_prefix}HttpsListener".format(app_prefix=app_prefix),
-                    load_balancer=load_balancer,
-                    port=443,
-                    default_action=ListenerAction(fixed_response_json),
-                    certificate_arns=certificate_arns
-                )
-                
-            if certificate_arns:
-                self.https_listener.add_certificate_arns(
-                    "{app_prefix}Certtificates".format(app_prefix=app_prefix),
-                    certificate_arns
-                )    
-
-            ApplicationListenerRule(
-                self,
-                "{app_prefix}HttpsListenerRule".format(app_prefix=app_prefix),
-                listener=self.https_listener,
-                conditions=[ListenerCondition.host_headers(host_headers)],
-                priority=https_load_balancer_priority,
-                target_groups=[target_group]
-            )
-
-            # HTTP listener
-            if not self.http_listener:
-                fixed_response_json = {
-                    "fixedResponseConfig" : {
-                        "contentType": "text/plain",
-                        "statusCode" : "503"
-                    },
-                    "type" : "fixed-response"
-                }
-
-                self.http_listener = ApplicationListener(
-                    self,
-                    "{app_prefix}HttpListener".format(app_prefix=app_prefix),
-                    load_balancer=load_balancer,
-                    port=80,
-                    default_action=ListenerAction(fixed_response_json),
+                    "{app_prefix}LoadBalancer".format(app_prefix=app_prefix),
+                    vpc=vpc,
+                    security_group=security_group,
+                    internet_facing=True
                 )
 
-            listener_action_json = {
-                "redirectConfig" : {
-                    "port" : "443",
-                    "statusCode" : "HTTP_301"
-                },
-                "type" : "redirect"
-            }
-
-            ApplicationListenerRule(
+            target_group = ApplicationTargetGroup(
                 self,
-                "{app_prefix}HttpListenerRule".format(app_prefix=app_prefix),
-                listener=self.http_listener,
-                conditions=[ListenerCondition.host_headers(host_headers)],
-                priority=http_load_balancer_priority,
-                action=ListenerAction(listener_action_json)
-            )
-
-        if load_balancer_port:
-            additional_listener = ApplicationListener(
-                self,
-                "{app_prefix}Listener".format(app_prefix=app_prefix),
-                load_balancer=load_balancer,
-                default_target_groups=[target_group],
-                port=load_balancer_port,
+                "{app_prefix}TargetGroup".format(app_prefix=app_prefix),
+                target_type=TargetType.IP,
+                target_group_name='ecs-{task_name}-{app_env}'.format(task_name=task_name, app_env=app_env)[:32],
                 protocol=ApplicationProtocol.HTTP,
-                open=True
-            )      
+                port=80,
+                vpc=vpc
+            )
+            target_group.configure_health_check(
+                path=health_check_path
+            )
+
+            service.attach_to_application_target_group(target_group)
+            target_group.load_balancer_attached
+    
+            if host_headers:
+                if not self.https_listener:
+                    fixed_response_json = {
+                        "fixedResponseConfig" : {
+                            "contentType": "text/plain",
+                            "statusCode" : "503"
+                        },
+                        "type" : "fixed-response"
+                    }
+                    self.https_listener = ApplicationListener(
+                        self,
+                        "{app_prefix}HttpsListener".format(app_prefix=app_prefix),
+                        load_balancer=load_balancer,
+                        port=443,
+                        default_action=ListenerAction(fixed_response_json),
+                        certificate_arns=certificate_arns
+                    )
+                    
+                if certificate_arns:
+                    self.https_listener.add_certificate_arns(
+                        "{app_prefix}Certtificates".format(app_prefix=app_prefix),
+                        certificate_arns
+                    )    
+
+                ApplicationListenerRule(
+                    self,
+                    "{app_prefix}HttpsListenerRule".format(app_prefix=app_prefix),
+                    listener=self.https_listener,
+                    conditions=[ListenerCondition.host_headers(host_headers)],
+                    priority=https_load_balancer_priority,
+                    target_groups=[target_group]
+                )
+
+                # HTTP listener
+                if not self.http_listener:
+                    fixed_response_json = {
+                        "fixedResponseConfig" : {
+                            "contentType": "text/plain",
+                            "statusCode" : "503"
+                        },
+                        "type" : "fixed-response"
+                    }
+
+                    self.http_listener = ApplicationListener(
+                        self,
+                        "{app_prefix}HttpListener".format(app_prefix=app_prefix),
+                        load_balancer=load_balancer,
+                        port=80,
+                        default_action=ListenerAction(fixed_response_json),
+                    )
+
+                listener_action_json = {
+                    "redirectConfig" : {
+                        "port" : "443",
+                        "statusCode" : "HTTP_301"
+                    },
+                    "type" : "redirect"
+                }
+
+                ApplicationListenerRule(
+                    self,
+                    "{app_prefix}HttpListenerRule".format(app_prefix=app_prefix),
+                    listener=self.http_listener,
+                    conditions=[ListenerCondition.host_headers(host_headers)],
+                    priority=http_load_balancer_priority,
+                    action=ListenerAction(listener_action_json)
+                )
+
+            if load_balancer_port:
+                additional_listener = ApplicationListener(
+                    self,
+                    "{app_prefix}Listener".format(app_prefix=app_prefix),
+                    load_balancer=load_balancer,
+                    default_target_groups=[target_group],
+                    port=load_balancer_port,
+                    protocol=ApplicationProtocol.HTTP,
+                    open=True
+                )      

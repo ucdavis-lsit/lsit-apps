@@ -279,7 +279,7 @@ LSITStack(
         "http_listener": frontdesk_frontend_stack.http_listener,
         "https_load_balancer_priority": 4,
         "http_load_balancer_priority": 4,
-        "host_headers": ["stage.advisingfrontdesk.lsit.ucdavis.edu", "uea.stage.advisingfrontdesk.lsit.ucdavis.edu", "lsit.stage.advisingfrontdesk.lsit.ucdavis.edu", "grad.stage.advisingfrontdesk.lsit.ucdavis.edu"],
+        "host_headers": ["stage.advisingfrontdesk.lsit.ucdavis.edu", "uea.stage.advisingfrontdesk.lsit.ucdavis.edu", "lsit.stage.advisingfrontdesk.lsit.ucdavis.edu", "grad.stage.advisingfrontdesk.lsit.ucdavis.edu", "antsocmsa.stage.advisingfrontdesk.lsit.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/42f3fc26-59c4-495f-9166-9e8180d95e6b", "arn:aws:acm:us-west-2:042277129213:certificate/c49d425c-7018-4e7e-92e8-efa15017bfdc"],
         "is_private": True
     },
@@ -392,8 +392,26 @@ ScheudledTaskStack(
         "app_env": "staging",
         "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-staging:latest",
         "command_override": ["npm","run","processGuestEvents"],
+        "is_private": True
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+LSITStack(
+    app,
+    "FrontDeskAppSessionWorkerStagingStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    network_stack.load_balancer,
+    {
+        "app_name": "frontdesk-app-session-worker",
+        "app_env": "staging",
+        "task_port": 3002,
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-staging:latest",
         "is_private": True,
-        "schedule": {"minute": "*/15"}
+        "command": ["npm","run","sessionWorker"],
+        "is_public_facing": False
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -431,5 +449,25 @@ QueueStack(
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
 )
+
+QueueStack(
+    app,
+    "QueueStagingStack",
+    {
+        "queue_name": "GuestEventsStagingQueue",
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
+)
+
+QueueStack(
+    app,
+    "QueueDevelopmentStack",
+    {
+        "queue_name": "GuestEventsDevelopmentQueue",
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
+)
+
+
 
 app.synth()

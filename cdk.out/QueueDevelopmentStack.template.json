@@ -1,0 +1,25 @@
+{
+ "Resources": {
+  "QueueDevelopmentStackAE80D5EB": {
+   "Type": "AWS::SQS::Queue",
+   "Properties": {
+    "QueueName": "GuestEventsDevelopmentQueue",
+    "ReceiveMessageWaitTimeSeconds": 20
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "QueueDevelopmentStack/QueueDevelopmentStack/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/yWKQQqDMBAA3+I9rooU8Sb4AasvkO2KUUxodhcpIX8v6mkGZiqoXg2UWTefnONnLyL6QBAnmXE3vXcsQVFMv7iR2GtASuZ6+csQ30pKV7slJTP8ZPWuqKGFNtvY2jyoE3sQjA//vxzRfHAAAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "QueueDevelopmentStack/CDKMetadata/Default"
+   }
+  }
+ }
+}

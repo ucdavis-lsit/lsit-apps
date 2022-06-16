@@ -1,0 +1,25 @@
+{
+ "Resources": {
+  "QueueStagingStackD3A149B3": {
+   "Type": "AWS::SQS::Queue",
+   "Properties": {
+    "QueueName": "GuestEventsStagingQueue",
+    "ReceiveMessageWaitTimeSeconds": 20
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "QueueStagingStack/QueueStagingStack/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/yWKQQqDMBAA3+I9rooU8Sb4AasvkO2KUUxodhcpIX8v6mkGZiqoXg2UWTefnONnLyL6QBAnmXE3vXcsQVFMv7iR2GtASuZ6+csQ30pKV7slJTP8ZPWuqKGFNtvY2jyoE3sQjA//vxzRfHAAAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "QueueStagingStack/CDKMetadata/Default"
+   }
+  }
+ }
+}

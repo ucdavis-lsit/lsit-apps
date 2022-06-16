@@ -317,7 +317,7 @@
   "FrontdeskappprocessguesteventsStagingScheduledTask0F51776F": {
    "Type": "AWS::Events::Rule",
    "Properties": {
-    "ScheduleExpression": "cron(*/15 * * * ? *)",
+    "ScheduleExpression": "cron(0 8 * * ? *)",
     "State": "ENABLED",
     "Targets": [
      {
