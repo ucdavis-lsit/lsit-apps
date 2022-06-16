@@ -279,9 +279,19 @@ LSITStack(
         "http_listener": frontdesk_frontend_stack.http_listener,
         "https_load_balancer_priority": 4,
         "http_load_balancer_priority": 4,
-        "host_headers": ["stage.advisingfrontdesk.lsit.ucdavis.edu", "uea.stage.advisingfrontdesk.lsit.ucdavis.edu", "lsit.stage.advisingfrontdesk.lsit.ucdavis.edu", "grad.stage.advisingfrontdesk.lsit.ucdavis.edu", "antsocmsa.stage.advisingfrontdesk.lsit.ucdavis.edu"],
+        "host_headers": [
+            "stage.advisingfrontdesk.lsit.ucdavis.edu",
+            "uea.stage.advisingfrontdesk.lsit.ucdavis.edu",
+            "lsit.stage.advisingfrontdesk.lsit.ucdavis.edu",
+            "grad.stage.advisingfrontdesk.lsit.ucdavis.edu",
+            "antsocmsa.stage.advisingfrontdesk.lsit.ucdavis.edu",
+            "cs.stage.advisingfrontdesk.lsit.ucdavis.edu",
+            "langlit.stage.advisingfrontdesk.lsit.ucdavis.edu",
+            "orangecluster.stage.advisingfrontdesk.lsit.ucdavis.edu",
+        ],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/42f3fc26-59c4-495f-9166-9e8180d95e6b", "arn:aws:acm:us-west-2:042277129213:certificate/c49d425c-7018-4e7e-92e8-efa15017bfdc"],
-        "is_private": True
+        "is_private": True,
+        "additional_https_rule_priorities": [8]
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )

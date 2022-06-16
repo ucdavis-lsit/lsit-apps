@@ -9902,6 +9902,53 @@
               "version": "1.157.0"
             }
           },
+          "Frontdesk-app-clientStagingHttpsListenerRule8": {
+            "id": "Frontdesk-app-clientStagingHttpsListenerRule8",
+            "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingHttpsListenerRule8",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingHttpsListenerRule8/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "type": "forward",
+                        "targetGroupArn": {
+                          "Ref": "FrontdeskappclientStagingTargetGroup98F7B686"
+                        }
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "cs.stage.advisingfrontdesk.lsit.ucdavis.edu",
+                            "langlit.stage.advisingfrontdesk.lsit.ucdavis.edu",
+                            "orangecluster.stage.advisingfrontdesk.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE"
+                    },
+                    "priority": 8
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerRule",
+                  "version": "1.157.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "1.157.0"
+            }
+          },
           "Frontdesk-app-clientStagingHttpListenerRule": {
             "id": "Frontdesk-app-clientStagingHttpListenerRule",
             "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingHttpListenerRule",
@@ -9926,11 +9973,9 @@
                         "field": "host-header",
                         "hostHeaderConfig": {
                           "values": [
-                            "stage.advisingfrontdesk.lsit.ucdavis.edu",
-                            "uea.stage.advisingfrontdesk.lsit.ucdavis.edu",
-                            "lsit.stage.advisingfrontdesk.lsit.ucdavis.edu",
-                            "grad.stage.advisingfrontdesk.lsit.ucdavis.edu",
-                            "antsocmsa.stage.advisingfrontdesk.lsit.ucdavis.edu"
+                            "cs.stage.advisingfrontdesk.lsit.ucdavis.edu",
+                            "langlit.stage.advisingfrontdesk.lsit.ucdavis.edu",
+                            "orangecluster.stage.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }

@@ -44,6 +44,8 @@ class LSITStack(cdk.Stack):
         self.http_listener = app_props.get("http_listener")
         certificate_arns = app_props.get("certificate_arns")
         health_check_path = app_props.get("health_check_path","/health")
+        additional_https_rule_priorities = app_props.get("additional_https_rule_priorities", [])
+        additional_http_rule_priorities = app_props.get("additional_http_rule_priorities", [])
 
         role = iam.Role(
             self,
@@ -219,10 +221,22 @@ class LSITStack(cdk.Stack):
                     self,
                     "{app_prefix}HttpsListenerRule".format(app_prefix=app_prefix),
                     listener=self.https_listener,
-                    conditions=[ListenerCondition.host_headers(host_headers)],
+                    conditions=[ListenerCondition.host_headers(host_headers[0:5])],
                     priority=https_load_balancer_priority,
                     target_groups=[target_group]
                 )
+
+                while len(host_headers) > 5 and len(additional_https_rule_priorities) > 0:
+                    host_headers = host_headers[5:]
+                    ApplicationListenerRule(
+                        self,
+                        "{app_prefix}HttpsListenerRule{rule_number}".format(app_prefix=app_prefix,rule_number=additional_https_rule_priorities[0]),
+                        listener=self.https_listener,
+                        conditions=[ListenerCondition.host_headers(host_headers)],
+                        priority=additional_https_rule_priorities[0],
+                        target_groups=[target_group]
+                    )
+                    additional_https_rule_priorities = additional_https_rule_priorities[1:]
 
                 # HTTP listener
                 if not self.http_listener:

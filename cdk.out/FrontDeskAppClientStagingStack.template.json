@@ -313,7 +313,8 @@
     }
    },
    "DependsOn": [
-    "FrontdeskappclientStagingHttpsListenerRule6A03FDFE"
+    "FrontdeskappclientStagingHttpsListenerRule6A03FDFE",
+    "FrontdeskappclientStagingHttpsListenerRule88C147B19"
    ],
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingService/Service"
@@ -375,6 +376,38 @@
     "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingHttpsListenerRule/Resource"
    }
   },
+  "FrontdeskappclientStagingHttpsListenerRule88C147B19": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "FrontdeskappclientStagingTargetGroup98F7B686"
+      },
+      "Type": "forward"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "cs.stage.advisingfrontdesk.lsit.ucdavis.edu",
+        "langlit.stage.advisingfrontdesk.lsit.ucdavis.edu",
+        "orangecluster.stage.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE"
+    },
+    "Priority": 8
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingHttpsListenerRule8/Resource"
+   }
+  },
   "FrontdeskappclientStagingHttpListenerRuleF8C7A29B": {
    "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
    "Properties": {
@@ -392,11 +425,9 @@
       "Field": "host-header",
       "HostHeaderConfig": {
        "Values": [
-        "stage.advisingfrontdesk.lsit.ucdavis.edu",
-        "uea.stage.advisingfrontdesk.lsit.ucdavis.edu",
-        "lsit.stage.advisingfrontdesk.lsit.ucdavis.edu",
-        "grad.stage.advisingfrontdesk.lsit.ucdavis.edu",
-        "antsocmsa.stage.advisingfrontdesk.lsit.ucdavis.edu"
+        "cs.stage.advisingfrontdesk.lsit.ucdavis.edu",
+        "langlit.stage.advisingfrontdesk.lsit.ucdavis.edu",
+        "orangecluster.stage.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
