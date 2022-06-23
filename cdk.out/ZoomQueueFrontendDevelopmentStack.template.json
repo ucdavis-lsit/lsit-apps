@@ -369,22 +369,6 @@
     "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentHttpsListener/Resource"
    }
   },
-  "ZoomqueuefrontendDevelopmentHttpsListenerZoomqueuefrontendDevelopmentCerttificates1E7D0F28C": {
-   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-   "Properties": {
-    "Certificates": [
-     {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/d18674bd-6a83-41aa-b10f-e379c2f8a1fa"
-     }
-    ],
-    "ListenerArn": {
-     "Ref": "ZoomqueuefrontendDevelopmentHttpsListenerAEE97BBB"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentHttpsListener/Zoom-queue-frontendDevelopmentCerttificates1/Resource"
-   }
-  },
   "ZoomqueuefrontendDevelopmentHttpsListenerZoomqueuebackendDevelopmentCerttificates1CFE99556": {
    "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
    "Properties": {
@@ -476,6 +460,7 @@
      {
       "RedirectConfig": {
        "Port": "443",
+       "Protocol": "HTTPS",
        "StatusCode": "HTTP_301"
       },
       "Type": "redirect"
@@ -524,7 +509,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31PXU/DMAz8LXvPMkqFEG+wIhDSHqZuf8BkbmeaJVXiDE1V/jvJvlTQxJPP57N9V8ji4VHeTZ7h20/VppsNyjqUw4pBdaKyxrMLikXVmBq9DU5hFFk7EOzkUFuNx1muS6tJHXJ7QlGg8nJ4A9cC4xp894oNGWKyJqv+MtYwkEE34s67K3R7UsdPZxiFtm06vrDtu7Ohz6MLjsKXch5UhzwHj8nFfQqEKjjiw1X9P/FhWofepwgaPJPSFjafoMEoMu0+3Xvp+5QRsst1Mol8vTNuR6oFecaU7uj0gm/MK3RMTSZxLB3TN7bqoH/Jcx9jFMsDb62ZlfJJFuXkyxNNXTBMO5T1qf4APhXrkwICAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31RTU/DMAz9Lbt3AdrTjmwIhLTD1O2OvMwtpllSxc5QVfW/k3QfKmji5OfnZ/s5yVW+UI8z+Oa5PjRzQ3vVbwV0k0Xqoyc4qr50BrNVZce4cYZ0l9IzGjLUrPpX8DUI7oCbF6zIkpCzSfWXcVaALPoJd+ndoj+RHjdd4JAZV8fha1e/eRfaVLriIeNCLYNuUJbAGF3k0Tnq4Em6m/p/4t3WHpnjCQZYSBsHhz0YsJpsfYrznts23gjJ5S6aRLnNmaYT1ZpYMF43Or3iO/UVeqEqkTiVTuk7XWUwv+QpH4bxa5Bd8OnFNp18OvtQqIV6KmZfTDT3wQodUZXn+AOIbsoV8wEAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/CDKMetadata/Default"
@@ -547,6 +532,40 @@
    "Export": {
     "Name": "ZoomQueueFrontendDevelopmentStack:ExportsOutputRefZoomqueuefrontendDevelopmentHttpListener99A0B6CAFF577A1B"
    }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
   }
  }
 }

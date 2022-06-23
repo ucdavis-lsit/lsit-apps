@@ -368,28 +368,12 @@
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Resource"
    }
   },
-  "FrontdeskappclientProductionHttpsListenerListenerCertificate191A3374B": {
-   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-   "Properties": {
-    "Certificates": [
-     {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"
-     }
-    ],
-    "ListenerArn": {
-     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/ListenerCertificate1/Resource"
-   }
-  },
   "FrontdeskappclientProductionHttpsListenerFrontdeskappclientProductionCerttificates172E25684": {
    "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
    "Properties": {
     "Certificates": [
      {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616"
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"
      }
     ],
     "ListenerArn": {
@@ -398,22 +382,6 @@
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates1/Resource"
-   }
-  },
-  "FrontdeskappclientProductionHttpsListenerFrontdeskappclientProductionCerttificates23BFB602E": {
-   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-   "Properties": {
-    "Certificates": [
-     {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"
-     }
-    ],
-    "ListenerArn": {
-     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates2/Resource"
    }
   },
   "FrontdeskappclientProductionHttpsListenerFrontdeskappserverProductionCerttificates17A7E67C0": {
@@ -590,6 +558,7 @@
      {
       "RedirectConfig": {
        "Port": "443",
+       "Protocol": "HTTPS",
        "StatusCode": "HTTP_301"
       },
       "Type": "redirect"
@@ -620,7 +589,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31PXU/DMAz8LXvPMkqFEG+wIhDSHqZuf8BkbmeaJVXiDE1V/jvJvlTQxJPP57N9V8ji4VHeTZ7h20/VppsNyjqUw4pBdaKyxrMLikXVmBq9DU5hFFk7EOzkUFuNx1muS6tJHXJ7QlGg8nJ4A9cC4xp894oNGWKyJqv+MtYwkEE34s67K3R7UsdPZxiFtm06vrDtu7Ohz6MLjsKXch5UhzwHj8nFfQqEKjjiw1X9P/FhWofepwgaPJPSFjafoMEoMu0+3Xvp+5QRsst1Mol8vTNuR6oFecaU7uj0gm/MK3RMTSZxLB3TN7bqoH/Jcx9jFMsDb62ZlfJJFuXkyxNNXTBMO5T1qf4APhXrkwICAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31RTU/DMAz9Lbt3AdrTjmwIhLTD1O2OvMwtpllSxc5QVfW/k3QfKmji5OfnZ/s5yVW+UI8z+Oa5PjRzQ3vVbwV0k0Xqoyc4qr50BrNVZce4cYZ0l9IzGjLUrPpX8DUI7oCbF6zIkpCzSfWXcVaALPoJd+ndoj+RHjdd4JAZV8fha1e/eRfaVLriIeNCLYNuUJbAGF3k0Tnq4Em6m/p/4t3WHpnjCQZYSBsHhz0YsJpsfYrznts23gjJ5S6aRLnNmaYT1ZpYMF43Or3iO/UVeqEqkTiVTuk7XWUwv+QpH4bxa5Bd8OnFNp18OvtQqIV6KmZfTDT3wQodUZXn+AOIbsoV8wEAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientProdStack/CDKMetadata/Default"
@@ -643,6 +612,40 @@
    "Export": {
     "Name": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A"
    }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
   }
  }
 }

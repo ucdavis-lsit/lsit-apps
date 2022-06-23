@@ -1,14 +1,13 @@
-from aws_cdk import core as cdk
-from aws_cdk import aws_ecs as ecs
-from aws_cdk import aws_ec2 as ec2
+from aws_cdk import Stack
+from constructs import Construct
 import aws_cdk.aws_sns as sns
 import aws_cdk.aws_sns_subscriptions as subscriptions
 import aws_cdk.aws_events as events
 import aws_cdk.aws_events_targets as event_targets
 
-class MonitoringStack(cdk.Stack):
+class MonitoringStack(Stack):
 
-    def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
         ecs_alerts_topic = sns.Topic(self, "ECSAlerts")

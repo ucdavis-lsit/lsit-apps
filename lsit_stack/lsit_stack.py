@@ -1,18 +1,16 @@
-import os
-from typing import Protocol
-
-from aws_cdk import core as cdk
+from aws_cdk import Stack, RemovalPolicy
+from constructs import Construct
 from aws_cdk import aws_ecs as ecs
 from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_iam as iam
-from aws_cdk.aws_elasticloadbalancing import LoadBalancer, LoadBalancerListener
-from aws_cdk.aws_elasticloadbalancingv2 import ApplicationListener, ApplicationListenerAttributes, ApplicationLoadBalancer, ApplicationProtocol, ApplicationTargetGroup, ListenerAction, ListenerCertificate, ListenerCondition, TargetGroupBase, TargetType, ApplicationListenerRule
+from aws_cdk.aws_elasticloadbalancing import LoadBalancer
+from aws_cdk.aws_elasticloadbalancingv2 import ApplicationListener, ApplicationLoadBalancer, ApplicationProtocol, ApplicationTargetGroup, ListenerAction, ListenerCondition, TargetType, ApplicationListenerRule, ListenerCertificate
 from aws_cdk.aws_logs import LogGroup
 from aws_cdk.aws_s3 import Bucket
 
-class LSITStack(cdk.Stack):
+class LSITStack(Stack):
 
-    def __init__(self, scope: cdk.Construct, construct_id: str, vpc: ec2.Vpc, bucket: Bucket, cluster: ecs.Cluster, load_balancer: LoadBalancer, app_props: dict, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, vpc: ec2.Vpc, bucket: Bucket, cluster: ecs.Cluster, load_balancer: LoadBalancer, app_props: dict, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
         # Required props
@@ -99,7 +97,7 @@ class LSITStack(cdk.Stack):
                     scope=self,
                     id="{app_prefix}LogGroup".format(app_prefix=app_prefix),
                     log_group_name="/ecs/{task_name}".format(task_name=task_name),
-                    removal_policy=cdk.RemovalPolicy.DESTROY
+                    removal_policy=RemovalPolicy.DESTROY
             )),
             environment_files=[
                 ecs.S3EnvironmentFile(
@@ -142,7 +140,7 @@ class LSITStack(cdk.Stack):
             service = ecs.FargateService(
                 self,
                 "{app_prefix}Service".format(app_prefix=app_prefix),
-                security_group=security_group,
+                security_groups=[security_group],
                 vpc_subnets=ec2.SubnetSelection(
                     subnets=vpc.private_subnets
                 ),
@@ -156,7 +154,7 @@ class LSITStack(cdk.Stack):
                 self,
                 "{app_prefix}Service".format(app_prefix=app_prefix),
                 assign_public_ip=True,
-                security_group=security_group,
+                security_groups=[security_group],
                 vpc_subnets=ec2.SubnetSelection(
                     subnets=vpc.public_subnets
                 ),
@@ -208,13 +206,20 @@ class LSITStack(cdk.Stack):
                         load_balancer=load_balancer,
                         port=443,
                         default_action=ListenerAction(fixed_response_json),
-                        certificate_arns=certificate_arns
                     )
                     
                 if certificate_arns:
-                    self.https_listener.add_certificate_arns(
+                    certificates = []
+                    for certificate_arn in certificate_arns:
+                        certificates.append(
+                            ListenerCertificate(
+                                certificate_arn
+                            )
+                        )
+
+                    self.https_listener.add_certificates(
                         "{app_prefix}Certtificates".format(app_prefix=app_prefix),
-                        certificate_arns
+                        certificates
                     )    
 
                 ApplicationListenerRule(
@@ -225,18 +230,6 @@ class LSITStack(cdk.Stack):
                     priority=https_load_balancer_priority,
                     target_groups=[target_group]
                 )
-
-                while len(host_headers) > 5 and len(additional_https_rule_priorities) > 0:
-                    host_headers = host_headers[5:]
-                    ApplicationListenerRule(
-                        self,
-                        "{app_prefix}HttpsListenerRule{rule_number}".format(app_prefix=app_prefix,rule_number=additional_https_rule_priorities[0]),
-                        listener=self.https_listener,
-                        conditions=[ListenerCondition.host_headers(host_headers)],
-                        priority=additional_https_rule_priorities[0],
-                        target_groups=[target_group]
-                    )
-                    additional_https_rule_priorities = additional_https_rule_priorities[1:]
 
                 # HTTP listener
                 if not self.http_listener:
@@ -259,7 +252,8 @@ class LSITStack(cdk.Stack):
                 listener_action_json = {
                     "redirectConfig" : {
                         "port" : "443",
-                        "statusCode" : "HTTP_301"
+                        "statusCode" : "HTTP_301",
+                        "protocol": "HTTPS"
                     },
                     "type" : "redirect"
                 }
@@ -268,10 +262,35 @@ class LSITStack(cdk.Stack):
                     self,
                     "{app_prefix}HttpListenerRule".format(app_prefix=app_prefix),
                     listener=self.http_listener,
-                    conditions=[ListenerCondition.host_headers(host_headers)],
+                    conditions=[ListenerCondition.host_headers(host_headers[0:5])],
                     priority=http_load_balancer_priority,
                     action=ListenerAction(listener_action_json)
                 )
+
+                while len(host_headers) > 5 and ( len(additional_https_rule_priorities) > 0 or len(additional_http_rule_priorities) > 0):
+                    host_headers = host_headers[5:]
+                    print("host headers",host_headers)
+                    if len(additional_https_rule_priorities) > 0:
+                        ApplicationListenerRule(
+                            self,
+                            "{app_prefix}HttpsListenerRule{rule_number}".format(app_prefix=app_prefix,rule_number=additional_https_rule_priorities[0]),
+                            listener=self.https_listener,
+                            conditions=[ListenerCondition.host_headers(host_headers)],
+                            priority=additional_https_rule_priorities[0],
+                            target_groups=[target_group]
+                        )
+                        additional_https_rule_priorities = additional_https_rule_priorities[1:]
+
+                    if len(additional_http_rule_priorities) > 0:
+                        ApplicationListenerRule(
+                            self,
+                            "{app_prefix}HttpListenerRule{rule_number}".format(app_prefix=app_prefix,rule_number=additional_http_rule_priorities[0]),
+                            listener=self.http_listener,
+                            conditions=[ListenerCondition.host_headers(host_headers)],
+                            priority=additional_http_rule_priorities[0],
+                            action=ListenerAction(listener_action_json)
+                        )
+                        additional_http_rule_priorities = additional_http_rule_priorities[1:]
 
             if load_balancer_port:
                 additional_listener = ApplicationListener(

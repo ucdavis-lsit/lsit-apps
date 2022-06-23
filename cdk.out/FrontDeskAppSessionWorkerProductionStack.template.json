@@ -293,11 +293,45 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Py04DMQz8lt5Tl2WFEDfUIrhwqLb8QGTcxd1tjBwHtIry72zagoDTjGfGrwaam1u4Wtz7z7jE12GVUZQg78zj4DYSomlCc5t96ChKUqTiajazP0LuZKSTV3ErI+NUyzMrjjBCfvTae6MXH4cH2nNgYwk19V+RYJ4D6S/t0rsj/WA8bbrQ4kbp5+HP0j+ppPdqffPiYgvrhAPZ2kear7ieHyJMyjb9pP8IpRS3nexNwqqFO2jaxSEyLzUF4yNBd8YvU81nWy0BAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Pyw6CQAz8Fu5LVTh5VaMXDwS9m3WtWIGt2YeGkP13AdGop06n0+k0gWQO00g+bKxOZVzREdqdk6oUHXVoSdbQ5lyhWJ71UDOuSDV9+0JBoLLQrqUppMO9tOUKz6TJEete9c+wdpI0mi9u3N2huZMaLo0wiIqLznzLxcawv/WjNw7CprDwqkS3kBa7FEmXHJU35JqP+ocIYfgCLXvTm2eNu7CepDCHWRpdLVFsvHZUI+Sv+gQbjLi6HgEAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/CDKMetadata/Default"
    }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
   }
  }
 }

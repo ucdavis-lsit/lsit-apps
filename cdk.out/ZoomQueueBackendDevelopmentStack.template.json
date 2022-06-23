@@ -379,6 +379,7 @@
      {
       "RedirectConfig": {
        "Port": "443",
+       "Protocol": "HTTPS",
        "StatusCode": "HTTP_301"
       },
       "Type": "redirect"
@@ -427,11 +428,45 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31Q0U7DMAz8lr1nGaVCiDfYEAhpD1O3HzCZ15lmSRU7Q1WVfyfdxlQQ4sm+8+XsS6GLu3t9M3mET56abTPrjQ+o+7WAadTCO5YQjajFzlXIPgaDSQ3anuCg+8pbPM2GuvKWTDfAc5cUGtb9C4QaBDfAzTPuyJGQd4PqN+OdADkMI+7ydo3hSOa06dImZX2dzZe+fg0+tsPou0+KSz2PpkGZA2O+4jYHQhMDSXdV/0+8uTogc45ggYWM9bB9BwvOkKuP2e+pbXNGGK7c5CNRrj5jOFItiQVzuiqev+wH/kM31qSU1KqTvXezUj/oopx8MNE0RCd0QF2d6xfo5le9zAEAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QwU7DMAz9lt3TAO1pRwYCIe0wdbsjL/OK1yypYmeoqvrvpO2YCkKcbL+8PL/nXOdLfb+AT87Moc4s7XW3FTC1StB7R3DWXektqqejG+vGWzLtME5dr9Cw7l4gVCC4A66f8UiOhLwbWL8R7wTIYZhh179bDBcy46Zr2yvrqyS+9tVr8LEZnr77XnGhV9HUKCtgTC7y5BxNDCTtjf0/8OaqgMwpggUWMtbDYQ8WnCFXXZLeY9OkjDC43CWTKDed+ThjrYkFU7oyTif7Mf/Bm3P6fjwyso9hyL5p5cO7u0Iv9UOxODFRFqITOqMup/oFOaqpP70BAAA="
    },
    "Metadata": {
     "aws:cdk:path": "ZoomQueueBackendDevelopmentStack/CDKMetadata/Default"
    }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
   }
  }
 }
