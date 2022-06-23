@@ -546,7 +546,8 @@
        "Values": [
         "advisingfrontdesk.lsit.ucdavis.edu",
         "uea.advisingfrontdesk.lsit.ucdavis.edu",
-        "lsit.advisingfrontdesk.lsit.ucdavis.edu"
+        "lsit.advisingfrontdesk.lsit.ucdavis.edu",
+        "grad.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
@@ -601,7 +602,8 @@
        "Values": [
         "advisingfrontdesk.lsit.ucdavis.edu",
         "uea.advisingfrontdesk.lsit.ucdavis.edu",
-        "lsit.advisingfrontdesk.lsit.ucdavis.edu"
+        "lsit.advisingfrontdesk.lsit.ucdavis.edu",
+        "grad.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
