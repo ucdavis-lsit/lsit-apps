@@ -5568,6 +5568,37 @@
                   "version": "1.157.0"
                 }
               },
+              "ListenerCertificate1": {
+                "id": "ListenerCertificate1",
+                "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/ListenerCertificate1",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/ListenerCertificate1/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+                      "aws:cdk:cloudformation:props": {
+                        "certificates": [
+                          {
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"
+                          }
+                        ],
+                        "listenerArn": {
+                          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerCertificate",
+                      "version": "1.157.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerCertificate",
+                  "version": "1.157.0"
+                }
+              },
               "Frontdesk-app-clientProductionCerttificates1": {
                 "id": "Frontdesk-app-clientProductionCerttificates1",
                 "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates1",
@@ -5581,6 +5612,37 @@
                         "certificates": [
                           {
                             "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616"
+                          }
+                        ],
+                        "listenerArn": {
+                          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-elasticloadbalancingv2.CfnListenerCertificate",
+                      "version": "1.157.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-elasticloadbalancingv2.ApplicationListenerCertificate",
+                  "version": "1.157.0"
+                }
+              },
+              "Frontdesk-app-clientProductionCerttificates2": {
+                "id": "Frontdesk-app-clientProductionCerttificates2",
+                "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates2",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates2/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+                      "aws:cdk:cloudformation:props": {
+                        "certificates": [
+                          {
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"
                           }
                         ],
                         "listenerArn": {
@@ -5845,7 +5907,9 @@
                         "field": "host-header",
                         "hostHeaderConfig": {
                           "values": [
-                            "advisingfrontdesk.lsit.ucdavis.edu"
+                            "advisingfrontdesk.lsit.ucdavis.edu",
+                            "uea.advisingfrontdesk.lsit.ucdavis.edu",
+                            "lsit.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
@@ -5928,7 +5992,9 @@
                         "field": "host-header",
                         "hostHeaderConfig": {
                           "values": [
-                            "advisingfrontdesk.lsit.ucdavis.edu"
+                            "advisingfrontdesk.lsit.ucdavis.edu",
+                            "uea.advisingfrontdesk.lsit.ucdavis.edu",
+                            "lsit.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
@@ -9289,7 +9355,7 @@
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Events::Rule",
                   "aws:cdk:cloudformation:props": {
-                    "scheduleExpression": "cron(*/15 * * * ? *)",
+                    "scheduleExpression": "cron(0 8 * * ? *)",
                     "state": "ENABLED",
                     "targets": [
                       {
@@ -9355,6 +9421,443 @@
               "Default": {
                 "id": "Default",
                 "path": "FrontDeskAppProductionProcessGuestEvents/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.157.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.157.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.157.0"
+        }
+      },
+      "FrontDeskAppSessionWorkerProductionStack": {
+        "id": "FrontDeskAppSessionWorkerProductionStack",
+        "path": "FrontDeskAppSessionWorkerProductionStack",
+        "children": {
+          "Frontdesk-app-session-workerProductionRole": {
+            "id": "Frontdesk-app-session-workerProductionRole",
+            "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows frontdesk-app-session-worker-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Frontdesk-app-session-workerProductionECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.CfnRole",
+                  "version": "1.157.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "FrontdeskappsessionworkerProductionLogGroup0D2C5EEF",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "FrontdeskappsessionworkerProductionRoleDefaultPolicy3B4C41B1",
+                        "roles": [
+                          {
+                            "Ref": "FrontdeskappsessionworkerProductionRole22CC06CD"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                      "version": "1.157.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.Policy",
+                  "version": "1.157.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.Role",
+              "version": "1.157.0"
+            }
+          },
+          "Frontdesk-app-session-workerProductionPolicy": {
+            "id": "Frontdesk-app-session-workerProductionPolicy",
+            "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/frontdesk-app-session-worker/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Frontdesk-app-session-workerProductionConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "FrontdeskappsessionworkerProductionRole22CC06CD"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-iam.CfnPolicy",
+                  "version": "1.157.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-iam.Policy",
+              "version": "1.157.0"
+            }
+          },
+          "Frontdesk-app-session-workerProductionTask": {
+            "id": "Frontdesk-app-session-workerProductionTask",
+            "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "command": [
+                          "npm",
+                          "run",
+                          "sessionWorker"
+                        ],
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
+                        "memory": 512,
+                        "name": "frontdesk-app-session-worker-production",
+                        "portMappings": [
+                          {
+                            "containerPort": 3002,
+                            "hostPort": 3002,
+                            "protocol": "tcp"
+                          }
+                        ],
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "FrontdeskappsessionworkerProductionLogGroup0D2C5EEF"
+                            },
+                            "awslogs-stream-prefix": "frontdesk-app-session-worker-production",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/frontdesk-app-session-worker/production.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "FrontdeskappsessionworkerProductionRole22CC06CD",
+                        "Arn"
+                      ]
+                    },
+                    "family": "frontdesk-app-session-worker-production",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "FrontdeskappsessionworkerProductionRole22CC06CD",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ecs.CfnTaskDefinition",
+                  "version": "1.157.0"
+                }
+              },
+              "frontdesk-app-session-worker-production": {
+                "id": "frontdesk-app-session-worker-production",
+                "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionTask/frontdesk-app-session-worker-production",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ecs.ContainerDefinition",
+                  "version": "1.157.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ecs.FargateTaskDefinition",
+              "version": "1.157.0"
+            }
+          },
+          "Frontdesk-app-session-workerProductionLogGroup": {
+            "id": "Frontdesk-app-session-workerProductionLogGroup",
+            "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/frontdesk-app-session-worker-production",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-logs.CfnLogGroup",
+                  "version": "1.157.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-logs.LogGroup",
+              "version": "1.157.0"
+            }
+          },
+          "Frontdesk-app-session-workerProductionBucket": {
+            "id": "Frontdesk-app-session-workerProductionBucket",
+            "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionBucket",
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-s3.BucketBase",
+              "version": "1.157.0"
+            }
+          },
+          "Frontdesk-app-session-workerProductionSecurityGroup": {
+            "id": "Frontdesk-app-session-workerProductionSecurityGroup",
+            "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionSecurityGroup",
+                    "groupName": "frontdesk-app-session-worker-production",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.CfnSecurityGroup",
+                  "version": "1.157.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ec2.SecurityGroup",
+              "version": "1.157.0"
+            }
+          },
+          "Frontdesk-app-session-workerProductionService": {
+            "id": "Frontdesk-app-session-workerProductionService",
+            "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionService",
+            "children": {
+              "Service": {
+                "id": "Service",
+                "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionService/Service",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Service",
+                  "aws:cdk:cloudformation:props": {
+                    "cluster": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                    },
+                    "deploymentConfiguration": {
+                      "maximumPercent": 200,
+                      "minimumHealthyPercent": 50
+                    },
+                    "desiredCount": 1,
+                    "enableEcsManagedTags": false,
+                    "launchType": "FARGATE",
+                    "networkConfiguration": {
+                      "awsvpcConfiguration": {
+                        "assignPublicIp": "DISABLED",
+                        "subnets": [
+                          {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+                          },
+                          {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+                          }
+                        ],
+                        "securityGroups": [
+                          {
+                            "Fn::GetAtt": [
+                              "FrontdeskappsessionworkerProductionSecurityGroup437C1DE5",
+                              "GroupId"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "serviceName": "frontdesk-app-session-worker-production",
+                    "taskDefinition": {
+                      "Ref": "FrontdeskappsessionworkerProductionTask9C456D3B"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ecs.CfnService",
+                  "version": "1.157.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-ecs.FargateService",
+              "version": "1.157.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "FrontDeskAppSessionWorkerProductionStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "FrontDeskAppSessionWorkerProductionStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.CfnResource",
                   "version": "1.157.0"

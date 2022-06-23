@@ -1,6 +1,6 @@
 {
  "Resources": {
-  "FrontdeskappsessionworkerStagingRoleFA47EE2C": {
+  "FrontdeskappsessionworkerProductionRole22CC06CD": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -15,7 +15,7 @@
      ],
      "Version": "2012-10-17"
     },
-    "Description": "Allows frontdesk-app-session-worker-staging tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+    "Description": "Allows frontdesk-app-session-worker-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
     "ManagedPolicyArns": [
      {
       "Fn::Join": [
@@ -30,13 +30,13 @@
       ]
      }
     ],
-    "RoleName": "Frontdesk-app-session-workerStagingECSTaskExecutionRole"
+    "RoleName": "Frontdesk-app-session-workerProductionECSTaskExecutionRole"
    },
    "Metadata": {
-    "aws:cdk:path": "FrontDeskAppSessionWorkerStagingStack/Frontdesk-app-session-workerStagingRole/Resource"
+    "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionRole/Resource"
    }
   },
-  "FrontdeskappsessionworkerStagingRoleDefaultPolicyD488C3D0": {
+  "FrontdeskappsessionworkerProductionRoleDefaultPolicy3B4C41B1": {
    "Type": "AWS::IAM::Policy",
    "Properties": {
     "PolicyDocument": {
@@ -49,7 +49,7 @@
        "Effect": "Allow",
        "Resource": {
         "Fn::GetAtt": [
-         "FrontdeskappsessionworkerStagingLogGroupFF47124E",
+         "FrontdeskappsessionworkerProductionLogGroup0D2C5EEF",
          "Arn"
         ]
        }
@@ -57,18 +57,18 @@
      ],
      "Version": "2012-10-17"
     },
-    "PolicyName": "FrontdeskappsessionworkerStagingRoleDefaultPolicyD488C3D0",
+    "PolicyName": "FrontdeskappsessionworkerProductionRoleDefaultPolicy3B4C41B1",
     "Roles": [
      {
-      "Ref": "FrontdeskappsessionworkerStagingRoleFA47EE2C"
+      "Ref": "FrontdeskappsessionworkerProductionRole22CC06CD"
      }
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "FrontDeskAppSessionWorkerStagingStack/Frontdesk-app-session-workerStagingRole/DefaultPolicy/Resource"
+    "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionRole/DefaultPolicy/Resource"
    }
   },
-  "FrontdeskappsessionworkerStagingPolicyCEC401E9": {
+  "FrontdeskappsessionworkerProductionPolicy5E505386": {
    "Type": "AWS::IAM::Policy",
    "Properties": {
     "PolicyDocument": {
@@ -98,18 +98,18 @@
      ],
      "Version": "2012-10-17"
     },
-    "PolicyName": "Frontdesk-app-session-workerStagingConfigRead",
+    "PolicyName": "Frontdesk-app-session-workerProductionConfigRead",
     "Roles": [
      {
-      "Ref": "FrontdeskappsessionworkerStagingRoleFA47EE2C"
+      "Ref": "FrontdeskappsessionworkerProductionRole22CC06CD"
      }
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "FrontDeskAppSessionWorkerStagingStack/Frontdesk-app-session-workerStagingPolicy/Resource"
+    "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionPolicy/Resource"
    }
   },
-  "FrontdeskappsessionworkerStagingTaskE73F18D0": {
+  "FrontdeskappsessionworkerProductionTask9C456D3B": {
    "Type": "AWS::ECS::TaskDefinition",
    "Properties": {
     "ContainerDefinitions": [
@@ -155,26 +155,26 @@
              }
             ]
            },
-           "/frontdesk-app-session-worker/staging.env"
+           "/frontdesk-app-session-worker/production.env"
           ]
          ]
         }
        }
       ],
       "Essential": true,
-      "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-staging:latest",
+      "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
       "LogConfiguration": {
        "LogDriver": "awslogs",
        "Options": {
         "awslogs-group": {
-         "Ref": "FrontdeskappsessionworkerStagingLogGroupFF47124E"
+         "Ref": "FrontdeskappsessionworkerProductionLogGroup0D2C5EEF"
         },
-        "awslogs-stream-prefix": "frontdesk-app-session-worker-staging",
+        "awslogs-stream-prefix": "frontdesk-app-session-worker-production",
         "awslogs-region": "us-west-2"
        }
       },
       "Memory": 512,
-      "Name": "frontdesk-app-session-worker-staging",
+      "Name": "frontdesk-app-session-worker-production",
       "PortMappings": [
        {
         "ContainerPort": 3002,
@@ -187,11 +187,11 @@
     "Cpu": "256",
     "ExecutionRoleArn": {
      "Fn::GetAtt": [
-      "FrontdeskappsessionworkerStagingRoleFA47EE2C",
+      "FrontdeskappsessionworkerProductionRole22CC06CD",
       "Arn"
      ]
     },
-    "Family": "frontdesk-app-session-worker-staging",
+    "Family": "frontdesk-app-session-worker-production",
     "Memory": "512",
     "NetworkMode": "awsvpc",
     "RequiresCompatibilities": [
@@ -199,32 +199,32 @@
     ],
     "TaskRoleArn": {
      "Fn::GetAtt": [
-      "FrontdeskappsessionworkerStagingRoleFA47EE2C",
+      "FrontdeskappsessionworkerProductionRole22CC06CD",
       "Arn"
      ]
     }
    },
    "Metadata": {
-    "aws:cdk:path": "FrontDeskAppSessionWorkerStagingStack/Frontdesk-app-session-workerStagingTask/Resource"
+    "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionTask/Resource"
    }
   },
-  "FrontdeskappsessionworkerStagingLogGroupFF47124E": {
+  "FrontdeskappsessionworkerProductionLogGroup0D2C5EEF": {
    "Type": "AWS::Logs::LogGroup",
    "Properties": {
-    "LogGroupName": "/ecs/frontdesk-app-session-worker-staging",
+    "LogGroupName": "/ecs/frontdesk-app-session-worker-production",
     "RetentionInDays": 731
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "FrontDeskAppSessionWorkerStagingStack/Frontdesk-app-session-workerStagingLogGroup/Resource"
+    "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionLogGroup/Resource"
    }
   },
-  "FrontdeskappsessionworkerStagingSecurityGroupD6AF8E47": {
+  "FrontdeskappsessionworkerProductionSecurityGroup437C1DE5": {
    "Type": "AWS::EC2::SecurityGroup",
    "Properties": {
-    "GroupDescription": "FrontDeskAppSessionWorkerStagingStack/Frontdesk-app-session-workerStagingSecurityGroup",
-    "GroupName": "frontdesk-app-session-worker-staging",
+    "GroupDescription": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionSecurityGroup",
+    "GroupName": "frontdesk-app-session-worker-production",
     "SecurityGroupEgress": [
      {
       "CidrIp": "0.0.0.0/0",
@@ -244,10 +244,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "FrontDeskAppSessionWorkerStagingStack/Frontdesk-app-session-workerStagingSecurityGroup/Resource"
+    "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionSecurityGroup/Resource"
    }
   },
-  "FrontdeskappsessionworkerStagingServiceA61C0150": {
+  "FrontdeskappsessionworkerProductionService51229F95": {
    "Type": "AWS::ECS::Service",
    "Properties": {
     "Cluster": {
@@ -266,7 +266,7 @@
       "SecurityGroups": [
        {
         "Fn::GetAtt": [
-         "FrontdeskappsessionworkerStagingSecurityGroupD6AF8E47",
+         "FrontdeskappsessionworkerProductionSecurityGroup437C1DE5",
          "GroupId"
         ]
        }
@@ -281,13 +281,13 @@
       ]
      }
     },
-    "ServiceName": "frontdesk-app-session-worker-staging",
+    "ServiceName": "frontdesk-app-session-worker-production",
     "TaskDefinition": {
-     "Ref": "FrontdeskappsessionworkerStagingTaskE73F18D0"
+     "Ref": "FrontdeskappsessionworkerProductionTask9C456D3B"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "FrontDeskAppSessionWorkerStagingStack/Frontdesk-app-session-workerStagingService/Service"
+    "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionService/Service"
    }
   },
   "CDKMetadata": {
@@ -296,7 +296,7 @@
     "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Py04DMQz8lt5Tl2WFEDfUIrhwqLb8QGTcxd1tjBwHtIry72zagoDTjGfGrwaam1u4Wtz7z7jE12GVUZQg78zj4DYSomlCc5t96ChKUqTiajazP0LuZKSTV3ErI+NUyzMrjjBCfvTae6MXH4cH2nNgYwk19V+RYJ4D6S/t0rsj/WA8bbrQ4kbp5+HP0j+ppPdqffPiYgvrhAPZ2kear7ieHyJMyjb9pP8IpRS3nexNwqqFO2jaxSEyLzUF4yNBd8YvU81nWy0BAAA="
    },
    "Metadata": {
-    "aws:cdk:path": "FrontDeskAppSessionWorkerStagingStack/CDKMetadata/Default"
+    "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/CDKMetadata/Default"
    }
   }
  }

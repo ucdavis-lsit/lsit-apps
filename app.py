@@ -142,8 +142,12 @@ frontdesk_frontend_stack = LSITStack(
         "health_check_path": "/api/health",
         "https_load_balancer_priority": 1,
         "http_load_balancer_priority": 1,
-        "host_headers": ["advisingfrontdesk.lsit.ucdavis.edu"],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616"],
+        "host_headers": [
+            "advisingfrontdesk.lsit.ucdavis.edu",
+            "uea.advisingfrontdesk.lsit.ucdavis.edu",
+            "lsit.advisingfrontdesk.lsit.ucdavis.edu"
+        ],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616", "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"],
         "is_private": True
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
@@ -256,7 +260,25 @@ ScheudledTaskStack(
         "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
         "command_override": ["npm","run","processGuestEvents"],
         "is_private": True,
-        "schedule": {"minute": "*/15"}
+    },
+    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+LSITStack(
+    app,
+    "FrontDeskAppSessionWorkerProductionStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    network_stack.load_balancer,
+    {
+        "app_name": "frontdesk-app-session-worker",
+        "app_env": "production",
+        "task_port": 3002,
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
+        "is_private": True,
+        "command": ["npm","run","sessionWorker"],
+        "is_public_facing": False
     },
     env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
