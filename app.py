@@ -146,6 +146,7 @@ frontdesk_frontend_stack = LSITStack(
             "uea.advisingfrontdesk.lsit.ucdavis.edu",
             "lsit.advisingfrontdesk.lsit.ucdavis.edu",
             "grad.advisingfrontdesk.lsit.ucdavis.edu",
+            "physics.advisingfrontdesk.lsit.ucdavis.edu",
         ],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616", "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"],
         "is_private": True
