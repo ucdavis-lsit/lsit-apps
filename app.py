@@ -147,9 +147,16 @@ frontdesk_frontend_stack = LSITStack(
             "lsit.advisingfrontdesk.lsit.ucdavis.edu",
             "grad.advisingfrontdesk.lsit.ucdavis.edu",
             "physics.advisingfrontdesk.lsit.ucdavis.edu",
+            "eps.advisingfrontdesk.lsit.ucdavis.edu",
+            "yellowcluster.advisingfrontdesk.lsit.ucdavis.edu",
+            "ehe.advisingfrontdesk.lsit.ucdavis.edu",
+            "langlit.advisingfrontdesk.lsit.ucdavis.edu",
+            "antsocmsa.advisingfrontdesk.lsit.ucdavis.edu"
         ],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616", "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"],
-        "is_private": True
+        "is_private": True,
+        "additional_https_rule_priorities": [9],
+        "additional_http_rule_priorities": [9]
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
