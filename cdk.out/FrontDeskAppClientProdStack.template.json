@@ -314,6 +314,7 @@
    },
    "DependsOn": [
     "FrontdeskappclientProductionHttpsListenerRule5CBF48FA",
+    "FrontdeskappclientProductionHttpsListenerRule1011E01EED",
     "FrontdeskappclientProductionHttpsListenerRule99C6FA131"
    ],
    "Metadata": {
@@ -657,6 +658,70 @@
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule9/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerRule1011E01EED": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
+      },
+      "Type": "forward"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "caes.advisingfrontdesk.lsit.ucdavis.edu",
+        "cs.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    },
+    "Priority": 10
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule10/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpListenerRule109F274921": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "RedirectConfig": {
+       "Port": "443",
+       "Protocol": "HTTPS",
+       "StatusCode": "HTTP_301"
+      },
+      "Type": "redirect"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "caes.advisingfrontdesk.lsit.ucdavis.edu",
+        "cs.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
+    },
+    "Priority": 10
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule10/Resource"
    }
   },
   "CDKMetadata": {

@@ -269,13 +269,13 @@ class LSITStack(Stack):
 
                 while len(host_headers) > 5 and ( len(additional_https_rule_priorities) > 0 or len(additional_http_rule_priorities) > 0):
                     host_headers = host_headers[5:]
-                    print("host headers",host_headers)
+                    print("*****host headers*****",app_name,app_env,host_headers)
                     if len(additional_https_rule_priorities) > 0:
                         ApplicationListenerRule(
                             self,
                             "{app_prefix}HttpsListenerRule{rule_number}".format(app_prefix=app_prefix,rule_number=additional_https_rule_priorities[0]),
                             listener=self.https_listener,
-                            conditions=[ListenerCondition.host_headers(host_headers)],
+                            conditions=[ListenerCondition.host_headers(host_headers[:5])],
                             priority=additional_https_rule_priorities[0],
                             target_groups=[target_group]
                         )
@@ -286,7 +286,7 @@ class LSITStack(Stack):
                             self,
                             "{app_prefix}HttpListenerRule{rule_number}".format(app_prefix=app_prefix,rule_number=additional_http_rule_priorities[0]),
                             listener=self.http_listener,
-                            conditions=[ListenerCondition.host_headers(host_headers)],
+                            conditions=[ListenerCondition.host_headers(host_headers[:5])],
                             priority=additional_http_rule_priorities[0],
                             action=ListenerAction(listener_action_json)
                         )
@@ -301,4 +301,4 @@ class LSITStack(Stack):
                     port=load_balancer_port,
                     protocol=ApplicationProtocol.HTTP,
                     open=True
-                )      
+                )
