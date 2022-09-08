@@ -1,15 +1,15 @@
 {
   "version": "20.0.0",
   "files": {
-    "67b76e9ef2fa238bf7cf3ffee6706089da1c578ffd0588d9e6dd1cb9b9324c54": {
+    "19b90c9d1ecc17319e5183b23b9f12e637210210c6a7d6b0fd29dcc23902d0c0": {
       "source": {
-        "path": "FrontDeskAppClientProdStack.template.json",
+        "path": "FrontDeskAppVOIPProductionStack.template.json",
         "packaging": "file"
       },
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "67b76e9ef2fa238bf7cf3ffee6706089da1c578ffd0588d9e6dd1cb9b9324c54.json",
+          "objectKey": "19b90c9d1ecc17319e5183b23b9f12e637210210c6a7d6b0fd29dcc23902d0c0.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }

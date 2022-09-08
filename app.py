@@ -9,6 +9,7 @@ from scheduled_task_stack.scheduled_task_stack import ScheudledTaskStack
 from monitoring_stack.monitoring_stack import MonitoringStack
 from getvfd_stack.getvfd_stack import GetVFDStack
 from queue_stack.queue_stack import QueueStack
+from voip_stack.voip_stack import VOIPStack
 
 
 CDK_DEFAULT_ACCOUNT=os.environ["CDK_DEFAULT_ACCOUNT"]
@@ -153,7 +154,8 @@ frontdesk_frontend_stack = LSITStack(
             "langlit.advisingfrontdesk.lsit.ucdavis.edu",
             "antsocmsa.advisingfrontdesk.lsit.ucdavis.edu",
             "caes.advisingfrontdesk.lsit.ucdavis.edu",
-            "cs.advisingfrontdesk.lsit.ucdavis.edu"
+            "cs.advisingfrontdesk.lsit.ucdavis.edu",
+            "mae.advisingfrontdesk.lsit.ucdavis.edu"
         ],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616", "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"],
         "is_private": True,
@@ -289,6 +291,18 @@ LSITStack(
         "is_private": True,
         "command": ["npm","run","sessionWorker"],
         "is_public_facing": False
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+VOIPStack(
+    app,
+    "FrontDeskAppVOIPProductionStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    {
+        "app_name": "frontdesk-app-voip",
+        "app_env": "production",
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )

@@ -677,7 +677,8 @@
       "HostHeaderConfig": {
        "Values": [
         "caes.advisingfrontdesk.lsit.ucdavis.edu",
-        "cs.advisingfrontdesk.lsit.ucdavis.edu"
+        "cs.advisingfrontdesk.lsit.ucdavis.edu",
+        "mae.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
@@ -710,7 +711,8 @@
       "HostHeaderConfig": {
        "Values": [
         "caes.advisingfrontdesk.lsit.ucdavis.edu",
-        "cs.advisingfrontdesk.lsit.ucdavis.edu"
+        "cs.advisingfrontdesk.lsit.ucdavis.edu",
+        "mae.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
