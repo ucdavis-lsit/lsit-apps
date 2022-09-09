@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "$#" -ne 4 ]
+then
+  echo "Usage: sudo sh $BASH_SOURCE ENVIRONMENT AWS_ACCOUNT_ID AWS_ACCESS_KEY AWS_SECRET_ACCESS_KEY"
+  exit 1
+fi
+
 cd /home/ec2-user 
 sudo yum install -y docker
 sudo service docker start
