@@ -127,11 +127,21 @@
          ]
         ]
        }
+      },
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:DescribeLogStreams"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
       }
      ],
      "Version": "2012-10-17"
     },
-    "PolicyName": "Frontdesk-app-voipProductionConfigRead",
+    "PolicyName": "Frontdesk-app-voipProductionPolicy",
     "Roles": [
      {
       "Ref": "FrontdeskappvoipProductionRole4581D3CE"
@@ -195,10 +205,34 @@
     "aws:cdk:path": "FrontDeskAppVOIPProductionStack/Frontdesk-app-voipProductionEC2Instance/Resource"
    }
   },
+  "FrontdeskappvoipProductionLogGroupED74AC31": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/ec2/frontdesk-app-voip-production",
+    "RetentionInDays": 731
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppVOIPProductionStack/Frontdesk-app-voipProductionLogGroup/Resource"
+   }
+  },
+  "FrontdeskappvoipProductionLogGroupAGI21F50360": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": "/ec2/frontdesk-app-agi-production",
+    "RetentionInDays": 731
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppVOIPProductionStack/Frontdesk-app-voipProductionLogGroupAGI/Resource"
+   }
+  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WMywrCMBBFv6X7dNR21bULcRfiB0iMUxybJmWSIKXk3+2DIq7uuecOU0HVwLHQn1CaZ1daesB0i9p0Ylb3CU01dzSJKY4X9mkQ59b9i6sLUTuDy7JzFqR7mJS3q15TektmXOqP9nvJviWLOa+zZt1jRBYKg0+8vd45CznGl3eHGho41cU7EJWcXKQeQW35BZE6oLLWAAAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WNzQ6CMBCEn4V7WRVOnD0YEw8EH8DUWnCldEl/YkjTd5efVONpvpndyRRQVLDP+Nvm4tHnCu8Qro6Lns3RLUhRzF4Kb9BNJ0N+ZMdW/wdnbR3XQi6XxJEhHyA0pNZ41ZoUimmxP0r/taEW1VxT1FkIF+q+Y4ljXKvc8EE6aVgjLXmzzSaOrJ7ck/SuhAoOZfayiLnx2uEgodn0A8QBdyjyAAAA"
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppVOIPProductionStack/CDKMetadata/Default"

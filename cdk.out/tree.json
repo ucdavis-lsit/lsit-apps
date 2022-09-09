@@ -10156,11 +10156,21 @@
                               ]
                             ]
                           }
+                        },
+                        {
+                          "Action": [
+                            "logs:CreateLogGroup",
+                            "logs:CreateLogStream",
+                            "logs:PutLogEvents",
+                            "logs:DescribeLogStreams"
+                          ],
+                          "Effect": "Allow",
+                          "Resource": "*"
                         }
                       ],
                       "Version": "2012-10-17"
                     },
-                    "policyName": "Frontdesk-app-voipProductionConfigRead",
+                    "policyName": "Frontdesk-app-voipProductionPolicy",
                     "roles": [
                       {
                         "Ref": "FrontdeskappvoipProductionRole4581D3CE"
@@ -10262,6 +10272,56 @@
             "path": "FrontDeskAppVOIPProductionStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118",
             "constructInfo": {
               "fqn": "aws-cdk-lib.Resource",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voipProductionLogGroup": {
+            "id": "Frontdesk-app-voipProductionLogGroup",
+            "path": "FrontDeskAppVOIPProductionStack/Frontdesk-app-voipProductionLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppVOIPProductionStack/Frontdesk-app-voipProductionLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ec2/frontdesk-app-voip-production",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voipProductionLogGroupAGI": {
+            "id": "Frontdesk-app-voipProductionLogGroupAGI",
+            "path": "FrontDeskAppVOIPProductionStack/Frontdesk-app-voipProductionLogGroupAGI",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppVOIPProductionStack/Frontdesk-app-voipProductionLogGroupAGI/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ec2/frontdesk-app-agi-production",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
               "version": "2.29.0"
             }
           },

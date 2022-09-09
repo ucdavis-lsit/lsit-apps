@@ -4,6 +4,7 @@ from constructs import Construct
 from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_efs as efs
 from aws_cdk import aws_iam as iam
+from aws_cdk import aws_logs as logs
 from aws_cdk.aws_s3 import Bucket
 
 class VOIPStack(Stack):
@@ -80,7 +81,7 @@ class VOIPStack(Stack):
             self,
             "{app_prefix}Policy".format(app_prefix=app_prefix),
             force=True,
-            policy_name="{app_prefix}ConfigRead".format(app_prefix=app_prefix),
+            policy_name="{app_prefix}Policy".format(app_prefix=app_prefix),
             roles=[role]
         )
 
@@ -96,6 +97,15 @@ class VOIPStack(Stack):
             iam.PolicyStatement(
                 actions=["s3:GetObject"],
                 resources=["{bucket}/frontdesk-app-agi/*".format(bucket=env_bucket_arn)]
+            ),
+            iam.PolicyStatement(
+                actions=[
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                    "logs:DescribeLogStreams"
+                ],
+                resources=["*"]
             )
         )
 
@@ -117,4 +127,15 @@ class VOIPStack(Stack):
             key_name='ec2_dev',
             instance_name=service_name,
             role=role
+        )
+
+        log_group = logs.LogGroup(
+            self,
+            "{app_prefix}LogGroup".format(app_prefix=app_prefix),
+            log_group_name="/ec2/{service_name}".format(service_name=service_name)
+        )
+        log_group_agi = logs.LogGroup(
+            self,
+            "{app_prefix}LogGroupAGI".format(app_prefix=app_prefix),
+            log_group_name="/ec2/frontdesk-app-agi-{app_env}".format(app_env=app_env)
         )
