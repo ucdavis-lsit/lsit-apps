@@ -10094,6 +10094,20 @@
                       "Version": "2012-10-17"
                     },
                     "description": "Allows frontdesk-app-voip-production access to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/AmazonSSMFullAccess"
+                          ]
+                        ]
+                      }
+                    ],
                     "roleName": "Frontdesk-app-voipProductionEC2Role"
                   }
                 },

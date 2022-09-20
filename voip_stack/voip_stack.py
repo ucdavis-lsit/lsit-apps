@@ -73,6 +73,7 @@ class VOIPStack(Stack):
             self,
             "{app_prefix}Role".format(app_prefix=app_prefix),
             assumed_by=iam.ServicePrincipal("ec2.amazonaws.com"),
+            managed_policies=[iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMFullAccess")],
             role_name="{app_prefix}EC2Role".format(app_prefix=app_prefix),
             description="Allows {service_name} access to read config files from the appropriate S3 bucket.".format(service_name=service_name)
         )
