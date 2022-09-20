@@ -36,6 +36,6 @@ sudo docker stop $(sudo docker ps -q --filter ancestor=$2.dkr.ecr.us-west-2.amaz
 sudo docker rm front-desk-app-voip-$1
 sudo docker rm front-desk-app-agi-$1
 
-sudo docker run --net=host --mount type=bind,source="$(pwd)"/asterisk/sounds,target=/var/lib/asterisk/sounds --mount type=bind,source="$(pwd)"/asterisk/moh,target=/var/lib/asterisk/moh --mount type=bind,source="$(pwd)"/asterisk/conf,target=/etc/asterisk --log-driver=awslogs --log-opt awslogs-region=us-west-2 --log-opt awslogs-group=/ec2/frontdesk-app-voip-production --name front-desk-app-voip-$1 -d $2.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-voip-$1
+sudo docker run --net=host --mount type=bind,source="$(pwd)"/asterisk/sounds,target=/var/lib/asterisk/sounds --mount type=bind,source="$(pwd)"/asterisk/moh,target=/var/lib/asterisk/moh --mount type=bind,source="$(pwd)"/asterisk/conf,target=/etc/asterisk --log-driver=awslogs --log-opt awslogs-region=us-west-2 --log-opt awslogs-group=/ec2/frontdesk-app-voip-$1 --name front-desk-app-voip-$1 -d $2.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-voip-$1
 
-sudo docker run --net=host --env-file=agi/$1.env --log-driver=awslogs --log-opt awslogs-region=us-west-2 --log-opt awslogs-group=/ec2/frontdesk-app-agi-production --name front-desk-app-agi-$1 -d $2.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-agi-$1
+sudo docker run --net=host --env-file=agi/$1.env --log-driver=awslogs --log-opt awslogs-region=us-west-2 --log-opt awslogs-group=/ec2/frontdesk-app-agi-$1 --name front-desk-app-agi-$1 -d $2.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-agi-$1

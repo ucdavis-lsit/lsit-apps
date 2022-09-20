@@ -14875,6 +14875,381 @@
           "version": "2.29.0"
         }
       },
+      "FrontDeskAppVOIPStagingStack": {
+        "id": "FrontDeskAppVOIPStagingStack",
+        "path": "FrontDeskAppVOIPStagingStack",
+        "children": {
+          "Frontdesk-app-voipStagingSecurityGroup": {
+            "id": "Frontdesk-app-voipStagingSecurityGroup",
+            "path": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingSecurityGroup",
+                    "groupName": "frontdesk-app-voip-staging",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 22,
+                        "toPort": 22,
+                        "description": "Allow SSH access from anywhere"
+                      },
+                      {
+                        "cidrIp": "208.100.60.40/32",
+                        "ipProtocol": "tcp",
+                        "fromPort": 5060,
+                        "toPort": 5080,
+                        "description": "VOIP MS"
+                      },
+                      {
+                        "cidrIp": "208.100.60.40/32",
+                        "ipProtocol": "udp",
+                        "fromPort": 5060,
+                        "toPort": 5080,
+                        "description": "VOIP MS"
+                      },
+                      {
+                        "cidrIp": "100.20.51.51/32",
+                        "ipProtocol": "tcp",
+                        "fromPort": 5038,
+                        "toPort": 5038,
+                        "description": "Elastic IP Subnet 1 for AMI"
+                      },
+                      {
+                        "cidrIp": "54.68.131.240/32",
+                        "ipProtocol": "tcp",
+                        "fromPort": 5038,
+                        "toPort": 5038,
+                        "description": "Elastic IP Subnet 2 for AMI"
+                      },
+                      {
+                        "cidrIp": "73.151.105.106/32",
+                        "ipProtocol": "tcp",
+                        "fromPort": 5038,
+                        "toPort": 5038,
+                        "description": "Edgar Macbook"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voipStagingRole": {
+            "id": "Frontdesk-app-voipStagingRole",
+            "path": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ec2.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows frontdesk-app-voip-staging access to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/AmazonSSMFullAccess"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Frontdesk-app-voipStagingEC2Role"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voipStagingPolicy": {
+            "id": "Frontdesk-app-voipStagingPolicy",
+            "path": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/frontdesk-app-voip/*"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/frontdesk-app-agi/*"
+                              ]
+                            ]
+                          }
+                        },
+                        {
+                          "Action": [
+                            "logs:CreateLogGroup",
+                            "logs:CreateLogStream",
+                            "logs:PutLogEvents",
+                            "logs:DescribeLogStreams"
+                          ],
+                          "Effect": "Allow",
+                          "Resource": "*"
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Frontdesk-app-voipStagingPolicy",
+                    "roles": [
+                      {
+                        "Ref": "FrontdeskappvoipStagingRoleC7BA1B6F"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Policy",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voipStagingEC2Instance": {
+            "id": "Frontdesk-app-voipStagingEC2Instance",
+            "path": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingEC2Instance",
+            "children": {
+              "InstanceProfile": {
+                "id": "InstanceProfile",
+                "path": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingEC2Instance/InstanceProfile",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
+                  "aws:cdk:cloudformation:props": {
+                    "roles": [
+                      {
+                        "Ref": "FrontdeskappvoipStagingRoleC7BA1B6F"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnInstanceProfile",
+                  "version": "2.29.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingEC2Instance/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
+                  "aws:cdk:cloudformation:props": {
+                    "availabilityZone": "us-west-2a",
+                    "iamInstanceProfile": {
+                      "Ref": "FrontdeskappvoipStagingEC2InstanceInstanceProfileD4500DAD"
+                    },
+                    "imageId": {
+                      "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+                    },
+                    "instanceType": "t2.medium",
+                    "keyName": "ec2_dev",
+                    "securityGroupIds": [
+                      {
+                        "Fn::GetAtt": [
+                          "FrontdeskappvoipStagingSecurityGroup3F22027D",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnetId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePublicSubnetSubnet1Subnet78FC94A7A5D57971"
+                    },
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "frontdesk-app-voip-staging"
+                      }
+                    ],
+                    "userData": {
+                      "Fn::Base64": "#!/bin/bash"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnInstance",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.Instance",
+              "version": "2.29.0"
+            }
+          },
+          "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": {
+            "id": "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
+            "path": "FrontDeskAppVOIPStagingStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.29.0"
+            }
+          },
+          "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118": {
+            "id": "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118",
+            "path": "FrontDeskAppVOIPStagingStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.Resource",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voipStagingLogGroup": {
+            "id": "Frontdesk-app-voipStagingLogGroup",
+            "path": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ec2/frontdesk-app-voip-staging",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voipStagingLogGroupAGI": {
+            "id": "Frontdesk-app-voipStagingLogGroupAGI",
+            "path": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingLogGroupAGI",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppVOIPStagingStack/Frontdesk-app-voipStagingLogGroupAGI/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ec2/frontdesk-app-agi-staging",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.29.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "FrontDeskAppVOIPStagingStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "FrontDeskAppVOIPStagingStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.42"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.29.0"
+        }
+      },
       "ECSMonitoringStack": {
         "id": "ECSMonitoringStack",
         "path": "ECSMonitoringStack",

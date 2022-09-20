@@ -473,6 +473,18 @@ LSITStack(
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
+VOIPStack(
+    app,
+    "FrontDeskAppVOIPStagingStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    {
+        "app_name": "frontdesk-app-voip",
+        "app_env": "staging",
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
 # Monitoring
 MonitoringStack(
     app,
