@@ -30,8 +30,8 @@ aws s3 cp s3://lsit-zoom-queue-env-vars/frontdesk-app-agi/$1.env agi/$1.env
 
 aws s3 sync s3://lsit-zoom-queue-env-vars/frontdesk-app-voip/$1 asterisk
 
-sudo docker stop $(sudo docker ps -q --filter ancestor=$2.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-voip-$1 )
-sudo docker stop $(sudo docker ps -q --filter ancestor=$2.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-agi-$1 )
+sudo docker stop $(sudo docker ps -q --filter name=front-desk-app-voip-$1 )
+sudo docker stop $(sudo docker ps -q --filter name=front-desk-app-agi-$1 )
 
 sudo docker rm front-desk-app-voip-$1
 sudo docker rm front-desk-app-agi-$1
