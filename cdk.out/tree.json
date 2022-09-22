@@ -6056,7 +6056,8 @@
                           "values": [
                             "caes.advisingfrontdesk.lsit.ucdavis.edu",
                             "cs.advisingfrontdesk.lsit.ucdavis.edu",
-                            "mae.advisingfrontdesk.lsit.ucdavis.edu"
+                            "mae.advisingfrontdesk.lsit.ucdavis.edu",
+                            "orangecluster.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
@@ -6105,7 +6106,8 @@
                           "values": [
                             "caes.advisingfrontdesk.lsit.ucdavis.edu",
                             "cs.advisingfrontdesk.lsit.ucdavis.edu",
-                            "mae.advisingfrontdesk.lsit.ucdavis.edu"
+                            "mae.advisingfrontdesk.lsit.ucdavis.edu",
+                            "orangecluster.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
