@@ -308,6 +308,23 @@ VOIPStack(
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
+ScheudledTaskStack(
+    app,
+    "FrontDeskAppProductionVoipHealthCheck",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "frontdesk-app-voip-health-check",
+        "app_env": "production",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
+        "command_override": ["npm","run","voipHealthCheck"],
+        "is_private": True,
+        "schedule": {"minute": "/10"}
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
 # Staging
 LSITStack(
     app,
@@ -482,6 +499,23 @@ VOIPStack(
     {
         "app_name": "frontdesk-app-voip",
         "app_env": "staging",
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+ScheudledTaskStack(
+    app,
+    "FrontDeskAppStagingVoipHealthCheck",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "frontdesk-app-voip-health-check",
+        "app_env": "staging",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-staging:latest",
+        "command_override": ["npm","run","voipHealthCheck"],
+        "is_private": True,
+        "schedule": {"minute": "/5"}
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )

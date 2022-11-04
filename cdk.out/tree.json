@@ -10365,6 +10365,551 @@
           "version": "2.29.0"
         }
       },
+      "FrontDeskAppProductionVoipHealthCheck": {
+        "id": "FrontDeskAppProductionVoipHealthCheck",
+        "path": "FrontDeskAppProductionVoipHealthCheck",
+        "children": {
+          "Frontdesk-app-voip-health-checkProductionRole": {
+            "id": "Frontdesk-app-voip-health-checkProductionRole",
+            "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows frontdesk-app-voip-health-check-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Frontdesk-app-voip-health-checkProductionECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.29.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "FrontdeskappvoiphealthcheckProductionLogGroupED0CC8B6",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "FrontdeskappvoiphealthcheckProductionRoleDefaultPolicy1233BA91",
+                        "roles": [
+                          {
+                            "Ref": "FrontdeskappvoiphealthcheckProductionRoleA6C7458E"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.29.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkProductionPolicy": {
+            "id": "Frontdesk-app-voip-health-checkProductionPolicy",
+            "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/frontdesk-app-voip-health-check/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Frontdesk-app-voip-health-checkProductionConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "FrontdeskappvoiphealthcheckProductionRoleA6C7458E"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Policy",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkProductionTask": {
+            "id": "Frontdesk-app-voip-health-checkProductionTask",
+            "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
+                        "memory": 512,
+                        "name": "frontdesk-app-voip-health-check-production",
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "FrontdeskappvoiphealthcheckProductionLogGroupED0CC8B6"
+                            },
+                            "awslogs-stream-prefix": "frontdesk-app-voip-health-check-production",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/frontdesk-app-voip-health-check/production.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "FrontdeskappvoiphealthcheckProductionRoleA6C7458E",
+                        "Arn"
+                      ]
+                    },
+                    "family": "frontdesk-app-voip-health-check-production",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "FrontdeskappvoiphealthcheckProductionRoleA6C7458E",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                  "version": "2.29.0"
+                }
+              },
+              "frontdesk-app-voip-health-check-production": {
+                "id": "frontdesk-app-voip-health-check-production",
+                "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionTask/frontdesk-app-voip-health-check-production",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkProductionLogGroup": {
+            "id": "Frontdesk-app-voip-health-checkProductionLogGroup",
+            "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/frontdesk-app-voip-health-check-production",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkProductionBucket": {
+            "id": "Frontdesk-app-voip-health-checkProductionBucket",
+            "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionBucket",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkProductionSecurityGroup": {
+            "id": "Frontdesk-app-voip-health-checkProductionSecurityGroup",
+            "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionSecurityGroup",
+                    "groupName": "frontdesk-app-voip-health-check-production",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkProductionEventRole": {
+            "id": "Frontdesk-app-voip-health-checkProductionEventRole",
+            "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionEventRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionEventRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "events.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows frontdesk-app-voip-health-check-production scheduled tasks to run in ECS.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Frontdesk-app-voip-health-checkProductionEventRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.29.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionEventRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionEventRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "ecs:RunTask",
+                              "Condition": {
+                                "ArnEquals": {
+                                  "ecs:cluster": {
+                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                                  }
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Ref": "FrontdeskappvoiphealthcheckProductionTask9C832DE4"
+                              }
+                            },
+                            {
+                              "Action": "iam:PassRole",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "FrontdeskappvoiphealthcheckProductionRoleA6C7458E",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "FrontdeskappvoiphealthcheckProductionEventRoleDefaultPolicy7C1CD243",
+                        "roles": [
+                          {
+                            "Ref": "FrontdeskappvoiphealthcheckProductionEventRoleFBCC2149"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.29.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkProductionScheduledTask": {
+            "id": "Frontdesk-app-voip-health-checkProductionScheduledTask",
+            "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionScheduledTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppProductionVoipHealthCheck/Frontdesk-app-voip-health-checkProductionScheduledTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                  "aws:cdk:cloudformation:props": {
+                    "scheduleExpression": "cron(/10 * * * ? *)",
+                    "state": "ENABLED",
+                    "targets": [
+                      {
+                        "id": "Target0",
+                        "arn": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                        },
+                        "roleArn": {
+                          "Fn::GetAtt": [
+                            "FrontdeskappvoiphealthcheckProductionEventRoleFBCC2149",
+                            "Arn"
+                          ]
+                        },
+                        "ecsParameters": {
+                          "taskCount": 1,
+                          "taskDefinitionArn": {
+                            "Ref": "FrontdeskappvoiphealthcheckProductionTask9C832DE4"
+                          },
+                          "launchType": "FARGATE",
+                          "platformVersion": "LATEST",
+                          "networkConfiguration": {
+                            "awsVpcConfiguration": {
+                              "subnets": [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+                                },
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+                                }
+                              ],
+                              "assignPublicIp": "DISABLED",
+                              "securityGroups": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "FrontdeskappvoiphealthcheckProductionSecurityGroup2539B30A",
+                                    "GroupId"
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "input": "{\"containerOverrides\":[{\"name\":\"frontdesk-app-voip-health-check-production\",\"command\":[\"npm\",\"run\",\"voipHealthCheck\"]}]}"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_events.CfnRule",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_events.Rule",
+              "version": "2.29.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "FrontDeskAppProductionVoipHealthCheck/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "FrontDeskAppProductionVoipHealthCheck/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.42"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.29.0"
+        }
+      },
       "FrontDeskAppClientStagingStack": {
         "id": "FrontDeskAppClientStagingStack",
         "path": "FrontDeskAppClientStagingStack",
@@ -15235,6 +15780,551 @@
               "Default": {
                 "id": "Default",
                 "path": "FrontDeskAppVOIPStagingStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.42"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.29.0"
+        }
+      },
+      "FrontDeskAppStagingVoipHealthCheck": {
+        "id": "FrontDeskAppStagingVoipHealthCheck",
+        "path": "FrontDeskAppStagingVoipHealthCheck",
+        "children": {
+          "Frontdesk-app-voip-health-checkStagingRole": {
+            "id": "Frontdesk-app-voip-health-checkStagingRole",
+            "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows frontdesk-app-voip-health-check-staging tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Frontdesk-app-voip-health-checkStagingECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.29.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "FrontdeskappvoiphealthcheckStagingLogGroupB3C783CA",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "FrontdeskappvoiphealthcheckStagingRoleDefaultPolicyB95C1E66",
+                        "roles": [
+                          {
+                            "Ref": "FrontdeskappvoiphealthcheckStagingRole140539D9"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.29.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkStagingPolicy": {
+            "id": "Frontdesk-app-voip-health-checkStagingPolicy",
+            "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/frontdesk-app-voip-health-check/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Frontdesk-app-voip-health-checkStagingConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "FrontdeskappvoiphealthcheckStagingRole140539D9"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Policy",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkStagingTask": {
+            "id": "Frontdesk-app-voip-health-checkStagingTask",
+            "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-staging:latest",
+                        "memory": 512,
+                        "name": "frontdesk-app-voip-health-check-staging",
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "FrontdeskappvoiphealthcheckStagingLogGroupB3C783CA"
+                            },
+                            "awslogs-stream-prefix": "frontdesk-app-voip-health-check-staging",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/frontdesk-app-voip-health-check/staging.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "FrontdeskappvoiphealthcheckStagingRole140539D9",
+                        "Arn"
+                      ]
+                    },
+                    "family": "frontdesk-app-voip-health-check-staging",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "FrontdeskappvoiphealthcheckStagingRole140539D9",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                  "version": "2.29.0"
+                }
+              },
+              "frontdesk-app-voip-health-check-staging": {
+                "id": "frontdesk-app-voip-health-check-staging",
+                "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingTask/frontdesk-app-voip-health-check-staging",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkStagingLogGroup": {
+            "id": "Frontdesk-app-voip-health-checkStagingLogGroup",
+            "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/frontdesk-app-voip-health-check-staging",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkStagingBucket": {
+            "id": "Frontdesk-app-voip-health-checkStagingBucket",
+            "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingBucket",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkStagingSecurityGroup": {
+            "id": "Frontdesk-app-voip-health-checkStagingSecurityGroup",
+            "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingSecurityGroup",
+                    "groupName": "frontdesk-app-voip-health-check-staging",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkStagingEventRole": {
+            "id": "Frontdesk-app-voip-health-checkStagingEventRole",
+            "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingEventRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingEventRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "events.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows frontdesk-app-voip-health-check-staging scheduled tasks to run in ECS.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Frontdesk-app-voip-health-checkStagingEventRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.29.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingEventRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingEventRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "ecs:RunTask",
+                              "Condition": {
+                                "ArnEquals": {
+                                  "ecs:cluster": {
+                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                                  }
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Ref": "FrontdeskappvoiphealthcheckStagingTaskA76CE653"
+                              }
+                            },
+                            {
+                              "Action": "iam:PassRole",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "FrontdeskappvoiphealthcheckStagingRole140539D9",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "FrontdeskappvoiphealthcheckStagingEventRoleDefaultPolicy77845518",
+                        "roles": [
+                          {
+                            "Ref": "FrontdeskappvoiphealthcheckStagingEventRoleCD4CA7B2"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.29.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-voip-health-checkStagingScheduledTask": {
+            "id": "Frontdesk-app-voip-health-checkStagingScheduledTask",
+            "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingScheduledTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppStagingVoipHealthCheck/Frontdesk-app-voip-health-checkStagingScheduledTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                  "aws:cdk:cloudformation:props": {
+                    "scheduleExpression": "cron(/5 * * * ? *)",
+                    "state": "ENABLED",
+                    "targets": [
+                      {
+                        "id": "Target0",
+                        "arn": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                        },
+                        "roleArn": {
+                          "Fn::GetAtt": [
+                            "FrontdeskappvoiphealthcheckStagingEventRoleCD4CA7B2",
+                            "Arn"
+                          ]
+                        },
+                        "ecsParameters": {
+                          "taskCount": 1,
+                          "taskDefinitionArn": {
+                            "Ref": "FrontdeskappvoiphealthcheckStagingTaskA76CE653"
+                          },
+                          "launchType": "FARGATE",
+                          "platformVersion": "LATEST",
+                          "networkConfiguration": {
+                            "awsVpcConfiguration": {
+                              "subnets": [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+                                },
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+                                }
+                              ],
+                              "assignPublicIp": "DISABLED",
+                              "securityGroups": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "FrontdeskappvoiphealthcheckStagingSecurityGroup883A2315",
+                                    "GroupId"
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "input": "{\"containerOverrides\":[{\"name\":\"frontdesk-app-voip-health-check-staging\",\"command\":[\"npm\",\"run\",\"voipHealthCheck\"]}]}"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_events.CfnRule",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_events.Rule",
+              "version": "2.29.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "FrontDeskAppStagingVoipHealthCheck/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "FrontDeskAppStagingVoipHealthCheck/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnResource",
                   "version": "2.29.0"
