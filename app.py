@@ -26,6 +26,13 @@ network_stack = NetworkStack(
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
+# Monitoring
+monitoring_stack = MonitoringStack(
+    app,
+    "ECSMonitoringStack",
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
 # Development
 dev_frontdesk_frontend_stack = LSITStack(
     app,
@@ -184,7 +191,9 @@ LSITStack(
         "http_load_balancer_priority": 2,
         "host_headers": ["api.frontdesk.lsit.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/4c608488-49d4-4fb8-9310-982170d9a394"],
-        "is_private": True
+        "is_private": True,
+        "resource_multiplier": 2,
+        "monitoring_stack": monitoring_stack
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -356,7 +365,7 @@ LSITStack(
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/42f3fc26-59c4-495f-9166-9e8180d95e6b", "arn:aws:acm:us-west-2:042277129213:certificate/c49d425c-7018-4e7e-92e8-efa15017bfdc"],
         "is_private": True,
         "additional_https_rule_priorities": [8],
-        "additional_http_rule_priorities": [8]
+        "additional_http_rule_priorities": [8],
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -379,7 +388,8 @@ LSITStack(
         "http_load_balancer_priority": 5,
         "host_headers": ["stage.api.frontdesk.lsit.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/1ae579ad-54ac-4a6e-bcb7-3e4a547b3a08"],
-        "is_private": True
+        "is_private": True,
+        "monitoring_stack": monitoring_stack
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -517,13 +527,6 @@ ScheudledTaskStack(
         "is_private": True,
         "schedule": {"minute": "/5"}
     },
-    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
-)
-
-# Monitoring
-MonitoringStack(
-    app,
-    "ECSMonitoringStack",
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
