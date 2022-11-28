@@ -7,6 +7,9 @@ from aws_cdk.aws_elasticloadbalancing import LoadBalancer
 from aws_cdk.aws_elasticloadbalancingv2 import ApplicationListener, ApplicationLoadBalancer, ApplicationProtocol, ApplicationTargetGroup, ListenerAction, ListenerCondition, TargetType, ApplicationListenerRule, ListenerCertificate
 from aws_cdk.aws_logs import LogGroup
 from aws_cdk.aws_s3 import Bucket
+import aws_cdk.aws_cloudwatch as cloudwatch
+import aws_cdk.aws_cloudwatch_actions as actions
+import aws_cdk.aws_sns as sns
 
 class LSITStack(Stack):
 
@@ -44,6 +47,7 @@ class LSITStack(Stack):
         health_check_path = app_props.get("health_check_path","/health")
         additional_https_rule_priorities = app_props.get("additional_https_rule_priorities", [])
         additional_http_rule_priorities = app_props.get("additional_http_rule_priorities", [])
+        monitoring_stack = app_props.get("monitoring_stack")
 
         role = iam.Role(
             self,
@@ -76,8 +80,8 @@ class LSITStack(Stack):
         task = ecs.FargateTaskDefinition(
             self,
             "{app_prefix}Task".format(app_prefix=app_prefix),
-            cpu=256,
-            memory_limit_mib=512,
+            cpu=256*resource_multiplier,
+            memory_limit_mib=512*resource_multiplier,
             family=task_name,
             execution_role=role,
             task_role=role
@@ -163,6 +167,25 @@ class LSITStack(Stack):
                 cluster=cluster,
                 service_name=task_name
             )
+
+        # Setup alarms on service
+        cpu_alarm = cloudwatch.Alarm(
+            self, 
+            "{app_prefix}CPUAlarm".format(app_prefix=app_prefix),
+            comparison_operator=cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
+            threshold=75,
+            evaluation_periods=1,
+            metric=service.metric_cpu_utilization(),
+            alarm_name="{app_prefix}CPUAlarm".format(app_prefix=app_prefix),
+            actions_enabled=True
+        )
+        print("?")
+        print(monitoring_stack)
+        if monitoring_stack:
+            print("monitoring")
+            print(monitoring_stack.ecs_alerts_topic)
+            print(app_prefix)
+            cpu_alarm.add_alarm_action(actions.SnsAction(topic=monitoring_stack.ecs_alerts_topic))
 
         if public_facing:
 

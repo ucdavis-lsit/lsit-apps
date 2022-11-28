@@ -93,6 +93,16 @@
    }
   }
  },
+ "Outputs": {
+  "ExportsOutputRefECSAlerts6D168A967C6D2BC9": {
+   "Value": {
+    "Ref": "ECSAlerts6D168A96"
+   },
+   "Export": {
+    "Name": "ECSMonitoringStack:ExportsOutputRefECSAlerts6D168A967C6D2BC9"
+   }
+  }
+ },
  "Parameters": {
   "BootstrapVersion": {
    "Type": "AWS::SSM::Parameter::Value<String>",

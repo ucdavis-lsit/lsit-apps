@@ -290,10 +290,44 @@
     "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionService/Service"
    }
   },
+  "FrontdeskappsessionworkerProductionCPUAlarm4F36A313": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "ActionsEnabled": true,
+    "AlarmName": "Frontdesk-app-session-workerProductionCPUAlarm",
+    "Dimensions": [
+     {
+      "Name": "ClusterName",
+      "Value": {
+       "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+      }
+     },
+     {
+      "Name": "ServiceName",
+      "Value": {
+       "Fn::GetAtt": [
+        "FrontdeskappsessionworkerProductionService51229F95",
+        "Name"
+       ]
+      }
+     }
+    ],
+    "MetricName": "CPUUtilization",
+    "Namespace": "AWS/ECS",
+    "Period": 300,
+    "Statistic": "Average",
+    "Threshold": 75
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionCPUAlarm/Resource"
+   }
+  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Pyw6CQAz8Fu5LVTh5VaMXDwS9m3WtWIGt2YeGkP13AdGop06n0+k0gWQO00g+bKxOZVzREdqdk6oUHXVoSdbQ5lyhWJ71UDOuSDV9+0JBoLLQrqUppMO9tOUKz6TJEete9c+wdpI0mi9u3N2huZMaLo0wiIqLznzLxcawv/WjNw7CprDwqkS3kBa7FEmXHJU35JqP+ocIYfgCLXvTm2eNu7CepDCHWRpdLVFsvHZUI+Sv+gQbjLi6HgEAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Py3LCMAz8Fu6OaJMTR2invfTAAHdGNSKIOFbHjzIZj/+9cXhM25NWq5V2VUO9gKcZXnylD11l+BPSNqDu1EjtE2MPaSOG1MvRTnUthvVQ2ivKirSH9IauxUA79N0rHdlyYLFF9Z8RG5AtuV/cbXdL7pv15HSDWRlpx+Mf0r47iV9ldMdZ+QZWUXcUVuhpTFGPyUlHx2F4qP8QWWkj8XDBoE+QlgZdXzQTyHn6kLxEV4zXQziJnTewgOdmdvbMlYs2cE+wudYfY5ZJ3ToBAAA="
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/CDKMetadata/Default"

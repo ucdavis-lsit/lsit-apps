@@ -321,6 +321,40 @@
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionService/Service"
    }
   },
+  "FrontdeskappclientProductionCPUAlarm1F4EBC06": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "ActionsEnabled": true,
+    "AlarmName": "Frontdesk-app-clientProductionCPUAlarm",
+    "Dimensions": [
+     {
+      "Name": "ClusterName",
+      "Value": {
+       "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+      }
+     },
+     {
+      "Name": "ServiceName",
+      "Value": {
+       "Fn::GetAtt": [
+        "FrontdeskappclientProductionService34EFD446",
+        "Name"
+       ]
+      }
+     }
+    ],
+    "MetricName": "CPUUtilization",
+    "Namespace": "AWS/ECS",
+    "Period": 300,
+    "Statistic": "Average",
+    "Threshold": 75
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionCPUAlarm/Resource"
+   }
+  },
   "FrontdeskappclientProductionTargetGroup408F5B4D": {
    "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
    "Properties": {
@@ -731,7 +765,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31RTU/DMAz9Lbt3AdrTjmwIhLTD1O2OvMwtpllSxc5QVfW/k3QfKmji5OfnZ/s5yVW+UI8z+Oa5PjRzQ3vVbwV0k0Xqoyc4qr50BrNVZce4cYZ0l9IzGjLUrPpX8DUI7oCbF6zIkpCzSfWXcVaALPoJd+ndoj+RHjdd4JAZV8fha1e/eRfaVLriIeNCLYNuUJbAGF3k0Tnq4Em6m/p/4t3WHpnjCQZYSBsHhz0YsJpsfYrznts23gjJ5S6aRLnNmaYT1ZpYMF43Or3iO/UVeqEqkTiVTuk7XWUwv+QpH4bxa5Bd8OnFNp18OvtQqIV6KmZfTDT3wQodUZXn+AOIbsoV8wEAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31Ry27CMBD8Fu6J2yYnjkDVqhIHFLhXi9mEJY4d2WtQFOXfa4eH0gr1tLOzs4+xM5HNxesMLi6VhzpVtBf9lkHWSaC+e4JG9IVRmKxKPcaNUSS7mF7RkKB0ov8AWwHjDlz9jiVpYjI6qv4yRjOQRjvhbr1btGeS46YbHBJlqjB8bapPa3wbS3c8JC4XSy9r5CU4DFdk4XKU3hJ3D/X/xJeuLDo3JFIZf7gAy6PoFwpsE6UjCPYUOKaggMMeFGhJujqHXYu2Df4hOtgFA8iPHdN0olqTYwzORxd3/KS+QstURhKn0in9pKvw6pc85sMwfhs64218zU3HR6NfcjEXb/ns5IhS6zVTg6K4xh/fEwTeDwIAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientProdStack/CDKMetadata/Default"

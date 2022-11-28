@@ -10,8 +10,8 @@ class MonitoringStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        ecs_alerts_topic = sns.Topic(self, "ECSAlerts")
-        ecs_alerts_topic.add_subscription(subscriptions.EmailSubscription("dssit-devs-exceptions@ucdavis.edu"))
+        self.ecs_alerts_topic = sns.Topic(self, "ECSAlerts")
+        self.ecs_alerts_topic.add_subscription(subscriptions.EmailSubscription("dssit-devs-exceptions@ucdavis.edu"))
 
         task_stopped_rule = events.Rule(
             self,
@@ -34,5 +34,5 @@ class MonitoringStack(Stack):
             )
         )
         task_stopped_rule.add_target(
-            event_targets.SnsTopic(ecs_alerts_topic)
+            event_targets.SnsTopic(self.ecs_alerts_topic)
         )

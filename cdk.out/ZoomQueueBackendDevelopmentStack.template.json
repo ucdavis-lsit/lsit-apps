@@ -320,6 +320,40 @@
     "aws:cdk:path": "ZoomQueueBackendDevelopmentStack/Zoom-queue-backendDevelopmentService/Service"
    }
   },
+  "ZoomqueuebackendDevelopmentCPUAlarm71BEE123": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "ActionsEnabled": true,
+    "AlarmName": "Zoom-queue-backendDevelopmentCPUAlarm",
+    "Dimensions": [
+     {
+      "Name": "ClusterName",
+      "Value": {
+       "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueDevelopmentClusterCD7CCE951AD3B1F8"
+      }
+     },
+     {
+      "Name": "ServiceName",
+      "Value": {
+       "Fn::GetAtt": [
+        "ZoomqueuebackendDevelopmentServiceA4914619",
+        "Name"
+       ]
+      }
+     }
+    ],
+    "MetricName": "CPUUtilization",
+    "Namespace": "AWS/ECS",
+    "Period": 300,
+    "Statistic": "Average",
+    "Threshold": 75
+   },
+   "Metadata": {
+    "aws:cdk:path": "ZoomQueueBackendDevelopmentStack/Zoom-queue-backendDevelopmentCPUAlarm/Resource"
+   }
+  },
   "ZoomqueuebackendDevelopmentTargetGroup683F2255": {
    "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
    "Properties": {
@@ -428,7 +462,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QwU7DMAz9lt3TAO1pRwYCIe0wdbsjL/OK1yypYmeoqvrvpO2YCkKcbL+8PL/nXOdLfb+AT87Moc4s7XW3FTC1StB7R3DWXektqqejG+vGWzLtME5dr9Cw7l4gVCC4A66f8UiOhLwbWL8R7wTIYZhh179bDBcy46Zr2yvrqyS+9tVr8LEZnr77XnGhV9HUKCtgTC7y5BxNDCTtjf0/8OaqgMwpggUWMtbDYQ8WnCFXXZLeY9OkjDC43CWTKDed+ThjrYkFU7oyTif7Mf/Bm3P6fjwyso9hyL5p5cO7u0Iv9UOxODFRFqITOqMup/oFOaqpP70BAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31RwU7DMAz9lt27AO1pxw0EQtph6nZHXup1pmlSJc6mqsq/k7RjKghx8vPLS56fk4t8JR4XcHVLWTVLRUcx7Blkk0XqYyBoxVAahdnzSY91ZxTJPrUTChlKJ4ZXsDUwHsA1L3giTUxGJ9VvxmgG0mhn3O3uHu2F5Oh0gyFTpo6Pb039Zo3v0tE3DpkrxMbLBnkDDuMUeZwcpbfE/V39P/Gua4vOhUwq46srsDyLYa3Atkk6ghhPgWOKCqiOoEBL0vUleq27LuaHlOAQAyDfPebtTLUlxxiTl35a54/+D91cE8L4AeiMt2kvu57PRj8UYiWeisWnI1par5laFOVUvwCu5xCl2QEAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "ZoomQueueBackendDevelopmentStack/CDKMetadata/Default"

@@ -1867,6 +1867,196 @@
           "version": "2.29.0"
         }
       },
+      "ECSMonitoringStack": {
+        "id": "ECSMonitoringStack",
+        "path": "ECSMonitoringStack",
+        "children": {
+          "ECSAlerts": {
+            "id": "ECSAlerts",
+            "path": "ECSMonitoringStack/ECSAlerts",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ECSMonitoringStack/ECSAlerts/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                  "aws:cdk:cloudformation:props": {}
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
+                  "version": "2.29.0"
+                }
+              },
+              "dssit-devs-exceptions@ucdavis.edu": {
+                "id": "dssit-devs-exceptions@ucdavis.edu",
+                "path": "ECSMonitoringStack/ECSAlerts/dssit-devs-exceptions@ucdavis.edu",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "ECSMonitoringStack/ECSAlerts/dssit-devs-exceptions@ucdavis.edu/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
+                      "aws:cdk:cloudformation:props": {
+                        "protocol": "email",
+                        "topicArn": {
+                          "Ref": "ECSAlerts6D168A96"
+                        },
+                        "endpoint": "dssit-devs-exceptions@ucdavis.edu"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_sns.CfnSubscription",
+                      "version": "2.29.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.Subscription",
+                  "version": "2.29.0"
+                }
+              },
+              "Policy": {
+                "id": "Policy",
+                "path": "ECSMonitoringStack/ECSAlerts/Policy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "ECSMonitoringStack/ECSAlerts/Policy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SNS::TopicPolicy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sns:Publish",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "events.amazonaws.com"
+                              },
+                              "Resource": {
+                                "Ref": "ECSAlerts6D168A96"
+                              },
+                              "Sid": "0"
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "topics": [
+                          {
+                            "Ref": "ECSAlerts6D168A96"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_sns.CfnTopicPolicy",
+                      "version": "2.29.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.TopicPolicy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_sns.Topic",
+              "version": "2.29.0"
+            }
+          },
+          "ECSTaskStoppedRule": {
+            "id": "ECSTaskStoppedRule",
+            "path": "ECSMonitoringStack/ECSTaskStoppedRule",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ECSMonitoringStack/ECSTaskStoppedRule/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                  "aws:cdk:cloudformation:props": {
+                    "eventPattern": {
+                      "detail": {
+                        "lastStatus": [
+                          "STOPPED"
+                        ],
+                        "group": [
+                          "service:frontdesk-app-websocket-production",
+                          "service:frontdesk-app-server-production",
+                          "service:frontdesk-app-client-production"
+                        ]
+                      },
+                      "detail-type": [
+                        "ECS Task State Change"
+                      ],
+                      "source": [
+                        "aws.ecs"
+                      ]
+                    },
+                    "state": "ENABLED",
+                    "targets": [
+                      {
+                        "id": "Target0",
+                        "arn": {
+                          "Ref": "ECSAlerts6D168A96"
+                        }
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_events.CfnRule",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_events.Rule",
+              "version": "2.29.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "ECSMonitoringStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "ECSMonitoringStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.42"
+            }
+          },
+          "Exports": {
+            "id": "Exports",
+            "path": "ECSMonitoringStack/Exports",
+            "children": {
+              "Output{\"Ref\":\"ECSAlerts6D168A96\"}": {
+                "id": "Output{\"Ref\":\"ECSAlerts6D168A96\"}",
+                "path": "ECSMonitoringStack/Exports/Output{\"Ref\":\"ECSAlerts6D168A96\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.42"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.29.0"
+        }
+      },
       "ZoomQueueFrontendDevelopmentStack": {
         "id": "ZoomQueueFrontendDevelopmentStack",
         "path": "ZoomQueueFrontendDevelopmentStack",
@@ -2308,6 +2498,55 @@
             },
             "constructInfo": {
               "fqn": "aws-cdk-lib.aws_ecs.FargateService",
+              "version": "2.29.0"
+            }
+          },
+          "Zoom-queue-frontendDevelopmentCPUAlarm": {
+            "id": "Zoom-queue-frontendDevelopmentCPUAlarm",
+            "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "actionsEnabled": true,
+                    "alarmName": "Zoom-queue-frontendDevelopmentCPUAlarm",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueDevelopmentClusterCD7CCE951AD3B1F8"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "ZoomqueuefrontendDevelopmentService320EF827",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
               "version": "2.29.0"
             }
           },
@@ -3111,6 +3350,55 @@
               "version": "2.29.0"
             }
           },
+          "Zoom-queue-backendDevelopmentCPUAlarm": {
+            "id": "Zoom-queue-backendDevelopmentCPUAlarm",
+            "path": "ZoomQueueBackendDevelopmentStack/Zoom-queue-backendDevelopmentCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ZoomQueueBackendDevelopmentStack/Zoom-queue-backendDevelopmentCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "actionsEnabled": true,
+                    "alarmName": "Zoom-queue-backendDevelopmentCPUAlarm",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueDevelopmentClusterCD7CCE951AD3B1F8"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "ZoomqueuebackendDevelopmentServiceA4914619",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.29.0"
+            }
+          },
           "Zoom-queue-backendDevelopmentTargetGroup": {
             "id": "Zoom-queue-backendDevelopmentTargetGroup",
             "path": "ZoomQueueBackendDevelopmentStack/Zoom-queue-backendDevelopmentTargetGroup",
@@ -3741,6 +4029,55 @@
             },
             "constructInfo": {
               "fqn": "aws-cdk-lib.aws_ecs.FargateService",
+              "version": "2.29.0"
+            }
+          },
+          "Zoom-queue-websocketDevelopmentCPUAlarm": {
+            "id": "Zoom-queue-websocketDevelopmentCPUAlarm",
+            "path": "ZoomQueueWebsocketDevelopmentStack/Zoom-queue-websocketDevelopmentCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ZoomQueueWebsocketDevelopmentStack/Zoom-queue-websocketDevelopmentCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "actionsEnabled": true,
+                    "alarmName": "Zoom-queue-websocketDevelopmentCPUAlarm",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueDevelopmentClusterCD7CCE951AD3B1F8"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "ZoomqueuewebsocketDevelopmentServiceA5CE7E5B",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
               "version": "2.29.0"
             }
           },
@@ -5467,6 +5804,55 @@
               "version": "2.29.0"
             }
           },
+          "Frontdesk-app-clientProductionCPUAlarm": {
+            "id": "Frontdesk-app-clientProductionCPUAlarm",
+            "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "actionsEnabled": true,
+                    "alarmName": "Frontdesk-app-clientProductionCPUAlarm",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "FrontdeskappclientProductionService34EFD446",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.29.0"
+            }
+          },
           "Frontdesk-app-clientProductionTargetGroup": {
             "id": "Frontdesk-app-clientProductionTargetGroup",
             "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionTargetGroup",
@@ -6349,10 +6735,10 @@
                   "aws:cdk:cloudformation:props": {
                     "containerDefinitions": [
                       {
-                        "cpu": 256,
+                        "cpu": 512,
                         "essential": true,
                         "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
-                        "memory": 512,
+                        "memory": 1024,
                         "name": "frontdesk-app-server-production",
                         "portMappings": [
                           {
@@ -6414,7 +6800,7 @@
                         ]
                       }
                     ],
-                    "cpu": "256",
+                    "cpu": "512",
                     "executionRoleArn": {
                       "Fn::GetAtt": [
                         "FrontdeskappserverProductionRole7CAE5038",
@@ -6422,7 +6808,7 @@
                       ]
                     },
                     "family": "frontdesk-app-server-production",
-                    "memory": "512",
+                    "memory": "1024",
                     "networkMode": "awsvpc",
                     "requiresCompatibilities": [
                       "FARGATE"
@@ -6620,6 +7006,60 @@
             },
             "constructInfo": {
               "fqn": "aws-cdk-lib.aws_ecs.FargateService",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-serverProductionCPUAlarm": {
+            "id": "Frontdesk-app-serverProductionCPUAlarm",
+            "path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppServerProdStack/Frontdesk-app-serverProductionCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "actionsEnabled": true,
+                    "alarmActions": [
+                      {
+                        "Fn::ImportValue": "ECSMonitoringStack:ExportsOutputRefECSAlerts6D168A967C6D2BC9"
+                      }
+                    ],
+                    "alarmName": "Frontdesk-app-serverProductionCPUAlarm",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "FrontdeskappserverProductionService314ABA86",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
               "version": "2.29.0"
             }
           },
@@ -7217,6 +7657,55 @@
             },
             "constructInfo": {
               "fqn": "aws-cdk-lib.aws_ecs.FargateService",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-websocketProductionCPUAlarm": {
+            "id": "Frontdesk-app-websocketProductionCPUAlarm",
+            "path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppWebsocketProdStack/Frontdesk-app-websocketProductionCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "actionsEnabled": true,
+                    "alarmName": "Frontdesk-app-websocketProductionCPUAlarm",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "FrontdeskappwebsocketProductionService52E97BCB",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
               "version": "2.29.0"
             }
           },
@@ -9966,6 +10455,55 @@
               "version": "2.29.0"
             }
           },
+          "Frontdesk-app-session-workerProductionCPUAlarm": {
+            "id": "Frontdesk-app-session-workerProductionCPUAlarm",
+            "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "actionsEnabled": true,
+                    "alarmName": "Frontdesk-app-session-workerProductionCPUAlarm",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "FrontdeskappsessionworkerProductionService51229F95",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.29.0"
+            }
+          },
           "CDKMetadata": {
             "id": "CDKMetadata",
             "path": "FrontDeskAppSessionWorkerProductionStack/CDKMetadata",
@@ -11354,6 +11892,55 @@
               "version": "2.29.0"
             }
           },
+          "Frontdesk-app-clientStagingCPUAlarm": {
+            "id": "Frontdesk-app-clientStagingCPUAlarm",
+            "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "actionsEnabled": true,
+                    "alarmName": "Frontdesk-app-clientStagingCPUAlarm",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "FrontdeskappclientStagingService2116B712",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.29.0"
+            }
+          },
           "Frontdesk-app-clientStagingTargetGroup": {
             "id": "Frontdesk-app-clientStagingTargetGroup",
             "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingTargetGroup",
@@ -12055,6 +12642,60 @@
               "version": "2.29.0"
             }
           },
+          "Frontdesk-app-serverStagingCPUAlarm": {
+            "id": "Frontdesk-app-serverStagingCPUAlarm",
+            "path": "FrontDeskAppServerStagingStack/Frontdesk-app-serverStagingCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppServerStagingStack/Frontdesk-app-serverStagingCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "actionsEnabled": true,
+                    "alarmActions": [
+                      {
+                        "Fn::ImportValue": "ECSMonitoringStack:ExportsOutputRefECSAlerts6D168A967C6D2BC9"
+                      }
+                    ],
+                    "alarmName": "Frontdesk-app-serverStagingCPUAlarm",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "FrontdeskappserverStagingService72913D39",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.29.0"
+            }
+          },
           "Frontdesk-app-serverStagingTargetGroup": {
             "id": "Frontdesk-app-serverStagingTargetGroup",
             "path": "FrontDeskAppServerStagingStack/Frontdesk-app-serverStagingTargetGroup",
@@ -12649,6 +13290,55 @@
             },
             "constructInfo": {
               "fqn": "aws-cdk-lib.aws_ecs.FargateService",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-websocketStagingCPUAlarm": {
+            "id": "Frontdesk-app-websocketStagingCPUAlarm",
+            "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "actionsEnabled": true,
+                    "alarmName": "Frontdesk-app-websocketStagingCPUAlarm",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "FrontdeskappwebsocketStagingServiceD1E42DC7",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
               "version": "2.29.0"
             }
           },
@@ -15398,6 +16088,55 @@
               "version": "2.29.0"
             }
           },
+          "Frontdesk-app-session-workerStagingCPUAlarm": {
+            "id": "Frontdesk-app-session-workerStagingCPUAlarm",
+            "path": "FrontDeskAppSessionWorkerStagingStack/Frontdesk-app-session-workerStagingCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppSessionWorkerStagingStack/Frontdesk-app-session-workerStagingCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "actionsEnabled": true,
+                    "alarmName": "Frontdesk-app-session-workerStagingCPUAlarm",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "FrontdeskappsessionworkerStagingServiceA61C0150",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.29.0"
+            }
+          },
           "CDKMetadata": {
             "id": "CDKMetadata",
             "path": "FrontDeskAppSessionWorkerStagingStack/CDKMetadata",
@@ -16325,178 +17064,6 @@
               "Default": {
                 "id": "Default",
                 "path": "FrontDeskAppStagingVoipHealthCheck/CDKMetadata/Default",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.CfnResource",
-                  "version": "2.29.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "constructs.Construct",
-              "version": "10.1.42"
-            }
-          }
-        },
-        "constructInfo": {
-          "fqn": "aws-cdk-lib.Stack",
-          "version": "2.29.0"
-        }
-      },
-      "ECSMonitoringStack": {
-        "id": "ECSMonitoringStack",
-        "path": "ECSMonitoringStack",
-        "children": {
-          "ECSAlerts": {
-            "id": "ECSAlerts",
-            "path": "ECSMonitoringStack/ECSAlerts",
-            "children": {
-              "Resource": {
-                "id": "Resource",
-                "path": "ECSMonitoringStack/ECSAlerts/Resource",
-                "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
-                  "aws:cdk:cloudformation:props": {}
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
-                  "version": "2.29.0"
-                }
-              },
-              "dssit-devs-exceptions@ucdavis.edu": {
-                "id": "dssit-devs-exceptions@ucdavis.edu",
-                "path": "ECSMonitoringStack/ECSAlerts/dssit-devs-exceptions@ucdavis.edu",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "ECSMonitoringStack/ECSAlerts/dssit-devs-exceptions@ucdavis.edu/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::SNS::Subscription",
-                      "aws:cdk:cloudformation:props": {
-                        "protocol": "email",
-                        "topicArn": {
-                          "Ref": "ECSAlerts6D168A96"
-                        },
-                        "endpoint": "dssit-devs-exceptions@ucdavis.edu"
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_sns.CfnSubscription",
-                      "version": "2.29.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_sns.Subscription",
-                  "version": "2.29.0"
-                }
-              },
-              "Policy": {
-                "id": "Policy",
-                "path": "ECSMonitoringStack/ECSAlerts/Policy",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "ECSMonitoringStack/ECSAlerts/Policy/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::SNS::TopicPolicy",
-                      "aws:cdk:cloudformation:props": {
-                        "policyDocument": {
-                          "Statement": [
-                            {
-                              "Action": "sns:Publish",
-                              "Effect": "Allow",
-                              "Principal": {
-                                "Service": "events.amazonaws.com"
-                              },
-                              "Resource": {
-                                "Ref": "ECSAlerts6D168A96"
-                              },
-                              "Sid": "0"
-                            }
-                          ],
-                          "Version": "2012-10-17"
-                        },
-                        "topics": [
-                          {
-                            "Ref": "ECSAlerts6D168A96"
-                          }
-                        ]
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_sns.CfnTopicPolicy",
-                      "version": "2.29.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_sns.TopicPolicy",
-                  "version": "2.29.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "aws-cdk-lib.aws_sns.Topic",
-              "version": "2.29.0"
-            }
-          },
-          "ECSTaskStoppedRule": {
-            "id": "ECSTaskStoppedRule",
-            "path": "ECSMonitoringStack/ECSTaskStoppedRule",
-            "children": {
-              "Resource": {
-                "id": "Resource",
-                "path": "ECSMonitoringStack/ECSTaskStoppedRule/Resource",
-                "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
-                  "aws:cdk:cloudformation:props": {
-                    "eventPattern": {
-                      "detail": {
-                        "lastStatus": [
-                          "STOPPED"
-                        ],
-                        "group": [
-                          "service:frontdesk-app-websocket-production",
-                          "service:frontdesk-app-server-production",
-                          "service:frontdesk-app-client-production"
-                        ]
-                      },
-                      "detail-type": [
-                        "ECS Task State Change"
-                      ],
-                      "source": [
-                        "aws.ecs"
-                      ]
-                    },
-                    "state": "ENABLED",
-                    "targets": [
-                      {
-                        "id": "Target0",
-                        "arn": {
-                          "Ref": "ECSAlerts6D168A96"
-                        }
-                      }
-                    ]
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_events.CfnRule",
-                  "version": "2.29.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "aws-cdk-lib.aws_events.Rule",
-              "version": "2.29.0"
-            }
-          },
-          "CDKMetadata": {
-            "id": "CDKMetadata",
-            "path": "ECSMonitoringStack/CDKMetadata",
-            "children": {
-              "Default": {
-                "id": "Default",
-                "path": "ECSMonitoringStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnResource",
                   "version": "2.29.0"
