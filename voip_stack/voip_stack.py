@@ -31,9 +31,9 @@ class VOIPStack(Stack):
 
         # SSH access
         security_group.add_ingress_rule(
-            peer=ec2.Peer.any_ipv4(),
+            peer=ec2.Peer.ipv4('128.120.218.50/32'),
             connection=ec2.Port.tcp(22),
-            description='Allow SSH access from anywhere'
+            description='Allow SSH access from LS IT VPN'
         )
 
         # VOIP MS SIP Traffic
@@ -62,11 +62,10 @@ class VOIPStack(Stack):
             description='Elastic IP Subnet 2 for AMI'
         )
 
-        # TODO Remove 
         security_group.add_ingress_rule(
-            peer=ec2.Peer.ipv4('73.151.105.106/32'),
+            peer=ec2.Peer.ipv4('128.120.218.50/32'),
             connection=ec2.Port.tcp(5038),
-            description="Edgar Macbook"
+            description="LS IT VPN"
         )        
 
         role = iam.Role(

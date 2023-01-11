@@ -14,8 +14,8 @@
     ],
     "SecurityGroupIngress": [
      {
-      "CidrIp": "0.0.0.0/0",
-      "Description": "Allow SSH access from anywhere",
+      "CidrIp": "128.120.218.50/32",
+      "Description": "Allow SSH access from LS IT VPN",
       "FromPort": 22,
       "IpProtocol": "tcp",
       "ToPort": 22
@@ -49,8 +49,8 @@
       "ToPort": 5038
      },
      {
-      "CidrIp": "73.151.105.106/32",
-      "Description": "Edgar Macbook",
+      "CidrIp": "128.120.218.50/32",
+      "Description": "LS IT VPN",
       "FromPort": 5038,
       "IpProtocol": "tcp",
       "ToPort": 5038

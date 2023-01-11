@@ -6,7 +6,7 @@ then
   exit 1
 fi
 
-cd /home/ec2-user 
+cd /home/ec2-user
 sudo yum install -y docker
 sudo service docker start
 

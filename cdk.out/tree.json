@@ -6443,7 +6443,8 @@
                             "caes.advisingfrontdesk.lsit.ucdavis.edu",
                             "cs.advisingfrontdesk.lsit.ucdavis.edu",
                             "mae.advisingfrontdesk.lsit.ucdavis.edu",
-                            "orangecluster.advisingfrontdesk.lsit.ucdavis.edu"
+                            "orangecluster.advisingfrontdesk.lsit.ucdavis.edu",
+                            "cee.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
@@ -6493,7 +6494,8 @@
                             "caes.advisingfrontdesk.lsit.ucdavis.edu",
                             "cs.advisingfrontdesk.lsit.ucdavis.edu",
                             "mae.advisingfrontdesk.lsit.ucdavis.edu",
-                            "orangecluster.advisingfrontdesk.lsit.ucdavis.edu"
+                            "orangecluster.advisingfrontdesk.lsit.ucdavis.edu",
+                            "cee.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
@@ -10553,11 +10555,11 @@
                     ],
                     "securityGroupIngress": [
                       {
-                        "cidrIp": "0.0.0.0/0",
+                        "cidrIp": "128.120.218.50/32",
                         "ipProtocol": "tcp",
                         "fromPort": 22,
                         "toPort": 22,
-                        "description": "Allow SSH access from anywhere"
+                        "description": "Allow SSH access from LS IT VPN"
                       },
                       {
                         "cidrIp": "208.100.60.40/32",
@@ -10588,11 +10590,11 @@
                         "description": "Elastic IP Subnet 2 for AMI"
                       },
                       {
-                        "cidrIp": "73.151.105.106/32",
+                        "cidrIp": "128.120.218.50/32",
                         "ipProtocol": "tcp",
                         "fromPort": 5038,
                         "toPort": 5038,
-                        "description": "Edgar Macbook"
+                        "description": "LS IT VPN"
                       }
                     ],
                     "vpcId": {
@@ -16186,11 +16188,11 @@
                     ],
                     "securityGroupIngress": [
                       {
-                        "cidrIp": "0.0.0.0/0",
+                        "cidrIp": "128.120.218.50/32",
                         "ipProtocol": "tcp",
                         "fromPort": 22,
                         "toPort": 22,
-                        "description": "Allow SSH access from anywhere"
+                        "description": "Allow SSH access from LS IT VPN"
                       },
                       {
                         "cidrIp": "208.100.60.40/32",
@@ -16221,11 +16223,11 @@
                         "description": "Elastic IP Subnet 2 for AMI"
                       },
                       {
-                        "cidrIp": "73.151.105.106/32",
+                        "cidrIp": "128.120.218.50/32",
                         "ipProtocol": "tcp",
                         "fromPort": 5038,
                         "toPort": 5038,
-                        "description": "Edgar Macbook"
+                        "description": "LS IT VPN"
                       }
                     ],
                     "vpcId": {
