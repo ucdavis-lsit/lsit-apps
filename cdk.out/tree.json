@@ -5530,10 +5530,10 @@
                   "aws:cdk:cloudformation:props": {
                     "containerDefinitions": [
                       {
-                        "cpu": 256,
+                        "cpu": 512,
                         "essential": true,
                         "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-client-prod:latest",
-                        "memory": 512,
+                        "memory": 1024,
                         "name": "frontdesk-app-client-production",
                         "portMappings": [
                           {
@@ -5595,7 +5595,7 @@
                         ]
                       }
                     ],
-                    "cpu": "256",
+                    "cpu": "512",
                     "executionRoleArn": {
                       "Fn::GetAtt": [
                         "FrontdeskappclientProductionRole5A8F4A11",
@@ -5603,7 +5603,7 @@
                       ]
                     },
                     "family": "frontdesk-app-client-production",
-                    "memory": "512",
+                    "memory": "1024",
                     "networkMode": "awsvpc",
                     "requiresCompatibilities": [
                       "FARGATE"
@@ -5817,6 +5817,11 @@
                     "comparisonOperator": "GreaterThanThreshold",
                     "evaluationPeriods": 1,
                     "actionsEnabled": true,
+                    "alarmActions": [
+                      {
+                        "Fn::ImportValue": "ECSMonitoringStack:ExportsOutputRefECSAlerts6D168A967C6D2BC9"
+                      }
+                    ],
                     "alarmName": "Frontdesk-app-clientProductionCPUAlarm",
                     "dimensions": [
                       {
