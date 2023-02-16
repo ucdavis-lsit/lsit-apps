@@ -1,0 +1,20 @@
+{
+  "version": "20.0.0",
+  "files": {
+    "52d29d383d4ec427f556664ffd8904236a90aba3913723940ab68b0ab6a87fbf": {
+      "source": {
+        "path": "FrontDeskAppProductionProcessGuestEvents.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "042277129213-us-west-2": {
+          "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
+          "objectKey": "52d29d383d4ec427f556664ffd8904236a90aba3913723940ab68b0ab6a87fbf.json",
+          "region": "us-west-2",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

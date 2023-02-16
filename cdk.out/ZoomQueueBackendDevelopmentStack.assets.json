@@ -1,0 +1,20 @@
+{
+  "version": "20.0.0",
+  "files": {
+    "82ad99008aef4b4379d0377c4b22a521275938ee1496cb4ecfd4ce69be673cd4": {
+      "source": {
+        "path": "ZoomQueueBackendDevelopmentStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "042277129213-us-west-2": {
+          "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
+          "objectKey": "82ad99008aef4b4379d0377c4b22a521275938ee1496cb4ecfd4ce69be673cd4.json",
+          "region": "us-west-2",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

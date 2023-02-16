@@ -1,9 +1,10 @@
-from aws_cdk import core as cdk
-from aws_cdk.aws_elasticloadbalancingv2 import ListenerAction, ListenerCondition, ApplicationListenerRule
+from aws_cdk import Stack
+from constructs import Construct
+from aws_cdk.aws_elasticloadbalancingv2 import ListenerAction, ListenerCondition, ApplicationListenerRule, ListenerCertificate
 
-class GetVFDStack(cdk.Stack):
+class GetVFDStack(Stack):
 
-    def __init__(self, scope: cdk.Construct, construct_id: str, app_props: dict, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, app_props: dict, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
         # Required props
@@ -19,10 +20,18 @@ class GetVFDStack(cdk.Stack):
         # Calculated props
         app_prefix = app_name.capitalize() + app_env.capitalize()
    
-        self.https_listener.add_certificate_arns(
-                    "{app_prefix}Certtificates".format(app_prefix=app_prefix),
-                    certificate_arns
-                )  
+        certificates = []
+        for certificate_arn in certificate_arns:
+            certificates.append(
+                ListenerCertificate(
+                    certificate_arn
+                )
+            )
+
+        self.https_listener.add_certificates(
+            "{app_prefix}Certtificates".format(app_prefix=app_prefix),
+            certificates
+        )
         
         
 

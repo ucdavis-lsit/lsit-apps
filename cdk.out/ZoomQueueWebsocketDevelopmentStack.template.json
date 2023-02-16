@@ -320,6 +320,40 @@
     "aws:cdk:path": "ZoomQueueWebsocketDevelopmentStack/Zoom-queue-websocketDevelopmentService/Service"
    }
   },
+  "ZoomqueuewebsocketDevelopmentCPUAlarmADBB523C": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "ActionsEnabled": true,
+    "AlarmName": "Zoom-queue-websocketDevelopmentCPUAlarm",
+    "Dimensions": [
+     {
+      "Name": "ClusterName",
+      "Value": {
+       "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueDevelopmentClusterCD7CCE951AD3B1F8"
+      }
+     },
+     {
+      "Name": "ServiceName",
+      "Value": {
+       "Fn::GetAtt": [
+        "ZoomqueuewebsocketDevelopmentServiceA5CE7E5B",
+        "Name"
+       ]
+      }
+     }
+    ],
+    "MetricName": "CPUUtilization",
+    "Namespace": "AWS/ECS",
+    "Period": 300,
+    "Statistic": "Average",
+    "Threshold": 75
+   },
+   "Metadata": {
+    "aws:cdk:path": "ZoomQueueWebsocketDevelopmentStack/Zoom-queue-websocketDevelopmentCPUAlarm/Resource"
+   }
+  },
   "ZoomqueuewebsocketDevelopmentTargetGroupFC90A082": {
    "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
    "Properties": {
@@ -379,6 +413,7 @@
      {
       "RedirectConfig": {
        "Port": "443",
+       "Protocol": "HTTPS",
        "StatusCode": "HTTP_301"
       },
       "Type": "redirect"
@@ -427,11 +462,45 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31Q0U7DMAz8lr1nGaVCiDfYEAhpD1O3HzCZ15lmSRU7Q1WVfyfdxlQQ4sm+8+XsS6GLu3t9M3mET56abTPrjQ+o+7WAadTCO5YQjajFzlXIPgaDSQ3anuCg+8pbPM2GuvKWTDfAc5cUGtb9C4QaBDfAzTPuyJGQd4PqN+OdADkMI+7ydo3hSOa06dImZX2dzZe+fg0+tsPou0+KSz2PpkGZA2O+4jYHQhMDSXdV/0+8uTogc45ggYWM9bB9BwvOkKuP2e+pbXNGGK7c5CNRrj5jOFItiQVzuiqev+wH/kM31qSU1KqTvXezUj/oopx8MNE0RCd0QF2d6xfo5le9zAEAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31RwU7DMAz9lt27AO1pxw0EQtph6nZHXup1pmlSJc6mqsq/k7RjKghx8vPLS56fk4t8JR4XcHVLWTVLRUcx7Blkk0XqYyBoxVAahdnzSY91ZxTJPrUTChlKJ4ZXsDUwHsA1L3giTUxGJ9VvxmgG0mhn3O3uHu2F5Oh0gyFTpo6Pb039Zo3v0tE3DpkrxMbLBnkDDuMUeZwcpbfE/V39P/Gua4vOhUwq46srsDyLYa3Atkk6ghhPgWOKCqiOoEBL0vUleq27LuaHlOAQAyDfPebtTLUlxxiTl35a54/+D91cE8L4AeiMt2kvu57PRj8UYiWeisWnI1par5laFOVUvwCu5xCl2QEAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "ZoomQueueWebsocketDevelopmentStack/CDKMetadata/Default"
    }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
   }
  }
 }

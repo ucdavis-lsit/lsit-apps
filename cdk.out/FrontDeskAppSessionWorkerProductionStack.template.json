@@ -290,14 +290,82 @@
     "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionService/Service"
    }
   },
+  "FrontdeskappsessionworkerProductionCPUAlarm4F36A313": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "ActionsEnabled": true,
+    "AlarmName": "Frontdesk-app-session-workerProductionCPUAlarm",
+    "Dimensions": [
+     {
+      "Name": "ClusterName",
+      "Value": {
+       "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+      }
+     },
+     {
+      "Name": "ServiceName",
+      "Value": {
+       "Fn::GetAtt": [
+        "FrontdeskappsessionworkerProductionService51229F95",
+        "Name"
+       ]
+      }
+     }
+    ],
+    "MetricName": "CPUUtilization",
+    "Namespace": "AWS/ECS",
+    "Period": 300,
+    "Statistic": "Average",
+    "Threshold": 75
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/Frontdesk-app-session-workerProductionCPUAlarm/Resource"
+   }
+  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Py04DMQz8lt5Tl2WFEDfUIrhwqLb8QGTcxd1tjBwHtIry72zagoDTjGfGrwaam1u4Wtz7z7jE12GVUZQg78zj4DYSomlCc5t96ChKUqTiajazP0LuZKSTV3ErI+NUyzMrjjBCfvTae6MXH4cH2nNgYwk19V+RYJ4D6S/t0rsj/WA8bbrQ4kbp5+HP0j+ppPdqffPiYgvrhAPZ2kear7ieHyJMyjb9pP8IpRS3nexNwqqFO2jaxSEyLzUF4yNBd8YvU81nWy0BAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Py3LCMAz8Fu6OaJMTR2invfTAAHdGNSKIOFbHjzIZj/+9cXhM25NWq5V2VUO9gKcZXnylD11l+BPSNqDu1EjtE2MPaSOG1MvRTnUthvVQ2ivKirSH9IauxUA79N0rHdlyYLFF9Z8RG5AtuV/cbXdL7pv15HSDWRlpx+Mf0r47iV9ldMdZ+QZWUXcUVuhpTFGPyUlHx2F4qP8QWWkj8XDBoE+QlgZdXzQTyHn6kLxEV4zXQziJnTewgOdmdvbMlYs2cE+wudYfY5ZJ3ToBAAA="
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/CDKMetadata/Default"
    }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
   }
  }
 }

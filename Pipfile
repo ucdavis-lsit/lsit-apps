@@ -4,21 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-"aws-cdk.core" = "*"
-"aws-cdk.aws-iam" = "*"
-"aws-cdk.aws-ecs" = "*"
-"aws-cdk.aws-ecr" = "*"
-"aws-cdk.aws-apigateway" = "*"
-"aws_cdk.aws_lambda" = "*"
-"aws_cdk.aws_s3" = "*"
-"aws_cdk.aws_kms" = "*"
-"aws-cdk.aws-cognito" = "*"
-"aws-cdk.aws-rds" = "*"
-"aws-cdk.aws-dynamodb" = "*"
-"aws-cdk.aws-events" = "*"
-"aws-cdk.aws-events-targets" = "*"
-"aws-cdk.aws_sns" = "*"
-"aws-cdk.aws-sqs" = "*"
+"aws-cdk-lib" = "*"
 
 [dev-packages]
 bandit = "*"

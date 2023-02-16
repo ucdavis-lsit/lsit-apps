@@ -1,7 +1,8 @@
 import os
 from typing import Protocol
 
-from aws_cdk import core as cdk
+from aws_cdk import Stack, RemovalPolicy, Duration
+from constructs import Construct
 from aws_cdk import aws_ecs as ecs
 from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_iam as iam
@@ -12,9 +13,9 @@ from aws_cdk.aws_elasticloadbalancingv2 import ApplicationListener, ApplicationL
 from aws_cdk.aws_logs import LogGroup
 from aws_cdk.aws_s3 import Bucket
 
-class NetworkStack(cdk.Stack):
+class NetworkStack(Stack):
 
-    def __init__(self, scope: cdk.Construct, construct_id: str, app_props: dict, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, app_props: dict, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
         # Required props
@@ -35,12 +36,12 @@ class NetworkStack(cdk.Stack):
                 ),
                 ec2.SubnetConfiguration(
                     name="{prefix}PrivateSubnet".format(prefix=prefix),
-                    subnet_type=ec2.SubnetType.PRIVATE
+                    subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT
                 ),
                 ec2.SubnetConfiguration(
                     name="{prefix}IsolatedSubnet".format(prefix=prefix),
                     cidr_mask=27,
-                    subnet_type=ec2.SubnetType.ISOLATED
+                    subnet_type=ec2.SubnetType.PRIVATE_ISOLATED
                 )
             ]
         )
@@ -95,9 +96,9 @@ class NetworkStack(cdk.Stack):
                 ec2.InstanceClass.BURSTABLE3,
                 ec2.InstanceSize.MICRO
             ),
-            backup_retention=cdk.Duration.days(0),
+            backup_retention=Duration.days(0),
             delete_automated_backups=True,
-            removal_policy=cdk.RemovalPolicy.DESTROY,
+            removal_policy=RemovalPolicy.DESTROY,
             deletion_protection=False,
             database_name="postgres",
             publicly_accessible=True
@@ -120,7 +121,7 @@ class NetworkStack(cdk.Stack):
             "{prefix}FrontdeskDatabase".format(prefix=prefix),
             vpc=self.vpc,
             vpc_subnets={
-                "subnet_type": ec2.SubnetType.ISOLATED,
+                "subnet_type": ec2.SubnetType.PRIVATE_ISOLATED,
             },
             engine=rds.DatabaseInstanceEngine.postgres(version=rds.PostgresEngineVersion.VER_13_1),
             credentials=rds.Credentials.from_generated_secret("frontdeskadmin",secret_name="frontdeskcredentials"),
@@ -128,9 +129,9 @@ class NetworkStack(cdk.Stack):
                 ec2.InstanceClass.BURSTABLE3,
                 ec2.InstanceSize.SMALL
             ),
-            backup_retention=cdk.Duration.days(3),
+            backup_retention=Duration.days(3),
             delete_automated_backups=True,
-            removal_policy=cdk.RemovalPolicy.RETAIN,
+            removal_policy=RemovalPolicy.RETAIN,
             deletion_protection=True,
             database_name="frontdesk",
             publicly_accessible=True,

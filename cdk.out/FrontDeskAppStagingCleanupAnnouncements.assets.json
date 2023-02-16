@@ -1,0 +1,20 @@
+{
+  "version": "20.0.0",
+  "files": {
+    "9ebe36b2e7ff94c5db4a5bead34e1f06eddfb8714d60f737575ab8f2a90243d3": {
+      "source": {
+        "path": "FrontDeskAppStagingCleanupAnnouncements.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "042277129213-us-west-2": {
+          "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
+          "objectKey": "9ebe36b2e7ff94c5db4a5bead34e1f06eddfb8714d60f737575ab8f2a90243d3.json",
+          "region": "us-west-2",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

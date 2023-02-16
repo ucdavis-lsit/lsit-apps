@@ -1,0 +1,20 @@
+{
+  "version": "20.0.0",
+  "files": {
+    "8571d77943ca775762db0cfab8c18fcbc460bea8e3baa72679c849f9e16f6df9": {
+      "source": {
+        "path": "GetVFDStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "042277129213-us-west-2": {
+          "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
+          "objectKey": "8571d77943ca775762db0cfab8c18fcbc460bea8e3baa72679c849f9e16f6df9.json",
+          "region": "us-west-2",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

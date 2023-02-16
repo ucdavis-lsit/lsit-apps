@@ -1,7 +1,6 @@
 import os
 
-from aws_cdk import core as cdk
-from aws_cdk import core
+from aws_cdk import App, Environment
 
 from lsit_stack.lsit_stack import LSITStack
 from network_stack.network_stack import NetworkStack
@@ -10,12 +9,13 @@ from scheduled_task_stack.scheduled_task_stack import ScheudledTaskStack
 from monitoring_stack.monitoring_stack import MonitoringStack
 from getvfd_stack.getvfd_stack import GetVFDStack
 from queue_stack.queue_stack import QueueStack
+from voip_stack.voip_stack import VOIPStack
 
 
 CDK_DEFAULT_ACCOUNT=os.environ["CDK_DEFAULT_ACCOUNT"]
 CDK_DEFAULT_REGION=os.environ["CDK_DEFAULT_REGION"]
 
-app = core.App()
+app = App()
 
 network_stack = NetworkStack(
     app,
@@ -23,7 +23,14 @@ network_stack = NetworkStack(
     {
         "aws_account_name": "LSITZoomQueue"
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+# Monitoring
+monitoring_stack = MonitoringStack(
+    app,
+    "ECSMonitoringStack",
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 # Development
@@ -46,7 +53,7 @@ dev_frontdesk_frontend_stack = LSITStack(
         "host_headers": ["dev.advisingfrontdesk.lsit.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/d18674bd-6a83-41aa-b10f-e379c2f8a1fa"]
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 LSITStack(
@@ -69,7 +76,7 @@ LSITStack(
         "host_headers": ["dev.api.frontdesk.lsit.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/2e50e559-3efd-444e-8937-8feadec6003b"]
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 LSITStack(
@@ -92,7 +99,7 @@ LSITStack(
         "host_headers": ["dev.websocket.frontdesk.lsit.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/697571d7-e696-4c3c-9c42-d47f538fea7a"]
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 ScheudledTaskStack(
@@ -107,7 +114,7 @@ ScheudledTaskStack(
         "image_uri": "curlimages/curl:latest",
         "command_override": ["sh","-c","curl -XDELETE https://dev.api.frontdesk.lsit.ucdavis.edu/api/guest?key=$API_KEY"]
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 ScheudledTaskStack(
@@ -122,7 +129,7 @@ ScheudledTaskStack(
         "image_uri": "curlimages/curl:latest",
         "command_override": ["sh","-c",'curl -XDELETE "https://dev.api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY&domain=$DOMAIN"']
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 
@@ -147,11 +154,26 @@ frontdesk_frontend_stack = LSITStack(
             "uea.advisingfrontdesk.lsit.ucdavis.edu",
             "lsit.advisingfrontdesk.lsit.ucdavis.edu",
             "grad.advisingfrontdesk.lsit.ucdavis.edu",
+            "physics.advisingfrontdesk.lsit.ucdavis.edu",
+            "eps.advisingfrontdesk.lsit.ucdavis.edu",
+            "yellowcluster.advisingfrontdesk.lsit.ucdavis.edu",
+            "ehe.advisingfrontdesk.lsit.ucdavis.edu",
+            "langlit.advisingfrontdesk.lsit.ucdavis.edu",
+            "antsocmsa.advisingfrontdesk.lsit.ucdavis.edu",
+            "caes.advisingfrontdesk.lsit.ucdavis.edu",
+            "cs.advisingfrontdesk.lsit.ucdavis.edu",
+            "mae.advisingfrontdesk.lsit.ucdavis.edu",
+            "orangecluster.advisingfrontdesk.lsit.ucdavis.edu",
+            "cee.advisingfrontdesk.lsit.ucdavis.edu",
         ],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616", "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"],
-        "is_private": True
+        "is_private": True,
+        "additional_https_rule_priorities": [9,10],
+        "additional_http_rule_priorities": [9,10],
+        "resource_multiplier": 2,
+        "monitoring_stack": monitoring_stack
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 LSITStack(
@@ -172,9 +194,11 @@ LSITStack(
         "http_load_balancer_priority": 2,
         "host_headers": ["api.frontdesk.lsit.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/4c608488-49d4-4fb8-9310-982170d9a394"],
-        "is_private": True
+        "is_private": True,
+        "resource_multiplier": 4,
+        "monitoring_stack": monitoring_stack
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 LSITStack(
@@ -197,7 +221,7 @@ LSITStack(
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/9ee190dd-6d07-4bfd-a293-dc3048c56c6b"],
         "is_private": True
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 ScheudledTaskStack(
@@ -213,7 +237,7 @@ ScheudledTaskStack(
         "command_override": ["sh","-c","curl -XDELETE https://api.frontdesk.lsit.ucdavis.edu/api/guest?key=$API_KEY"],
         "is_private": True
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 ScheudledTaskStack(
@@ -226,10 +250,10 @@ ScheudledTaskStack(
         "app_name": "frontdesk-app-cleanup-announcements",
         "app_env": "production",
         "image_uri": "curlimages/curl:latest",
-        "command_override": ["sh","-c",'curl -XDELETE "https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY&domain=$DOMAIN"'],
+        "command_override": ["sh","-c",'curl -XDELETE "https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY"'],
         "is_private": True
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 ScheudledTaskStack(
@@ -246,7 +270,7 @@ ScheudledTaskStack(
         "is_private": True,
         "schedule": {"minute": "*"}
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 ScheudledTaskStack(
@@ -262,7 +286,7 @@ ScheudledTaskStack(
         "command_override": ["npm","run","processGuestEvents"],
         "is_private": True,
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 LSITStack(
@@ -281,7 +305,36 @@ LSITStack(
         "command": ["npm","run","sessionWorker"],
         "is_public_facing": False
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+VOIPStack(
+    app,
+    "FrontDeskAppVOIPProductionStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    {
+        "app_name": "frontdesk-app-voip",
+        "app_env": "production",
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+ScheudledTaskStack(
+    app,
+    "FrontDeskAppProductionVoipHealthCheck",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "frontdesk-app-voip-health-check",
+        "app_env": "production",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
+        "command_override": ["npm","run","voipHealthCheck"],
+        "is_private": True,
+        "schedule": {"minute": "/10"}
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 # Staging
@@ -314,9 +367,10 @@ LSITStack(
         ],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/42f3fc26-59c4-495f-9166-9e8180d95e6b", "arn:aws:acm:us-west-2:042277129213:certificate/c49d425c-7018-4e7e-92e8-efa15017bfdc"],
         "is_private": True,
-        "additional_https_rule_priorities": [8]
+        "additional_https_rule_priorities": [8],
+        "additional_http_rule_priorities": [8],
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 LSITStack(
@@ -337,9 +391,10 @@ LSITStack(
         "http_load_balancer_priority": 5,
         "host_headers": ["stage.api.frontdesk.lsit.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/1ae579ad-54ac-4a6e-bcb7-3e4a547b3a08"],
-        "is_private": True
+        "is_private": True,
+        "monitoring_stack": monitoring_stack
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 LSITStack(
@@ -362,7 +417,7 @@ LSITStack(
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/3e9d0032-9e87-4210-853d-31bec7f931cd"],
         "is_private": True
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 ScheudledTaskStack(
@@ -378,7 +433,7 @@ ScheudledTaskStack(
         "command_override": ["sh","-c","curl -XDELETE https://stage.api.frontdesk.lsit.ucdavis.edu/api/guest?key=$API_KEY"],
         "is_private": True
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 ScheudledTaskStack(
@@ -394,7 +449,7 @@ ScheudledTaskStack(
         "command_override": ["sh","-c",'curl -XDELETE "https://stage.api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY&domain=$DOMAIN"'],
         "is_private": True
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 ScheudledTaskStack(
@@ -411,7 +466,7 @@ ScheudledTaskStack(
         "is_private": True,
         "schedule": {"minute": "*"}
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 ScheudledTaskStack(
@@ -427,7 +482,7 @@ ScheudledTaskStack(
         "command_override": ["npm","run","processGuestEvents"],
         "is_private": True
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 LSITStack(
@@ -446,14 +501,36 @@ LSITStack(
         "command": ["npm","run","sessionWorker"],
         "is_public_facing": False
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
-# Monitoring
-MonitoringStack(
+VOIPStack(
     app,
-    "ECSMonitoringStack",
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+    "FrontDeskAppVOIPStagingStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    {
+        "app_name": "frontdesk-app-voip",
+        "app_env": "staging",
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+ScheudledTaskStack(
+    app,
+    "FrontDeskAppStagingVoipHealthCheck",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "frontdesk-app-voip-health-check",
+        "app_env": "staging",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-staging:latest",
+        "command_override": ["npm","run","voipHealthCheck"],
+        "is_private": True,
+        "schedule": {"minute": "/5"}
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
 # Get VFD
@@ -470,7 +547,7 @@ GetVFDStack(
         "host_headers": ["getvfd.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/a4fdc45f-ed12-41ec-aadc-f7367c8edd02"],
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
 )
 
 # Queue Stack
@@ -480,7 +557,7 @@ QueueStack(
     {
         "queue_name": "GuestEventsQueue",
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
 )
 
 QueueStack(
@@ -489,7 +566,7 @@ QueueStack(
     {
         "queue_name": "GuestEventsStagingQueue",
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
 )
 
 QueueStack(
@@ -498,7 +575,7 @@ QueueStack(
     {
         "queue_name": "GuestEventsDevelopmentQueue",
     },
-    env=core.Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
 )
 
 

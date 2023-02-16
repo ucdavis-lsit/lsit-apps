@@ -114,7 +114,7 @@
    "Properties": {
     "ContainerDefinitions": [
      {
-      "Cpu": 256,
+      "Cpu": 512,
       "EnvironmentFiles": [
        {
         "Type": "s3",
@@ -168,7 +168,7 @@
         "awslogs-region": "us-west-2"
        }
       },
-      "Memory": 512,
+      "Memory": 1024,
       "Name": "frontdesk-app-client-production",
       "PortMappings": [
        {
@@ -179,7 +179,7 @@
       ]
      }
     ],
-    "Cpu": "256",
+    "Cpu": "512",
     "ExecutionRoleArn": {
      "Fn::GetAtt": [
       "FrontdeskappclientProductionRole5A8F4A11",
@@ -187,7 +187,7 @@
      ]
     },
     "Family": "frontdesk-app-client-production",
-    "Memory": "512",
+    "Memory": "1024",
     "NetworkMode": "awsvpc",
     "RequiresCompatibilities": [
      "FARGATE"
@@ -313,10 +313,51 @@
     }
    },
    "DependsOn": [
-    "FrontdeskappclientProductionHttpsListenerRule5CBF48FA"
+    "FrontdeskappclientProductionHttpsListenerRule5CBF48FA",
+    "FrontdeskappclientProductionHttpsListenerRule1011E01EED",
+    "FrontdeskappclientProductionHttpsListenerRule99C6FA131"
    ],
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionService/Service"
+   }
+  },
+  "FrontdeskappclientProductionCPUAlarm1F4EBC06": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "ActionsEnabled": true,
+    "AlarmActions": [
+     {
+      "Fn::ImportValue": "ECSMonitoringStack:ExportsOutputRefECSAlerts6D168A967C6D2BC9"
+     }
+    ],
+    "AlarmName": "Frontdesk-app-clientProductionCPUAlarm",
+    "Dimensions": [
+     {
+      "Name": "ClusterName",
+      "Value": {
+       "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+      }
+     },
+     {
+      "Name": "ServiceName",
+      "Value": {
+       "Fn::GetAtt": [
+        "FrontdeskappclientProductionService34EFD446",
+        "Name"
+       ]
+      }
+     }
+    ],
+    "MetricName": "CPUUtilization",
+    "Namespace": "AWS/ECS",
+    "Period": 300,
+    "Statistic": "Average",
+    "Threshold": 75
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionCPUAlarm/Resource"
    }
   },
   "FrontdeskappclientProductionTargetGroup408F5B4D": {
@@ -368,28 +409,12 @@
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Resource"
    }
   },
-  "FrontdeskappclientProductionHttpsListenerListenerCertificate191A3374B": {
-   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-   "Properties": {
-    "Certificates": [
-     {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"
-     }
-    ],
-    "ListenerArn": {
-     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/ListenerCertificate1/Resource"
-   }
-  },
   "FrontdeskappclientProductionHttpsListenerFrontdeskappclientProductionCerttificates172E25684": {
    "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
    "Properties": {
     "Certificates": [
      {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616"
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"
      }
     ],
     "ListenerArn": {
@@ -398,22 +423,6 @@
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates1/Resource"
-   }
-  },
-  "FrontdeskappclientProductionHttpsListenerFrontdeskappclientProductionCerttificates23BFB602E": {
-   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-   "Properties": {
-    "Certificates": [
-     {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"
-     }
-    ],
-    "ListenerArn": {
-     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates2/Resource"
    }
   },
   "FrontdeskappclientProductionHttpsListenerFrontdeskappserverProductionCerttificates17A7E67C0": {
@@ -547,7 +556,8 @@
         "advisingfrontdesk.lsit.ucdavis.edu",
         "uea.advisingfrontdesk.lsit.ucdavis.edu",
         "lsit.advisingfrontdesk.lsit.ucdavis.edu",
-        "grad.advisingfrontdesk.lsit.ucdavis.edu"
+        "grad.advisingfrontdesk.lsit.ucdavis.edu",
+        "physics.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
@@ -590,6 +600,7 @@
      {
       "RedirectConfig": {
        "Port": "443",
+       "Protocol": "HTTPS",
        "StatusCode": "HTTP_301"
       },
       "Type": "redirect"
@@ -603,7 +614,8 @@
         "advisingfrontdesk.lsit.ucdavis.edu",
         "uea.advisingfrontdesk.lsit.ucdavis.edu",
         "lsit.advisingfrontdesk.lsit.ucdavis.edu",
-        "grad.advisingfrontdesk.lsit.ucdavis.edu"
+        "grad.advisingfrontdesk.lsit.ucdavis.edu",
+        "physics.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
@@ -617,10 +629,150 @@
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule/Resource"
    }
   },
+  "FrontdeskappclientProductionHttpsListenerRule99C6FA131": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
+      },
+      "Type": "forward"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "eps.advisingfrontdesk.lsit.ucdavis.edu",
+        "yellowcluster.advisingfrontdesk.lsit.ucdavis.edu",
+        "ehe.advisingfrontdesk.lsit.ucdavis.edu",
+        "langlit.advisingfrontdesk.lsit.ucdavis.edu",
+        "antsocmsa.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    },
+    "Priority": 9
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule9/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpListenerRule90EE91246": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "RedirectConfig": {
+       "Port": "443",
+       "Protocol": "HTTPS",
+       "StatusCode": "HTTP_301"
+      },
+      "Type": "redirect"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "eps.advisingfrontdesk.lsit.ucdavis.edu",
+        "yellowcluster.advisingfrontdesk.lsit.ucdavis.edu",
+        "ehe.advisingfrontdesk.lsit.ucdavis.edu",
+        "langlit.advisingfrontdesk.lsit.ucdavis.edu",
+        "antsocmsa.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
+    },
+    "Priority": 9
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule9/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerRule1011E01EED": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
+      },
+      "Type": "forward"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "caes.advisingfrontdesk.lsit.ucdavis.edu",
+        "cs.advisingfrontdesk.lsit.ucdavis.edu",
+        "mae.advisingfrontdesk.lsit.ucdavis.edu",
+        "orangecluster.advisingfrontdesk.lsit.ucdavis.edu",
+        "cee.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    },
+    "Priority": 10
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule10/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpListenerRule109F274921": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "RedirectConfig": {
+       "Port": "443",
+       "Protocol": "HTTPS",
+       "StatusCode": "HTTP_301"
+      },
+      "Type": "redirect"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "caes.advisingfrontdesk.lsit.ucdavis.edu",
+        "cs.advisingfrontdesk.lsit.ucdavis.edu",
+        "mae.advisingfrontdesk.lsit.ucdavis.edu",
+        "orangecluster.advisingfrontdesk.lsit.ucdavis.edu",
+        "cee.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
+    },
+    "Priority": 10
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule10/Resource"
+   }
+  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31PXU/DMAz8LXvPMkqFEG+wIhDSHqZuf8BkbmeaJVXiDE1V/jvJvlTQxJPP57N9V8ji4VHeTZ7h20/VppsNyjqUw4pBdaKyxrMLikXVmBq9DU5hFFk7EOzkUFuNx1muS6tJHXJ7QlGg8nJ4A9cC4xp894oNGWKyJqv+MtYwkEE34s67K3R7UsdPZxiFtm06vrDtu7Ohz6MLjsKXch5UhzwHj8nFfQqEKjjiw1X9P/FhWofepwgaPJPSFjafoMEoMu0+3Xvp+5QRsst1Mol8vTNuR6oFecaU7uj0gm/MK3RMTSZxLB3TN7bqoH/Jcx9jFMsDb62ZlfJJFuXkyxNNXTBMO5T1qf4APhXrkwICAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31Ry27CMBD8Fu6J2yYnjkDVqhIHFLhXi9mEJY4d2WtQFOXfa4eH0gr1tLOzs4+xM5HNxesMLi6VhzpVtBf9lkHWSaC+e4JG9IVRmKxKPcaNUSS7mF7RkKB0ov8AWwHjDlz9jiVpYjI6qv4yRjOQRjvhbr1btGeS46YbHBJlqjB8bapPa3wbS3c8JC4XSy9r5CU4DFdk4XKU3hJ3D/X/xJeuLDo3JFIZf7gAy6PoFwpsE6UjCPYUOKaggMMeFGhJujqHXYu2Df4hOtgFA8iPHdN0olqTYwzORxd3/KS+QstURhKn0in9pKvw6pc85sMwfhs64218zU3HR6NfcjEXb/ns5IhS6zVTg6K4xh/fEwTeDwIAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientProdStack/CDKMetadata/Default"
@@ -643,6 +795,40 @@
    "Export": {
     "Name": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A"
    }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
   }
  }
 }

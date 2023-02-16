@@ -1,4 +1,5 @@
-from aws_cdk import core as cdk
+from aws_cdk import Stack, RemovalPolicy
+from constructs import Construct
 from aws_cdk import aws_ecs as ecs
 from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_iam as iam
@@ -7,9 +8,9 @@ from aws_cdk.aws_s3 import Bucket
 from aws_cdk import aws_events as events
 from aws_cdk.aws_events_targets import EcsTask, ContainerOverride
 
-class ScheudledTaskStack(cdk.Stack):
+class ScheudledTaskStack(Stack):
 
-    def __init__(self, scope: cdk.Construct, construct_id: str, vpc: ec2.Vpc, bucket: Bucket, cluster: ecs.Cluster, app_props: dict, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, vpc: ec2.Vpc, bucket: Bucket, cluster: ecs.Cluster, app_props: dict, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
         # Required props
@@ -79,7 +80,7 @@ class ScheudledTaskStack(cdk.Stack):
                     scope=self,
                     id="{app_prefix}LogGroup".format(app_prefix=app_prefix),
                     log_group_name="/ecs/{task_name}".format(task_name=task_name),
-                    removal_policy=cdk.RemovalPolicy.DESTROY
+                    removal_policy=RemovalPolicy.DESTROY
             )),
             environment_files=[
                 ecs.S3EnvironmentFile(

@@ -1164,7 +1164,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11RwW7CMAz9Fu5ZGEPTtNugIIQ0TRUg7m5qIKMkVeKAUNV/n9MW6DjZfn5+8XNGcvT+IV8HX3DxLyo/DitlHcpqTaCOYoXeBqdQJNZ4ckGRSHbmhtYiDlWo3mS1LVVsbdNEpE6fgXAdMoMN/5GtbCDcQFbgA39gE++t0kDaGpGGrNDqaTIm82Uaww/Qgh+5wDVWS0PomNmDeJOumhB7OZzQkFijCk7TdeFsKJsV/gGNzA4Uspu5yUurDXVa97IT7TFqgcrLKimC5/HI71JuFOBJq8JCnkEBRmmzP/O1JmXJ7hqn39ybNr12tl/XwuWsPAOCDDwu+Q8iLtqz3E3Mpn3gxmZrrr3dbHqbrIVvUH8CA3t0vHVzg0hswwbcHql3sjvhucNaY1lNgzq2r7RZXdcivdLBmuFYfsrRePDrtX5xwZA+oVy18Q8aMgyydgIAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11RwW7CMAz9Fu4h2+DEkQJCSNNUAeI6uamBQEmqxAGhqv8+Ny3QcfLz8/OL7YzkaCI/B3DzQ5Wfh4XOZLUhUGfB1G+FaiSrXanEbG926UykTl+BcBMyg9SQL7S2gXALWYEv/sVNvbdKA2lrRBqyQqu3zgYsVmkTfoCW/MgN7k22MoSOlT2KJ+myKfGsxwsaEhtUwWm6L50NZRzhHxFt9qCQt1mYvLTaUOf1TDvTnqIWqLysZkXw3N7oO8iFAjxpVVjIMyjAKG0OV77WtCx5u7jpN9eSWGt7+3ktXM7OcyDIwOPKeGp40Z7lucQ86RMPNa/m2tvNk0dnLXxk/QUMHNDx1PEGjbANW3AHpN7JnoL3CnuNZZUEdW5faVFdizV6G5yKv/XAtUjvdLTmYywn8ms8OHmthy4Y0heU6zb+Ac/1+k1nAgAA"
    },
    "Metadata": {
     "aws:cdk:path": "NetworkStack/CDKMetadata/Default"
@@ -1287,6 +1287,40 @@
    "Export": {
     "Name": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
    }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
   }
  }
 }

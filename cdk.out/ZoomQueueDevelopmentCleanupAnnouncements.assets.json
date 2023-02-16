@@ -1,0 +1,20 @@
+{
+  "version": "20.0.0",
+  "files": {
+    "cf4445c6f1481a174bb49b8df6b22921c8b050f6ae90c5bac6c51c4643d9a596": {
+      "source": {
+        "path": "ZoomQueueDevelopmentCleanupAnnouncements.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "042277129213-us-west-2": {
+          "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
+          "objectKey": "cf4445c6f1481a174bb49b8df6b22921c8b050f6ae90c5bac6c51c4643d9a596.json",
+          "region": "us-west-2",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

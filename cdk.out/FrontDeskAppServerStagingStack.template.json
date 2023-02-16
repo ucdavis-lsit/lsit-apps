@@ -319,6 +319,45 @@
     "aws:cdk:path": "FrontDeskAppServerStagingStack/Frontdesk-app-serverStagingService/Service"
    }
   },
+  "FrontdeskappserverStagingCPUAlarm6651ADAC": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "ComparisonOperator": "GreaterThanThreshold",
+    "EvaluationPeriods": 1,
+    "ActionsEnabled": true,
+    "AlarmActions": [
+     {
+      "Fn::ImportValue": "ECSMonitoringStack:ExportsOutputRefECSAlerts6D168A967C6D2BC9"
+     }
+    ],
+    "AlarmName": "Frontdesk-app-serverStagingCPUAlarm",
+    "Dimensions": [
+     {
+      "Name": "ClusterName",
+      "Value": {
+       "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+      }
+     },
+     {
+      "Name": "ServiceName",
+      "Value": {
+       "Fn::GetAtt": [
+        "FrontdeskappserverStagingService72913D39",
+        "Name"
+       ]
+      }
+     }
+    ],
+    "MetricName": "CPUUtilization",
+    "Namespace": "AWS/ECS",
+    "Period": 300,
+    "Statistic": "Average",
+    "Threshold": 75
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppServerStagingStack/Frontdesk-app-serverStagingCPUAlarm/Resource"
+   }
+  },
   "FrontdeskappserverStagingTargetGroup06525792": {
    "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
    "Properties": {
@@ -378,6 +417,7 @@
      {
       "RedirectConfig": {
        "Port": "443",
+       "Protocol": "HTTPS",
        "StatusCode": "HTTP_301"
       },
       "Type": "redirect"
@@ -405,11 +445,45 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QwU7DMAz9lt2zjFIhxA02BELaYer2AybzOtMsqWJnqKry76TrmCoOnOz3/PLsl0IXD4/6bvYM3zw3+2bRGx9Q91sB06iVdywhGlGrg6uQfQwGkxq0PcFJ95W3eJkNdeMtmW6AY5cUGtb9G4QaBHfAzSseyJGQd4PqL+OdADkME+76dovhTOay6domZX2dzde+fg8+tsPot0+KS72MpkFZAmO+4j4HQhMDSXdT/098uDogc45ggYWM9bD/BAvOkKvP2e+lbXNGGK7c5SNRbj5TOFGtiQVzuiqOXzbFKSW16eTo3aLUT7ooZ19MNA/RCZ1QV2P9AVNd68KsAQAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QwW6DMAz9lt5DtsGpx3bTpkk9VLT3yQ0u9QgJSpxWCOXfF6Cr0A47+fnlxc/PuczX8nkFN5+pqsk0neRwYFCNSNTXQNDKobQaxevZTHVvNal+bGcUBSovh3dwNTAewTdveCZDTNaMqr+MNQxk0C24+98DuiupyekOo9C2TsN3tv5wNnTj0y+OwhdyG1SDvAWPaYs8bY4qOOL+of6f+DS1Q++jUNqG6gasLnLYaHDtKJ1AiqfBMyUFVCfQYBSZ+pq8Nl2X8sOY4JgCID88lu1CtSPPmJKXYT7nso9xOjB6G9yYe9/zxZqnQq7lS7H69kSZC4apRVnO9Qee5AAJuQEAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppServerStagingStack/CDKMetadata/Default"
    }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
   }
  }
 }

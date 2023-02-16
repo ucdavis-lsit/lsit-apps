@@ -354,7 +354,7 @@
        }
       },
       "Id": "Target0",
-      "Input": "{\"containerOverrides\":[{\"name\":\"frontdesk-app-cleanup-announcements-production\",\"command\":[\"sh\",\"-c\",\"curl -XDELETE \\\"https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY&domain=$DOMAIN\\\"\"]}]}",
+      "Input": "{\"containerOverrides\":[{\"name\":\"frontdesk-app-cleanup-announcements-production\",\"command\":[\"sh\",\"-c\",\"curl -XDELETE \\\"https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY\\\"\"]}]}",
       "RoleArn": {
        "Fn::GetAtt": [
         "FrontdeskappcleanupannouncementsProductionEventRoleD9BF0350",
@@ -371,11 +371,45 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Oy04DMQz8lt5Tl2WFEDfUIrhwqBZ+IDLuYnZro8QBraL8OwnlITjNeDweTwfdxSWcra79e1zj07TJqIEgP5jHye1UooWE5nYHGShqCkjFNW9mf4Q86Eyfu4Z7nRmXNp5YcYQR8q0Pozd69HG6oQMLG6s0139FxTwLhV+tuFnHGnGv413Q9NquvnlxsYdtwols6yPVX+e1NmEKbMuP+49QC72RWA0c0lfviqUUt1/sWWXTwxV0/eolMq9DEuMjwXDCDz5ZyfQpAQAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/12OMa/CMAyEfwt7aqCdWHkIFgZU2FEIppiWGCUOqKry30nhAYLpzp/O9uWQT2A00DefmX2dNbSDbi3a1CqhbUf6DF3JDaq/g33oihsybT8+XVRoPHRz7SotuNG+nuGBLAmx7VO/hK1osug+LKqGq3RiydXCcbj0Wy8flS9gGkyNMtUe06889UMTHEn7Tn+BVOiKVtLBMvz3Thrjw6Hn4AxGtWrlyHZYwATGxeDkiTIXrNAZoXzqHXGOjREaAQAA"
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppProdCleanupAnnouncements/CDKMetadata/Default"
    }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
   }
  }
 }
