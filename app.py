@@ -195,7 +195,7 @@ LSITStack(
         "host_headers": ["api.frontdesk.lsit.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/4c608488-49d4-4fb8-9310-982170d9a394"],
         "is_private": True,
-        "resource_multiplier": 2,
+        "resource_multiplier": 4,
         "monitoring_stack": monitoring_stack
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
@@ -250,7 +250,7 @@ ScheudledTaskStack(
         "app_name": "frontdesk-app-cleanup-announcements",
         "app_env": "production",
         "image_uri": "curlimages/curl:latest",
-        "command_override": ["sh","-c",'curl -XDELETE "https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY&domain=$DOMAIN"'],
+        "command_override": ["sh","-c",'curl -XDELETE "https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY"'],
         "is_private": True
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),

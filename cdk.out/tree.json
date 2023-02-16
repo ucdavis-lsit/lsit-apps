@@ -6742,10 +6742,10 @@
                   "aws:cdk:cloudformation:props": {
                     "containerDefinitions": [
                       {
-                        "cpu": 512,
+                        "cpu": 1024,
                         "essential": true,
                         "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
-                        "memory": 1024,
+                        "memory": 2048,
                         "name": "frontdesk-app-server-production",
                         "portMappings": [
                           {
@@ -6807,7 +6807,7 @@
                         ]
                       }
                     ],
-                    "cpu": "512",
+                    "cpu": "1024",
                     "executionRoleArn": {
                       "Fn::GetAtt": [
                         "FrontdeskappserverProductionRole7CAE5038",
@@ -6815,7 +6815,7 @@
                       ]
                     },
                     "family": "frontdesk-app-server-production",
-                    "memory": "1024",
+                    "memory": "2048",
                     "networkMode": "awsvpc",
                     "requiresCompatibilities": [
                       "FARGATE"
@@ -8919,7 +8919,7 @@
                             }
                           }
                         },
-                        "input": "{\"containerOverrides\":[{\"name\":\"frontdesk-app-cleanup-announcements-production\",\"command\":[\"sh\",\"-c\",\"curl -XDELETE \\\"https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY&domain=$DOMAIN\\\"\"]}]}"
+                        "input": "{\"containerOverrides\":[{\"name\":\"frontdesk-app-cleanup-announcements-production\",\"command\":[\"sh\",\"-c\",\"curl -XDELETE \\\"https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY\\\"\"]}]}"
                       }
                     ]
                   }

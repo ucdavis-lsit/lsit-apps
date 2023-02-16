@@ -114,7 +114,7 @@
    "Properties": {
     "ContainerDefinitions": [
      {
-      "Cpu": 512,
+      "Cpu": 1024,
       "EnvironmentFiles": [
        {
         "Type": "s3",
@@ -168,7 +168,7 @@
         "awslogs-region": "us-west-2"
        }
       },
-      "Memory": 1024,
+      "Memory": 2048,
       "Name": "frontdesk-app-server-production",
       "PortMappings": [
        {
@@ -179,7 +179,7 @@
       ]
      }
     ],
-    "Cpu": "512",
+    "Cpu": "1024",
     "ExecutionRoleArn": {
      "Fn::GetAtt": [
       "FrontdeskappserverProductionRole7CAE5038",
@@ -187,7 +187,7 @@
      ]
     },
     "Family": "frontdesk-app-server-production",
-    "Memory": "1024",
+    "Memory": "2048",
     "NetworkMode": "awsvpc",
     "RequiresCompatibilities": [
      "FARGATE"
