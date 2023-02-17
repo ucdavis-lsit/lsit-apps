@@ -33,6 +33,7 @@ class LSITStack(Stack):
         is_private = app_props.get("is_private", False)
         command = app_props.get("command")
         public_facing = app_props.get("is_public_facing", True)
+        auto_scaling = app_props.get("auto_scaling", False)
 
         if not cluster:    
             cluster_name = task_name
@@ -139,6 +140,9 @@ class LSITStack(Stack):
                 "{app_prefix}Cluster".format(app_prefix=app_prefix),
                 vpc=vpc
             )
+        desired_count = 1
+        if auto_scaling:
+            desired_count = 2
 
         if is_private:
             service = ecs.FargateService(
@@ -148,7 +152,7 @@ class LSITStack(Stack):
                 vpc_subnets=ec2.SubnetSelection(
                     subnets=vpc.private_subnets
                 ),
-                desired_count=1,
+                desired_count=desired_count,
                 task_definition=task,
                 cluster=cluster,
                 service_name=task_name
@@ -162,10 +166,20 @@ class LSITStack(Stack):
                 vpc_subnets=ec2.SubnetSelection(
                     subnets=vpc.public_subnets
                 ),
-                desired_count=1,
+                desired_count=desired_count,
                 task_definition=task,
                 cluster=cluster,
                 service_name=task_name
+            )
+
+        if auto_scaling:
+            scaling = service.auto_scale_task_count(
+                max_capacity=4,
+                min_capacity=2
+            )
+            scaling.scale_on_cpu_utilization(
+                "{app_prefix}CPUScaling".format(app_prefix=app_prefix),
+                target_utilization_percent=50
             )
 
         # Setup alarms on service

@@ -273,7 +273,7 @@
      "MaximumPercent": 200,
      "MinimumHealthyPercent": 50
     },
-    "DesiredCount": 1,
+    "DesiredCount": 2,
     "EnableECSManagedTags": false,
     "HealthCheckGracePeriodSeconds": 60,
     "LaunchType": "FARGATE",
@@ -318,6 +318,67 @@
    ],
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingService/Service"
+   }
+  },
+  "FrontdeskappclientStagingServiceTaskCountTarget91EC6D98": {
+   "Type": "AWS::ApplicationAutoScaling::ScalableTarget",
+   "Properties": {
+    "MaxCapacity": 4,
+    "MinCapacity": 2,
+    "ResourceId": {
+     "Fn::Join": [
+      "",
+      [
+       "service/",
+       {
+        "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+       },
+       "/",
+       {
+        "Fn::GetAtt": [
+         "FrontdeskappclientStagingService2116B712",
+         "Name"
+        ]
+       }
+      ]
+     ]
+    },
+    "RoleARN": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":iam::042277129213:role/aws-service-role/ecs.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_ECSService"
+      ]
+     ]
+    },
+    "ScalableDimension": "ecs:service:DesiredCount",
+    "ServiceNamespace": "ecs"
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingService/TaskCount/Target/Resource"
+   }
+  },
+  "FrontdeskappclientStagingServiceTaskCountTargetFrontdeskappclientStagingCPUScaling2169062C": {
+   "Type": "AWS::ApplicationAutoScaling::ScalingPolicy",
+   "Properties": {
+    "PolicyName": "FrontDeskAppClientStagingStackFrontdeskappclientStagingServiceTaskCountTargetFrontdeskappclientStagingCPUScaling2E4200F0",
+    "PolicyType": "TargetTrackingScaling",
+    "ScalingTargetId": {
+     "Ref": "FrontdeskappclientStagingServiceTaskCountTarget91EC6D98"
+    },
+    "TargetTrackingScalingPolicyConfiguration": {
+     "PredefinedMetricSpecification": {
+      "PredefinedMetricType": "ECSServiceAverageCPUUtilization"
+     },
+     "TargetValue": 50
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingService/TaskCount/Target/Frontdesk-app-clientStagingCPUScaling/Resource"
    }
   },
   "FrontdeskappclientStagingCPUAlarm6E7CD3BC": {
@@ -515,7 +576,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QwW6DMAz9lt5DtsGpx3bTpkk9VLT3yQ0u9QgJSpxWCOXfF6Cr0A47+fnlxc/PuczX8nkFN5+pqsk0neRwYFCNSNTXQNDKobQaxevZTHVvNal+bGcUBSovh3dwNTAewTdveCZDTNaMqr+MNQxk0C24+98DuiupyekOo9C2TsN3tv5wNnTj0y+OwhdyG1SDvAWPaYs8bY4qOOL+of6f+DS1Q++jUNqG6gasLnLYaHDtKJ1AiqfBMyUFVCfQYBSZ+pq8Nl2X8sOY4JgCID88lu1CtSPPmJKXYT7nso9xOjB6G9yYe9/zxZqnQq7lS7H69kSZC4apRVnO9Qee5AAJuQEAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31RTW/CMAz9LdxDtpUTR2DaNIkDarlPJphiGhKUDxCq8t/nNgPKDjv5+ek5fn4pZDGVryO4+LHaNmNNG9lWAVQjmPpuCY6yLa1GsdiZvq6sJnXt2oySQOVl+wGuhoBr8M077shQIGs61V/GmgBk0A2439kK3ZlUv+kGKwUaNrp/dmGjCUloW/O6pa0/nY2nTnzDSfiJnEfVYJiDR/ZV8C2ooqNwvav/J75M7dD7JOB04uug8wcxWM9GyNT83t2RqzH0889MLmvHEfJAleceoT0RSSht4/YCQe1lO9Pgjp2mB5yrBh+IFbDd8AqjeO7MJ80e1vKy+ynDdqBakg/IkZcx/+OwT0mU6G10OfgbTmJ1DXtrXiZyKt8mo4MnGjv+ADqiLHP9Aa0Gpys7AgAA"
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientStagingStack/CDKMetadata/Default"

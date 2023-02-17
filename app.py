@@ -369,6 +369,7 @@ LSITStack(
         "is_private": True,
         "additional_https_rule_priorities": [8],
         "additional_http_rule_priorities": [8],
+        "auto_scaling": True
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -415,7 +416,8 @@ LSITStack(
         "http_load_balancer_priority": 6,
         "host_headers": ["stage.websocket.frontdesk.lsit.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/3e9d0032-9e87-4210-853d-31bec7f931cd"],
-        "is_private": True
+        "is_private": True,
+        "auto_scaling": True
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
