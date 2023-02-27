@@ -315,6 +315,7 @@
    "DependsOn": [
     "FrontdeskappclientProductionHttpsListenerRule5CBF48FA",
     "FrontdeskappclientProductionHttpsListenerRule1011E01EED",
+    "FrontdeskappclientProductionHttpsListenerRule11E9101610",
     "FrontdeskappclientProductionHttpsListenerRule99C6FA131"
    ],
    "Metadata": {
@@ -767,6 +768,76 @@
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule10/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerRule11E9101610": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
+      },
+      "Type": "forward"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "communication.advisingfrontdesk.lsit.ucdavis.edu",
+        "intrel.advisingfrontdesk.lsit.ucdavis.edu",
+        "linguistics.advisingfrontdesk.lsit.ucdavis.edu",
+        "polisci.advisingfrontdesk.lsit.ucdavis.edu",
+        "engineering.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    },
+    "Priority": 11
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule11/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpListenerRule1188D37E6A": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "RedirectConfig": {
+       "Port": "443",
+       "Protocol": "HTTPS",
+       "StatusCode": "HTTP_301"
+      },
+      "Type": "redirect"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "communication.advisingfrontdesk.lsit.ucdavis.edu",
+        "intrel.advisingfrontdesk.lsit.ucdavis.edu",
+        "linguistics.advisingfrontdesk.lsit.ucdavis.edu",
+        "polisci.advisingfrontdesk.lsit.ucdavis.edu",
+        "engineering.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
+    },
+    "Priority": 11
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule11/Resource"
    }
   },
   "CDKMetadata": {

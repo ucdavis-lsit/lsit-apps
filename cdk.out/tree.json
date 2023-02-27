@@ -6522,6 +6522,106 @@
               "version": "2.29.0"
             }
           },
+          "Frontdesk-app-clientProductionHttpsListenerRule11": {
+            "id": "Frontdesk-app-clientProductionHttpsListenerRule11",
+            "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule11",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule11/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "type": "forward",
+                        "targetGroupArn": {
+                          "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
+                        }
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "communication.advisingfrontdesk.lsit.ucdavis.edu",
+                            "intrel.advisingfrontdesk.lsit.ucdavis.edu",
+                            "linguistics.advisingfrontdesk.lsit.ucdavis.edu",
+                            "polisci.advisingfrontdesk.lsit.ucdavis.edu",
+                            "engineering.advisingfrontdesk.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+                    },
+                    "priority": 11
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-clientProductionHttpListenerRule11": {
+            "id": "Frontdesk-app-clientProductionHttpListenerRule11",
+            "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule11",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule11/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "redirectConfig": {
+                          "port": "443",
+                          "statusCode": "HTTP_301",
+                          "protocol": "HTTPS"
+                        },
+                        "type": "redirect"
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "communication.advisingfrontdesk.lsit.ucdavis.edu",
+                            "intrel.advisingfrontdesk.lsit.ucdavis.edu",
+                            "linguistics.advisingfrontdesk.lsit.ucdavis.edu",
+                            "polisci.advisingfrontdesk.lsit.ucdavis.edu",
+                            "engineering.advisingfrontdesk.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
+                    },
+                    "priority": 11
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.29.0"
+            }
+          },
           "CDKMetadata": {
             "id": "CDKMetadata",
             "path": "FrontDeskAppClientProdStack/CDKMetadata",

@@ -165,11 +165,16 @@ frontdesk_frontend_stack = LSITStack(
             "mae.advisingfrontdesk.lsit.ucdavis.edu",
             "orangecluster.advisingfrontdesk.lsit.ucdavis.edu",
             "cee.advisingfrontdesk.lsit.ucdavis.edu",
+            "communication.advisingfrontdesk.lsit.ucdavis.edu",
+            "intrel.advisingfrontdesk.lsit.ucdavis.edu",
+            "linguistics.advisingfrontdesk.lsit.ucdavis.edu",
+            "polisci.advisingfrontdesk.lsit.ucdavis.edu",
+            "engineering.advisingfrontdesk.lsit.ucdavis.edu"
         ],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616", "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"],
         "is_private": True,
-        "additional_https_rule_priorities": [9,10],
-        "additional_http_rule_priorities": [9,10],
+        "additional_https_rule_priorities": [9,10,11],
+        "additional_http_rule_priorities": [9,10,11],
         "resource_multiplier": 2,
         "monitoring_stack": monitoring_stack
     },
