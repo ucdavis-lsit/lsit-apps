@@ -463,7 +463,7 @@
    "Properties": {
     "Certificates": [
      {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/42f3fc26-59c4-495f-9166-9e8180d95e6b"
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/57886965-4836-4c9d-91ae-96f198303398"
      }
     ],
     "ListenerArn": {
@@ -511,7 +511,7 @@
    "Properties": {
     "Certificates": [
      {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/3e9d0032-9e87-4210-853d-31bec7f931cd"
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/da6272ec-7b04-4350-85f1-f24d021da555"
      }
     ],
     "ListenerArn": {
