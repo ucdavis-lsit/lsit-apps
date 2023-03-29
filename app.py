@@ -396,7 +396,7 @@ LSITStack(
         "https_load_balancer_priority": 5,
         "http_load_balancer_priority": 5,
         "host_headers": ["stage.api.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/1ae579ad-54ac-4a6e-bcb7-3e4a547b3a08"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/8c266d3f-7717-4c18-bd74-c5af664f9816"],
         "is_private": True,
         "monitoring_stack": monitoring_stack
     },
