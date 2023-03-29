@@ -12015,7 +12015,7 @@
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::ApplicationAutoScaling::ScalableTarget",
                           "aws:cdk:cloudformation:props": {
-                            "maxCapacity": 4,
+                            "maxCapacity": 8,
                             "minCapacity": 2,
                             "resourceId": {
                               "Fn::Join": [
@@ -13525,7 +13525,7 @@
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::ApplicationAutoScaling::ScalableTarget",
                           "aws:cdk:cloudformation:props": {
-                            "maxCapacity": 4,
+                            "maxCapacity": 8,
                             "minCapacity": 2,
                             "resourceId": {
                               "Fn::Join": [

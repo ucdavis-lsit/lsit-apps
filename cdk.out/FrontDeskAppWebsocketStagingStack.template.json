@@ -322,7 +322,7 @@
   "FrontdeskappwebsocketStagingServiceTaskCountTargetAA507E63": {
    "Type": "AWS::ApplicationAutoScaling::ScalableTarget",
    "Properties": {
-    "MaxCapacity": 4,
+    "MaxCapacity": 8,
     "MinCapacity": 2,
     "ResourceId": {
      "Fn::Join": [
