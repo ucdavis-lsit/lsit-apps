@@ -5919,7 +5919,7 @@
                     },
                     "certificates": [
                       {
-                        "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a9930618-8c81-482e-b43c-0e9d1f06b616"
+                        "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/692cfbeb-e216-4319-890d-47d2283b1429"
                       }
                     ],
                     "port": 443,
@@ -5974,7 +5974,7 @@
                       "aws:cdk:cloudformation:props": {
                         "certificates": [
                           {
-                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/4c608488-49d4-4fb8-9310-982170d9a394"
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/6955e8b8-66d6-40a5-a3dc-a8e8aff8a6d0"
                           }
                         ],
                         "listenerArn": {
@@ -6005,7 +6005,7 @@
                       "aws:cdk:cloudformation:props": {
                         "certificates": [
                           {
-                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/9ee190dd-6d07-4bfd-a293-dc3048c56c6b"
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/0e1bccce-2efd-43d1-a78e-b42150f85c0f"
                           }
                         ],
                         "listenerArn": {
