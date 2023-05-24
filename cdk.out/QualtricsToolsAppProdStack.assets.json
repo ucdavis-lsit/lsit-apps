@@ -1,15 +1,15 @@
 {
   "version": "20.0.0",
   "files": {
-    "e7d3f1f463bab2e2bf77454588608028a465f8589f3d62cce7207279c718de0e": {
+    "62ce0073fa772763751cf6d163149bf4409c6cbb81450570187e514252fb3210": {
       "source": {
-        "path": "FrontDeskAppClientProdStack.template.json",
+        "path": "QualtricsToolsAppProdStack.template.json",
         "packaging": "file"
       },
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "e7d3f1f463bab2e2bf77454588608028a465f8589f3d62cce7207279c718de0e.json",
+          "objectKey": "62ce0073fa772763751cf6d163149bf4409c6cbb81450570187e514252fb3210.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }
