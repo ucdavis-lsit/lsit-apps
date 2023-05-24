@@ -59,7 +59,8 @@
       "group": [
        "service:frontdesk-app-websocket-production",
        "service:frontdesk-app-server-production",
-       "service:frontdesk-app-client-production"
+       "service:frontdesk-app-client-production",
+       "service:qualtrics-tools-production"
       ]
      },
      "detail-type": [

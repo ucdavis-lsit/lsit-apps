@@ -29,6 +29,7 @@ class MonitoringStack(Stack):
                         "service:frontdesk-app-websocket-production",
                         "service:frontdesk-app-server-production",
                         "service:frontdesk-app-client-production",
+                        "service:qualtrics-tools-production"
                     ],
                 }
             )

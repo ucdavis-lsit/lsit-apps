@@ -607,7 +607,8 @@ qualtrics_tools_stack = LSITStack(
             "qualtricstools.lsit.ucdavis.edu",
         ],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/25e204ac-b682-493a-be0c-06dccfd59297"],
-        "is_private": True
+        "is_private": True,
+        "monitoring_stack": monitoring_stack
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )

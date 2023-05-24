@@ -1983,7 +1983,8 @@
                         "group": [
                           "service:frontdesk-app-websocket-production",
                           "service:frontdesk-app-server-production",
-                          "service:frontdesk-app-client-production"
+                          "service:frontdesk-app-client-production",
+                          "service:qualtrics-tools-production"
                         ]
                       },
                       "detail-type": [
@@ -18175,6 +18176,11 @@
                     "comparisonOperator": "GreaterThanThreshold",
                     "evaluationPeriods": 1,
                     "actionsEnabled": true,
+                    "alarmActions": [
+                      {
+                        "Fn::ImportValue": "ECSMonitoringStack:ExportsOutputRefECSAlerts6D168A967C6D2BC9"
+                      }
+                    ],
                     "alarmName": "Qualtrics-toolsProductionCPUAlarm",
                     "dimensions": [
                       {
