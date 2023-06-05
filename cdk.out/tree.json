@@ -6210,6 +6210,37 @@
                   "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerCertificate",
                   "version": "2.29.0"
                 }
+              },
+              "Qualtrics-toolsStagingCerttificates1": {
+                "id": "Qualtrics-toolsStagingCerttificates1",
+                "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Qualtrics-toolsStagingCerttificates1",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Qualtrics-toolsStagingCerttificates1/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+                      "aws:cdk:cloudformation:props": {
+                        "certificates": [
+                          {
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/daa02917-807c-453e-9a33-7a578e2d7281"
+                          }
+                        ],
+                        "listenerArn": {
+                          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerCertificate",
+                      "version": "2.29.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerCertificate",
+                  "version": "2.29.0"
+                }
               }
             },
             "constructInfo": {
@@ -18898,6 +18929,1197 @@
               "Default": {
                 "id": "Default",
                 "path": "QualtricsToolsAppTransferSurverys/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.42"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.29.0"
+        }
+      },
+      "QualtricsToolsAppStagingStack": {
+        "id": "QualtricsToolsAppStagingStack",
+        "path": "QualtricsToolsAppStagingStack",
+        "children": {
+          "Qualtrics-toolsStagingRole": {
+            "id": "Qualtrics-toolsStagingRole",
+            "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows qualtrics-tools-staging tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Qualtrics-toolsStagingECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.29.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "QualtricstoolsStagingLogGroup63E9AF5E",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "QualtricstoolsStagingRoleDefaultPolicy1D7B0038",
+                        "roles": [
+                          {
+                            "Ref": "QualtricstoolsStagingRoleBA3AEDB7"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.29.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-toolsStagingPolicy": {
+            "id": "Qualtrics-toolsStagingPolicy",
+            "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/qualtrics-tools/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Qualtrics-toolsStagingConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "QualtricstoolsStagingRoleBA3AEDB7"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Policy",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-toolsStagingTask": {
+            "id": "Qualtrics-toolsStagingTask",
+            "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/qualtrics-tools-staging:latest",
+                        "memory": 512,
+                        "name": "qualtrics-tools-staging",
+                        "portMappings": [
+                          {
+                            "containerPort": 3000,
+                            "hostPort": 3000,
+                            "protocol": "tcp"
+                          }
+                        ],
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "QualtricstoolsStagingLogGroup63E9AF5E"
+                            },
+                            "awslogs-stream-prefix": "qualtrics-tools-staging",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/qualtrics-tools/staging.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "QualtricstoolsStagingRoleBA3AEDB7",
+                        "Arn"
+                      ]
+                    },
+                    "family": "qualtrics-tools-staging",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "QualtricstoolsStagingRoleBA3AEDB7",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                  "version": "2.29.0"
+                }
+              },
+              "qualtrics-tools-staging": {
+                "id": "qualtrics-tools-staging",
+                "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingTask/qualtrics-tools-staging",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-toolsStagingLogGroup": {
+            "id": "Qualtrics-toolsStagingLogGroup",
+            "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/qualtrics-tools-staging",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-toolsStagingBucket": {
+            "id": "Qualtrics-toolsStagingBucket",
+            "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingBucket",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-toolsStagingSecurityGroup": {
+            "id": "Qualtrics-toolsStagingSecurityGroup",
+            "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingSecurityGroup",
+                    "groupName": "qualtrics-tools-staging",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.29.0"
+                }
+              },
+              "from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000": {
+                "id": "from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000",
+                "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingSecurityGroup/from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
+                  "aws:cdk:cloudformation:props": {
+                    "ipProtocol": "tcp",
+                    "description": "Load balancer to target",
+                    "fromPort": 3000,
+                    "groupId": {
+                      "Fn::GetAtt": [
+                        "QualtricstoolsStagingSecurityGroupD04A2191",
+                        "GroupId"
+                      ]
+                    },
+                    "sourceSecurityGroupId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
+                    },
+                    "toPort": 3000
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroupIngress",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-toolsStagingService": {
+            "id": "Qualtrics-toolsStagingService",
+            "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingService",
+            "children": {
+              "Service": {
+                "id": "Service",
+                "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingService/Service",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Service",
+                  "aws:cdk:cloudformation:props": {
+                    "cluster": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                    },
+                    "deploymentConfiguration": {
+                      "maximumPercent": 200,
+                      "minimumHealthyPercent": 50
+                    },
+                    "desiredCount": 1,
+                    "enableEcsManagedTags": false,
+                    "healthCheckGracePeriodSeconds": 60,
+                    "launchType": "FARGATE",
+                    "loadBalancers": [
+                      {
+                        "targetGroupArn": {
+                          "Ref": "QualtricstoolsStagingTargetGroupA6388556"
+                        },
+                        "containerName": "qualtrics-tools-staging",
+                        "containerPort": 3000
+                      }
+                    ],
+                    "networkConfiguration": {
+                      "awsvpcConfiguration": {
+                        "assignPublicIp": "DISABLED",
+                        "subnets": [
+                          {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+                          },
+                          {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+                          }
+                        ],
+                        "securityGroups": [
+                          {
+                            "Fn::GetAtt": [
+                              "QualtricstoolsStagingSecurityGroupD04A2191",
+                              "GroupId"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "serviceName": "qualtrics-tools-staging",
+                    "taskDefinition": {
+                      "Ref": "QualtricstoolsStagingTask70B5900B"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnService",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateService",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-toolsStagingCPUAlarm": {
+            "id": "Qualtrics-toolsStagingCPUAlarm",
+            "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "evaluationPeriods": 1,
+                    "actionsEnabled": true,
+                    "alarmName": "Qualtrics-toolsStagingCPUAlarm",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "QualtricstoolsStagingService444A05A5",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-toolsStagingTargetGroup": {
+            "id": "Qualtrics-toolsStagingTargetGroup",
+            "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingTargetGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingTargetGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "healthCheckPath": "/api/hello",
+                    "name": "ecs-qualtrics-tools-staging-stag",
+                    "port": 80,
+                    "protocol": "HTTP",
+                    "targetGroupAttributes": [
+                      {
+                        "key": "stickiness.enabled",
+                        "value": "false"
+                      }
+                    ],
+                    "targetType": "ip",
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnTargetGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationTargetGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-toolsStagingHttpsListenerRule": {
+            "id": "Qualtrics-toolsStagingHttpsListenerRule",
+            "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingHttpsListenerRule",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingHttpsListenerRule/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "type": "forward",
+                        "targetGroupArn": {
+                          "Ref": "QualtricstoolsStagingTargetGroupA6388556"
+                        }
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "stage.qualtricstools.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE"
+                    },
+                    "priority": 13
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-toolsStagingHttpListenerRule": {
+            "id": "Qualtrics-toolsStagingHttpListenerRule",
+            "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingHttpListenerRule",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingStack/Qualtrics-toolsStagingHttpListenerRule/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "redirectConfig": {
+                          "port": "443",
+                          "statusCode": "HTTP_301",
+                          "protocol": "HTTPS"
+                        },
+                        "type": "redirect"
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "stage.qualtricstools.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A"
+                    },
+                    "priority": 13
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.29.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "QualtricsToolsAppStagingStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "QualtricsToolsAppStagingStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.42"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.29.0"
+        }
+      },
+      "QualtricsToolsAppStagingTransferSurverys": {
+        "id": "QualtricsToolsAppStagingTransferSurverys",
+        "path": "QualtricsToolsAppStagingTransferSurverys",
+        "children": {
+          "Qualtrics-tools-transfer-surveysStagingRole": {
+            "id": "Qualtrics-tools-transfer-surveysStagingRole",
+            "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows qualtrics-tools-transfer-surveys-staging tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Qualtrics-tools-transfer-surveysStagingECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.29.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "QualtricstoolstransfersurveysStagingLogGroup9875B45D",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "QualtricstoolstransfersurveysStagingRoleDefaultPolicyEFEECEA8",
+                        "roles": [
+                          {
+                            "Ref": "QualtricstoolstransfersurveysStagingRoleA043AACC"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.29.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-transfer-surveysStagingPolicy": {
+            "id": "Qualtrics-tools-transfer-surveysStagingPolicy",
+            "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/qualtrics-tools-transfer-surveys/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Qualtrics-tools-transfer-surveysStagingConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "QualtricstoolstransfersurveysStagingRoleA043AACC"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Policy",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-transfer-surveysStagingTask": {
+            "id": "Qualtrics-tools-transfer-surveysStagingTask",
+            "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "curlimages/curl:latest",
+                        "memory": 512,
+                        "name": "qualtrics-tools-transfer-surveys-staging",
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "QualtricstoolstransfersurveysStagingLogGroup9875B45D"
+                            },
+                            "awslogs-stream-prefix": "qualtrics-tools-transfer-surveys-staging",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/qualtrics-tools-transfer-surveys/staging.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "QualtricstoolstransfersurveysStagingRoleA043AACC",
+                        "Arn"
+                      ]
+                    },
+                    "family": "qualtrics-tools-transfer-surveys-staging",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "QualtricstoolstransfersurveysStagingRoleA043AACC",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                  "version": "2.29.0"
+                }
+              },
+              "qualtrics-tools-transfer-surveys-staging": {
+                "id": "qualtrics-tools-transfer-surveys-staging",
+                "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingTask/qualtrics-tools-transfer-surveys-staging",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-transfer-surveysStagingLogGroup": {
+            "id": "Qualtrics-tools-transfer-surveysStagingLogGroup",
+            "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/qualtrics-tools-transfer-surveys-staging",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-transfer-surveysStagingBucket": {
+            "id": "Qualtrics-tools-transfer-surveysStagingBucket",
+            "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingBucket",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-transfer-surveysStagingSecurityGroup": {
+            "id": "Qualtrics-tools-transfer-surveysStagingSecurityGroup",
+            "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingSecurityGroup",
+                    "groupName": "qualtrics-tools-transfer-surveys-staging",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-transfer-surveysStagingEventRole": {
+            "id": "Qualtrics-tools-transfer-surveysStagingEventRole",
+            "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingEventRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingEventRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "events.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows qualtrics-tools-transfer-surveys-staging scheduled tasks to run in ECS.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Qualtrics-tools-transfer-surveysStagingEventRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.29.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingEventRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingEventRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "ecs:RunTask",
+                              "Condition": {
+                                "ArnEquals": {
+                                  "ecs:cluster": {
+                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                                  }
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Ref": "QualtricstoolstransfersurveysStagingTask34755172"
+                              }
+                            },
+                            {
+                              "Action": "iam:PassRole",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "QualtricstoolstransfersurveysStagingRoleA043AACC",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "QualtricstoolstransfersurveysStagingEventRoleDefaultPolicy97D4C3AA",
+                        "roles": [
+                          {
+                            "Ref": "QualtricstoolstransfersurveysStagingEventRoleF03914C4"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.29.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-transfer-surveysStagingScheduledTask": {
+            "id": "Qualtrics-tools-transfer-surveysStagingScheduledTask",
+            "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingScheduledTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingTransferSurverys/Qualtrics-tools-transfer-surveysStagingScheduledTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                  "aws:cdk:cloudformation:props": {
+                    "scheduleExpression": "cron(/5 * * * ? *)",
+                    "state": "ENABLED",
+                    "targets": [
+                      {
+                        "id": "Target0",
+                        "arn": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                        },
+                        "roleArn": {
+                          "Fn::GetAtt": [
+                            "QualtricstoolstransfersurveysStagingEventRoleF03914C4",
+                            "Arn"
+                          ]
+                        },
+                        "ecsParameters": {
+                          "taskCount": 1,
+                          "taskDefinitionArn": {
+                            "Ref": "QualtricstoolstransfersurveysStagingTask34755172"
+                          },
+                          "launchType": "FARGATE",
+                          "platformVersion": "LATEST",
+                          "networkConfiguration": {
+                            "awsVpcConfiguration": {
+                              "subnets": [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+                                },
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+                                }
+                              ],
+                              "assignPublicIp": "DISABLED",
+                              "securityGroups": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "QualtricstoolstransfersurveysStagingSecurityGroup0A0443CF",
+                                    "GroupId"
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "input": "{\"containerOverrides\":[{\"name\":\"qualtrics-tools-transfer-surveys-staging\",\"command\":[\"sh\",\"-c\",\"curl -XGET https://stage.qualtricstools.lsit.ucdavis.edu/api/cron/transferSurveys?key=$API_KEY\"]}]}"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_events.CfnRule",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_events.Rule",
+              "version": "2.29.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "QualtricsToolsAppStagingTransferSurverys/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "QualtricsToolsAppStagingTransferSurverys/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnResource",
                   "version": "2.29.0"

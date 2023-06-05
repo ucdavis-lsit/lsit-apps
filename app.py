@@ -585,7 +585,7 @@ QueueStack(
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION)
 )
 
-# Qualtrics tools
+# Qualtrics Tools Prod
 qualtrics_tools_stack = LSITStack(
     app,
     "QualtricsToolsAppProdStack",
@@ -624,6 +624,50 @@ ScheudledTaskStack(
         "app_env": "production",
         "image_uri": "curlimages/curl:latest",
         "command_override": ["sh","-c","curl -XGET https://qualtricstools.lsit.ucdavis.edu/api/cron/transferSurveys?key=$API_KEY"],
+        "is_private": True,
+        "schedule": {"minute": "/5"}
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+# Qualtrics Tools Stage
+qualtrics_tools_staging_stack = LSITStack(
+    app,
+    "QualtricsToolsAppStagingStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    network_stack.load_balancer,
+    {
+        "app_name": "qualtrics-tools",
+        "app_env": "staging",
+        "task_port": 3000,
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/qualtrics-tools-staging:latest",
+        "https_listener": frontdesk_frontend_stack.https_listener,
+        "http_listener": frontdesk_frontend_stack.http_listener,
+        "health_check_path": "/api/hello",
+        "https_load_balancer_priority": 13,
+        "http_load_balancer_priority": 13,
+        "host_headers": [
+            "stage.qualtricstools.lsit.ucdavis.edu",
+        ],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/daa02917-807c-453e-9a33-7a578e2d7281"],
+        "is_private": True
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+ScheudledTaskStack(
+    app,
+    "QualtricsToolsAppStagingTransferSurverys",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "qualtrics-tools-transfer-surveys",
+        "app_env": "staging",
+        "image_uri": "curlimages/curl:latest",
+        "command_override": ["sh","-c","curl -XGET https://stage.qualtricstools.lsit.ucdavis.edu/api/cron/transferSurveys?key=$API_KEY"],
         "is_private": True,
         "schedule": {"minute": "/5"}
     },
