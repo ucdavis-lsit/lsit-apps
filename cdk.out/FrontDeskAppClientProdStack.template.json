@@ -316,6 +316,7 @@
     "FrontdeskappclientProductionHttpsListenerRule5CBF48FA",
     "FrontdeskappclientProductionHttpsListenerRule1011E01EED",
     "FrontdeskappclientProductionHttpsListenerRule11E9101610",
+    "FrontdeskappclientProductionHttpsListenerRule14C9F12BA0",
     "FrontdeskappclientProductionHttpsListenerRule99C6FA131"
    ],
    "Metadata": {
@@ -870,6 +871,68 @@
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule11/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerRule14C9F12BA0": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
+      },
+      "Type": "forward"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "acbnc.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    },
+    "Priority": 14
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule14/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpListenerRule147B4B9330": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "RedirectConfig": {
+       "Port": "443",
+       "Protocol": "HTTPS",
+       "StatusCode": "HTTP_301"
+      },
+      "Type": "redirect"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "acbnc.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
+    },
+    "Priority": 14
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule14/Resource"
    }
   },
   "CDKMetadata": {

@@ -6685,6 +6685,98 @@
               "version": "2.29.0"
             }
           },
+          "Frontdesk-app-clientProductionHttpsListenerRule14": {
+            "id": "Frontdesk-app-clientProductionHttpsListenerRule14",
+            "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule14",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule14/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "type": "forward",
+                        "targetGroupArn": {
+                          "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
+                        }
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "acbnc.advisingfrontdesk.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+                    },
+                    "priority": 14
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-clientProductionHttpListenerRule14": {
+            "id": "Frontdesk-app-clientProductionHttpListenerRule14",
+            "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule14",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule14/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "redirectConfig": {
+                          "port": "443",
+                          "statusCode": "HTTP_301",
+                          "protocol": "HTTPS"
+                        },
+                        "type": "redirect"
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "acbnc.advisingfrontdesk.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
+                    },
+                    "priority": 14
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.29.0"
+            }
+          },
           "CDKMetadata": {
             "id": "CDKMetadata",
             "path": "FrontDeskAppClientProdStack/CDKMetadata",

@@ -169,12 +169,13 @@ frontdesk_frontend_stack = LSITStack(
             "intrel.advisingfrontdesk.lsit.ucdavis.edu",
             "linguistics.advisingfrontdesk.lsit.ucdavis.edu",
             "polisci.advisingfrontdesk.lsit.ucdavis.edu",
-            "engineering.advisingfrontdesk.lsit.ucdavis.edu"
+            "engineering.advisingfrontdesk.lsit.ucdavis.edu",
+            "acbnc.advisingfrontdesk.lsit.ucdavis.edu"
         ],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/692cfbeb-e216-4319-890d-47d2283b1429", "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"],
         "is_private": True,
-        "additional_https_rule_priorities": [9,10,11],
-        "additional_http_rule_priorities": [9,10,11],
+        "additional_https_rule_priorities": [9,10,11,14],
+        "additional_http_rule_priorities": [9,10,11,14],
         "resource_multiplier": 2,
         "monitoring_stack": monitoring_stack
     },
