@@ -6708,7 +6708,8 @@
                         "field": "host-header",
                         "hostHeaderConfig": {
                           "values": [
-                            "acbnc.advisingfrontdesk.lsit.ucdavis.edu"
+                            "acbnc.advisingfrontdesk.lsit.ucdavis.edu",
+                            "oeoes.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
@@ -6755,7 +6756,8 @@
                         "field": "host-header",
                         "hostHeaderConfig": {
                           "values": [
-                            "acbnc.advisingfrontdesk.lsit.ucdavis.edu"
+                            "acbnc.advisingfrontdesk.lsit.ucdavis.edu",
+                            "oeoes.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
