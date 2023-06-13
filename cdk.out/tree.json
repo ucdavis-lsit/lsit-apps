@@ -6709,7 +6709,8 @@
                         "hostHeaderConfig": {
                           "values": [
                             "acbnc.advisingfrontdesk.lsit.ucdavis.edu",
-                            "oeoes.advisingfrontdesk.lsit.ucdavis.edu"
+                            "oeoes.advisingfrontdesk.lsit.ucdavis.edu",
+                            "lgbtqia.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
@@ -6757,7 +6758,8 @@
                         "hostHeaderConfig": {
                           "values": [
                             "acbnc.advisingfrontdesk.lsit.ucdavis.edu",
-                            "oeoes.advisingfrontdesk.lsit.ucdavis.edu"
+                            "oeoes.advisingfrontdesk.lsit.ucdavis.edu",
+                            "lgbtqia.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
