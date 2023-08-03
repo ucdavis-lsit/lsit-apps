@@ -175,7 +175,7 @@ frontdesk_frontend_stack = LSITStack(
             "lgbtqia.advisingfrontdesk.lsit.ucdavis.edu",
             "menasa.advisingfrontdesk.lsit.ucdavis.edu"
         ],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/692cfbeb-e216-4319-890d-47d2283b1429", "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/692cfbeb-e216-4319-890d-47d2283b1429", "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837","arn:aws:acm:us-west-2:042277129213:certificate/fd32f426-b389-43c0-84a0-788dec47e244"],
         "is_private": True,
         "additional_https_rule_priorities": [9,10,11,14],
         "additional_http_rule_priorities": [9,10,11,14],
