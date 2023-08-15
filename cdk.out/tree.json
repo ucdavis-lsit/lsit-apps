@@ -6742,7 +6742,8 @@
                             "acbnc.advisingfrontdesk.lsit.ucdavis.edu",
                             "oeoes.advisingfrontdesk.lsit.ucdavis.edu",
                             "lgbtqia.advisingfrontdesk.lsit.ucdavis.edu",
-                            "menasa.advisingfrontdesk.lsit.ucdavis.edu"
+                            "menasa.advisingfrontdesk.lsit.ucdavis.edu",
+                            "our.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
@@ -6792,7 +6793,8 @@
                             "acbnc.advisingfrontdesk.lsit.ucdavis.edu",
                             "oeoes.advisingfrontdesk.lsit.ucdavis.edu",
                             "lgbtqia.advisingfrontdesk.lsit.ucdavis.edu",
-                            "menasa.advisingfrontdesk.lsit.ucdavis.edu"
+                            "menasa.advisingfrontdesk.lsit.ucdavis.edu",
+                            "our.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
@@ -6801,6 +6803,100 @@
                       "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
                     },
                     "priority": 14
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-clientProductionHttpsListenerRule15": {
+            "id": "Frontdesk-app-clientProductionHttpsListenerRule15",
+            "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule15",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule15/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "type": "forward",
+                        "targetGroupArn": {
+                          "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
+                        }
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "english.advisingfrontdesk.lsit.ucdavis.edu",
+                            "fas.advisingfrontdesk.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+                    },
+                    "priority": 15
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.29.0"
+            }
+          },
+          "Frontdesk-app-clientProductionHttpListenerRule15": {
+            "id": "Frontdesk-app-clientProductionHttpListenerRule15",
+            "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule15",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule15/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "redirectConfig": {
+                          "port": "443",
+                          "statusCode": "HTTP_301",
+                          "protocol": "HTTPS"
+                        },
+                        "type": "redirect"
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "english.advisingfrontdesk.lsit.ucdavis.edu",
+                            "fas.advisingfrontdesk.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
+                    },
+                    "priority": 15
                   }
                 },
                 "constructInfo": {
