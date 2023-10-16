@@ -20363,6 +20363,551 @@
           "fqn": "aws-cdk-lib.Stack",
           "version": "2.29.0"
         }
+      },
+      "QualtricsToolsAppStagingSyncGroups": {
+        "id": "QualtricsToolsAppStagingSyncGroups",
+        "path": "QualtricsToolsAppStagingSyncGroups",
+        "children": {
+          "Qualtrics-tools-sync-groupsStagingRole": {
+            "id": "Qualtrics-tools-sync-groupsStagingRole",
+            "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows qualtrics-tools-sync-groups-staging tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Qualtrics-tools-sync-groupsStagingECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.29.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "QualtricstoolssyncgroupsStagingLogGroupAE2F3029",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "QualtricstoolssyncgroupsStagingRoleDefaultPolicy63DA4174",
+                        "roles": [
+                          {
+                            "Ref": "QualtricstoolssyncgroupsStagingRole8A637FE8"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.29.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-sync-groupsStagingPolicy": {
+            "id": "Qualtrics-tools-sync-groupsStagingPolicy",
+            "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/qualtrics-tools-sync-groups/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Qualtrics-tools-sync-groupsStagingConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "QualtricstoolssyncgroupsStagingRole8A637FE8"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Policy",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-sync-groupsStagingTask": {
+            "id": "Qualtrics-tools-sync-groupsStagingTask",
+            "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "curlimages/curl:latest",
+                        "memory": 512,
+                        "name": "qualtrics-tools-sync-groups-staging",
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "QualtricstoolssyncgroupsStagingLogGroupAE2F3029"
+                            },
+                            "awslogs-stream-prefix": "qualtrics-tools-sync-groups-staging",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/qualtrics-tools-sync-groups/staging.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "QualtricstoolssyncgroupsStagingRole8A637FE8",
+                        "Arn"
+                      ]
+                    },
+                    "family": "qualtrics-tools-sync-groups-staging",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "QualtricstoolssyncgroupsStagingRole8A637FE8",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                  "version": "2.29.0"
+                }
+              },
+              "qualtrics-tools-sync-groups-staging": {
+                "id": "qualtrics-tools-sync-groups-staging",
+                "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingTask/qualtrics-tools-sync-groups-staging",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-sync-groupsStagingLogGroup": {
+            "id": "Qualtrics-tools-sync-groupsStagingLogGroup",
+            "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/qualtrics-tools-sync-groups-staging",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-sync-groupsStagingBucket": {
+            "id": "Qualtrics-tools-sync-groupsStagingBucket",
+            "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingBucket",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-sync-groupsStagingSecurityGroup": {
+            "id": "Qualtrics-tools-sync-groupsStagingSecurityGroup",
+            "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingSecurityGroup",
+                    "groupName": "qualtrics-tools-sync-groups-staging",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-sync-groupsStagingEventRole": {
+            "id": "Qualtrics-tools-sync-groupsStagingEventRole",
+            "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingEventRole",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingEventRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "events.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows qualtrics-tools-sync-groups-staging scheduled tasks to run in ECS.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Qualtrics-tools-sync-groupsStagingEventRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.29.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingEventRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingEventRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "ecs:RunTask",
+                              "Condition": {
+                                "ArnEquals": {
+                                  "ecs:cluster": {
+                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                                  }
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Ref": "QualtricstoolssyncgroupsStagingTask5FBF35CD"
+                              }
+                            },
+                            {
+                              "Action": "iam:PassRole",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "QualtricstoolssyncgroupsStagingRole8A637FE8",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "QualtricstoolssyncgroupsStagingEventRoleDefaultPolicyE2425A4E",
+                        "roles": [
+                          {
+                            "Ref": "QualtricstoolssyncgroupsStagingEventRole58629406"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.29.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.29.0"
+            }
+          },
+          "Qualtrics-tools-sync-groupsStagingScheduledTask": {
+            "id": "Qualtrics-tools-sync-groupsStagingScheduledTask",
+            "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingScheduledTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "QualtricsToolsAppStagingSyncGroups/Qualtrics-tools-sync-groupsStagingScheduledTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                  "aws:cdk:cloudformation:props": {
+                    "scheduleExpression": "cron(0 8 * * ? *)",
+                    "state": "ENABLED",
+                    "targets": [
+                      {
+                        "id": "Target0",
+                        "arn": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                        },
+                        "roleArn": {
+                          "Fn::GetAtt": [
+                            "QualtricstoolssyncgroupsStagingEventRole58629406",
+                            "Arn"
+                          ]
+                        },
+                        "ecsParameters": {
+                          "taskCount": 1,
+                          "taskDefinitionArn": {
+                            "Ref": "QualtricstoolssyncgroupsStagingTask5FBF35CD"
+                          },
+                          "launchType": "FARGATE",
+                          "platformVersion": "LATEST",
+                          "networkConfiguration": {
+                            "awsVpcConfiguration": {
+                              "subnets": [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+                                },
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+                                }
+                              ],
+                              "assignPublicIp": "DISABLED",
+                              "securityGroups": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "QualtricstoolssyncgroupsStagingSecurityGroup3CF39A9D",
+                                    "GroupId"
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "input": "{\"containerOverrides\":[{\"name\":\"qualtrics-tools-sync-groups-staging\",\"command\":[\"sh\",\"-c\",\"curl -XGET https://stage.qualtricstools.lsit.ucdavis.edu/api/cron/syncGroups?key=$API_KEY\"]}]}"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_events.CfnRule",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_events.Rule",
+              "version": "2.29.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "QualtricsToolsAppStagingSyncGroups/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "QualtricsToolsAppStagingSyncGroups/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.29.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.42"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.29.0"
+        }
       }
     },
     "constructInfo": {

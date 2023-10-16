@@ -1,0 +1,20 @@
+{
+  "version": "20.0.0",
+  "files": {
+    "0c772dd6da299916c864b56bbac5d7db7224fd0764364f31dabedb556481cb39": {
+      "source": {
+        "path": "QualtricsToolsAppStagingSyncGroups.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "042277129213-us-west-2": {
+          "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
+          "objectKey": "0c772dd6da299916c864b56bbac5d7db7224fd0764364f31dabedb556481cb39.json",
+          "region": "us-west-2",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
