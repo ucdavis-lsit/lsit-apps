@@ -378,7 +378,7 @@ LSITStack(
             "langlit.stage.advisingfrontdesk.lsit.ucdavis.edu",
             "orangecluster.stage.advisingfrontdesk.lsit.ucdavis.edu",
         ],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/57886965-4836-4c9d-91ae-96f198303398", "arn:aws:acm:us-west-2:042277129213:certificate/c49d425c-7018-4e7e-92e8-efa15017bfdc"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/57886965-4836-4c9d-91ae-96f198303398", "arn:aws:acm:us-west-2:042277129213:certificate/b75e325d-e22a-463d-b780-fcfaee3cf5f2"],
         "is_private": True,
         "additional_https_rule_priorities": [8],
         "additional_http_rule_priorities": [8],

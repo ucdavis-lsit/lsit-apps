@@ -6099,7 +6099,7 @@
                       "aws:cdk:cloudformation:props": {
                         "certificates": [
                           {
-                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/c49d425c-7018-4e7e-92e8-efa15017bfdc"
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/b75e325d-e22a-463d-b780-fcfaee3cf5f2"
                           }
                         ],
                         "listenerArn": {
