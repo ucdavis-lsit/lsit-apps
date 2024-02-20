@@ -638,6 +638,22 @@ ScheudledTaskStack(
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
+ScheudledTaskStack(
+    app,
+    "QualtricsToolsAppSyncGroups",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "qualtrics-tools-sync-groups",
+        "app_env": "production",
+        "image_uri": "curlimages/curl:latest",
+        "command_override": ["sh","-c","curl -XGET https://qualtricstools.lsit.ucdavis.edu/api/cron/syncGroups?key=$API_KEY"],
+        "is_private": True,
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
 # Qualtrics Tools Stage
 qualtrics_tools_staging_stack = LSITStack(
     app,
