@@ -246,7 +246,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WNzQ6CMBCEn4V7WRVOnD0YEw8EH8DUWnCldEl/YkjTd5efVONpvpndyRRQVLDP+Nvm4tHnCu8Qro6Lns3RLUhRzF4Kb9BNJ0N+ZMdW/wdnbR3XQi6XxJEhHyA0pNZ41ZoUimmxP0r/taEW1VxT1FkIF+q+Y4ljXKvc8EE6aVgjLXmzzSaOrJ7ck/SuhAoOZfayiLnx2uEgodn0A8QBdyjyAAAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WNzQrCMBCEn6X3dNV6sWcPIngo9QEkxrSuTbMlP0gJeXf7QxRP883sDlNAUcI242+bi0eXK7xDuDouOjZFtyBFMXkpvEE3ngz5gR0b/R+ctXVcCzlfEkeGvIdQk1riRStSKMbZ/ij9V4YaVFNNUWshXKj9jiWOcalyw3vppGG1tOTNOps4smp0T9KbPZSwO2Qvi5gbrx32EupVP4SKTKjyAAAA"
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppVOIPStagingStack/CDKMetadata/Default"

@@ -1,7 +1,7 @@
 {
   "version": "20.0.0",
   "files": {
-    "82ad99008aef4b4379d0377c4b22a521275938ee1496cb4ecfd4ce69be673cd4": {
+    "9c0b2cb56ff51ca0e44a98bb4b820d6c72bf50f3f640c8d8ad7913c7b66cec5d": {
       "source": {
         "path": "ZoomQueueBackendDevelopmentStack.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "82ad99008aef4b4379d0377c4b22a521275938ee1496cb4ecfd4ce69be673cd4.json",
+          "objectKey": "9c0b2cb56ff51ca0e44a98bb4b820d6c72bf50f3f640c8d8ad7913c7b66cec5d.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }
