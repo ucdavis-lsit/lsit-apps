@@ -181,7 +181,7 @@ frontdesk_frontend_stack = LSITStack(
             "amha.advisingfrontdesk.lsit.ucdavis.edu",
             "bae.advisingfrontdesk.lsit.ucdavis.edu"
         ],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/692cfbeb-e216-4319-890d-47d2283b1429", "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837","arn:aws:acm:us-west-2:042277129213:certificate/fd32f426-b389-43c0-84a0-788dec47e244"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/557bde58-1690-4c5b-98ed-834368940ed2", "arn:aws:acm:us-west-2:042277129213:certificate/fd32f426-b389-43c0-84a0-788dec47e244"],
         "is_private": True,
         "additional_https_rule_priorities": [9,10,11,14,15],
         "additional_http_rule_priorities": [9,10,11,14,15],
@@ -208,7 +208,7 @@ LSITStack(
         "https_load_balancer_priority": 2,
         "http_load_balancer_priority": 2,
         "host_headers": ["api.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/6955e8b8-66d6-40a5-a3dc-a8e8aff8a6d0"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/f2df87ed-969e-46b1-9953-252eec50dda8"],
         "is_private": True,
         "resource_multiplier": 4,
         "monitoring_stack": monitoring_stack
@@ -233,7 +233,7 @@ LSITStack(
         "https_load_balancer_priority": 3,
         "http_load_balancer_priority": 3,
         "host_headers": ["websocket.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/0e1bccce-2efd-43d1-a78e-b42150f85c0f"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/785c2a8f-1dec-4f52-b3e9-e7d0bf533185"],
         "is_private": True
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),

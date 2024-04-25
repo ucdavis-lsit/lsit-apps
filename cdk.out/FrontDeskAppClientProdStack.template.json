@@ -402,7 +402,7 @@
     },
     "Certificates": [
      {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/692cfbeb-e216-4319-890d-47d2283b1429"
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/557bde58-1690-4c5b-98ed-834368940ed2"
      }
     ],
     "Port": 443,
@@ -417,7 +417,7 @@
    "Properties": {
     "Certificates": [
      {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/22c71dbb-f075-456a-b9e7-c6c08df51837"
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/fd32f426-b389-43c0-84a0-788dec47e244"
      }
     ],
     "ListenerArn": {
@@ -428,28 +428,12 @@
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates1/Resource"
    }
   },
-  "FrontdeskappclientProductionHttpsListenerFrontdeskappclientProductionCerttificates23BFB602E": {
-   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-   "Properties": {
-    "Certificates": [
-     {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/fd32f426-b389-43c0-84a0-788dec47e244"
-     }
-    ],
-    "ListenerArn": {
-     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates2/Resource"
-   }
-  },
   "FrontdeskappclientProductionHttpsListenerFrontdeskappserverProductionCerttificates17A7E67C0": {
    "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
    "Properties": {
     "Certificates": [
      {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/6955e8b8-66d6-40a5-a3dc-a8e8aff8a6d0"
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/f2df87ed-969e-46b1-9953-252eec50dda8"
      }
     ],
     "ListenerArn": {
@@ -465,7 +449,7 @@
    "Properties": {
     "Certificates": [
      {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/0e1bccce-2efd-43d1-a78e-b42150f85c0f"
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/785c2a8f-1dec-4f52-b3e9-e7d0bf533185"
      }
     ],
     "ListenerArn": {
