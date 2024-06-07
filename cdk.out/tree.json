@@ -6099,7 +6099,7 @@
                       "aws:cdk:cloudformation:props": {
                         "certificates": [
                           {
-                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/8c266d3f-7717-4c18-bd74-c5af664f9816"
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/ea04220f-8ffe-4497-9b11-ea6535b35f92"
                           }
                         ],
                         "listenerArn": {
@@ -6130,7 +6130,7 @@
                       "aws:cdk:cloudformation:props": {
                         "certificates": [
                           {
-                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/da6272ec-7b04-4350-85f1-f24d021da555"
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/38b10da6-072d-4d00-86ee-c0bf1904e630"
                           }
                         ],
                         "listenerArn": {
@@ -12305,7 +12305,7 @@
                       "maximumPercent": 200,
                       "minimumHealthyPercent": 50
                     },
-                    "desiredCount": 2,
+                    "desiredCount": 1,
                     "enableEcsManagedTags": false,
                     "healthCheckGracePeriodSeconds": 60,
                     "launchType": "FARGATE",
@@ -12347,115 +12347,6 @@
                 },
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.aws_ecs.CfnService",
-                  "version": "2.29.0"
-                }
-              },
-              "ScalingRole": {
-                "id": "ScalingRole",
-                "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingService/ScalingRole",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.Resource",
-                  "version": "2.29.0"
-                }
-              },
-              "TaskCount": {
-                "id": "TaskCount",
-                "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingService/TaskCount",
-                "children": {
-                  "Target": {
-                    "id": "Target",
-                    "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingService/TaskCount/Target",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingService/TaskCount/Target/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::ApplicationAutoScaling::ScalableTarget",
-                          "aws:cdk:cloudformation:props": {
-                            "maxCapacity": 8,
-                            "minCapacity": 2,
-                            "resourceId": {
-                              "Fn::Join": [
-                                "",
-                                [
-                                  "service/",
-                                  {
-                                    "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
-                                  },
-                                  "/",
-                                  {
-                                    "Fn::GetAtt": [
-                                      "FrontdeskappclientStagingService2116B712",
-                                      "Name"
-                                    ]
-                                  }
-                                ]
-                              ]
-                            },
-                            "roleArn": {
-                              "Fn::Join": [
-                                "",
-                                [
-                                  "arn:",
-                                  {
-                                    "Ref": "AWS::Partition"
-                                  },
-                                  ":iam::042277129213:role/aws-service-role/ecs.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_ECSService"
-                                ]
-                              ]
-                            },
-                            "scalableDimension": "ecs:service:DesiredCount",
-                            "serviceNamespace": "ecs"
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_applicationautoscaling.CfnScalableTarget",
-                          "version": "2.29.0"
-                        }
-                      },
-                      "Frontdesk-app-clientStagingCPUScaling": {
-                        "id": "Frontdesk-app-clientStagingCPUScaling",
-                        "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingService/TaskCount/Target/Frontdesk-app-clientStagingCPUScaling",
-                        "children": {
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "FrontDeskAppClientStagingStack/Frontdesk-app-clientStagingService/TaskCount/Target/Frontdesk-app-clientStagingCPUScaling/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::ApplicationAutoScaling::ScalingPolicy",
-                              "aws:cdk:cloudformation:props": {
-                                "policyName": "FrontDeskAppClientStagingStackFrontdeskappclientStagingServiceTaskCountTargetFrontdeskappclientStagingCPUScaling2E4200F0",
-                                "policyType": "TargetTrackingScaling",
-                                "scalingTargetId": {
-                                  "Ref": "FrontdeskappclientStagingServiceTaskCountTarget91EC6D98"
-                                },
-                                "targetTrackingScalingPolicyConfiguration": {
-                                  "predefinedMetricSpecification": {
-                                    "predefinedMetricType": "ECSServiceAverageCPUUtilization"
-                                  },
-                                  "targetValue": 50
-                                }
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "aws-cdk-lib.aws_applicationautoscaling.CfnScalingPolicy",
-                              "version": "2.29.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_applicationautoscaling.TargetTrackingScalingPolicy",
-                          "version": "2.29.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_applicationautoscaling.ScalableTarget",
-                      "version": "2.29.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_ecs.ScalableTaskCount",
                   "version": "2.29.0"
                 }
               }
@@ -13815,7 +13706,7 @@
                       "maximumPercent": 200,
                       "minimumHealthyPercent": 50
                     },
-                    "desiredCount": 2,
+                    "desiredCount": 1,
                     "enableEcsManagedTags": false,
                     "healthCheckGracePeriodSeconds": 60,
                     "launchType": "FARGATE",
@@ -13857,115 +13748,6 @@
                 },
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.aws_ecs.CfnService",
-                  "version": "2.29.0"
-                }
-              },
-              "ScalingRole": {
-                "id": "ScalingRole",
-                "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingService/ScalingRole",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.Resource",
-                  "version": "2.29.0"
-                }
-              },
-              "TaskCount": {
-                "id": "TaskCount",
-                "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingService/TaskCount",
-                "children": {
-                  "Target": {
-                    "id": "Target",
-                    "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingService/TaskCount/Target",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingService/TaskCount/Target/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::ApplicationAutoScaling::ScalableTarget",
-                          "aws:cdk:cloudformation:props": {
-                            "maxCapacity": 8,
-                            "minCapacity": 2,
-                            "resourceId": {
-                              "Fn::Join": [
-                                "",
-                                [
-                                  "service/",
-                                  {
-                                    "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
-                                  },
-                                  "/",
-                                  {
-                                    "Fn::GetAtt": [
-                                      "FrontdeskappwebsocketStagingServiceD1E42DC7",
-                                      "Name"
-                                    ]
-                                  }
-                                ]
-                              ]
-                            },
-                            "roleArn": {
-                              "Fn::Join": [
-                                "",
-                                [
-                                  "arn:",
-                                  {
-                                    "Ref": "AWS::Partition"
-                                  },
-                                  ":iam::042277129213:role/aws-service-role/ecs.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_ECSService"
-                                ]
-                              ]
-                            },
-                            "scalableDimension": "ecs:service:DesiredCount",
-                            "serviceNamespace": "ecs"
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_applicationautoscaling.CfnScalableTarget",
-                          "version": "2.29.0"
-                        }
-                      },
-                      "Frontdesk-app-websocketStagingCPUScaling": {
-                        "id": "Frontdesk-app-websocketStagingCPUScaling",
-                        "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingService/TaskCount/Target/Frontdesk-app-websocketStagingCPUScaling",
-                        "children": {
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingService/TaskCount/Target/Frontdesk-app-websocketStagingCPUScaling/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::ApplicationAutoScaling::ScalingPolicy",
-                              "aws:cdk:cloudformation:props": {
-                                "policyName": "FrontDeskAppWebsocketStagingStackFrontdeskappwebsocketStagingServiceTaskCountTargetFrontdeskappwebsocketStagingCPUScaling4A12ED8D",
-                                "policyType": "TargetTrackingScaling",
-                                "scalingTargetId": {
-                                  "Ref": "FrontdeskappwebsocketStagingServiceTaskCountTargetAA507E63"
-                                },
-                                "targetTrackingScalingPolicyConfiguration": {
-                                  "predefinedMetricSpecification": {
-                                    "predefinedMetricType": "ECSServiceAverageCPUUtilization"
-                                  },
-                                  "targetValue": 50
-                                }
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "aws-cdk-lib.aws_applicationautoscaling.CfnScalingPolicy",
-                              "version": "2.29.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_applicationautoscaling.TargetTrackingScalingPolicy",
-                          "version": "2.29.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_applicationautoscaling.ScalableTarget",
-                      "version": "2.29.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_ecs.ScalableTaskCount",
                   "version": "2.29.0"
                 }
               }

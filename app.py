@@ -386,7 +386,6 @@ LSITStack(
         "is_private": True,
         "additional_https_rule_priorities": [8],
         "additional_http_rule_priorities": [8],
-        "auto_scaling": True
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -408,7 +407,7 @@ LSITStack(
         "https_load_balancer_priority": 5,
         "http_load_balancer_priority": 5,
         "host_headers": ["stage.api.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/8c266d3f-7717-4c18-bd74-c5af664f9816"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/ea04220f-8ffe-4497-9b11-ea6535b35f92"],
         "is_private": True,
         "monitoring_stack": monitoring_stack
     },
@@ -432,9 +431,8 @@ LSITStack(
         "https_load_balancer_priority": 6,
         "http_load_balancer_priority": 6,
         "host_headers": ["stage.websocket.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/da6272ec-7b04-4350-85f1-f24d021da555"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/38b10da6-072d-4d00-86ee-c0bf1904e630"],
         "is_private": True,
-        "auto_scaling": True
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
