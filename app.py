@@ -652,6 +652,7 @@ ScheudledTaskStack(
         "image_uri": "curlimages/curl:latest",
         "command_override": ["sh","-c","curl -XGET https://qualtricstools.lsit.ucdavis.edu/api/cron/syncGroups?key=$API_KEY"],
         "is_private": True,
+        "schedule": {"minute": "0"}
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -712,6 +713,7 @@ ScheudledTaskStack(
         "image_uri": "curlimages/curl:latest",
         "command_override": ["sh","-c","curl -XGET https://stage.qualtricstools.lsit.ucdavis.edu/api/cron/syncGroups?key=$API_KEY"],
         "is_private": True,
+        "schedule": {"minute": "0"}
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )

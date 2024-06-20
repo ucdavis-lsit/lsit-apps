@@ -317,7 +317,7 @@
   "QualtricstoolssyncgroupsProductionScheduledTask5565CBDD": {
    "Type": "AWS::Events::Rule",
    "Properties": {
-    "ScheduleExpression": "cron(0 8 * * ? *)",
+    "ScheduleExpression": "cron(0 * * * ? *)",
     "State": "ENABLED",
     "Targets": [
      {

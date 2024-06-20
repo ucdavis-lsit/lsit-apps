@@ -19484,7 +19484,7 @@
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Events::Rule",
                   "aws:cdk:cloudformation:props": {
-                    "scheduleExpression": "cron(0 8 * * ? *)",
+                    "scheduleExpression": "cron(0 * * * ? *)",
                     "state": "ENABLED",
                     "targets": [
                       {
@@ -21220,7 +21220,7 @@
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Events::Rule",
                   "aws:cdk:cloudformation:props": {
-                    "scheduleExpression": "cron(0 8 * * ? *)",
+                    "scheduleExpression": "cron(0 * * * ? *)",
                     "state": "ENABLED",
                     "targets": [
                       {
