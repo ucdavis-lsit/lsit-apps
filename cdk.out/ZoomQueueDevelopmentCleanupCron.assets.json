@@ -1,7 +1,7 @@
 {
   "version": "20.0.0",
   "files": {
-    "0412e750dc3347cbc9002c41079af5a8b282160e74126a64a1754b15e8b9182e": {
+    "b96824bde4d93ec5603c28b3f0f10f01b6a813d7ffb68a8fa128ab367abbdaab": {
       "source": {
         "path": "ZoomQueueDevelopmentCleanupCron.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "0412e750dc3347cbc9002c41079af5a8b282160e74126a64a1754b15e8b9182e.json",
+          "objectKey": "b96824bde4d93ec5603c28b3f0f10f01b6a813d7ffb68a8fa128ab367abbdaab.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }

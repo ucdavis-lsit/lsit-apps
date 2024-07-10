@@ -1,7 +1,7 @@
 {
   "version": "20.0.0",
   "files": {
-    "54f2acf8ded2005131a8f2c6d16d261b611e51ba32138abad339bcf62cfdd3ef": {
+    "d074ae7037ee7d269ab6c2b030856a3c39c304d59b7d1b027d3863e36e64cf86": {
       "source": {
         "path": "QueueStagingStack.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "54f2acf8ded2005131a8f2c6d16d261b611e51ba32138abad339bcf62cfdd3ef.json",
+          "objectKey": "d074ae7037ee7d269ab6c2b030856a3c39c304d59b7d1b027d3863e36e64cf86.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }

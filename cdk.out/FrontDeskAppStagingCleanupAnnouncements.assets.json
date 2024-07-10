@@ -1,7 +1,7 @@
 {
   "version": "20.0.0",
   "files": {
-    "d0e2bd09c172c82535e653804cb45d07f4819155938d46d8790af5ab86bcef78": {
+    "939956d911921e99d2dd655e57b68e70de7fdf53a85823cb5255f6dfa953bb9a": {
       "source": {
         "path": "FrontDeskAppStagingCleanupAnnouncements.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "d0e2bd09c172c82535e653804cb45d07f4819155938d46d8790af5ab86bcef78.json",
+          "objectKey": "939956d911921e99d2dd655e57b68e70de7fdf53a85823cb5255f6dfa953bb9a.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }

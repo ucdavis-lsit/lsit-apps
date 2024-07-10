@@ -1,7 +1,7 @@
 {
   "version": "20.0.0",
   "files": {
-    "f45bca1842dc505bbf88710b5d45a536879be0e4e33e6067ae67e8805c34da21": {
+    "2ea055fe0f2c5cecb2f43f8d2a9e3cf7e257d7e0c174c077ad7e9ebbd22f5602": {
       "source": {
         "path": "ECSMonitoringStack.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "f45bca1842dc505bbf88710b5d45a536879be0e4e33e6067ae67e8805c34da21.json",
+          "objectKey": "2ea055fe0f2c5cecb2f43f8d2a9e3cf7e257d7e0c174c077ad7e9ebbd22f5602.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }

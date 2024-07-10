@@ -1,7 +1,7 @@
 {
   "version": "20.0.0",
   "files": {
-    "d78f57b647eb1c3992830def8cee0f5686b87a8e5d5e8bfdff3629715ce4079f": {
+    "1aa1536575486df77833180e5ccfe145db977790e8db65269e7619e4e1c80ec5": {
       "source": {
         "path": "FrontDeskAppStagingVoipHealthCheck.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "d78f57b647eb1c3992830def8cee0f5686b87a8e5d5e8bfdff3629715ce4079f.json",
+          "objectKey": "1aa1536575486df77833180e5ccfe145db977790e8db65269e7619e4e1c80ec5.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }

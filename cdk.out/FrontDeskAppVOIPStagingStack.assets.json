@@ -1,7 +1,7 @@
 {
   "version": "20.0.0",
   "files": {
-    "03c0ee2843d1434728b6f4cd1c298f261ce2aa93b672465129dcdcc1afbfabce": {
+    "0374cbb4bacd9afed388c5958ade55e736f3c7ad81953658d797b6bd42f46a3f": {
       "source": {
         "path": "FrontDeskAppVOIPStagingStack.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "03c0ee2843d1434728b6f4cd1c298f261ce2aa93b672465129dcdcc1afbfabce.json",
+          "objectKey": "0374cbb4bacd9afed388c5958ade55e736f3c7ad81953658d797b6bd42f46a3f.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }

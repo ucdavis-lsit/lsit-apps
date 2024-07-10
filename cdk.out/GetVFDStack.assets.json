@@ -1,7 +1,7 @@
 {
   "version": "20.0.0",
   "files": {
-    "53a108f5a296e3696e5537589aff541301a9007a1025f8688f77dd151ccee684": {
+    "3b510849da34679b90159b5df37a5bdcd0d3bd0f740248cc6d73de5fa0ccae8b": {
       "source": {
         "path": "GetVFDStack.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "53a108f5a296e3696e5537589aff541301a9007a1025f8688f77dd151ccee684.json",
+          "objectKey": "3b510849da34679b90159b5df37a5bdcd0d3bd0f740248cc6d73de5fa0ccae8b.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }
