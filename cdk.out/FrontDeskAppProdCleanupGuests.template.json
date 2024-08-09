@@ -291,6 +291,26 @@
        }
       },
       {
+       "Action": "ecs:TagResource",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":ecs:us-west-2:*:task/",
+          {
+           "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+          },
+          "/*"
+         ]
+        ]
+       }
+      },
+      {
        "Action": "iam:PassRole",
        "Effect": "Allow",
        "Resource": {
@@ -371,7 +391,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/12OvQ7CMAyEn4U9NahISKyAYGFAhR2FYIppiVHigKoq707Kr2C686ezfTnkYxj09M1nZl9lNe2gXYs2lUpo25I+Q1twjWp6sA9dcU2m6caniwqNh3auXakFN9pXMzyQJSG2XeqfsBVNFt2XRVVzmU4suVw4Dpdu6+2j8kOYBFOhTLTH9CtP/dAER9J80j8gFbqilXSwCK/eSWN8OPQcnMGoVo0c2faHMIZR7+SJMhes0BmheOodKOnTixkBAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/12OQU/DMAyFf0vvqdlWDYlrmbbLDlXHHYXgdl67eEocUFXlv5PSMgSn9/zp2X4bWG/XsMr0p8/Ne5f39AbjSbTpVEKvI+krjDX3qJ4b+60V92SGaZxdVGg8jHvtWi34on23w4YsCbGdUv8JW9Fk0f2yqHpu04kjtwfH4TZt/fiofAFlMB1KqT2mX5vUD01wJMM9/QekQh9oJR2sw9I7aYyqRs/BmRktPqpqkDPbhwKe4DG7eKLcBSt0Rahn/QJVHmo1IwEAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppProdCleanupGuests/CDKMetadata/Default"

@@ -245,7 +245,6 @@
   "FrontdeskappwebsocketStagingSecurityGroupfromNetworkStackLSITZoomQueueSecurityGroup211C746780C24111E4": {
    "Type": "AWS::EC2::SecurityGroupIngress",
    "Properties": {
-    "IpProtocol": "tcp",
     "Description": "Load balancer to target",
     "FromPort": 80,
     "GroupId": {
@@ -254,6 +253,7 @@
       "GroupId"
      ]
     },
+    "IpProtocol": "tcp",
     "SourceSecurityGroupId": {
      "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
     },
@@ -270,6 +270,11 @@
      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
     },
     "DeploymentConfiguration": {
+     "Alarms": {
+      "AlarmNames": [],
+      "Enable": false,
+      "Rollback": false
+     },
      "MaximumPercent": 200,
      "MinimumHealthyPercent": 50
     },
@@ -313,7 +318,9 @@
     }
    },
    "DependsOn": [
-    "FrontdeskappwebsocketStagingHttpsListenerRuleA16D25F8"
+    "FrontdeskappwebsocketStagingHttpsListenerRuleA16D25F8",
+    "FrontdeskappwebsocketStagingRoleDefaultPolicyAF07D4E1",
+    "FrontdeskappwebsocketStagingRoleDE3B2D24"
    ],
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppWebsocketStagingStack/Frontdesk-app-websocketStagingService/Service"
@@ -322,10 +329,9 @@
   "FrontdeskappwebsocketStagingCPUAlarm2E8F352B": {
    "Type": "AWS::CloudWatch::Alarm",
    "Properties": {
-    "ComparisonOperator": "GreaterThanThreshold",
-    "EvaluationPeriods": 1,
     "ActionsEnabled": true,
     "AlarmName": "Frontdesk-app-websocketStagingCPUAlarm",
+    "ComparisonOperator": "GreaterThanThreshold",
     "Dimensions": [
      {
       "Name": "ClusterName",
@@ -343,6 +349,7 @@
       }
      }
     ],
+    "EvaluationPeriods": 1,
     "MetricName": "CPUUtilization",
     "Namespace": "AWS/ECS",
     "Period": 300,
@@ -440,7 +447,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QwWrDMAz9lt4db7Qw6LHd2Bj0UNLeh+qoqRbHDrbcEoL/fXbSlbDDTnp6ftbT01Iu1/J5ATdfqKopNJ3kcGBQjUjU10DQyqG0GsXr2Yx1bzWpPrcTigKVl8M7uBoYj+CbNzyTISZrsuovYw0DGXQz7v73gO5KanS6wyi0rdPwna0/nA1dfvrFUfiV3AbVIG/BY9pimTZHFRxx/1D/T3ya2qH3UShtQ3UDVhc5bDS4NktHkOJp8ExJAdUJNBhFpr4mr03XpfyQExxTAOSHx7ydqXbkGVPyMkznnPcxjgdGb4PLufc9X6x5Wsm1fFl8e6LCBcPUoiyn+gP/cf6xuAEAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QQW7CMBB8C3fHLaBW6hGKWlXigAL3anGWsI1jR/YaFEX+e50EUNRDTzszHnt2vJDzl7l8nsHVZ6qoMk1H2e0ZVCWS9N0R1LLLrUbxfjLD3FlNqu3piKJA5WX3Aa4ExgP4aoMnMsRkTe/6q1jDQAbdRLvd3aO7kBqSbjAKbcv0+NaWn86Gpj+64yj8Uq6DqpDX4DFtsUibowqOuH24/xe+TOnQ+yiUtqG4Aquz7FYaXN1bB5DqafBMyQHFETQYRaa8pKxV06T+0Dc4pALIj4wpnbi25BlT8zyM3znlMYocvQ1u7H/HUexaPlvztJRv8nX244kyFwxTjTIf5y8KSV6XwgEAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppWebsocketStagingStack/CDKMetadata/Default"

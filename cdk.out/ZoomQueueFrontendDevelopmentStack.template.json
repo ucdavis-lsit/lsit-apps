@@ -245,7 +245,6 @@
   "ZoomqueuefrontendDevelopmentSecurityGroupfromNetworkStackLSITZoomQueueSecurityGroup211C74673000DDC16145": {
    "Type": "AWS::EC2::SecurityGroupIngress",
    "Properties": {
-    "IpProtocol": "tcp",
     "Description": "Load balancer to target",
     "FromPort": 3000,
     "GroupId": {
@@ -254,6 +253,7 @@
       "GroupId"
      ]
     },
+    "IpProtocol": "tcp",
     "SourceSecurityGroupId": {
      "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
     },
@@ -270,6 +270,11 @@
      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueDevelopmentClusterCD7CCE951AD3B1F8"
     },
     "DeploymentConfiguration": {
+     "Alarms": {
+      "AlarmNames": [],
+      "Enable": false,
+      "Rollback": false
+     },
      "MaximumPercent": 200,
      "MinimumHealthyPercent": 50
     },
@@ -314,7 +319,9 @@
    },
    "DependsOn": [
     "ZoomqueuefrontendDevelopmentHttpsListenerRuleEF070FA0",
-    "ZoomqueuefrontendDevelopmentListenerDCA757E2"
+    "ZoomqueuefrontendDevelopmentListenerDCA757E2",
+    "ZoomqueuefrontendDevelopmentRoleDefaultPolicyF9121DA3",
+    "ZoomqueuefrontendDevelopmentRole84E2575D"
    ],
    "Metadata": {
     "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/Zoom-queue-frontendDevelopmentService/Service"
@@ -323,10 +330,9 @@
   "ZoomqueuefrontendDevelopmentCPUAlarm81581194": {
    "Type": "AWS::CloudWatch::Alarm",
    "Properties": {
-    "ComparisonOperator": "GreaterThanThreshold",
-    "EvaluationPeriods": 1,
     "ActionsEnabled": true,
     "AlarmName": "Zoom-queue-frontendDevelopmentCPUAlarm",
+    "ComparisonOperator": "GreaterThanThreshold",
     "Dimensions": [
      {
       "Name": "ClusterName",
@@ -344,6 +350,7 @@
       }
      }
     ],
+    "EvaluationPeriods": 1,
     "MetricName": "CPUUtilization",
     "Namespace": "AWS/ECS",
     "Period": 300,
@@ -379,6 +386,11 @@
   "ZoomqueuefrontendDevelopmentHttpsListenerAEE97BBB": {
    "Type": "AWS::ElasticLoadBalancingV2::Listener",
    "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/d18674bd-6a83-41aa-b10f-e379c2f8a1fa"
+     }
+    ],
     "DefaultActions": [
      {
       "FixedResponseConfig": {
@@ -391,11 +403,6 @@
     "LoadBalancerArn": {
      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueDevPublicLB4051B7414DCA8F4C"
     },
-    "Certificates": [
-     {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/d18674bd-6a83-41aa-b10f-e379c2f8a1fa"
-     }
-    ],
     "Port": 443,
     "Protocol": "HTTPS"
    },
@@ -543,7 +550,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31Ry2rDMBD8ltxttThQyDFJaSnkEJzcy0ZeOxvLkpFWCcb43ys5D9wSetrZ2dnHSJnIFuJ1BheXyqJOFR1Ev2OQdRKo756gEX1uFCbrUo9xaxTJLqZXNCQoneg/wFbAuAdXv2NJmpiMjqq/jNEMpNFOuFvvDu2Z5LjpBodEmSoM35jq0xrfxtIdD4mbi5WXNfIKHIYrsnA5Sm+Ju4f6f+JLVxadGxKpjC8uwPIo+qUC20TpCII9BY4pKKA4gAItSVfnsGvZtsE/RAf7YAD5sWOaTlQbcozB+ejijp/U12iZykjiVDqln3TlXv2Sx3wYxm9DZ7yNr7nt+Gj0y1wsxNvs5IhS6zVTgyK/xh8e3tu4DgIAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31Qy24CMQz8Fu7ZtIBaqUcealWJA1q4VyaYxd2QoMQBrVb59ybLQ9sK9eTxeJzxZCSHL0P5PICzL9S2LjRtZLtiULVI1FdLcJBtaTWK2c50dWk1qSa3FxQFKi/bd3AVMK7B13PckSEma7LqL2MNAxl0Pe66u0J3ItU5XWEU2lbp8YWtPpwNxzy64Sj8WE6DqpGn4DFdMUqXowqOuLmr/yc+TeXQ+yiUtmF7BlZ72U40uEOWdiDF0+CZkgK2G9BgFJnqlLwmx2PKDznBOgVAvnv0255qQZ4xJe9S3PCD+Qwd0y6T2Jf26QdbZdC/5LmPUZTobXCXX73hKJYN7615Gss3+Tr49kSFC4bpgLK81B8Uh9vkGAIAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "ZoomQueueFrontendDevelopmentStack/CDKMetadata/Default"

@@ -245,7 +245,6 @@
   "ZoomqueuebackendDevelopmentSecurityGroupfromNetworkStackLSITZoomQueueSecurityGroup211C74673001575242BC": {
    "Type": "AWS::EC2::SecurityGroupIngress",
    "Properties": {
-    "IpProtocol": "tcp",
     "Description": "Load balancer to target",
     "FromPort": 3001,
     "GroupId": {
@@ -254,6 +253,7 @@
       "GroupId"
      ]
     },
+    "IpProtocol": "tcp",
     "SourceSecurityGroupId": {
      "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
     },
@@ -270,6 +270,11 @@
      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueDevelopmentClusterCD7CCE951AD3B1F8"
     },
     "DeploymentConfiguration": {
+     "Alarms": {
+      "AlarmNames": [],
+      "Enable": false,
+      "Rollback": false
+     },
      "MaximumPercent": 200,
      "MinimumHealthyPercent": 50
     },
@@ -314,7 +319,9 @@
    },
    "DependsOn": [
     "ZoomqueuebackendDevelopmentHttpsListenerRule04AC8BFE",
-    "ZoomqueuebackendDevelopmentListener30157A22"
+    "ZoomqueuebackendDevelopmentListener30157A22",
+    "ZoomqueuebackendDevelopmentRoleDefaultPolicy1019F9B4",
+    "ZoomqueuebackendDevelopmentRoleCBD4092B"
    ],
    "Metadata": {
     "aws:cdk:path": "ZoomQueueBackendDevelopmentStack/Zoom-queue-backendDevelopmentService/Service"
@@ -323,10 +330,9 @@
   "ZoomqueuebackendDevelopmentCPUAlarm71BEE123": {
    "Type": "AWS::CloudWatch::Alarm",
    "Properties": {
-    "ComparisonOperator": "GreaterThanThreshold",
-    "EvaluationPeriods": 1,
     "ActionsEnabled": true,
     "AlarmName": "Zoom-queue-backendDevelopmentCPUAlarm",
+    "ComparisonOperator": "GreaterThanThreshold",
     "Dimensions": [
      {
       "Name": "ClusterName",
@@ -344,6 +350,7 @@
       }
      }
     ],
+    "EvaluationPeriods": 1,
     "MetricName": "CPUUtilization",
     "Namespace": "AWS/ECS",
     "Period": 300,
@@ -462,7 +469,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31RwWrDMAz9lt4db6Qw6LHd2Bj0UNLeh+qoqRbHDrbcEoL/fU7SlWyMnfT0/OynJ+cyX8nHBVx9pso603SU/Z5B1SJRHz1BI/vCahTPJzPWndWkuqGdUBSovOxfwVXAeABfv+CJDDFZM6h+M9YwkEE342539+gupEanG4xC2yo9vrXVm7OhHY6+cRR+KTdB1cgb8JimyNPkqIIj7u7q/4l3Uzn0PgqlbSivwOos+7UG1wzSEaR4GjxTUkB5BA1GkakuyWvdtik/DAkOKQDy3WPezlRb8owpeRGmdf7o/9DNNTGOH4DeBjfsZdfx2ZqHpVzJp8WnJ8pcMEwNymKqX9QBBB3YAQAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/32QQW/CMAyFfwv3NBugTdoRhjZN4oAK98mkpnhNkypxQFWV/76UAuqmaac8v3yJ/TyT06epfJzA2WeqqDJNe9ltGVQlkvXZEdSyy61G8Xowl3NjNam2LwcVBSovuzdwJTDuwFcrPJAhJmt66rdjDQMZdCPv+naL7kTq0ukqo9C2TJ+vbfnubGj6q5uOws/lMqgKeQke0xSzNDmq4IjbO/2/8WFKh95HobQNxRlYHWW30ODqHr2IFE+DZ0oEFHvQYBSZ8pR6LZom5Yc+wS4FQL73GJcjak2eMSXPw7DOH/Uf3JiJUeTobXDDfm46ik3LR2se5vJFPk++PFHmgmGqUebD+Q2qZncC4gEAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "ZoomQueueBackendDevelopmentStack/CDKMetadata/Default"

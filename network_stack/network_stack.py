@@ -19,32 +19,59 @@ class NetworkStack(Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         # Required props
-        prefix = app_props["aws_account_name"]
+        prefix = app_props["prefix"]
+        bucket_name = app_props["aws_bucket_name"]
+        need_dev = app_props.get("need_dev",False)
+        ip_addresses = app_props.get("ip_addresses", None)
+        # Account for legacy naming convention
+        is_legacy = app_props.get("is_legacy", False)
 
         """
         Creates VPC with 2 public subnets and 2 private subnets, one of each in two availability zones (A and B)
         Creates 2 NAT gateways, one for each availability zone, which each have an Elastic IP address
         """
-        self.vpc = ec2.Vpc(
-            self,
-            "{prefix}Vpc".format(prefix=prefix),
-            max_azs=2,
-            subnet_configuration=[
-                ec2.SubnetConfiguration(
-                    name="{prefix}PublicSubnet".format(prefix=prefix),
-                    subnet_type=ec2.SubnetType.PUBLIC
-                ),
-                ec2.SubnetConfiguration(
-                    name="{prefix}PrivateSubnet".format(prefix=prefix),
-                    subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT
-                ),
-                ec2.SubnetConfiguration(
-                    name="{prefix}IsolatedSubnet".format(prefix=prefix),
-                    cidr_mask=27,
-                    subnet_type=ec2.SubnetType.PRIVATE_ISOLATED
-                )
-            ]
-        )
+        if is_legacy:
+            self.vpc = ec2.Vpc(
+                self,
+                "{prefix}Vpc".format(prefix=prefix),
+                max_azs=2,
+                subnet_configuration=[
+                    ec2.SubnetConfiguration(
+                        name="{prefix}PublicSubnet".format(prefix=prefix),
+                        subnet_type=ec2.SubnetType.PUBLIC
+                    ),
+                    ec2.SubnetConfiguration(
+                        name="{prefix}PrivateSubnet".format(prefix=prefix),
+                        subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS
+                    ),
+                    ec2.SubnetConfiguration(
+                        name="{prefix}IsolatedSubnet".format(prefix=prefix),
+                        cidr_mask=27,
+                        subnet_type=ec2.SubnetType.PRIVATE_ISOLATED
+                    )
+                ]
+            )
+        else:
+            self.vpc = ec2.Vpc(
+                self,
+                "{prefix}Vpc".format(prefix=prefix),
+                ip_addresses=ec2.IpAddresses.cidr(ip_addresses), # TODO set default
+                max_azs=2,
+                subnet_configuration=[
+                    ec2.SubnetConfiguration(
+                        name="{prefix}PublicSubnet".format(prefix=prefix),
+                        subnet_type=ec2.SubnetType.PUBLIC
+                    ),
+                    ec2.SubnetConfiguration(
+                        name="{prefix}PrivateSubnet".format(prefix=prefix),
+                        subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS
+                    ),
+                    ec2.SubnetConfiguration(
+                        name="{prefix}IsolatedSubnet".format(prefix=prefix),
+                        subnet_type=ec2.SubnetType.PRIVATE_ISOLATED
+                    )
+                ]
+            )
 
         """
         Creates a security group that allows all traffic
@@ -62,48 +89,49 @@ class NetworkStack(Stack):
             connection=ec2.Port.all_traffic()
         )
 
+        #Dev stack
+        if need_dev:
+            # Development cluster
+            self.development_cluster = ecs.Cluster(
+                self,
+                "{prefix}DevelopmentCluster".format(prefix=prefix),
+                vpc=self.vpc,
+                cluster_name="{prefix}DevelopmentCluster".format(prefix=prefix),
+            )
 
-        # Development cluster
-        self.development_cluster = ecs.Cluster(
-            self,
-            "{prefix}DevelopmentCluster".format(prefix=prefix),
-            vpc=self.vpc,
-            cluster_name="{prefix}DevelopmentCluster".format(prefix=prefix),
-        )
-
-        # Development load balancer
-        self.development_load_balancer = ApplicationLoadBalancer(
-            self,
-            "{prefix}DevPublicLB".format(prefix=prefix),
-            vpc=self.vpc,
-            security_group=security_group,
-            internet_facing=True,
-            load_balancer_name="{prefix}DevPublicLB".format(prefix=prefix),
-        )
+            # Development load balancer
+            self.development_load_balancer = ApplicationLoadBalancer(
+                self,
+                "{prefix}DevPublicLB".format(prefix=prefix),
+                vpc=self.vpc,
+                security_group=security_group,
+                internet_facing=True,
+                load_balancer_name="{prefix}DevPublicLB".format(prefix=prefix),
+            )
 
 
-        # Create a postgres DB for Zoom Queue app
-        database = rds.DatabaseInstance(
-            self,
-            "{prefix}DevelopmentPostgresDatabase".format(prefix=prefix),
-            vpc=self.vpc,
-            vpc_subnets={
-                "subnet_type": ec2.SubnetType.PUBLIC,
-            },
-            engine=rds.DatabaseInstanceEngine.postgres(version=rds.PostgresEngineVersion.VER_13_1),
-            credentials=rds.Credentials.from_generated_secret("postgres"),
-            instance_type=ec2.InstanceType.of(
-                ec2.InstanceClass.BURSTABLE3,
-                ec2.InstanceSize.MICRO
-            ),
-            backup_retention=Duration.days(0),
-            delete_automated_backups=True,
-            removal_policy=RemovalPolicy.DESTROY,
-            deletion_protection=False,
-            database_name="postgres",
-            publicly_accessible=True
-        )
-        database.connections.allow_from_any_ipv4(ec2.Port.tcp(5432))
+            # Create a postgres dev DB for Zoom Queue app
+            database = rds.DatabaseInstance(
+                self,
+                "{prefix}DevelopmentPostgresDatabase".format(prefix=prefix),
+                vpc=self.vpc,
+                vpc_subnets={
+                    "subnet_type": ec2.SubnetType.PUBLIC,
+                },
+                engine=rds.DatabaseInstanceEngine.postgres(version=rds.PostgresEngineVersion.VER_13_1),
+                credentials=rds.Credentials.from_generated_secret("postgres"),
+                instance_type=ec2.InstanceType.of(
+                    ec2.InstanceClass.BURSTABLE3,
+                    ec2.InstanceSize.MICRO
+                ),
+                backup_retention=Duration.days(0),
+                delete_automated_backups=True,
+                removal_policy=RemovalPolicy.DESTROY,
+                deletion_protection=False,
+                database_name="postgres",
+                publicly_accessible=True
+            )
+            database.connections.allow_from_any_ipv4(ec2.Port.tcp(5432))
 
         # Prod/Staging load balancer
         self.load_balancer = ApplicationLoadBalancer(
@@ -115,36 +143,70 @@ class NetworkStack(Stack):
             load_balancer_name="{prefix}PublicLB".format(prefix=prefix),
         )
 
-        # Create a postgres DB for prod/staging frontdesk app
-        database = rds.DatabaseInstance(
-            self,
-            "{prefix}FrontdeskDatabase".format(prefix=prefix),
-            vpc=self.vpc,
-            vpc_subnets={
-                "subnet_type": ec2.SubnetType.PRIVATE_ISOLATED,
-            },
-            engine=rds.DatabaseInstanceEngine.postgres(version=rds.PostgresEngineVersion.VER_13_1),
-            credentials=rds.Credentials.from_generated_secret("frontdeskadmin",secret_name="frontdeskcredentials"),
-            instance_type=ec2.InstanceType.of(
-                ec2.InstanceClass.BURSTABLE3,
-                ec2.InstanceSize.SMALL
-            ),
-            backup_retention=Duration.days(3),
-            delete_automated_backups=True,
-            removal_policy=RemovalPolicy.RETAIN,
-            deletion_protection=True,
-            database_name="frontdesk",
-            publicly_accessible=True,
-            instance_identifier="frontdeskapp"
-        )
-        database.connections.allow_from_any_ipv4(ec2.Port.tcp(5432))
+        if is_legacy:
+            # Create a postgres DB for prod/staging app
+            database = rds.DatabaseInstance(
+                self,
+                "{prefix}FrontdeskDatabase".format(prefix=prefix),
+                vpc=self.vpc,
+                vpc_subnets={
+                    "subnet_type": ec2.SubnetType.PRIVATE_ISOLATED,
+                },
+                engine=rds.DatabaseInstanceEngine.postgres(version=rds.PostgresEngineVersion.VER_13_13),
+                credentials=rds.Credentials.from_generated_secret("frontdeskadmin",secret_name="frontdeskcredentials"),
+                instance_type=ec2.InstanceType.of(
+                    ec2.InstanceClass.BURSTABLE3,
+                    ec2.InstanceSize.SMALL
+                ),
+                backup_retention=Duration.days(3),
+                delete_automated_backups=True,
+                removal_policy=RemovalPolicy.RETAIN,
+                deletion_protection=True,
+                database_name="frontdesk",
+                publicly_accessible=True,
+                instance_identifier="frontdeskapp"
+            )
+            database.connections.allow_from_any_ipv4(ec2.Port.tcp(5432))
 
-        self.cluster = ecs.Cluster(
-            self,
-            "{prefix}Cluster".format(prefix=prefix),
-            vpc=self.vpc,
-            cluster_name="LSITFrontDeskCluster",
-        )
+            # Create ECS cluster for prod/staging
+            self.cluster = ecs.Cluster(
+                self,
+                "{prefix}Cluster".format(prefix=prefix),
+                vpc=self.vpc,
+                cluster_name="LSITFrontDeskCluster",
+            )
+        else:    
+            # Create a postgres DB for prod/staging app
+            database = rds.DatabaseInstance(
+                self,
+                "{prefix}Database".format(prefix=prefix),
+                vpc=self.vpc,
+                vpc_subnets={
+                    "subnet_type": ec2.SubnetType.PRIVATE_ISOLATED,
+                },
+                engine=rds.DatabaseInstanceEngine.postgres(version=rds.PostgresEngineVersion.VER_13_13),
+                credentials=rds.Credentials.from_generated_secret("{prefix}dbadmin".format(prefix=prefix),secret_name="{prefix}dbcredentials".format(prefix=prefix)),
+                instance_type=ec2.InstanceType.of(
+                    ec2.InstanceClass.BURSTABLE3,
+                    ec2.InstanceSize.SMALL
+                ),
+                backup_retention=Duration.days(3),
+                delete_automated_backups=True,
+                removal_policy=RemovalPolicy.RETAIN,
+                deletion_protection=True,
+                database_name="{prefix}".format(prefix=prefix),
+                publicly_accessible=True,
+                instance_identifier="{prefix}".format(prefix=prefix)
+            )
+            database.connections.allow_from_any_ipv4(ec2.Port.tcp(5432))
+
+            # Create ECS cluster for prod/staging
+            self.cluster = ecs.Cluster(
+                self,
+                "{prefix}Cluster".format(prefix=prefix),
+                vpc=self.vpc,
+                cluster_name="{prefix}Cluster".format(prefix=prefix),
+            )
 
         # VPC Endpoints for prod/staging
         ec2.InterfaceVpcEndpoint(
@@ -172,12 +234,15 @@ class NetworkStack(Stack):
             "{prefix}S3VPCEndpoint".format(prefix=prefix),
             vpc=self.vpc,
             service=ec2.GatewayVpcEndpointAwsService.S3,
-            subnets=self.vpc.private_subnets
+            subnets=[ec2.SubnetSelection(
+                subnets=self.vpc.private_subnets
+            )],
         )
 
         # Environment Variable Bucket
         self.bucket = Bucket(
             self,
-            "lsit-zoom-queue-env-vars",
-            bucket_name="lsit-zoom-queue-env-vars"
+            bucket_name,
+            bucket_name=bucket_name,
+            removal_policy=RemovalPolicy.RETAIN
         )

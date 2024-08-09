@@ -21,7 +21,11 @@ network_stack = NetworkStack(
     app,
     "NetworkStack",
     {
-        "aws_account_name": "LSITZoomQueue"
+        "prefix": "LSITZoomQueue",
+        "app_name": "frontdesk",
+        "aws_bucket_name": "lsit-zoom-queue-env-vars",
+        "need_dev": True,
+        "is_legacy": True,
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
@@ -742,6 +746,18 @@ qualtrics_tools_stack = LSITStack(
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/62a81bbf-fd43-4dd7-b872-16b8537610ca"],
         "is_private": True,
         "monitoring_stack": monitoring_stack
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+# DX Network Stack
+dx_network_stack = NetworkStack(
+    app,
+    "DXNetworkStack",
+    {
+        "prefix": "DX",
+        "aws_bucket_name": "lsit-dx-apps-env-vars",
+        "ip_addresses": "172.29.117.0/25",
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )

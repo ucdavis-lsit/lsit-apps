@@ -254,6 +254,11 @@
      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
     },
     "DeploymentConfiguration": {
+     "Alarms": {
+      "AlarmNames": [],
+      "Enable": false,
+      "Rollback": false
+     },
      "MaximumPercent": 200,
      "MinimumHealthyPercent": 50
     },
@@ -286,6 +291,10 @@
      "Ref": "FrontdeskappsessionworkerStagingTaskE73F18D0"
     }
    },
+   "DependsOn": [
+    "FrontdeskappsessionworkerStagingRoleDefaultPolicyD488C3D0",
+    "FrontdeskappsessionworkerStagingRoleFA47EE2C"
+   ],
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppSessionWorkerStagingStack/Frontdesk-app-session-workerStagingService/Service"
    }
@@ -293,10 +302,9 @@
   "FrontdeskappsessionworkerStagingCPUAlarmA13C7EEA": {
    "Type": "AWS::CloudWatch::Alarm",
    "Properties": {
-    "ComparisonOperator": "GreaterThanThreshold",
-    "EvaluationPeriods": 1,
     "ActionsEnabled": true,
     "AlarmName": "Frontdesk-app-session-workerStagingCPUAlarm",
+    "ComparisonOperator": "GreaterThanThreshold",
     "Dimensions": [
      {
       "Name": "ClusterName",
@@ -314,6 +322,7 @@
       }
      }
     ],
+    "EvaluationPeriods": 1,
     "MetricName": "CPUUtilization",
     "Namespace": "AWS/ECS",
     "Period": 300,
@@ -327,7 +336,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11PwU7DMAz9lt1TgzoJaUcGgguHaeOOTOZ1XtMYJQ5TFeXfabqBgJOfn5/9nltoV3C7wHNs7L5vHL9D3ina3kzUW2YcIG/FkXk4+LluxLEda3tBxZCNkJ8wdKj0irF/pAN7VhZfVf8Z8YrsKfzirrs7Cp9sZ6crLMZJNx1/ke45SPqoo29cTFzCOtmedI2RphTtlJxsCqzjj/oPUYx1kvZnVHuEfO8wDFUzg1LmDylKCtV4M+pR/M0SVnC3OEXmJiSvPBBsL/ULnG68QzkBAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/12Oy07DQAxFv6X7iaGtQGJJQbBhUaXskXHd1GQyRvOgikbz7+TRImDl4+tr+65gebOE6wWeQkX7trLyDnkXkVozSG9ZsINcq2XzcHBT3aoV6sd2pmKYAuQn9A1GfsXQPvJBnERRN7r+K+oiimP/Szvv7th/CU2fzliM1WY4/qLNs9f0OY4uXExYwyZRy3GDgYcUqyE5U/IS+x/3H6EYspr2J4x0hHxv0XejZ4JSTM1Bk58DXLiYbR+P6q7WcAe3i48gUvnkonQM9Vy/AWWNsG5DAQAA"
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppSessionWorkerStagingStack/CDKMetadata/Default"

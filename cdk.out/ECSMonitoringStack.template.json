@@ -9,11 +9,11 @@
   "ECSAlertsdssitdevsexceptionsucdavisedu2EA2FD31": {
    "Type": "AWS::SNS::Subscription",
    "Properties": {
+    "Endpoint": "dssit-devs-exceptions@ucdavis.edu",
     "Protocol": "email",
     "TopicArn": {
      "Ref": "ECSAlerts6D168A96"
-    },
-    "Endpoint": "dssit-devs-exceptions@ucdavis.edu"
+    }
    },
    "Metadata": {
     "aws:cdk:path": "ECSMonitoringStack/ECSAlerts/dssit-devs-exceptions@ucdavis.edu/Resource"
@@ -87,7 +87,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1VMSwrCMBA9S/fJKBWErr1Aad2XNo44NiYlkygl5O42DQiu3v/VUDdwrMYPS3WbpaYJYu9HNYvNGiIbhni1CylxuZtC+jCxcrR4sia7f3qvtFaTWn+LIpPANxq//XVBYw4zprQzZBucwiTa1T+sOZyggXP1ZCLpgvH0QugKfgEXdvVssQAAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1VMSwrCMBA9S/fJaBUF116gtO6ljRHHxknJJEoJubtNA4Kr9387qA81bKv+w1LdRmlwgNj5Xo1isa6RiSFe7IRKnO9USBcGVg4nj5ay+6fXSmMNqvm3KDIJ/dbkl782GJ3DjCmtTLMNTukkmtk/LG32cIJj9WRE6QJ5fGloC34Bo0IDd7IAAAA="
    },
    "Metadata": {
     "aws:cdk:path": "ECSMonitoringStack/CDKMetadata/Default"

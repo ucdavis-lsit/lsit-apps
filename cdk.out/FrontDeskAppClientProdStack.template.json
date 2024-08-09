@@ -245,7 +245,6 @@
   "FrontdeskappclientProductionSecurityGroupfromNetworkStackLSITZoomQueueSecurityGroup211C746730007E69015B": {
    "Type": "AWS::EC2::SecurityGroupIngress",
    "Properties": {
-    "IpProtocol": "tcp",
     "Description": "Load balancer to target",
     "FromPort": 3000,
     "GroupId": {
@@ -254,6 +253,7 @@
       "GroupId"
      ]
     },
+    "IpProtocol": "tcp",
     "SourceSecurityGroupId": {
      "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
     },
@@ -270,6 +270,11 @@
      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
     },
     "DeploymentConfiguration": {
+     "Alarms": {
+      "AlarmNames": [],
+      "Enable": false,
+      "Rollback": false
+     },
      "MaximumPercent": 200,
      "MinimumHealthyPercent": 50
     },
@@ -319,7 +324,9 @@
     "FrontdeskappclientProductionHttpsListenerRule14C9F12BA0",
     "FrontdeskappclientProductionHttpsListenerRule151B0FB233",
     "FrontdeskappclientProductionHttpsListenerRule16FF3088FC",
-    "FrontdeskappclientProductionHttpsListenerRule99C6FA131"
+    "FrontdeskappclientProductionHttpsListenerRule99C6FA131",
+    "FrontdeskappclientProductionRoleDefaultPolicy20DD2DC7",
+    "FrontdeskappclientProductionRole5A8F4A11"
    ],
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionService/Service"
@@ -328,8 +335,6 @@
   "FrontdeskappclientProductionCPUAlarm1F4EBC06": {
    "Type": "AWS::CloudWatch::Alarm",
    "Properties": {
-    "ComparisonOperator": "GreaterThanThreshold",
-    "EvaluationPeriods": 1,
     "ActionsEnabled": true,
     "AlarmActions": [
      {
@@ -337,6 +342,7 @@
      }
     ],
     "AlarmName": "Frontdesk-app-clientProductionCPUAlarm",
+    "ComparisonOperator": "GreaterThanThreshold",
     "Dimensions": [
      {
       "Name": "ClusterName",
@@ -354,6 +360,7 @@
       }
      }
     ],
+    "EvaluationPeriods": 1,
     "MetricName": "CPUUtilization",
     "Namespace": "AWS/ECS",
     "Period": 300,
@@ -389,6 +396,11 @@
   "FrontdeskappclientProductionHttpsListener997DB417": {
    "Type": "AWS::ElasticLoadBalancingV2::Listener",
    "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/557bde58-1690-4c5b-98ed-834368940ed2"
+     }
+    ],
     "DefaultActions": [
      {
       "FixedResponseConfig": {
@@ -401,11 +413,6 @@
     "LoadBalancerArn": {
      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueuePublicLB6F0A6C15386A461C"
     },
-    "Certificates": [
-     {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/557bde58-1690-4c5b-98ed-834368940ed2"
-     }
-    ],
     "Port": 443,
     "Protocol": "HTTPS"
    },
@@ -1098,7 +1105,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31Ry2rDMBD8ltxttThQyDFJaSnkEJzcy0ZeOxvLkpFWCcb43ys5D9wSetrZ2dnHSJnIFuJ1BheXyqJOFR1Ev2OQdRKo756gEX1uFCbrUo9xaxTJLqZXNCQoneg/wFbAuAdXv2NJmpiMjqq/jNEMpNFOuFvvDu2Z5LjpBodEmSoM35jq0xrfxtIdD4mbi5WXNfIKHIYrsnA5Sm+Ju4f6f+JLVxadGxKpjC8uwPIo+qUC20TpCII9BY4pKKA4gAItSVfnsGvZtsE/RAf7YAD5sWOaTlQbcozB+ejijp/U12iZykjiVDqln3TlXv2Sx3wYxm9DZ7yNr7nt+Gj0y1wsxNvs5IhS6zVTgyK/xh8e3tu4DgIAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31Qy24CMQz8Fu7ZtIBaqUcealWJA1q4VyaYxd2QoMQBrVb59ybLQ9sK9eTxeJzxZCSHL0P5PICzL9S2LjRtZLtiULVI1FdLcJBtaTWK2c50dWk1qSa3FxQFKi/bd3AVMK7B13PckSEma7LqL2MNAxl0Pe66u0J3ItU5XWEU2lbp8YWtPpwNxzy64Sj8WE6DqpGn4DFdMUqXowqOuLmr/yc+TeXQ+yiUtmF7BlZ72U40uEOWdiDF0+CZkgK2G9BgFJnqlLwmx2PKDznBOgVAvnv0255qQZ4xJe9S3PCD+Qwd0y6T2Jf26QdbZdC/5LmPUZTobXCXX73hKJYN7615Gss3+Tr49kSFC4bpgLK81B8Uh9vkGAIAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientProdStack/CDKMetadata/Default"

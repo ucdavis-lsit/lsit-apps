@@ -191,12 +191,8 @@ class LSITStack(Stack):
             alarm_name="{app_prefix}CPUAlarm".format(app_prefix=app_prefix),
             actions_enabled=True
         )
-        print("?")
-        print(monitoring_stack)
+
         if monitoring_stack:
-            print("monitoring")
-            print(monitoring_stack.ecs_alerts_topic)
-            print(app_prefix)
             cpu_alarm.add_alarm_action(actions.SnsAction(topic=monitoring_stack.ecs_alerts_topic))
 
         if public_facing:
@@ -304,7 +300,6 @@ class LSITStack(Stack):
 
                 while len(host_headers) > 5 and ( len(additional_https_rule_priorities) > 0 or len(additional_http_rule_priorities) > 0):
                     host_headers = host_headers[5:]
-                    print("*****host headers*****",app_name,app_env,host_headers)
                     if len(additional_https_rule_priorities) > 0:
                         ApplicationListenerRule(
                             self,
