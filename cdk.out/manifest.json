@@ -583,19 +583,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -774,19 +774,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -929,19 +929,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -1253,7 +1253,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-deploy-role-042277129213-us-west-2",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-cfn-exec-role-042277129213-us-west-2",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-042277129213-us-west-2/e139332e1741bf94acda1cb46f20af0d45c616a21d2c5a6185b876056423a33b.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-042277129213-us-west-2/93265219de48b2e1ebb017adb1af216436c1cc647da9cd034052114a971ad3df.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -1300,19 +1300,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -1417,6 +1417,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "FrontdeskappclientProductionHttpsListenerQualtricstoolsStagingCerttificates11A2C574F"
+          }
+        ],
+        "/FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Lsit-ucpath-auditProductionCerttificates1/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FrontdeskappclientProductionHttpsListenerLsitucpathauditProductionCerttificates1DD2002D4"
           }
         ],
         "/FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule/Resource": [
@@ -1606,19 +1612,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -1755,19 +1761,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -2227,19 +2233,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -2357,19 +2363,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -2583,19 +2589,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -2714,19 +2720,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -2876,19 +2882,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -3025,19 +3031,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -3497,19 +3503,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -3627,19 +3633,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -3853,19 +3859,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -4228,19 +4234,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -4593,19 +4599,19 @@
             "type": "aws:cdk:warning",
             "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
             "trace": [
-              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
-              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
-              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
-              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
-              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-3RGWBD/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:134",
-              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8592:24)",
-              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:107",
-              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:8573:28)",
-              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:7993:34)",
-              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9506:36)",
-              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9469:22)",
-              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmp80a9ktru/lib/program.js:9470:46)",
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
@@ -4894,6 +4900,156 @@
         ]
       },
       "displayName": "QualtricsToolsAppStagingSyncGroups"
+    },
+    "LSITUCPathAuditAppProdStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "LSITUCPathAuditAppProdStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "LSITUCPathAuditAppProdStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://042277129213/us-west-2",
+      "properties": {
+        "templateFile": "LSITUCPathAuditAppProdStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-deploy-role-042277129213-us-west-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-cfn-exec-role-042277129213-us-west-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-042277129213-us-west-2/3a01308a11eedb0d0fbbaa2ebb119462951c8b7a709c303a54556bc2d0b8b522.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "LSITUCPathAuditAppProdStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-lookup-role-042277129213-us-west-2",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "NetworkStack",
+        "ECSMonitoringStack",
+        "FrontDeskAppClientProdStack",
+        "LSITUCPathAuditAppProdStack.assets"
+      ],
+      "metadata": {
+        "/LSITUCPathAuditAppProdStack/Lsit-ucpath-auditProductionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LsitucpathauditProductionRoleA0C66BB4"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/Lsit-ucpath-auditProductionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LsitucpathauditProductionRoleDefaultPolicyDD3D4F65"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/Lsit-ucpath-auditProductionPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LsitucpathauditProductionPolicy00091794"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/Lsit-ucpath-auditProductionTask/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LsitucpathauditProductionTaskBA95AF0E"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/Lsit-ucpath-auditProductionTask/lsit-ucpath-audit-production": [
+          {
+            "type": "aws:cdk:warning",
+            "data": "Proper policies need to be attached before pulling from ECR repository, or use 'fromEcrRepository'.",
+            "trace": [
+              "Annotations.addMessage (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1213)",
+              "Annotations.addWarning (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/core/lib/annotations.js:1:600)",
+              "RepositoryImage.bind (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/images/repository.js:1:1129)",
+              "new ContainerDefinition (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/container-definition.js:1:2824)",
+              "FargateTaskDefinition.addContainer (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/jsii-kernel-R1RcWM/node_modules/aws-cdk-lib/aws-ecs/lib/base/task-definition.js:1:8925)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:134",
+              "Kernel._wrapSandboxCode (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8592:24)",
+              "/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:107",
+              "Kernel._ensureSync (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:8573:28)",
+              "Kernel.invoke (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:7993:34)",
+              "KernelHost.processRequest (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9506:36)",
+              "KernelHost.run (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9469:22)",
+              "Immediate._onImmediate (/private/var/folders/db/cfych1sn4x3ddq_0xr81szf80000gr/T/tmppycntxg7/lib/program.js:9470:46)",
+              "process.processImmediate (node:internal/timers:478:21)"
+            ]
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/Lsit-ucpath-auditProductionLogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LsitucpathauditProductionLogGroupED08581E"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/Lsit-ucpath-auditProductionSecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LsitucpathauditProductionSecurityGroupCF179197"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/Lsit-ucpath-auditProductionSecurityGroup/from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LsitucpathauditProductionSecurityGroupfromNetworkStackLSITZoomQueueSecurityGroup211C74673000BAB2667B"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/Lsit-ucpath-auditProductionService/Service": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LsitucpathauditProductionServiceB5B0511B"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/Lsit-ucpath-auditProductionCPUAlarm/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LsitucpathauditProductionCPUAlarmC53607EF"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/Lsit-ucpath-auditProductionTargetGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LsitucpathauditProductionTargetGroup9E1B41C7"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/Lsit-ucpath-auditProductionHttpsListenerRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LsitucpathauditProductionHttpsListenerRuleE90D9659"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/Lsit-ucpath-auditProductionHttpListenerRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LsitucpathauditProductionHttpListenerRule123572C7"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/LSITUCPathAuditAppProdStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "LSITUCPathAuditAppProdStack"
     }
   }
 }

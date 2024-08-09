@@ -114,7 +114,7 @@
    "Properties": {
     "ContainerDefinitions": [
      {
-      "Cpu": 512,
+      "Cpu": 2048,
       "EnvironmentFiles": [
        {
         "Type": "s3",
@@ -168,7 +168,7 @@
         "awslogs-region": "us-west-2"
        }
       },
-      "Memory": 1024,
+      "Memory": 4096,
       "Name": "frontdesk-app-client-production",
       "PortMappings": [
        {
@@ -179,7 +179,7 @@
       ]
      }
     ],
-    "Cpu": "512",
+    "Cpu": "2048",
     "ExecutionRoleArn": {
      "Fn::GetAtt": [
       "FrontdeskappclientProductionRole5A8F4A11",
@@ -187,7 +187,7 @@
      ]
     },
     "Family": "frontdesk-app-client-production",
-    "Memory": "1024",
+    "Memory": "4096",
     "NetworkMode": "awsvpc",
     "RequiresCompatibilities": [
      "FARGATE"
@@ -571,6 +571,22 @@
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Qualtrics-toolsStagingCerttificates1/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerLsitucpathauditProductionCerttificates1DD2002D4": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+   "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/62a81bbf-fd43-4dd7-b872-16b8537610ca"
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Lsit-ucpath-auditProductionCerttificates1/Resource"
    }
   },
   "FrontdeskappclientProductionHttpsListenerRule5CBF48FA": {

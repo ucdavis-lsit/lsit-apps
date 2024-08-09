@@ -1,15 +1,15 @@
 {
   "version": "20.0.0",
   "files": {
-    "93265219de48b2e1ebb017adb1af216436c1cc647da9cd034052114a971ad3df": {
+    "3a01308a11eedb0d0fbbaa2ebb119462951c8b7a709c303a54556bc2d0b8b522": {
       "source": {
-        "path": "FrontDeskAppClientProdStack.template.json",
+        "path": "LSITUCPathAuditAppProdStack.template.json",
         "packaging": "file"
       },
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "93265219de48b2e1ebb017adb1af216436c1cc647da9cd034052114a971ad3df.json",
+          "objectKey": "3a01308a11eedb0d0fbbaa2ebb119462951c8b7a709c303a54556bc2d0b8b522.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }

@@ -187,7 +187,7 @@ frontdesk_frontend_stack = LSITStack(
         "is_private": True,
         "additional_https_rule_priorities": [9,10,11,14,15,16],
         "additional_http_rule_priorities": [9,10,11,14,15,16],
-        "resource_multiplier": 2,
+        "resource_multiplier": 8,
         "monitoring_stack": monitoring_stack
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
@@ -714,6 +714,34 @@ ScheudledTaskStack(
         "command_override": ["sh","-c","curl -XGET https://stage.qualtricstools.lsit.ucdavis.edu/api/cron/syncGroups?key=$API_KEY"],
         "is_private": True,
         "schedule": {"minute": "0"}
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+# LSIT UCPath Audit Prod
+qualtrics_tools_stack = LSITStack(
+    app,
+    "LSITUCPathAuditAppProdStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    network_stack.load_balancer,
+    {
+        "app_name": "lsit-ucpath-audit",
+        "app_env": "production",
+        "task_port": 3000,
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-ucpath-audit-production:latest",
+        "https_listener": frontdesk_frontend_stack.https_listener,
+        "http_listener": frontdesk_frontend_stack.http_listener,
+        "health_check_path": "/api/health",
+        "https_load_balancer_priority": 17,
+        "http_load_balancer_priority": 17,
+        "host_headers": [
+            "ucpathaudit.lsit.ucdavis.edu",
+        ],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/62a81bbf-fd43-4dd7-b872-16b8537610ca"],
+        "is_private": True,
+        "monitoring_stack": monitoring_stack
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
