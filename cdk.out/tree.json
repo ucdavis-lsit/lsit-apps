@@ -24525,6 +24525,20 @@
                         "cidrIp": "0.0.0.0/0",
                         "ipProtocol": "-1",
                         "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      },
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 443,
+                        "toPort": 443,
+                        "description": "Allow from anyone on port 443"
+                      },
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "tcp",
+                        "fromPort": 80,
+                        "toPort": 80,
+                        "description": "Allow from anyone on port 80"
                       }
                     ],
                     "vpcId": {
@@ -25123,6 +25137,72 @@
               "version": "10.3.0"
             }
           },
+          "Exports": {
+            "id": "Exports",
+            "path": "DXNetworkStack/Exports",
+            "children": {
+              "Output{\"Fn::GetAtt\":[\"lsitdxappsenvvarsB00EB75A\",\"Arn\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"lsitdxappsenvvarsB00EB75A\",\"Arn\"]}",
+                "path": "DXNetworkStack/Exports/Output{\"Fn::GetAtt\":[\"lsitdxappsenvvarsB00EB75A\",\"Arn\"]}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "Output{\"Ref\":\"DXVpc39435ABC\"}": {
+                "id": "Output{\"Ref\":\"DXVpc39435ABC\"}",
+                "path": "DXNetworkStack/Exports/Output{\"Ref\":\"DXVpc39435ABC\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "Output{\"Fn::GetAtt\":[\"DXSecurityGroup30704A1C\",\"GroupId\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"DXSecurityGroup30704A1C\",\"GroupId\"]}",
+                "path": "DXNetworkStack/Exports/Output{\"Fn::GetAtt\":[\"DXSecurityGroup30704A1C\",\"GroupId\"]}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "Output{\"Ref\":\"DXClusterBEB5274B\"}": {
+                "id": "Output{\"Ref\":\"DXClusterBEB5274B\"}",
+                "path": "DXNetworkStack/Exports/Output{\"Ref\":\"DXClusterBEB5274B\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "Output{\"Ref\":\"DXVpcDXPrivateSubnetSubnet1SubnetBC118A72\"}": {
+                "id": "Output{\"Ref\":\"DXVpcDXPrivateSubnetSubnet1SubnetBC118A72\"}",
+                "path": "DXNetworkStack/Exports/Output{\"Ref\":\"DXVpcDXPrivateSubnetSubnet1SubnetBC118A72\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "Output{\"Ref\":\"DXVpcDXPrivateSubnetSubnet2Subnet92453131\"}": {
+                "id": "Output{\"Ref\":\"DXVpcDXPrivateSubnetSubnet2Subnet92453131\"}",
+                "path": "DXNetworkStack/Exports/Output{\"Ref\":\"DXVpcDXPrivateSubnetSubnet2Subnet92453131\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "Output{\"Ref\":\"DXPublicLB0C9DFC48\"}": {
+                "id": "Output{\"Ref\":\"DXPublicLB0C9DFC48\"}",
+                "path": "DXNetworkStack/Exports/Output{\"Ref\":\"DXPublicLB0C9DFC48\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.3.0"
+            }
+          },
           "BootstrapVersion": {
             "id": "BootstrapVersion",
             "path": "DXNetworkStack/BootstrapVersion",
@@ -25134,6 +25214,765 @@
           "CheckBootstrapVersion": {
             "id": "CheckBootstrapVersion",
             "path": "DXNetworkStack/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.151.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.151.0"
+        }
+      },
+      "LSITUCPathAuditDXAppProdStack": {
+        "id": "LSITUCPathAuditDXAppProdStack",
+        "path": "LSITUCPathAuditDXAppProdStack",
+        "children": {
+          "Lsit-ucpath-auditProductionRole": {
+            "id": "Lsit-ucpath-auditProductionRole",
+            "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionRole",
+            "children": {
+              "ImportLsit-ucpath-auditProductionRole": {
+                "id": "ImportLsit-ucpath-auditProductionRole",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionRole/ImportLsit-ucpath-auditProductionRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.151.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows lsit-ucpath-audit-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Lsit-ucpath-auditProductionECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.151.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "LsitucpathauditProductionLogGroupED08581E",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "LsitucpathauditProductionRoleDefaultPolicyDD3D4F65",
+                        "roles": [
+                          {
+                            "Ref": "LsitucpathauditProductionRoleA0C66BB4"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditProductionPolicy": {
+            "id": "Lsit-ucpath-auditProductionPolicy",
+            "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "DXNetworkStack:ExportsOutputFnGetAttlsitdxappsenvvarsB00EB75AArn46F1E862"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "DXNetworkStack:ExportsOutputFnGetAttlsitdxappsenvvarsB00EB75AArn46F1E862"
+                                },
+                                "/lsit-ucpath-audit/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Lsit-ucpath-auditProductionConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "LsitucpathauditProductionRoleA0C66BB4"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Policy",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditProductionTask": {
+            "id": "Lsit-ucpath-auditProductionTask",
+            "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-ucpath-audit-production:latest",
+                        "memory": 512,
+                        "name": "lsit-ucpath-audit-production",
+                        "portMappings": [
+                          {
+                            "containerPort": 3000,
+                            "hostPort": 3000,
+                            "protocol": "tcp"
+                          }
+                        ],
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "LsitucpathauditProductionLogGroupED08581E"
+                            },
+                            "awslogs-stream-prefix": "lsit-ucpath-audit-production",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "DXNetworkStack:ExportsOutputFnGetAttlsitdxappsenvvarsB00EB75AArn46F1E862"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/lsit-ucpath-audit/production.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "LsitucpathauditProductionRoleA0C66BB4",
+                        "Arn"
+                      ]
+                    },
+                    "family": "lsit-ucpath-audit-production",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "LsitucpathauditProductionRoleA0C66BB4",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                  "version": "2.151.0"
+                }
+              },
+              "lsit-ucpath-audit-production": {
+                "id": "lsit-ucpath-audit-production",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionTask/lsit-ucpath-audit-production",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditProductionLogGroup": {
+            "id": "Lsit-ucpath-auditProductionLogGroup",
+            "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/lsit-ucpath-audit-production",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditProductionBucket": {
+            "id": "Lsit-ucpath-auditProductionBucket",
+            "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionBucket",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditProductionSecurityGroup": {
+            "id": "Lsit-ucpath-auditProductionSecurityGroup",
+            "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionSecurityGroup",
+                    "groupName": "lsit-ucpath-audit-production",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXVpc39435ABC3B5BC6FD"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.151.0"
+                }
+              },
+              "from DXNetworkStackDXSecurityGroup8547E01C:3000": {
+                "id": "from DXNetworkStackDXSecurityGroup8547E01C:3000",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionSecurityGroup/from DXNetworkStackDXSecurityGroup8547E01C:3000",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
+                  "aws:cdk:cloudformation:props": {
+                    "description": "Load balancer to target",
+                    "fromPort": 3000,
+                    "groupId": {
+                      "Fn::GetAtt": [
+                        "LsitucpathauditProductionSecurityGroupCF179197",
+                        "GroupId"
+                      ]
+                    },
+                    "ipProtocol": "tcp",
+                    "sourceSecurityGroupId": {
+                      "Fn::ImportValue": "DXNetworkStack:ExportsOutputFnGetAttDXSecurityGroup30704A1CGroupId8B751FBC"
+                    },
+                    "toPort": 3000
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroupIngress",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditProductionService": {
+            "id": "Lsit-ucpath-auditProductionService",
+            "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionService",
+            "children": {
+              "Service": {
+                "id": "Service",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionService/Service",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Service",
+                  "aws:cdk:cloudformation:props": {
+                    "cluster": {
+                      "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXClusterBEB5274B67CF4BBC"
+                    },
+                    "deploymentConfiguration": {
+                      "maximumPercent": 200,
+                      "minimumHealthyPercent": 50,
+                      "alarms": {
+                        "alarmNames": [],
+                        "enable": false,
+                        "rollback": false
+                      }
+                    },
+                    "desiredCount": 1,
+                    "enableEcsManagedTags": false,
+                    "healthCheckGracePeriodSeconds": 60,
+                    "launchType": "FARGATE",
+                    "loadBalancers": [
+                      {
+                        "targetGroupArn": {
+                          "Ref": "LsitucpathauditProductionTargetGroup9E1B41C7"
+                        },
+                        "containerName": "lsit-ucpath-audit-production",
+                        "containerPort": 3000
+                      }
+                    ],
+                    "networkConfiguration": {
+                      "awsvpcConfiguration": {
+                        "assignPublicIp": "DISABLED",
+                        "subnets": [
+                          {
+                            "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXVpcDXPrivateSubnetSubnet1SubnetBC118A727EFB3067"
+                          },
+                          {
+                            "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXVpcDXPrivateSubnetSubnet2Subnet9245313114D55718"
+                          }
+                        ],
+                        "securityGroups": [
+                          {
+                            "Fn::GetAtt": [
+                              "LsitucpathauditProductionSecurityGroupCF179197",
+                              "GroupId"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "serviceName": "lsit-ucpath-audit-production",
+                    "taskDefinition": {
+                      "Ref": "LsitucpathauditProductionTaskBA95AF0E"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnService",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateService",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditProductionCPUAlarm": {
+            "id": "Lsit-ucpath-auditProductionCPUAlarm",
+            "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "actionsEnabled": true,
+                    "alarmActions": [
+                      {
+                        "Fn::ImportValue": "ECSMonitoringStack:ExportsOutputRefECSAlerts6D168A967C6D2BC9"
+                      }
+                    ],
+                    "alarmName": "Lsit-ucpath-auditProductionCPUAlarm",
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXClusterBEB5274B67CF4BBC"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "LsitucpathauditProductionServiceB5B0511B",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "evaluationPeriods": 1,
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditProductionTargetGroup": {
+            "id": "Lsit-ucpath-auditProductionTargetGroup",
+            "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionTargetGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionTargetGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "healthCheckPath": "/api/health",
+                    "name": "ecs-lsit-ucpath-audit-production",
+                    "port": 80,
+                    "protocol": "HTTP",
+                    "targetGroupAttributes": [
+                      {
+                        "key": "stickiness.enabled",
+                        "value": "false"
+                      }
+                    ],
+                    "targetType": "ip",
+                    "vpcId": {
+                      "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXVpc39435ABC3B5BC6FD"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnTargetGroup",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationTargetGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditProductionHttpsListener": {
+            "id": "Lsit-ucpath-auditProductionHttpsListener",
+            "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpsListener",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpsListener/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::Listener",
+                  "aws:cdk:cloudformation:props": {
+                    "certificates": [
+                      {
+                        "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/62a81bbf-fd43-4dd7-b872-16b8537610ca"
+                      }
+                    ],
+                    "defaultActions": [
+                      {
+                        "fixedResponseConfig": {
+                          "contentType": "text/plain",
+                          "statusCode": "503"
+                        },
+                        "type": "fixed-response"
+                      }
+                    ],
+                    "loadBalancerArn": {
+                      "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXPublicLB0C9DFC485376732A"
+                    },
+                    "port": 443,
+                    "protocol": "HTTPS"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListener",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListener",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditProductionHttpsListenerRule": {
+            "id": "Lsit-ucpath-auditProductionHttpsListenerRule",
+            "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpsListenerRule",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpsListenerRule/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "type": "forward",
+                        "targetGroupArn": {
+                          "Ref": "LsitucpathauditProductionTargetGroup9E1B41C7"
+                        }
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "ucpathaudit.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Ref": "LsitucpathauditProductionHttpsListener659F5509"
+                    },
+                    "priority": 1
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditProductionHttpListener": {
+            "id": "Lsit-ucpath-auditProductionHttpListener",
+            "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpListener",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpListener/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::Listener",
+                  "aws:cdk:cloudformation:props": {
+                    "defaultActions": [
+                      {
+                        "fixedResponseConfig": {
+                          "contentType": "text/plain",
+                          "statusCode": "503"
+                        },
+                        "type": "fixed-response"
+                      }
+                    ],
+                    "loadBalancerArn": {
+                      "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXPublicLB0C9DFC485376732A"
+                    },
+                    "port": 80,
+                    "protocol": "HTTP"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListener",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListener",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditProductionHttpListenerRule": {
+            "id": "Lsit-ucpath-auditProductionHttpListenerRule",
+            "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpListenerRule",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpListenerRule/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "redirectConfig": {
+                          "port": "443",
+                          "statusCode": "HTTP_301",
+                          "protocol": "HTTPS"
+                        },
+                        "type": "redirect"
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "ucpathaudit.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Ref": "LsitucpathauditProductionHttpListenerA92D56A6"
+                    },
+                    "priority": 1
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.151.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "LSITUCPathAuditDXAppProdStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "LSITUCPathAuditDXAppProdStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.3.0"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "LSITUCPathAuditDXAppProdStack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.151.0"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "LSITUCPathAuditDXAppProdStack/CheckBootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnRule",
               "version": "2.151.0"

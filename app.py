@@ -723,7 +723,7 @@ ScheudledTaskStack(
 )
 
 # LSIT UCPath Audit Prod
-qualtrics_tools_stack = LSITStack(
+"""qualtrics_tools_stack = LSITStack(
     app,
     "LSITUCPathAuditAppProdStack",
     network_stack.vpc,
@@ -748,7 +748,7 @@ qualtrics_tools_stack = LSITStack(
         "monitoring_stack": monitoring_stack
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
-)
+)"""
 
 # DX Network Stack
 dx_network_stack = NetworkStack(
@@ -759,6 +759,49 @@ dx_network_stack = NetworkStack(
         "aws_bucket_name": "lsit-dx-apps-env-vars",
         "ip_addresses": "172.29.117.0/25",
         "is_dx": True
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+# LSIT UCPath Audit Prod DX
+ucpath_audit_stack = LSITStack(
+    app,
+    "LSITUCPathAuditDXAppProdStack",
+    dx_network_stack.vpc,
+    dx_network_stack.bucket,
+    dx_network_stack.cluster,
+    dx_network_stack.load_balancer,
+    {
+        "app_name": "lsit-ucpath-audit",
+        "app_env": "production",
+        "task_port": 3000,
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-ucpath-audit-production:latest",
+        "health_check_path": "/api/health",
+        "https_load_balancer_priority": 1,
+        "http_load_balancer_priority": 1,
+        "host_headers": [
+            "ucpathaudit.lsit.ucdavis.edu",
+        ],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/62a81bbf-fd43-4dd7-b872-16b8537610ca"],
+        "is_private": True,
+        "monitoring_stack": monitoring_stack
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+# LSIT UCPath Audit Take Snapshots Prod DX
+ScheudledTaskStack(
+    app,
+    "LSITUCPathAuditDXAppProdTakeSnapshots",
+    dx_network_stack.vpc,
+    dx_network_stack.bucket,
+    dx_network_stack.cluster,
+    {
+        "app_name": "lsit-ucpath-audit-take-snapshots",
+        "app_env": "production",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-ucpath-audit-cron-production:latest",
+        "is_private": True,
+        "schedule": {"minute": "*/10"}
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )

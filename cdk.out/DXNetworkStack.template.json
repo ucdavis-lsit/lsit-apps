@@ -816,6 +816,20 @@
       "CidrIp": "0.0.0.0/0",
       "Description": "from 0.0.0.0/0:ALL TRAFFIC",
       "IpProtocol": "-1"
+     },
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow from anyone on port 443",
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     },
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow from anyone on port 80",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
      }
     ],
     "VpcId": {
@@ -1214,6 +1228,70 @@
    },
    "Metadata": {
     "aws:cdk:path": "DXNetworkStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "ExportsOutputFnGetAttlsitdxappsenvvarsB00EB75AArn46F1E862": {
+   "Value": {
+    "Fn::GetAtt": [
+     "lsitdxappsenvvarsB00EB75A",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "DXNetworkStack:ExportsOutputFnGetAttlsitdxappsenvvarsB00EB75AArn46F1E862"
+   }
+  },
+  "ExportsOutputRefDXVpc39435ABC3B5BC6FD": {
+   "Value": {
+    "Ref": "DXVpc39435ABC"
+   },
+   "Export": {
+    "Name": "DXNetworkStack:ExportsOutputRefDXVpc39435ABC3B5BC6FD"
+   }
+  },
+  "ExportsOutputFnGetAttDXSecurityGroup30704A1CGroupId8B751FBC": {
+   "Value": {
+    "Fn::GetAtt": [
+     "DXSecurityGroup30704A1C",
+     "GroupId"
+    ]
+   },
+   "Export": {
+    "Name": "DXNetworkStack:ExportsOutputFnGetAttDXSecurityGroup30704A1CGroupId8B751FBC"
+   }
+  },
+  "ExportsOutputRefDXClusterBEB5274B67CF4BBC": {
+   "Value": {
+    "Ref": "DXClusterBEB5274B"
+   },
+   "Export": {
+    "Name": "DXNetworkStack:ExportsOutputRefDXClusterBEB5274B67CF4BBC"
+   }
+  },
+  "ExportsOutputRefDXVpcDXPrivateSubnetSubnet1SubnetBC118A727EFB3067": {
+   "Value": {
+    "Ref": "DXVpcDXPrivateSubnetSubnet1SubnetBC118A72"
+   },
+   "Export": {
+    "Name": "DXNetworkStack:ExportsOutputRefDXVpcDXPrivateSubnetSubnet1SubnetBC118A727EFB3067"
+   }
+  },
+  "ExportsOutputRefDXVpcDXPrivateSubnetSubnet2Subnet9245313114D55718": {
+   "Value": {
+    "Ref": "DXVpcDXPrivateSubnetSubnet2Subnet92453131"
+   },
+   "Export": {
+    "Name": "DXNetworkStack:ExportsOutputRefDXVpcDXPrivateSubnetSubnet2Subnet9245313114D55718"
+   }
+  },
+  "ExportsOutputRefDXPublicLB0C9DFC485376732A": {
+   "Value": {
+    "Ref": "DXPublicLB0C9DFC48"
+   },
+   "Export": {
+    "Name": "DXNetworkStack:ExportsOutputRefDXPublicLB0C9DFC485376732A"
    }
   }
  },
