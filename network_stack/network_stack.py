@@ -25,6 +25,8 @@ class NetworkStack(Stack):
         ip_addresses = app_props.get("ip_addresses", None)
         # Account for legacy naming convention
         is_legacy = app_props.get("is_legacy", False)
+        # DX flag
+        is_dx = app_props.get("is_dx", False)
 
         """
         Creates VPC with 2 public subnets and 2 private subnets, one of each in two availability zones (A and B)
@@ -238,6 +240,34 @@ class NetworkStack(Stack):
                 subnets=self.vpc.private_subnets
             )],
         )
+
+        if is_dx:
+            self.vpc.add_interface_endpoint(
+                "{prefix}SSMMessagesVPCEndpoint".format(prefix=prefix),
+                private_dns_enabled=True,
+                service=ec2.InterfaceVpcEndpointAwsService.SSM_MESSAGES,
+                subnets=ec2.SubnetSelection(
+                    subnets=self.vpc.private_subnets
+                ),
+            )
+
+            self.vpc.add_interface_endpoint(
+                "{prefix}EC2MessagesVPCEndpoint".format(prefix=prefix),
+                private_dns_enabled=True,
+                service=ec2.InterfaceVpcEndpointAwsService.EC2_MESSAGES,
+                subnets=ec2.SubnetSelection(
+                    subnets=self.vpc.private_subnets
+                ),
+            )
+
+            self.vpc.add_interface_endpoint(
+                "{prefix}SSMVPCEndpoint".format(prefix=prefix),
+                private_dns_enabled=True,
+                service=ec2.InterfaceVpcEndpointAwsService.SSM,
+                subnets=ec2.SubnetSelection(
+                    subnets=self.vpc.private_subnets
+                ),
+            )
 
         # Environment Variable Bucket
         self.bucket = Bucket(

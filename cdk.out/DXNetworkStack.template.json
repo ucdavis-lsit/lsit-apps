@@ -550,6 +550,255 @@
     "aws:cdk:path": "DXNetworkStack/DXVpc/VPCGW"
    }
   },
+  "DXVpcDXSSMMessagesVPCEndpointSecurityGroup12FF4782": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "DXNetworkStack/DXVpc/DXSSMMessagesVPCEndpoint/SecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": {
+       "Fn::GetAtt": [
+        "DXVpc39435ABC",
+        "CidrBlock"
+       ]
+      },
+      "Description": {
+       "Fn::Join": [
+        "",
+        [
+         "from ",
+         {
+          "Fn::GetAtt": [
+           "DXVpc39435ABC",
+           "CidrBlock"
+          ]
+         },
+         ":443"
+        ]
+       ]
+      },
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "DXNetworkStack/DXVpc"
+     }
+    ],
+    "VpcId": {
+     "Ref": "DXVpc39435ABC"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "DXNetworkStack/DXVpc/DXSSMMessagesVPCEndpoint/SecurityGroup/Resource"
+   }
+  },
+  "DXVpcDXSSMMessagesVPCEndpointEE605264": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "DXVpcDXSSMMessagesVPCEndpointSecurityGroup12FF4782",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-west-2.ssmmessages",
+    "SubnetIds": [
+     {
+      "Ref": "DXVpcDXPrivateSubnetSubnet1SubnetBC118A72"
+     },
+     {
+      "Ref": "DXVpcDXPrivateSubnetSubnet2Subnet92453131"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "DXVpc39435ABC"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "DXNetworkStack/DXVpc/DXSSMMessagesVPCEndpoint/Resource"
+   }
+  },
+  "DXVpcDXEC2MessagesVPCEndpointSecurityGroup05071D15": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "DXNetworkStack/DXVpc/DXEC2MessagesVPCEndpoint/SecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": {
+       "Fn::GetAtt": [
+        "DXVpc39435ABC",
+        "CidrBlock"
+       ]
+      },
+      "Description": {
+       "Fn::Join": [
+        "",
+        [
+         "from ",
+         {
+          "Fn::GetAtt": [
+           "DXVpc39435ABC",
+           "CidrBlock"
+          ]
+         },
+         ":443"
+        ]
+       ]
+      },
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "DXNetworkStack/DXVpc"
+     }
+    ],
+    "VpcId": {
+     "Ref": "DXVpc39435ABC"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "DXNetworkStack/DXVpc/DXEC2MessagesVPCEndpoint/SecurityGroup/Resource"
+   }
+  },
+  "DXVpcDXEC2MessagesVPCEndpointB19ADFBF": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "DXVpcDXEC2MessagesVPCEndpointSecurityGroup05071D15",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-west-2.ec2messages",
+    "SubnetIds": [
+     {
+      "Ref": "DXVpcDXPrivateSubnetSubnet1SubnetBC118A72"
+     },
+     {
+      "Ref": "DXVpcDXPrivateSubnetSubnet2Subnet92453131"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "DXVpc39435ABC"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "DXNetworkStack/DXVpc/DXEC2MessagesVPCEndpoint/Resource"
+   }
+  },
+  "DXVpcDXSSMVPCEndpointSecurityGroup61195080": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "DXNetworkStack/DXVpc/DXSSMVPCEndpoint/SecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": {
+       "Fn::GetAtt": [
+        "DXVpc39435ABC",
+        "CidrBlock"
+       ]
+      },
+      "Description": {
+       "Fn::Join": [
+        "",
+        [
+         "from ",
+         {
+          "Fn::GetAtt": [
+           "DXVpc39435ABC",
+           "CidrBlock"
+          ]
+         },
+         ":443"
+        ]
+       ]
+      },
+      "FromPort": 443,
+      "IpProtocol": "tcp",
+      "ToPort": 443
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "DXNetworkStack/DXVpc"
+     }
+    ],
+    "VpcId": {
+     "Ref": "DXVpc39435ABC"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "DXNetworkStack/DXVpc/DXSSMVPCEndpoint/SecurityGroup/Resource"
+   }
+  },
+  "DXVpcDXSSMVPCEndpoint04755C95": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "PrivateDnsEnabled": true,
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "DXVpcDXSSMVPCEndpointSecurityGroup61195080",
+       "GroupId"
+      ]
+     }
+    ],
+    "ServiceName": "com.amazonaws.us-west-2.ssm",
+    "SubnetIds": [
+     {
+      "Ref": "DXVpcDXPrivateSubnetSubnet1SubnetBC118A72"
+     },
+     {
+      "Ref": "DXVpcDXPrivateSubnetSubnet2Subnet92453131"
+     }
+    ],
+    "VpcEndpointType": "Interface",
+    "VpcId": {
+     "Ref": "DXVpc39435ABC"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "DXNetworkStack/DXVpc/DXSSMVPCEndpoint/Resource"
+   }
+  },
   "DXSecurityGroup30704A1C": {
    "Type": "AWS::EC2::SecurityGroup",
    "Properties": {
@@ -958,33 +1207,10 @@
     "aws:cdk:path": "DXNetworkStack/lsit-dx-apps-env-vars/Resource"
    }
   },
-  "DXTransitGatewayAttachment": {
-   "Type": "AWS::EC2::TransitGatewayAttachment",
-   "Properties": {
-    "Options": {
-     "dns_support": true
-    },
-    "SubnetIds": [
-     {
-      "Ref": "DXVpcDXPrivateSubnetSubnet1SubnetBC118A72"
-     },
-     {
-      "Ref": "DXVpcDXPrivateSubnetSubnet2Subnet92453131"
-     }
-    ],
-    "TransitGatewayId": "tgw-0e2b44813ab0f5507",
-    "VpcId": {
-     "Ref": "DXVpc39435ABC"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "DXNetworkStack/DXTransitGatewayAttachment"
-   }
-  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/2VRTW/CMAz9LdxDNkCbtCMFhJCmqQLEdXJTUzJKUiUOCFX970ubfjB28vPzi+3nTPnkbcJfR3CzY5Gex7lMeLkjEGfmqe8SxZSXh0KwxVEd4gWLXZJLsXOJQqq5AW21I9xDkuPAD9zcWi0kkNSqF9dgtYnr8AW0BsIb3Fls5NXDofFGERqPO0HYpM3m5Hc9XVAR26FwRtJ9bbQrmh3+EE2bIwj0blYqLbRU1Pbq07bpk2JvQFlJ/yZWDHOwJEWuIU0gByWkyq7+YPOi8Fdq3H76WtTU0NTNHvOKmdTycgkECVjcKEs1z4L33scyeiQ6tXdnwoGWUfeyYrZh7QUUZGh4Gc5QC0PYg8mQHq7WC54r3p3wyy1yZyms3kI/ZMbLyIlzGB9QVbEtWu2MaP61wxWL73TS6mXGP/j76MdKOTZOkbwg34b4Cy6NLKODAgAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/11Ry27CMBD8Fu7GLaBW6pEAQkhVFQHiWm2cBVyMHdlrEIry73Vi8hCnHc+Ox7PrKZ98TPj7CO5uLPLLWMmMlzsCcWGB+i1RTHl5KARbHPUhXbDUZ0qKnc80Us31aGs84R4yhT3fc3PnjJBA0uhOXIPVJq3LD9AaCO/wYKmVtwB7440mtAG3gpjkeZpTyHq+oibW6I4gMMRd6bwwMpA7FN5Keqyt8UUT7JUIXp36aTowqBgqcCSFMpBnoEALqU+3sJR5UYRNNBN9h17S9NDWlsNzxWzueLkEggwcbrSjmmdxvi7FMhkSrTqEtXEJy6S9WTHXsO4KGk5oeRmnqoWx7MGekAab6QSvnTCdCOEWyjuK0Z8wPDLjZeLFJT4fUVWxLTrjrWj+rsUVSx90Nvptxr/45+jPSTm2XpO8It/G+g9MkErbZwIAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "DXNetworkStack/CDKMetadata/Default"

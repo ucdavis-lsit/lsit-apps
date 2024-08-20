@@ -758,6 +758,7 @@ dx_network_stack = NetworkStack(
         "prefix": "DX",
         "aws_bucket_name": "lsit-dx-apps-env-vars",
         "ip_addresses": "172.29.117.0/25",
+        "is_dx": True
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
