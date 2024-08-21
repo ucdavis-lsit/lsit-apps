@@ -1293,6 +1293,17 @@
    "Export": {
     "Name": "DXNetworkStack:ExportsOutputRefDXPublicLB0C9DFC485376732A"
    }
+  },
+  "ExportsOutputFnGetAttDXClusterBEB5274BArn7EDA98FD": {
+   "Value": {
+    "Fn::GetAtt": [
+     "DXClusterBEB5274B",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "DXNetworkStack:ExportsOutputFnGetAttDXClusterBEB5274BArn7EDA98FD"
+   }
   }
  },
  "Parameters": {

@@ -801,7 +801,6 @@ ScheudledTaskStack(
         "app_env": "production",
         "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-ucpath-audit-cron-production:latest",
         "is_private": True,
-        "schedule": {"minute": "*/10"}
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
