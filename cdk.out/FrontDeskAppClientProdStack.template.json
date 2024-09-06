@@ -436,6 +436,22 @@
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates1/Resource"
    }
   },
+  "FrontdeskappclientProductionHttpsListenerFrontdeskappclientProductionCerttificates23BFB602E": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+   "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/fe647e66-8606-48e9-8300-81e65df9b249"
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates2/Resource"
+   }
+  },
   "FrontdeskappclientProductionHttpsListenerFrontdeskappserverProductionCerttificates17A7E67C0": {
    "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
    "Properties": {
@@ -1039,7 +1055,8 @@
       "HostHeaderConfig": {
        "Values": [
         "gsm.advisingfrontdesk.lsit.ucdavis.edu",
-        "ece.advisingfrontdesk.lsit.ucdavis.edu"
+        "ece.advisingfrontdesk.lsit.ucdavis.edu",
+        "bme.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
@@ -1072,7 +1089,8 @@
       "HostHeaderConfig": {
        "Values": [
         "gsm.advisingfrontdesk.lsit.ucdavis.edu",
-        "ece.advisingfrontdesk.lsit.ucdavis.edu"
+        "ece.advisingfrontdesk.lsit.ucdavis.edu",
+        "bme.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }

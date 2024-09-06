@@ -6191,6 +6191,37 @@
                   "version": "2.151.0"
                 }
               },
+              "Frontdesk-app-clientProductionCerttificates2": {
+                "id": "Frontdesk-app-clientProductionCerttificates2",
+                "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates2",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-clientProductionCerttificates2/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+                      "aws:cdk:cloudformation:props": {
+                        "certificates": [
+                          {
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/fe647e66-8606-48e9-8300-81e65df9b249"
+                          }
+                        ],
+                        "listenerArn": {
+                          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerCertificate",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerCertificate",
+                  "version": "2.151.0"
+                }
+              },
               "Frontdesk-app-serverProductionCerttificates1": {
                 "id": "Frontdesk-app-serverProductionCerttificates1",
                 "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Frontdesk-app-serverProductionCerttificates1",
@@ -7137,7 +7168,8 @@
                         "hostHeaderConfig": {
                           "values": [
                             "gsm.advisingfrontdesk.lsit.ucdavis.edu",
-                            "ece.advisingfrontdesk.lsit.ucdavis.edu"
+                            "ece.advisingfrontdesk.lsit.ucdavis.edu",
+                            "bme.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
@@ -7185,7 +7217,8 @@
                         "hostHeaderConfig": {
                           "values": [
                             "gsm.advisingfrontdesk.lsit.ucdavis.edu",
-                            "ece.advisingfrontdesk.lsit.ucdavis.edu"
+                            "ece.advisingfrontdesk.lsit.ucdavis.edu",
+                            "bme.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
