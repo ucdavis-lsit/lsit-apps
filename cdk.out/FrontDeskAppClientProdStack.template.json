@@ -114,7 +114,7 @@
    "Properties": {
     "ContainerDefinitions": [
      {
-      "Cpu": 2048,
+      "Cpu": 4096,
       "EnvironmentFiles": [
        {
         "Type": "s3",
@@ -168,7 +168,7 @@
         "awslogs-region": "us-west-2"
        }
       },
-      "Memory": 4096,
+      "Memory": 8192,
       "Name": "frontdesk-app-client-production",
       "PortMappings": [
        {
@@ -179,7 +179,7 @@
       ]
      }
     ],
-    "Cpu": "2048",
+    "Cpu": "4096",
     "ExecutionRoleArn": {
      "Fn::GetAtt": [
       "FrontdeskappclientProductionRole5A8F4A11",
@@ -187,7 +187,7 @@
      ]
     },
     "Family": "frontdesk-app-client-production",
-    "Memory": "4096",
+    "Memory": "8192",
     "NetworkMode": "awsvpc",
     "RequiresCompatibilities": [
      "FARGATE"

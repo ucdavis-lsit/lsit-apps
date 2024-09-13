@@ -5754,10 +5754,10 @@
                   "aws:cdk:cloudformation:props": {
                     "containerDefinitions": [
                       {
-                        "cpu": 2048,
+                        "cpu": 4096,
                         "essential": true,
                         "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-client-prod:latest",
-                        "memory": 4096,
+                        "memory": 8192,
                         "name": "frontdesk-app-client-production",
                         "portMappings": [
                           {
@@ -5819,7 +5819,7 @@
                         ]
                       }
                     ],
-                    "cpu": "2048",
+                    "cpu": "4096",
                     "executionRoleArn": {
                       "Fn::GetAtt": [
                         "FrontdeskappclientProductionRole5A8F4A11",
@@ -5827,7 +5827,7 @@
                       ]
                     },
                     "family": "frontdesk-app-client-production",
-                    "memory": "4096",
+                    "memory": "8192",
                     "networkMode": "awsvpc",
                     "requiresCompatibilities": [
                       "FARGATE"
@@ -7484,10 +7484,10 @@
                   "aws:cdk:cloudformation:props": {
                     "containerDefinitions": [
                       {
-                        "cpu": 1024,
+                        "cpu": 2048,
                         "essential": true,
                         "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-server-prod:latest",
-                        "memory": 2048,
+                        "memory": 4096,
                         "name": "frontdesk-app-server-production",
                         "portMappings": [
                           {
@@ -7549,7 +7549,7 @@
                         ]
                       }
                     ],
-                    "cpu": "1024",
+                    "cpu": "2048",
                     "executionRoleArn": {
                       "Fn::GetAtt": [
                         "FrontdeskappserverProductionRole7CAE5038",
@@ -7557,7 +7557,7 @@
                       ]
                     },
                     "family": "frontdesk-app-server-production",
-                    "memory": "2048",
+                    "memory": "4096",
                     "networkMode": "awsvpc",
                     "requiresCompatibilities": [
                       "FARGATE"
@@ -8164,10 +8164,10 @@
                   "aws:cdk:cloudformation:props": {
                     "containerDefinitions": [
                       {
-                        "cpu": 256,
+                        "cpu": 512,
                         "essential": true,
                         "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/frontdesk-app-websocket-prod:latest",
-                        "memory": 512,
+                        "memory": 1024,
                         "name": "frontdesk-app-websocket-production",
                         "portMappings": [
                           {
@@ -8229,7 +8229,7 @@
                         ]
                       }
                     ],
-                    "cpu": "256",
+                    "cpu": "512",
                     "executionRoleArn": {
                       "Fn::GetAtt": [
                         "FrontdeskappwebsocketProductionRole945C53C7",
@@ -8237,7 +8237,7 @@
                       ]
                     },
                     "family": "frontdesk-app-websocket-production",
-                    "memory": "512",
+                    "memory": "1024",
                     "networkMode": "awsvpc",
                     "requiresCompatibilities": [
                       "FARGATE"

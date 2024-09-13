@@ -192,7 +192,7 @@ frontdesk_frontend_stack = LSITStack(
         "is_private": True,
         "additional_https_rule_priorities": [9,10,11,14,15,16],
         "additional_http_rule_priorities": [9,10,11,14,15,16],
-        "resource_multiplier": 8,
+        "resource_multiplier": 16,
         "monitoring_stack": monitoring_stack
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
@@ -217,7 +217,7 @@ LSITStack(
         "host_headers": ["api.frontdesk.lsit.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/f2df87ed-969e-46b1-9953-252eec50dda8"],
         "is_private": True,
-        "resource_multiplier": 4,
+        "resource_multiplier": 8,
         "monitoring_stack": monitoring_stack
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
@@ -241,7 +241,8 @@ LSITStack(
         "http_load_balancer_priority": 3,
         "host_headers": ["websocket.frontdesk.lsit.ucdavis.edu"],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/785c2a8f-1dec-4f52-b3e9-e7d0bf533185"],
-        "is_private": True
+        "is_private": True,
+        "resource_multiplier": 2,
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
