@@ -1,6 +1,6 @@
 {
  "Resources": {
-  "LsitucpathauditProductionRoleA0C66BB4": {
+  "LsitucpathauditStagingRole31CEC1F5": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -15,7 +15,7 @@
      ],
      "Version": "2012-10-17"
     },
-    "Description": "Allows lsit-ucpath-audit-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+    "Description": "Allows lsit-ucpath-audit-staging tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
     "ManagedPolicyArns": [
      {
       "Fn::Join": [
@@ -30,13 +30,13 @@
       ]
      }
     ],
-    "RoleName": "Lsit-ucpath-auditProductionECSTaskExecutionRole"
+    "RoleName": "Lsit-ucpath-auditStagingECSTaskExecutionRole"
    },
    "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionRole/Resource"
+    "aws:cdk:path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingRole/Resource"
    }
   },
-  "LsitucpathauditProductionRoleDefaultPolicyDD3D4F65": {
+  "LsitucpathauditStagingRoleDefaultPolicyCB399CCA": {
    "Type": "AWS::IAM::Policy",
    "Properties": {
     "PolicyDocument": {
@@ -49,7 +49,7 @@
        "Effect": "Allow",
        "Resource": {
         "Fn::GetAtt": [
-         "LsitucpathauditProductionLogGroupED08581E",
+         "LsitucpathauditStagingLogGroupB0541A09",
          "Arn"
         ]
        }
@@ -57,18 +57,18 @@
      ],
      "Version": "2012-10-17"
     },
-    "PolicyName": "LsitucpathauditProductionRoleDefaultPolicyDD3D4F65",
+    "PolicyName": "LsitucpathauditStagingRoleDefaultPolicyCB399CCA",
     "Roles": [
      {
-      "Ref": "LsitucpathauditProductionRoleA0C66BB4"
+      "Ref": "LsitucpathauditStagingRole31CEC1F5"
      }
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionRole/DefaultPolicy/Resource"
+    "aws:cdk:path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingRole/DefaultPolicy/Resource"
    }
   },
-  "LsitucpathauditProductionPolicy00091794": {
+  "LsitucpathauditStagingPolicy7C4B1816": {
    "Type": "AWS::IAM::Policy",
    "Properties": {
     "PolicyDocument": {
@@ -98,18 +98,18 @@
      ],
      "Version": "2012-10-17"
     },
-    "PolicyName": "Lsit-ucpath-auditProductionConfigRead",
+    "PolicyName": "Lsit-ucpath-auditStagingConfigRead",
     "Roles": [
      {
-      "Ref": "LsitucpathauditProductionRoleA0C66BB4"
+      "Ref": "LsitucpathauditStagingRole31CEC1F5"
      }
     ]
    },
    "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionPolicy/Resource"
+    "aws:cdk:path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingPolicy/Resource"
    }
   },
-  "LsitucpathauditProductionTaskBA95AF0E": {
+  "LsitucpathauditStagingTask8BCF63DF": {
    "Type": "AWS::ECS::TaskDefinition",
    "Properties": {
     "ContainerDefinitions": [
@@ -150,26 +150,26 @@
              }
             ]
            },
-           "/lsit-ucpath-audit/production.env"
+           "/lsit-ucpath-audit/staging.env"
           ]
          ]
         }
        }
       ],
       "Essential": true,
-      "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-ucpath-audit-production:latest",
+      "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-ucpath-audit-staging:latest",
       "LogConfiguration": {
        "LogDriver": "awslogs",
        "Options": {
         "awslogs-group": {
-         "Ref": "LsitucpathauditProductionLogGroupED08581E"
+         "Ref": "LsitucpathauditStagingLogGroupB0541A09"
         },
-        "awslogs-stream-prefix": "lsit-ucpath-audit-production",
+        "awslogs-stream-prefix": "lsit-ucpath-audit-staging",
         "awslogs-region": "us-west-2"
        }
       },
       "Memory": 512,
-      "Name": "lsit-ucpath-audit-production",
+      "Name": "lsit-ucpath-audit-staging",
       "PortMappings": [
        {
         "ContainerPort": 3000,
@@ -182,11 +182,11 @@
     "Cpu": "256",
     "ExecutionRoleArn": {
      "Fn::GetAtt": [
-      "LsitucpathauditProductionRoleA0C66BB4",
+      "LsitucpathauditStagingRole31CEC1F5",
       "Arn"
      ]
     },
-    "Family": "lsit-ucpath-audit-production",
+    "Family": "lsit-ucpath-audit-staging",
     "Memory": "512",
     "NetworkMode": "awsvpc",
     "RequiresCompatibilities": [
@@ -194,32 +194,32 @@
     ],
     "TaskRoleArn": {
      "Fn::GetAtt": [
-      "LsitucpathauditProductionRoleA0C66BB4",
+      "LsitucpathauditStagingRole31CEC1F5",
       "Arn"
      ]
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionTask/Resource"
+    "aws:cdk:path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingTask/Resource"
    }
   },
-  "LsitucpathauditProductionLogGroupED08581E": {
+  "LsitucpathauditStagingLogGroupB0541A09": {
    "Type": "AWS::Logs::LogGroup",
    "Properties": {
-    "LogGroupName": "/ecs/lsit-ucpath-audit-production",
+    "LogGroupName": "/ecs/lsit-ucpath-audit-staging",
     "RetentionInDays": 731
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionLogGroup/Resource"
+    "aws:cdk:path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingLogGroup/Resource"
    }
   },
-  "LsitucpathauditProductionSecurityGroupCF179197": {
+  "LsitucpathauditStagingSecurityGroupFB1766C1": {
    "Type": "AWS::EC2::SecurityGroup",
    "Properties": {
-    "GroupDescription": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionSecurityGroup",
-    "GroupName": "lsit-ucpath-audit-production",
+    "GroupDescription": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingSecurityGroup",
+    "GroupName": "lsit-ucpath-audit-staging",
     "SecurityGroupEgress": [
      {
       "CidrIp": "0.0.0.0/0",
@@ -239,17 +239,17 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionSecurityGroup/Resource"
+    "aws:cdk:path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingSecurityGroup/Resource"
    }
   },
-  "LsitucpathauditProductionSecurityGroupfromDXNetworkStackDXSecurityGroup8547E01C3000DF7FA4DB": {
+  "LsitucpathauditStagingSecurityGroupfromDXNetworkStackDXSecurityGroup8547E01C30003CEB5EF8": {
    "Type": "AWS::EC2::SecurityGroupIngress",
    "Properties": {
     "Description": "Load balancer to target",
     "FromPort": 3000,
     "GroupId": {
      "Fn::GetAtt": [
-      "LsitucpathauditProductionSecurityGroupCF179197",
+      "LsitucpathauditStagingSecurityGroupFB1766C1",
       "GroupId"
      ]
     },
@@ -260,10 +260,10 @@
     "ToPort": 3000
    },
    "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionSecurityGroup/from DXNetworkStackDXSecurityGroup8547E01C:3000"
+    "aws:cdk:path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingSecurityGroup/from DXNetworkStackDXSecurityGroup8547E01C:3000"
    }
   },
-  "LsitucpathauditProductionServiceB5B0511B": {
+  "LsitucpathauditStagingService85C5F02C": {
    "Type": "AWS::ECS::Service",
    "Properties": {
     "Cluster": {
@@ -284,10 +284,10 @@
     "LaunchType": "FARGATE",
     "LoadBalancers": [
      {
-      "ContainerName": "lsit-ucpath-audit-production",
+      "ContainerName": "lsit-ucpath-audit-staging",
       "ContainerPort": 3000,
       "TargetGroupArn": {
-       "Ref": "LsitucpathauditProductionTargetGroup9E1B41C7"
+       "Ref": "LsitucpathauditStagingTargetGroup74C56950"
       }
      }
     ],
@@ -297,7 +297,7 @@
       "SecurityGroups": [
        {
         "Fn::GetAtt": [
-         "LsitucpathauditProductionSecurityGroupCF179197",
+         "LsitucpathauditStagingSecurityGroupFB1766C1",
          "GroupId"
         ]
        }
@@ -312,21 +312,21 @@
       ]
      }
     },
-    "ServiceName": "lsit-ucpath-audit-production",
+    "ServiceName": "lsit-ucpath-audit-staging",
     "TaskDefinition": {
-     "Ref": "LsitucpathauditProductionTaskBA95AF0E"
+     "Ref": "LsitucpathauditStagingTask8BCF63DF"
     }
    },
    "DependsOn": [
-    "LsitucpathauditProductionHttpsListenerRuleE90D9659",
-    "LsitucpathauditProductionRoleDefaultPolicyDD3D4F65",
-    "LsitucpathauditProductionRoleA0C66BB4"
+    "LsitucpathauditStagingHttpsListenerRule4E970ACC",
+    "LsitucpathauditStagingRoleDefaultPolicyCB399CCA",
+    "LsitucpathauditStagingRole31CEC1F5"
    ],
    "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionService/Service"
+    "aws:cdk:path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingService/Service"
    }
   },
-  "LsitucpathauditProductionCPUAlarmC53607EF": {
+  "LsitucpathauditStagingCPUAlarmE214C9A3": {
    "Type": "AWS::CloudWatch::Alarm",
    "Properties": {
     "ActionsEnabled": true,
@@ -335,7 +335,7 @@
       "Fn::ImportValue": "ECSMonitoringStack:ExportsOutputRefECSAlerts6D168A967C6D2BC9"
      }
     ],
-    "AlarmName": "Lsit-ucpath-auditProductionCPUAlarm",
+    "AlarmName": "Lsit-ucpath-auditStagingCPUAlarm",
     "ComparisonOperator": "GreaterThanThreshold",
     "Dimensions": [
      {
@@ -348,7 +348,7 @@
       "Name": "ServiceName",
       "Value": {
        "Fn::GetAtt": [
-        "LsitucpathauditProductionServiceB5B0511B",
+        "LsitucpathauditStagingService85C5F02C",
         "Name"
        ]
       }
@@ -362,14 +362,14 @@
     "Threshold": 75
    },
    "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionCPUAlarm/Resource"
+    "aws:cdk:path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingCPUAlarm/Resource"
    }
   },
-  "LsitucpathauditProductionTargetGroup9E1B41C7": {
+  "LsitucpathauditStagingTargetGroup74C56950": {
    "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
    "Properties": {
     "HealthCheckPath": "/api/health",
-    "Name": "ecs-lsit-ucpath-audit-production",
+    "Name": "ecs-lsit-ucpath-audit-staging-st",
     "Port": 80,
     "Protocol": "HTTP",
     "TargetGroupAttributes": [
@@ -384,59 +384,16 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionTargetGroup/Resource"
+    "aws:cdk:path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingTargetGroup/Resource"
    }
   },
-  "LsitucpathauditProductionHttpsListener659F5509": {
-   "Type": "AWS::ElasticLoadBalancingV2::Listener",
-   "Properties": {
-    "Certificates": [
-     {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/62a81bbf-fd43-4dd7-b872-16b8537610ca"
-     }
-    ],
-    "DefaultActions": [
-     {
-      "FixedResponseConfig": {
-       "ContentType": "text/plain",
-       "StatusCode": "503"
-      },
-      "Type": "fixed-response"
-     }
-    ],
-    "LoadBalancerArn": {
-     "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXPublicLB0C9DFC485376732A"
-    },
-    "Port": 443,
-    "Protocol": "HTTPS"
-   },
-   "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpsListener/Resource"
-   }
-  },
-  "LsitucpathauditProductionHttpsListenerLsitucpathauditStagingCerttificates1E756713A": {
-   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
-   "Properties": {
-    "Certificates": [
-     {
-      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/68ebd651-0010-4977-91cc-6bdf7f26cf62"
-     }
-    ],
-    "ListenerArn": {
-     "Ref": "LsitucpathauditProductionHttpsListener659F5509"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpsListener/Lsit-ucpath-auditStagingCerttificates1/Resource"
-   }
-  },
-  "LsitucpathauditProductionHttpsListenerRuleE90D9659": {
+  "LsitucpathauditStagingHttpsListenerRule4E970ACC": {
    "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
    "Properties": {
     "Actions": [
      {
       "TargetGroupArn": {
-       "Ref": "LsitucpathauditProductionTargetGroup9E1B41C7"
+       "Ref": "LsitucpathauditStagingTargetGroup74C56950"
       },
       "Type": "forward"
      }
@@ -446,43 +403,21 @@
       "Field": "host-header",
       "HostHeaderConfig": {
        "Values": [
-        "ucpathaudit.lsit.ucdavis.edu"
+        "stage.ucpathaudit.lsit.ucdavis.edu"
        ]
       }
      }
     ],
     "ListenerArn": {
-     "Ref": "LsitucpathauditProductionHttpsListener659F5509"
+     "Fn::ImportValue": "LSITUCPathAuditDXAppProdStack:ExportsOutputRefLsitucpathauditProductionHttpsListener659F5509F03FA01C"
     },
-    "Priority": 1
+    "Priority": 2
    },
    "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpsListenerRule/Resource"
+    "aws:cdk:path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingHttpsListenerRule/Resource"
    }
   },
-  "LsitucpathauditProductionHttpListenerA92D56A6": {
-   "Type": "AWS::ElasticLoadBalancingV2::Listener",
-   "Properties": {
-    "DefaultActions": [
-     {
-      "FixedResponseConfig": {
-       "ContentType": "text/plain",
-       "StatusCode": "503"
-      },
-      "Type": "fixed-response"
-     }
-    ],
-    "LoadBalancerArn": {
-     "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXPublicLB0C9DFC485376732A"
-    },
-    "Port": 80,
-    "Protocol": "HTTP"
-   },
-   "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpListener/Resource"
-   }
-  },
-  "LsitucpathauditProductionHttpListenerRule123572C7": {
+  "LsitucpathauditStagingHttpListenerRuleC62B4A84": {
    "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
    "Properties": {
     "Actions": [
@@ -500,45 +435,27 @@
       "Field": "host-header",
       "HostHeaderConfig": {
        "Values": [
-        "ucpathaudit.lsit.ucdavis.edu"
+        "stage.ucpathaudit.lsit.ucdavis.edu"
        ]
       }
      }
     ],
     "ListenerArn": {
-     "Ref": "LsitucpathauditProductionHttpListenerA92D56A6"
+     "Fn::ImportValue": "LSITUCPathAuditDXAppProdStack:ExportsOutputRefLsitucpathauditProductionHttpListenerA92D56A6368ADEE3"
     },
-    "Priority": 1
+    "Priority": 2
    },
    "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpListenerRule/Resource"
+    "aws:cdk:path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingHttpListenerRule/Resource"
    }
   },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31Qy24CMQz8Fu7ZtIBaqUcealWJA1q4VyaYxd2QoMQBrVb59ybLQ9sK9eTxeJzxZCSHL0P5PICzL9S2LjRtZLtiULVI1FdLcJBtaTWK2c50dWk1qSa3FxQFKi/bd3AVMK7B13PckSEma7LqL2MNAxl0Pe66u0J3ItU5XWEU2lbp8YWtPpwNxzy64Sj8WE6DqpGn4DFdMUqXowqOuLmr/yc+TeXQ+yiUtmF7BlZ72U40uEOWdiDF0+CZkgK2G9BgFJnqlLwmx2PKDznBOgVAvnv0255qQZ4xJe9S3PCD+Qwd0y6T2Jf26QdbZdC/5LmPUZTobXCXX73hKJYN7615Gss3+Tr49kSFC4bpgLK81B8Uh9vkGAIAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/31QQW7CMBB8C3fHLaBW6hGKWlXigAL3anGWsI1jR/YaFEX+e50EUNRDTzszHnt2vJDzl7l8nsHVZ6qoMk1H2e0ZVCWS9N0R1LLLrUbxfjLD3FlNqu3piKJA5WX3Aa4ExgP4aoMnMsRkTe/6q1jDQAbdRLvd3aO7kBqSbjAKbcv0+NaWn86Gpj+64yj8Uq6DqpDX4DFtsUibowqOuH24/xe+TOnQ+yiUtqG4Aquz7FYaXN1bB5DqafBMyQHFETQYRaa8pKxV06T+0Dc4pALIj4wpnbi25BlT8zyM3znlMYocvQ1u7H/HUexaPlvztJRv8nX244kyFwxTjTIf5y8KSV6XwgEAAA=="
    },
    "Metadata": {
-    "aws:cdk:path": "LSITUCPathAuditDXAppProdStack/CDKMetadata/Default"
-   }
-  }
- },
- "Outputs": {
-  "ExportsOutputRefLsitucpathauditProductionHttpsListener659F5509F03FA01C": {
-   "Value": {
-    "Ref": "LsitucpathauditProductionHttpsListener659F5509"
-   },
-   "Export": {
-    "Name": "LSITUCPathAuditDXAppProdStack:ExportsOutputRefLsitucpathauditProductionHttpsListener659F5509F03FA01C"
-   }
-  },
-  "ExportsOutputRefLsitucpathauditProductionHttpListenerA92D56A6368ADEE3": {
-   "Value": {
-    "Ref": "LsitucpathauditProductionHttpListenerA92D56A6"
-   },
-   "Export": {
-    "Name": "LSITUCPathAuditDXAppProdStack:ExportsOutputRefLsitucpathauditProductionHttpListenerA92D56A6368ADEE3"
+    "aws:cdk:path": "LSITUCPathAuditDXAppStagingStack/CDKMetadata/Default"
    }
   }
  },

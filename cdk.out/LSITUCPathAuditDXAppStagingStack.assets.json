@@ -1,15 +1,15 @@
 {
   "version": "36.0.0",
   "files": {
-    "c5949844bc07afed414a811c952f2b5cb99bac3c11f116566134e6c2d7e23d92": {
+    "f8c97c8da61f26d9525439924650b833fd5cc6bb300bfa27a5098b36c3504e0e": {
       "source": {
-        "path": "LSITUCPathAuditDXAppProdStack.template.json",
+        "path": "LSITUCPathAuditDXAppStagingStack.template.json",
         "packaging": "file"
       },
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "c5949844bc07afed414a811c952f2b5cb99bac3c11f116566134e6c2d7e23d92.json",
+          "objectKey": "f8c97c8da61f26d9525439924650b833fd5cc6bb300bfa27a5098b36c3504e0e.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }

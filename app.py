@@ -807,4 +807,48 @@ ScheudledTaskStack(
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
+# LSIT UCPath Audit Staging DX
+ucpath_audit_stack = LSITStack(
+    app,
+    "LSITUCPathAuditDXAppStagingStack",
+    dx_network_stack.vpc,
+    dx_network_stack.bucket,
+    dx_network_stack.cluster,
+    dx_network_stack.load_balancer,
+    {
+        "app_name": "lsit-ucpath-audit",
+        "app_env": "staging",
+        "task_port": 3000,
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-ucpath-audit-staging:latest",
+        "health_check_path": "/api/health",
+        "https_listener": ucpath_audit_stack.https_listener,
+        "http_listener": ucpath_audit_stack.http_listener,
+        "https_load_balancer_priority": 2,
+        "http_load_balancer_priority": 2,
+        "host_headers": [
+            "stage.ucpathaudit.lsit.ucdavis.edu",
+        ],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/68ebd651-0010-4977-91cc-6bdf7f26cf62"],
+        "is_private": True,
+        "monitoring_stack": monitoring_stack
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
+# LSIT UCPath Audit Take Snapshots Staging DX
+ScheudledTaskStack(
+    app,
+    "LSITUCPathAuditDXAppStagingTakeSnapshots",
+    dx_network_stack.vpc,
+    dx_network_stack.bucket,
+    dx_network_stack.cluster,
+    {
+        "app_name": "lsit-ucpath-audit-take-snapshots",
+        "app_env": "staging",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-ucpath-audit-cron-staging:latest",
+        "is_private": True,
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
+
 app.synth()

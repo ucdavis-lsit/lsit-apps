@@ -25138,6 +25138,37 @@
                   "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListener",
                   "version": "2.151.0"
                 }
+              },
+              "Lsit-ucpath-auditStagingCerttificates1": {
+                "id": "Lsit-ucpath-auditStagingCerttificates1",
+                "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpsListener/Lsit-ucpath-auditStagingCerttificates1",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LSITUCPathAuditDXAppProdStack/Lsit-ucpath-auditProductionHttpsListener/Lsit-ucpath-auditStagingCerttificates1/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+                      "aws:cdk:cloudformation:props": {
+                        "certificates": [
+                          {
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/68ebd651-0010-4977-91cc-6bdf7f26cf62"
+                          }
+                        ],
+                        "listenerArn": {
+                          "Ref": "LsitucpathauditProductionHttpsListener659F5509"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerCertificate",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerCertificate",
+                  "version": "2.151.0"
+                }
               }
             },
             "constructInfo": {
@@ -25283,6 +25314,32 @@
                 "path": "LSITUCPathAuditDXAppProdStack/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.3.0"
+            }
+          },
+          "Exports": {
+            "id": "Exports",
+            "path": "LSITUCPathAuditDXAppProdStack/Exports",
+            "children": {
+              "Output{\"Ref\":\"LsitucpathauditProductionHttpsListener659F5509\"}": {
+                "id": "Output{\"Ref\":\"LsitucpathauditProductionHttpsListener659F5509\"}",
+                "path": "LSITUCPathAuditDXAppProdStack/Exports/Output{\"Ref\":\"LsitucpathauditProductionHttpsListener659F5509\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.151.0"
+                }
+              },
+              "Output{\"Ref\":\"LsitucpathauditProductionHttpListenerA92D56A6\"}": {
+                "id": "Output{\"Ref\":\"LsitucpathauditProductionHttpListenerA92D56A6\"}",
+                "path": "LSITUCPathAuditDXAppProdStack/Exports/Output{\"Ref\":\"LsitucpathauditProductionHttpListenerA92D56A6\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
                   "version": "2.151.0"
                 }
               }
@@ -25900,6 +25957,1283 @@
           "CheckBootstrapVersion": {
             "id": "CheckBootstrapVersion",
             "path": "LSITUCPathAuditDXAppProdTakeSnapshots/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.151.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.151.0"
+        }
+      },
+      "LSITUCPathAuditDXAppStagingStack": {
+        "id": "LSITUCPathAuditDXAppStagingStack",
+        "path": "LSITUCPathAuditDXAppStagingStack",
+        "children": {
+          "Lsit-ucpath-auditStagingRole": {
+            "id": "Lsit-ucpath-auditStagingRole",
+            "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingRole",
+            "children": {
+              "ImportLsit-ucpath-auditStagingRole": {
+                "id": "ImportLsit-ucpath-auditStagingRole",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingRole/ImportLsit-ucpath-auditStagingRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.151.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows lsit-ucpath-audit-staging tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Lsit-ucpath-auditStagingECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.151.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "LsitucpathauditStagingLogGroupB0541A09",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "LsitucpathauditStagingRoleDefaultPolicyCB399CCA",
+                        "roles": [
+                          {
+                            "Ref": "LsitucpathauditStagingRole31CEC1F5"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditStagingPolicy": {
+            "id": "Lsit-ucpath-auditStagingPolicy",
+            "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "DXNetworkStack:ExportsOutputFnGetAttlsitdxappsenvvarsB00EB75AArn46F1E862"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "DXNetworkStack:ExportsOutputFnGetAttlsitdxappsenvvarsB00EB75AArn46F1E862"
+                                },
+                                "/lsit-ucpath-audit/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Lsit-ucpath-auditStagingConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "LsitucpathauditStagingRole31CEC1F5"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Policy",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditStagingTask": {
+            "id": "Lsit-ucpath-auditStagingTask",
+            "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-ucpath-audit-staging:latest",
+                        "memory": 512,
+                        "name": "lsit-ucpath-audit-staging",
+                        "portMappings": [
+                          {
+                            "containerPort": 3000,
+                            "hostPort": 3000,
+                            "protocol": "tcp"
+                          }
+                        ],
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "LsitucpathauditStagingLogGroupB0541A09"
+                            },
+                            "awslogs-stream-prefix": "lsit-ucpath-audit-staging",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "DXNetworkStack:ExportsOutputFnGetAttlsitdxappsenvvarsB00EB75AArn46F1E862"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/lsit-ucpath-audit/staging.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "LsitucpathauditStagingRole31CEC1F5",
+                        "Arn"
+                      ]
+                    },
+                    "family": "lsit-ucpath-audit-staging",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "LsitucpathauditStagingRole31CEC1F5",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                  "version": "2.151.0"
+                }
+              },
+              "lsit-ucpath-audit-staging": {
+                "id": "lsit-ucpath-audit-staging",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingTask/lsit-ucpath-audit-staging",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditStagingLogGroup": {
+            "id": "Lsit-ucpath-auditStagingLogGroup",
+            "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/lsit-ucpath-audit-staging",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditStagingBucket": {
+            "id": "Lsit-ucpath-auditStagingBucket",
+            "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingBucket",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditStagingSecurityGroup": {
+            "id": "Lsit-ucpath-auditStagingSecurityGroup",
+            "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingSecurityGroup",
+                    "groupName": "lsit-ucpath-audit-staging",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXVpc39435ABC3B5BC6FD"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.151.0"
+                }
+              },
+              "from DXNetworkStackDXSecurityGroup8547E01C:3000": {
+                "id": "from DXNetworkStackDXSecurityGroup8547E01C:3000",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingSecurityGroup/from DXNetworkStackDXSecurityGroup8547E01C:3000",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
+                  "aws:cdk:cloudformation:props": {
+                    "description": "Load balancer to target",
+                    "fromPort": 3000,
+                    "groupId": {
+                      "Fn::GetAtt": [
+                        "LsitucpathauditStagingSecurityGroupFB1766C1",
+                        "GroupId"
+                      ]
+                    },
+                    "ipProtocol": "tcp",
+                    "sourceSecurityGroupId": {
+                      "Fn::ImportValue": "DXNetworkStack:ExportsOutputFnGetAttDXSecurityGroup30704A1CGroupId8B751FBC"
+                    },
+                    "toPort": 3000
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroupIngress",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditStagingService": {
+            "id": "Lsit-ucpath-auditStagingService",
+            "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingService",
+            "children": {
+              "Service": {
+                "id": "Service",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingService/Service",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Service",
+                  "aws:cdk:cloudformation:props": {
+                    "cluster": {
+                      "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXClusterBEB5274B67CF4BBC"
+                    },
+                    "deploymentConfiguration": {
+                      "maximumPercent": 200,
+                      "minimumHealthyPercent": 50,
+                      "alarms": {
+                        "alarmNames": [],
+                        "enable": false,
+                        "rollback": false
+                      }
+                    },
+                    "desiredCount": 1,
+                    "enableEcsManagedTags": false,
+                    "healthCheckGracePeriodSeconds": 60,
+                    "launchType": "FARGATE",
+                    "loadBalancers": [
+                      {
+                        "targetGroupArn": {
+                          "Ref": "LsitucpathauditStagingTargetGroup74C56950"
+                        },
+                        "containerName": "lsit-ucpath-audit-staging",
+                        "containerPort": 3000
+                      }
+                    ],
+                    "networkConfiguration": {
+                      "awsvpcConfiguration": {
+                        "assignPublicIp": "DISABLED",
+                        "subnets": [
+                          {
+                            "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXVpcDXPrivateSubnetSubnet1SubnetBC118A727EFB3067"
+                          },
+                          {
+                            "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXVpcDXPrivateSubnetSubnet2Subnet9245313114D55718"
+                          }
+                        ],
+                        "securityGroups": [
+                          {
+                            "Fn::GetAtt": [
+                              "LsitucpathauditStagingSecurityGroupFB1766C1",
+                              "GroupId"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "serviceName": "lsit-ucpath-audit-staging",
+                    "taskDefinition": {
+                      "Ref": "LsitucpathauditStagingTask8BCF63DF"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnService",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateService",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditStagingCPUAlarm": {
+            "id": "Lsit-ucpath-auditStagingCPUAlarm",
+            "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "actionsEnabled": true,
+                    "alarmActions": [
+                      {
+                        "Fn::ImportValue": "ECSMonitoringStack:ExportsOutputRefECSAlerts6D168A967C6D2BC9"
+                      }
+                    ],
+                    "alarmName": "Lsit-ucpath-auditStagingCPUAlarm",
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXClusterBEB5274B67CF4BBC"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "LsitucpathauditStagingService85C5F02C",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "evaluationPeriods": 1,
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditStagingTargetGroup": {
+            "id": "Lsit-ucpath-auditStagingTargetGroup",
+            "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingTargetGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingTargetGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "healthCheckPath": "/api/health",
+                    "name": "ecs-lsit-ucpath-audit-staging-st",
+                    "port": 80,
+                    "protocol": "HTTP",
+                    "targetGroupAttributes": [
+                      {
+                        "key": "stickiness.enabled",
+                        "value": "false"
+                      }
+                    ],
+                    "targetType": "ip",
+                    "vpcId": {
+                      "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXVpc39435ABC3B5BC6FD"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnTargetGroup",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationTargetGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditStagingHttpsListenerRule": {
+            "id": "Lsit-ucpath-auditStagingHttpsListenerRule",
+            "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingHttpsListenerRule",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingHttpsListenerRule/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "type": "forward",
+                        "targetGroupArn": {
+                          "Ref": "LsitucpathauditStagingTargetGroup74C56950"
+                        }
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "stage.ucpathaudit.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Fn::ImportValue": "LSITUCPathAuditDXAppProdStack:ExportsOutputRefLsitucpathauditProductionHttpsListener659F5509F03FA01C"
+                    },
+                    "priority": 2
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-auditStagingHttpListenerRule": {
+            "id": "Lsit-ucpath-auditStagingHttpListenerRule",
+            "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingHttpListenerRule",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingStack/Lsit-ucpath-auditStagingHttpListenerRule/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "redirectConfig": {
+                          "port": "443",
+                          "statusCode": "HTTP_301",
+                          "protocol": "HTTPS"
+                        },
+                        "type": "redirect"
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "stage.ucpathaudit.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Fn::ImportValue": "LSITUCPathAuditDXAppProdStack:ExportsOutputRefLsitucpathauditProductionHttpListenerA92D56A6368ADEE3"
+                    },
+                    "priority": 2
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.151.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "LSITUCPathAuditDXAppStagingStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "LSITUCPathAuditDXAppStagingStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.3.0"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "LSITUCPathAuditDXAppStagingStack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.151.0"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "LSITUCPathAuditDXAppStagingStack/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.151.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.151.0"
+        }
+      },
+      "LSITUCPathAuditDXAppStagingTakeSnapshots": {
+        "id": "LSITUCPathAuditDXAppStagingTakeSnapshots",
+        "path": "LSITUCPathAuditDXAppStagingTakeSnapshots",
+        "children": {
+          "Lsit-ucpath-audit-take-snapshotsStagingRole": {
+            "id": "Lsit-ucpath-audit-take-snapshotsStagingRole",
+            "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingRole",
+            "children": {
+              "ImportLsit-ucpath-audit-take-snapshotsStagingRole": {
+                "id": "ImportLsit-ucpath-audit-take-snapshotsStagingRole",
+                "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingRole/ImportLsit-ucpath-audit-take-snapshotsStagingRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.151.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows lsit-ucpath-audit-take-snapshots-staging tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Lsit-ucpath-audit-take-snapshotsStagingECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.151.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "LsitucpathaudittakesnapshotsStagingLogGroup8B1ECEDB",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "LsitucpathaudittakesnapshotsStagingRoleDefaultPolicyBD767E4D",
+                        "roles": [
+                          {
+                            "Ref": "LsitucpathaudittakesnapshotsStagingRole91F26272"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-audit-take-snapshotsStagingPolicy": {
+            "id": "Lsit-ucpath-audit-take-snapshotsStagingPolicy",
+            "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "DXNetworkStack:ExportsOutputFnGetAttlsitdxappsenvvarsB00EB75AArn46F1E862"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "DXNetworkStack:ExportsOutputFnGetAttlsitdxappsenvvarsB00EB75AArn46F1E862"
+                                },
+                                "/lsit-ucpath-audit-take-snapshots/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Lsit-ucpath-audit-take-snapshotsStagingConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "LsitucpathaudittakesnapshotsStagingRole91F26272"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Policy",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-audit-take-snapshotsStagingTask": {
+            "id": "Lsit-ucpath-audit-take-snapshotsStagingTask",
+            "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-ucpath-audit-cron-staging:latest",
+                        "memory": 512,
+                        "name": "lsit-ucpath-audit-take-snapshots-staging",
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "LsitucpathaudittakesnapshotsStagingLogGroup8B1ECEDB"
+                            },
+                            "awslogs-stream-prefix": "lsit-ucpath-audit-take-snapshots-staging",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "DXNetworkStack:ExportsOutputFnGetAttlsitdxappsenvvarsB00EB75AArn46F1E862"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/lsit-ucpath-audit-take-snapshots/staging.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "LsitucpathaudittakesnapshotsStagingRole91F26272",
+                        "Arn"
+                      ]
+                    },
+                    "family": "lsit-ucpath-audit-take-snapshots-staging",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "LsitucpathaudittakesnapshotsStagingRole91F26272",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                  "version": "2.151.0"
+                }
+              },
+              "lsit-ucpath-audit-take-snapshots-staging": {
+                "id": "lsit-ucpath-audit-take-snapshots-staging",
+                "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingTask/lsit-ucpath-audit-take-snapshots-staging",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-audit-take-snapshotsStagingLogGroup": {
+            "id": "Lsit-ucpath-audit-take-snapshotsStagingLogGroup",
+            "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/lsit-ucpath-audit-take-snapshots-staging",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-audit-take-snapshotsStagingBucket": {
+            "id": "Lsit-ucpath-audit-take-snapshotsStagingBucket",
+            "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingBucket",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-audit-take-snapshotsStagingSecurityGroup": {
+            "id": "Lsit-ucpath-audit-take-snapshotsStagingSecurityGroup",
+            "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingSecurityGroup",
+                    "groupName": "lsit-ucpath-audit-take-snapshots-staging",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXVpc39435ABC3B5BC6FD"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-audit-take-snapshotsStagingEventRole": {
+            "id": "Lsit-ucpath-audit-take-snapshotsStagingEventRole",
+            "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingEventRole",
+            "children": {
+              "ImportLsit-ucpath-audit-take-snapshotsStagingEventRole": {
+                "id": "ImportLsit-ucpath-audit-take-snapshotsStagingEventRole",
+                "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingEventRole/ImportLsit-ucpath-audit-take-snapshotsStagingEventRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.151.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingEventRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "events.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows lsit-ucpath-audit-take-snapshots-staging scheduled tasks to run in ECS.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Lsit-ucpath-audit-take-snapshotsStagingEventRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.151.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingEventRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingEventRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "ecs:RunTask",
+                              "Condition": {
+                                "ArnEquals": {
+                                  "ecs:cluster": {
+                                    "Fn::ImportValue": "DXNetworkStack:ExportsOutputFnGetAttDXClusterBEB5274BArn7EDA98FD"
+                                  }
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Ref": "LsitucpathaudittakesnapshotsStagingTask6751402F"
+                              }
+                            },
+                            {
+                              "Action": "ecs:TagResource",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":ecs:us-west-2:*:task/",
+                                    {
+                                      "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXClusterBEB5274B67CF4BBC"
+                                    },
+                                    "/*"
+                                  ]
+                                ]
+                              }
+                            },
+                            {
+                              "Action": "iam:PassRole",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "LsitucpathaudittakesnapshotsStagingRole91F26272",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "LsitucpathaudittakesnapshotsStagingEventRoleDefaultPolicyD18E8818",
+                        "roles": [
+                          {
+                            "Ref": "LsitucpathaudittakesnapshotsStagingEventRole1EF4F2CD"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-ucpath-audit-take-snapshotsStagingScheduledTask": {
+            "id": "Lsit-ucpath-audit-take-snapshotsStagingScheduledTask",
+            "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingScheduledTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/Lsit-ucpath-audit-take-snapshotsStagingScheduledTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                  "aws:cdk:cloudformation:props": {
+                    "scheduleExpression": "cron(0 8 * * ? *)",
+                    "state": "ENABLED",
+                    "targets": [
+                      {
+                        "id": "Target0",
+                        "arn": {
+                          "Fn::ImportValue": "DXNetworkStack:ExportsOutputFnGetAttDXClusterBEB5274BArn7EDA98FD"
+                        },
+                        "roleArn": {
+                          "Fn::GetAtt": [
+                            "LsitucpathaudittakesnapshotsStagingEventRole1EF4F2CD",
+                            "Arn"
+                          ]
+                        },
+                        "ecsParameters": {
+                          "taskCount": 1,
+                          "taskDefinitionArn": {
+                            "Ref": "LsitucpathaudittakesnapshotsStagingTask6751402F"
+                          },
+                          "launchType": "FARGATE",
+                          "platformVersion": "LATEST",
+                          "networkConfiguration": {
+                            "awsVpcConfiguration": {
+                              "subnets": [
+                                {
+                                  "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXVpcDXPrivateSubnetSubnet1SubnetBC118A727EFB3067"
+                                },
+                                {
+                                  "Fn::ImportValue": "DXNetworkStack:ExportsOutputRefDXVpcDXPrivateSubnetSubnet2Subnet9245313114D55718"
+                                }
+                              ],
+                              "assignPublicIp": "DISABLED",
+                              "securityGroups": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "LsitucpathaudittakesnapshotsStagingSecurityGroup7A85DD4A",
+                                    "GroupId"
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "input": "{\"containerOverrides\":[{\"name\":\"lsit-ucpath-audit-take-snapshots-staging\",\"command\":[]}]}"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_events.CfnRule",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_events.Rule",
+              "version": "2.151.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.3.0"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.151.0"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "LSITUCPathAuditDXAppStagingTakeSnapshots/CheckBootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnRule",
               "version": "2.151.0"
