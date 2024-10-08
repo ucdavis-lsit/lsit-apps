@@ -7169,7 +7169,8 @@
                           "values": [
                             "gsm.advisingfrontdesk.lsit.ucdavis.edu",
                             "ece.advisingfrontdesk.lsit.ucdavis.edu",
-                            "bme.advisingfrontdesk.lsit.ucdavis.edu"
+                            "bme.advisingfrontdesk.lsit.ucdavis.edu",
+                            "chms.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
@@ -7218,7 +7219,8 @@
                           "values": [
                             "gsm.advisingfrontdesk.lsit.ucdavis.edu",
                             "ece.advisingfrontdesk.lsit.ucdavis.edu",
-                            "bme.advisingfrontdesk.lsit.ucdavis.edu"
+                            "bme.advisingfrontdesk.lsit.ucdavis.edu",
+                            "chms.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
