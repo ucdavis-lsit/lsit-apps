@@ -8937,7 +8937,7 @@
                       {
                         "cpu": 256,
                         "essential": true,
-                        "image": "curlimages/curl:latest",
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/curl:latest",
                         "memory": 512,
                         "name": "frontdesk-app-cleanup-guests-production",
                         "logConfiguration": {
@@ -9534,7 +9534,7 @@
                       {
                         "cpu": 256,
                         "essential": true,
-                        "image": "curlimages/curl:latest",
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/curl:latest",
                         "memory": 512,
                         "name": "frontdesk-app-cleanup-announcements-production",
                         "logConfiguration": {
@@ -10131,7 +10131,7 @@
                       {
                         "cpu": 256,
                         "essential": true,
-                        "image": "curlimages/curl:latest",
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/curl:latest",
                         "memory": 512,
                         "name": "frontdesk-app-cleanup-expired-guests-production",
                         "logConfiguration": {

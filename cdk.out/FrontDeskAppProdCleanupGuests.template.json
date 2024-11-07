@@ -157,7 +157,7 @@
        }
       ],
       "Essential": true,
-      "Image": "curlimages/curl:latest",
+      "Image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/curl:latest",
       "LogConfiguration": {
        "LogDriver": "awslogs",
        "Options": {

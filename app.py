@@ -259,7 +259,7 @@ ScheudledTaskStack(
     {
         "app_name": "frontdesk-app-cleanup-guests",
         "app_env": "production",
-        "image_uri": "curlimages/curl:latest",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/curl:latest",
         "command_override": ["sh","-c","curl -XDELETE https://api.frontdesk.lsit.ucdavis.edu/api/guest?key=$API_KEY"],
         "is_private": True
     },
@@ -275,7 +275,7 @@ ScheudledTaskStack(
     {
         "app_name": "frontdesk-app-cleanup-announcements",
         "app_env": "production",
-        "image_uri": "curlimages/curl:latest",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/curl:latest",
         "command_override": ["sh","-c",'curl -XDELETE "https://api.frontdesk.lsit.ucdavis.edu/api/announcement?key=$API_KEY"'],
         "is_private": True
     },
@@ -291,7 +291,7 @@ ScheudledTaskStack(
     {
         "app_name": "frontdesk-app-cleanup-expired-guests",
         "app_env": "production",
-        "image_uri": "curlimages/curl:latest",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/curl:latest",
         "command_override": ["sh","-c","curl -XDELETE https://api.frontdesk.lsit.ucdavis.edu/api/expiredGuests?key=$API_KEY"],
         "is_private": True,
         "schedule": {"minute": "*"}
