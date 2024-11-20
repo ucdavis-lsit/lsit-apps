@@ -1125,7 +1125,8 @@
       "Field": "host-header",
       "HostHeaderConfig": {
        "Values": [
-        "chistudies.advisingfrontdesk.lsit.ucdavis.edu"
+        "chistudies.advisingfrontdesk.lsit.ucdavis.edu",
+        "lspeercoaching.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
@@ -1157,7 +1158,8 @@
       "Field": "host-header",
       "HostHeaderConfig": {
        "Values": [
-        "chistudies.advisingfrontdesk.lsit.ucdavis.edu"
+        "chistudies.advisingfrontdesk.lsit.ucdavis.edu",
+        "lspeercoaching.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
