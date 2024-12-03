@@ -7268,7 +7268,8 @@
                         "hostHeaderConfig": {
                           "values": [
                             "chistudies.advisingfrontdesk.lsit.ucdavis.edu",
-                            "lspeercoaching.advisingfrontdesk.lsit.ucdavis.edu"
+                            "lspeercoaching.advisingfrontdesk.lsit.ucdavis.edu",
+                            "ses.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
@@ -7316,7 +7317,8 @@
                         "hostHeaderConfig": {
                           "values": [
                             "chistudies.advisingfrontdesk.lsit.ucdavis.edu",
-                            "lspeercoaching.advisingfrontdesk.lsit.ucdavis.edu"
+                            "lspeercoaching.advisingfrontdesk.lsit.ucdavis.edu",
+                            "ses.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
