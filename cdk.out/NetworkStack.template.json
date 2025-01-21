@@ -799,6 +799,10 @@
      {
       "Key": "deletion_protection.enabled",
       "Value": "false"
+     },
+     {
+      "Key": "idle_timeout.timeout_seconds",
+      "Value": "300"
      }
     ],
     "Name": "LSITZoomQueuePublicLB",

@@ -143,6 +143,7 @@ class NetworkStack(Stack):
             security_group=security_group,
             internet_facing=True,
             load_balancer_name="{prefix}PublicLB".format(prefix=prefix),
+            idle_timeout=Duration.seconds(300)
         )
 
         if is_legacy:
