@@ -660,7 +660,7 @@ ScheudledTaskStack(
     {
         "app_name": "qualtrics-tools-sync-groups",
         "app_env": "production",
-        "image_uri": "curlimages/curl:latest",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/curl:latest",
         "command_override": ["sh","-c","curl -XGET https://qualtricstools.lsit.ucdavis.edu/api/cron/syncGroups?key=$API_KEY"],
         "is_private": True,
         "schedule": {"minute": "0"}

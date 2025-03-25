@@ -20499,7 +20499,7 @@
                       {
                         "cpu": 256,
                         "essential": true,
-                        "image": "curlimages/curl:latest",
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/curl:latest",
                         "memory": 512,
                         "name": "qualtrics-tools-sync-groups-production",
                         "logConfiguration": {
