@@ -1127,7 +1127,8 @@
        "Values": [
         "chistudies.advisingfrontdesk.lsit.ucdavis.edu",
         "lspeercoaching.advisingfrontdesk.lsit.ucdavis.edu",
-        "ses.advisingfrontdesk.lsit.ucdavis.edu"
+        "ses.advisingfrontdesk.lsit.ucdavis.edu",
+        "registrar.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
@@ -1161,7 +1162,8 @@
        "Values": [
         "chistudies.advisingfrontdesk.lsit.ucdavis.edu",
         "lspeercoaching.advisingfrontdesk.lsit.ucdavis.edu",
-        "ses.advisingfrontdesk.lsit.ucdavis.edu"
+        "ses.advisingfrontdesk.lsit.ucdavis.edu",
+        "registrar.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
