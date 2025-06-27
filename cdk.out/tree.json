@@ -6300,7 +6300,7 @@
                       "aws:cdk:cloudformation:props": {
                         "certificates": [
                           {
-                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/57886965-4836-4c9d-91ae-96f198303398"
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/a91a19b0-5ffa-44e0-bbd3-3e0004921e0c"
                           }
                         ],
                         "listenerArn": {
@@ -6331,7 +6331,7 @@
                       "aws:cdk:cloudformation:props": {
                         "certificates": [
                           {
-                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/b75e325d-e22a-463d-b780-fcfaee3cf5f2"
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/0ff1a483-9288-451e-859b-3dc06f49c4be"
                           }
                         ],
                         "listenerArn": {
@@ -6362,7 +6362,7 @@
                       "aws:cdk:cloudformation:props": {
                         "certificates": [
                           {
-                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/ea04220f-8ffe-4497-9b11-ea6535b35f92"
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/174faab8-4b30-41b1-bb29-01399ba9f9f5"
                           }
                         ],
                         "listenerArn": {
@@ -6393,7 +6393,7 @@
                       "aws:cdk:cloudformation:props": {
                         "certificates": [
                           {
-                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/38b10da6-072d-4d00-86ee-c0bf1904e630"
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/cf2a64a9-a102-4fc0-b366-e3fc0db14d02"
                           }
                         ],
                         "listenerArn": {
