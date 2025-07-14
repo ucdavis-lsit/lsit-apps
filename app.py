@@ -629,7 +629,7 @@ qualtrics_tools_stack = LSITStack(
         "host_headers": [
             "qualtricstools.lsit.ucdavis.edu",
         ],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/7ba4d62f-36bd-481d-bcd2-a565d6b79d9b"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/1c9afea1-244f-4e98-a460-7dc585b67205"],
         "is_private": True,
         "monitoring_stack": monitoring_stack
     },
@@ -691,7 +691,7 @@ qualtrics_tools_staging_stack = LSITStack(
         "host_headers": [
             "stage.qualtricstools.lsit.ucdavis.edu",
         ],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/2fb5a776-989f-4e85-a8a5-3eaea5e676a3"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/97ee11b0-4947-4029-a7bf-0e5b2b6c33dd"],
         "is_private": True
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
