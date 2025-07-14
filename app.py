@@ -182,7 +182,7 @@ frontdesk_frontend_stack = LSITStack(
             "english.advisingfrontdesk.lsit.ucdavis.edu",
             "fas.advisingfrontdesk.lsit.ucdavis.edu",
             "stat.advisingfrontdesk.lsit.ucdavis.edu",
-            "amha.advisingfrontdesk.lsit.ucdavis.edu",
+            #"amha.advisingfrontdesk.lsit.ucdavis.edu",
             "bae.advisingfrontdesk.lsit.ucdavis.edu",
             "gsm.advisingfrontdesk.lsit.ucdavis.edu",
             "ece.advisingfrontdesk.lsit.ucdavis.edu",
