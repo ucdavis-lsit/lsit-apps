@@ -1,7 +1,7 @@
 {
   "version": "36.0.0",
   "files": {
-    "71d9e16d93bb8bef972af60a6a58184ee8a534216ac4bcbf460e51375973f977": {
+    "28925d626383c4db5fc90f4afb62f8dcf63b751b097d781f2649737c30f67cfe": {
       "source": {
         "path": "ZoomQueueDevelopmentCleanupAnnouncements.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "71d9e16d93bb8bef972af60a6a58184ee8a534216ac4bcbf460e51375973f977.json",
+          "objectKey": "28925d626383c4db5fc90f4afb62f8dcf63b751b097d781f2649737c30f67cfe.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }

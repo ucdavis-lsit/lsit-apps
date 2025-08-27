@@ -1,7 +1,7 @@
 {
   "version": "36.0.0",
   "files": {
-    "fc5b680c6968d5ebc79e80d4526c2f351a759fdbb4ba1e5e2df68fcad6dc8118": {
+    "3464eb171fed7977942c373a60bdc725dad7908ca5c0e9d0f62773572e711d1e": {
       "source": {
         "path": "FrontDeskAppProdCleanupExpiredGuests.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "fc5b680c6968d5ebc79e80d4526c2f351a759fdbb4ba1e5e2df68fcad6dc8118.json",
+          "objectKey": "3464eb171fed7977942c373a60bdc725dad7908ca5c0e9d0f62773572e711d1e.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }

@@ -336,7 +336,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/12Oy07DQAxFv6X7iaGtQGJJQbBhUaXskXHd1GQyRvOgikbz7+TRImDl4+tr+65gebOE6wWeQkX7trLyDnkXkVozSG9ZsINcq2XzcHBT3aoV6sd2pmKYAuQn9A1GfsXQPvJBnERRN7r+K+oiimP/Szvv7th/CU2fzliM1WY4/qLNs9f0OY4uXExYwyZRy3GDgYcUqyE5U/IS+x/3H6EYspr2J4x0hHxv0XejZ4JSTM1Bk58DXLiYbR+P6q7WcAe3i48gUvnkonQM9Vy/AWWNsG5DAQAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/12OzU7DQAyEn6X3jaGtQOJIQXDhUCXckXHd1GSzRvtDFK323VGSFgGn+Twea7yB9c0arlc4hIoOXWXlHXITkTqDQ3jLgj3kWi2bh6Obda9WaJzGhYphCpCf0LcY+RVD98hHcRJF3ZT676iLKI79L+9827D/EpqbzliM1TZAftH22Wv6nFYXLiZsYZeo47jDwIZpA7lhSl7i+JP+YxRDVtNhwEgnyPcWfT9lZijF1Bw0+eWBCxezH+NJ3dUW7uB29RFEKp9clJ6hXvQbZY2wbkMBAAA="
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppSessionWorkerProductionStack/CDKMetadata/Default"

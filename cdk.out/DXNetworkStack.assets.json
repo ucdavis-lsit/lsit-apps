@@ -1,7 +1,7 @@
 {
   "version": "36.0.0",
   "files": {
-    "d9de369a76d5eb8d74bd3e3f60fc6e4c81844ecd7eca216a7e9bf71814a849a0": {
+    "e98a9b9df7bfb94bd1c06059eb474085807c397786df455b0d39782374cbc36b": {
       "source": {
         "path": "DXNetworkStack.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "d9de369a76d5eb8d74bd3e3f60fc6e4c81844ecd7eca216a7e9bf71814a849a0.json",
+          "objectKey": "e98a9b9df7bfb94bd1c06059eb474085807c397786df455b0d39782374cbc36b.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }
