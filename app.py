@@ -731,33 +731,48 @@ ScheudledTaskStack(
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )
 
-# LSIT UCPath Audit Prod
-"""qualtrics_tools_stack = LSITStack(
+# LSIT Coal Prod
+lsit_coal_stack = LSITStack(
     app,
-    "LSITUCPathAuditAppProdStack",
+    "LSITCoalAppProdStack",
     network_stack.vpc,
     network_stack.bucket,
     network_stack.cluster,
     network_stack.load_balancer,
     {
-        "app_name": "lsit-ucpath-audit",
+        "app_name": "lsit-coal",
         "app_env": "production",
         "task_port": 3000,
-        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-ucpath-audit-production:latest",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-coal-production:latest",
         "https_listener": frontdesk_frontend_stack.https_listener,
         "http_listener": frontdesk_frontend_stack.http_listener,
         "health_check_path": "/api/health",
-        "https_load_balancer_priority": 17,
-        "http_load_balancer_priority": 17,
+        "https_load_balancer_priority": 18,
+        "http_load_balancer_priority": 18,
         "host_headers": [
-            "ucpathaudit.lsit.ucdavis.edu",
+            "coal.lsit.ucdavis.edu",
         ],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/62a81bbf-fd43-4dd7-b872-16b8537610ca"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/91bcac5e-6491-4f68-b5b1-5a8e80695c1b"],
         "is_private": True,
         "monitoring_stack": monitoring_stack
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
-)"""
+)
+
+ScheudledTaskStack(
+    app,
+    "LSITCoalAppCronProdStack",
+    network_stack.vpc,
+    network_stack.bucket,
+    network_stack.cluster,
+    {
+        "app_name": "lsit-coal-cron",
+        "app_env": "production",
+        "image_uri": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-coal-cron-production:latest",
+        "is_private": True,
+    },
+    env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
+)
 
 # DX Network Stack
 dx_network_stack = NetworkStack(

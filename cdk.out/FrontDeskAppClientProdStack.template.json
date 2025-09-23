@@ -581,6 +581,22 @@
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Qualtrics-toolsStagingCerttificates1/Resource"
    }
   },
+  "FrontdeskappclientProductionHttpsListenerLsitcoalProductionCerttificates1A00B539F": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+   "Properties": {
+    "Certificates": [
+     {
+      "CertificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/91bcac5e-6491-4f68-b5b1-5a8e80695c1b"
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Lsit-coalProductionCerttificates1/Resource"
+   }
+  },
   "FrontdeskappclientProductionHttpsListenerRule5CBF48FA": {
    "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
    "Properties": {

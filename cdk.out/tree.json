@@ -6473,6 +6473,37 @@
                   "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerCertificate",
                   "version": "2.151.0"
                 }
+              },
+              "Lsit-coalProductionCerttificates1": {
+                "id": "Lsit-coalProductionCerttificates1",
+                "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Lsit-coalProductionCerttificates1",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListener/Lsit-coalProductionCerttificates1/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerCertificate",
+                      "aws:cdk:cloudformation:props": {
+                        "certificates": [
+                          {
+                            "certificateArn": "arn:aws:acm:us-west-2:042277129213:certificate/91bcac5e-6491-4f68-b5b1-5a8e80695c1b"
+                          }
+                        ],
+                        "listenerArn": {
+                          "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerCertificate",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerCertificate",
+                  "version": "2.151.0"
+                }
               }
             },
             "constructInfo": {
@@ -22745,6 +22776,1283 @@
           "CheckBootstrapVersion": {
             "id": "CheckBootstrapVersion",
             "path": "QualtricsToolsAppStagingSyncGroups/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.151.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.151.0"
+        }
+      },
+      "LSITCoalAppProdStack": {
+        "id": "LSITCoalAppProdStack",
+        "path": "LSITCoalAppProdStack",
+        "children": {
+          "Lsit-coalProductionRole": {
+            "id": "Lsit-coalProductionRole",
+            "path": "LSITCoalAppProdStack/Lsit-coalProductionRole",
+            "children": {
+              "ImportLsit-coalProductionRole": {
+                "id": "ImportLsit-coalProductionRole",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionRole/ImportLsit-coalProductionRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.151.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows lsit-coal-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Lsit-coalProductionECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.151.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LSITCoalAppProdStack/Lsit-coalProductionRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "LsitcoalProductionLogGroupBFD14C52",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "LsitcoalProductionRoleDefaultPolicy5C79DFD6",
+                        "roles": [
+                          {
+                            "Ref": "LsitcoalProductionRole51AC10D1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coalProductionPolicy": {
+            "id": "Lsit-coalProductionPolicy",
+            "path": "LSITCoalAppProdStack/Lsit-coalProductionPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/lsit-coal/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Lsit-coalProductionConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "LsitcoalProductionRole51AC10D1"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Policy",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coalProductionTask": {
+            "id": "Lsit-coalProductionTask",
+            "path": "LSITCoalAppProdStack/Lsit-coalProductionTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-coal-production:latest",
+                        "memory": 512,
+                        "name": "lsit-coal-production",
+                        "portMappings": [
+                          {
+                            "containerPort": 3000,
+                            "hostPort": 3000,
+                            "protocol": "tcp"
+                          }
+                        ],
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "LsitcoalProductionLogGroupBFD14C52"
+                            },
+                            "awslogs-stream-prefix": "lsit-coal-production",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/lsit-coal/production.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "LsitcoalProductionRole51AC10D1",
+                        "Arn"
+                      ]
+                    },
+                    "family": "lsit-coal-production",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "LsitcoalProductionRole51AC10D1",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                  "version": "2.151.0"
+                }
+              },
+              "lsit-coal-production": {
+                "id": "lsit-coal-production",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionTask/lsit-coal-production",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coalProductionLogGroup": {
+            "id": "Lsit-coalProductionLogGroup",
+            "path": "LSITCoalAppProdStack/Lsit-coalProductionLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/lsit-coal-production",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coalProductionBucket": {
+            "id": "Lsit-coalProductionBucket",
+            "path": "LSITCoalAppProdStack/Lsit-coalProductionBucket",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coalProductionSecurityGroup": {
+            "id": "Lsit-coalProductionSecurityGroup",
+            "path": "LSITCoalAppProdStack/Lsit-coalProductionSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "LSITCoalAppProdStack/Lsit-coalProductionSecurityGroup",
+                    "groupName": "lsit-coal-production",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.151.0"
+                }
+              },
+              "from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000": {
+                "id": "from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionSecurityGroup/from NetworkStackLSITZoomQueueSecurityGroup211C7467:3000",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
+                  "aws:cdk:cloudformation:props": {
+                    "description": "Load balancer to target",
+                    "fromPort": 3000,
+                    "groupId": {
+                      "Fn::GetAtt": [
+                        "LsitcoalProductionSecurityGroup93CA01D6",
+                        "GroupId"
+                      ]
+                    },
+                    "ipProtocol": "tcp",
+                    "sourceSecurityGroupId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueSecurityGroupE353981DGroupId83363471"
+                    },
+                    "toPort": 3000
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroupIngress",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coalProductionService": {
+            "id": "Lsit-coalProductionService",
+            "path": "LSITCoalAppProdStack/Lsit-coalProductionService",
+            "children": {
+              "Service": {
+                "id": "Service",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionService/Service",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::Service",
+                  "aws:cdk:cloudformation:props": {
+                    "cluster": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                    },
+                    "deploymentConfiguration": {
+                      "maximumPercent": 200,
+                      "minimumHealthyPercent": 50,
+                      "alarms": {
+                        "alarmNames": [],
+                        "enable": false,
+                        "rollback": false
+                      }
+                    },
+                    "desiredCount": 1,
+                    "enableEcsManagedTags": false,
+                    "healthCheckGracePeriodSeconds": 60,
+                    "launchType": "FARGATE",
+                    "loadBalancers": [
+                      {
+                        "targetGroupArn": {
+                          "Ref": "LsitcoalProductionTargetGroupACD64C2A"
+                        },
+                        "containerName": "lsit-coal-production",
+                        "containerPort": 3000
+                      }
+                    ],
+                    "networkConfiguration": {
+                      "awsvpcConfiguration": {
+                        "assignPublicIp": "DISABLED",
+                        "subnets": [
+                          {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+                          },
+                          {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+                          }
+                        ],
+                        "securityGroups": [
+                          {
+                            "Fn::GetAtt": [
+                              "LsitcoalProductionSecurityGroup93CA01D6",
+                              "GroupId"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "serviceName": "lsit-coal-production",
+                    "taskDefinition": {
+                      "Ref": "LsitcoalProductionTask43EF3285"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnService",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateService",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coalProductionCPUAlarm": {
+            "id": "Lsit-coalProductionCPUAlarm",
+            "path": "LSITCoalAppProdStack/Lsit-coalProductionCPUAlarm",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionCPUAlarm/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudWatch::Alarm",
+                  "aws:cdk:cloudformation:props": {
+                    "actionsEnabled": true,
+                    "alarmActions": [
+                      {
+                        "Fn::ImportValue": "ECSMonitoringStack:ExportsOutputRefECSAlerts6D168A967C6D2BC9"
+                      }
+                    ],
+                    "alarmName": "Lsit-coalProductionCPUAlarm",
+                    "comparisonOperator": "GreaterThanThreshold",
+                    "dimensions": [
+                      {
+                        "name": "ClusterName",
+                        "value": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                        }
+                      },
+                      {
+                        "name": "ServiceName",
+                        "value": {
+                          "Fn::GetAtt": [
+                            "LsitcoalProductionService9E4F5E98",
+                            "Name"
+                          ]
+                        }
+                      }
+                    ],
+                    "evaluationPeriods": 1,
+                    "metricName": "CPUUtilization",
+                    "namespace": "AWS/ECS",
+                    "period": 300,
+                    "statistic": "Average",
+                    "threshold": 75
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudwatch.CfnAlarm",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudwatch.Alarm",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coalProductionTargetGroup": {
+            "id": "Lsit-coalProductionTargetGroup",
+            "path": "LSITCoalAppProdStack/Lsit-coalProductionTargetGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionTargetGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "healthCheckPath": "/api/health",
+                    "name": "ecs-lsit-coal-production-product",
+                    "port": 80,
+                    "protocol": "HTTP",
+                    "targetGroupAttributes": [
+                      {
+                        "key": "stickiness.enabled",
+                        "value": "false"
+                      }
+                    ],
+                    "targetType": "ip",
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnTargetGroup",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationTargetGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coalProductionHttpsListenerRule": {
+            "id": "Lsit-coalProductionHttpsListenerRule",
+            "path": "LSITCoalAppProdStack/Lsit-coalProductionHttpsListenerRule",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionHttpsListenerRule/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "type": "forward",
+                        "targetGroupArn": {
+                          "Ref": "LsitcoalProductionTargetGroupACD64C2A"
+                        }
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "coal.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpsListener997DB417B1FF2EEE"
+                    },
+                    "priority": 18
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coalProductionHttpListenerRule": {
+            "id": "Lsit-coalProductionHttpListenerRule",
+            "path": "LSITCoalAppProdStack/Lsit-coalProductionHttpListenerRule",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppProdStack/Lsit-coalProductionHttpListenerRule/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+                  "aws:cdk:cloudformation:props": {
+                    "actions": [
+                      {
+                        "redirectConfig": {
+                          "port": "443",
+                          "statusCode": "HTTP_301",
+                          "protocol": "HTTPS"
+                        },
+                        "type": "redirect"
+                      }
+                    ],
+                    "conditions": [
+                      {
+                        "field": "host-header",
+                        "hostHeaderConfig": {
+                          "values": [
+                            "coal.lsit.ucdavis.edu"
+                          ]
+                        }
+                      }
+                    ],
+                    "listenerArn": {
+                      "Fn::ImportValue": "FrontDeskAppClientProdStack:ExportsOutputRefFrontdeskappclientProductionHttpListenerCB1B66FAD7846C8A"
+                    },
+                    "priority": 18
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.CfnListenerRule",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_elasticloadbalancingv2.ApplicationListenerRule",
+              "version": "2.151.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "LSITCoalAppProdStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "LSITCoalAppProdStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.3.0"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "LSITCoalAppProdStack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.151.0"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "LSITCoalAppProdStack/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.151.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.151.0"
+        }
+      },
+      "LSITCoalAppCronProdStack": {
+        "id": "LSITCoalAppCronProdStack",
+        "path": "LSITCoalAppCronProdStack",
+        "children": {
+          "Lsit-coal-cronProductionRole": {
+            "id": "Lsit-coal-cronProductionRole",
+            "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionRole",
+            "children": {
+              "ImportLsit-coal-cronProductionRole": {
+                "id": "ImportLsit-coal-cronProductionRole",
+                "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionRole/ImportLsit-coal-cronProductionRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.151.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "ecs-tasks.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows lsit-coal-cron-production tasks to run in ECS and be able to read config files from the appropriate S3 bucket.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Lsit-coal-cronProductionECSTaskExecutionRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.151.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "LsitcoalcronProductionLogGroup54F87237",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "LsitcoalcronProductionRoleDefaultPolicyFFE0A295",
+                        "roles": [
+                          {
+                            "Ref": "LsitcoalcronProductionRoleAA524352"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coal-cronProductionPolicy": {
+            "id": "Lsit-coal-cronProductionPolicy",
+            "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionPolicy",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionPolicy/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                  "aws:cdk:cloudformation:props": {
+                    "policyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "s3:GetBucketLocation",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                          }
+                        },
+                        {
+                          "Action": "s3:GetObject",
+                          "Effect": "Allow",
+                          "Resource": {
+                            "Fn::Join": [
+                              "",
+                              [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                },
+                                "/lsit-coal-cron/*"
+                              ]
+                            ]
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "policyName": "Lsit-coal-cronProductionConfigRead",
+                    "roles": [
+                      {
+                        "Ref": "LsitcoalcronProductionRoleAA524352"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Policy",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coal-cronProductionTask": {
+            "id": "Lsit-coal-cronProductionTask",
+            "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ECS::TaskDefinition",
+                  "aws:cdk:cloudformation:props": {
+                    "containerDefinitions": [
+                      {
+                        "cpu": 256,
+                        "essential": true,
+                        "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/lsit-coal-cron-production:latest",
+                        "memory": 512,
+                        "name": "lsit-coal-cron-production",
+                        "logConfiguration": {
+                          "logDriver": "awslogs",
+                          "options": {
+                            "awslogs-group": {
+                              "Ref": "LsitcoalcronProductionLogGroup54F87237"
+                            },
+                            "awslogs-stream-prefix": "lsit-coal-cron-production",
+                            "awslogs-region": "us-west-2"
+                          }
+                        },
+                        "environmentFiles": [
+                          {
+                            "type": "s3",
+                            "value": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "arn:",
+                                  {
+                                    "Ref": "AWS::Partition"
+                                  },
+                                  ":s3:::",
+                                  {
+                                    "Fn::Select": [
+                                      0,
+                                      {
+                                        "Fn::Split": [
+                                          "/",
+                                          {
+                                            "Fn::Select": [
+                                              5,
+                                              {
+                                                "Fn::Split": [
+                                                  ":",
+                                                  {
+                                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttlsitzoomqueueenvvars54C18833Arn20BDFDF7"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "/lsit-coal-cron/production.env"
+                                ]
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "cpu": "256",
+                    "executionRoleArn": {
+                      "Fn::GetAtt": [
+                        "LsitcoalcronProductionRoleAA524352",
+                        "Arn"
+                      ]
+                    },
+                    "family": "lsit-coal-cron-production",
+                    "memory": "512",
+                    "networkMode": "awsvpc",
+                    "requiresCompatibilities": [
+                      "FARGATE"
+                    ],
+                    "taskRoleArn": {
+                      "Fn::GetAtt": [
+                        "LsitcoalcronProductionRoleAA524352",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.CfnTaskDefinition",
+                  "version": "2.151.0"
+                }
+              },
+              "lsit-coal-cron-production": {
+                "id": "lsit-coal-cron-production",
+                "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionTask/lsit-coal-cron-production",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ecs.ContainerDefinition",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ecs.FargateTaskDefinition",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coal-cronProductionLogGroup": {
+            "id": "Lsit-coal-cronProductionLogGroup",
+            "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionLogGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionLogGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Logs::LogGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "logGroupName": "/ecs/lsit-coal-cron-production",
+                    "retentionInDays": 731
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_logs.CfnLogGroup",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_logs.LogGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coal-cronProductionBucket": {
+            "id": "Lsit-coal-cronProductionBucket",
+            "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionBucket",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coal-cronProductionSecurityGroup": {
+            "id": "Lsit-coal-cronProductionSecurityGroup",
+            "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionSecurityGroup",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionSecurityGroup/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionSecurityGroup",
+                    "groupName": "lsit-coal-cron-production",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "ipProtocol": "-1",
+                        "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpc20AD45C91B2FA16F"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coal-cronProductionEventRole": {
+            "id": "Lsit-coal-cronProductionEventRole",
+            "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionEventRole",
+            "children": {
+              "ImportLsit-coal-cronProductionEventRole": {
+                "id": "ImportLsit-coal-cronProductionEventRole",
+                "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionEventRole/ImportLsit-coal-cronProductionEventRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.151.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionEventRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "events.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "description": "Allows lsit-coal-cron-production scheduled tasks to run in ECS.",
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole"
+                          ]
+                        ]
+                      }
+                    ],
+                    "roleName": "Lsit-coal-cronProductionEventRole"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.151.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionEventRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionEventRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "ecs:RunTask",
+                              "Condition": {
+                                "ArnEquals": {
+                                  "ecs:cluster": {
+                                    "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                                  }
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Ref": "LsitcoalcronProductionTask74DF14DC"
+                              }
+                            },
+                            {
+                              "Action": "ecs:TagResource",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":ecs:us-west-2:*:task/",
+                                    {
+                                      "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueCluster2091D93BFB5458D4"
+                                    },
+                                    "/*"
+                                  ]
+                                ]
+                              }
+                            },
+                            {
+                              "Action": "iam:PassRole",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "LsitcoalcronProductionRoleAA524352",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "LsitcoalcronProductionEventRoleDefaultPolicyF3627E94",
+                        "roles": [
+                          {
+                            "Ref": "LsitcoalcronProductionEventRole0B17C695"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.151.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.151.0"
+            }
+          },
+          "Lsit-coal-cronProductionScheduledTask": {
+            "id": "Lsit-coal-cronProductionScheduledTask",
+            "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionScheduledTask",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "LSITCoalAppCronProdStack/Lsit-coal-cronProductionScheduledTask/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                  "aws:cdk:cloudformation:props": {
+                    "scheduleExpression": "cron(0 8 * * ? *)",
+                    "state": "ENABLED",
+                    "targets": [
+                      {
+                        "id": "Target0",
+                        "arn": {
+                          "Fn::ImportValue": "NetworkStack:ExportsOutputFnGetAttLSITZoomQueueCluster2091D93BArn30EE2F26"
+                        },
+                        "roleArn": {
+                          "Fn::GetAtt": [
+                            "LsitcoalcronProductionEventRole0B17C695",
+                            "Arn"
+                          ]
+                        },
+                        "ecsParameters": {
+                          "taskCount": 1,
+                          "taskDefinitionArn": {
+                            "Ref": "LsitcoalcronProductionTask74DF14DC"
+                          },
+                          "launchType": "FARGATE",
+                          "platformVersion": "LATEST",
+                          "networkConfiguration": {
+                            "awsVpcConfiguration": {
+                              "subnets": [
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet1Subnet9B1427EC0A5C574E"
+                                },
+                                {
+                                  "Fn::ImportValue": "NetworkStack:ExportsOutputRefLSITZoomQueueVpcLSITZoomQueuePrivateSubnetSubnet2SubnetE85B5343B420B7B0"
+                                }
+                              ],
+                              "assignPublicIp": "DISABLED",
+                              "securityGroups": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "LsitcoalcronProductionSecurityGroup12B27C65",
+                                    "GroupId"
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "input": "{\"containerOverrides\":[{\"name\":\"lsit-coal-cron-production\",\"command\":[]}]}"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_events.CfnRule",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_events.Rule",
+              "version": "2.151.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "LSITCoalAppCronProdStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "LSITCoalAppCronProdStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.151.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.3.0"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "LSITCoalAppCronProdStack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.151.0"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "LSITCoalAppCronProdStack/CheckBootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnRule",
               "version": "2.151.0"

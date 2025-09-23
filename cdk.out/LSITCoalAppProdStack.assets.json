@@ -1,15 +1,15 @@
 {
   "version": "36.0.0",
   "files": {
-    "2c73a96417db6dc2c8a98d5b2141b85d7e62ebc44ef7859e66ffb94d88489c05": {
+    "46b92d1d89aa2c19c063ac9ca044bfeef5da59cd9707aa1f831a3c1546b8572f": {
       "source": {
-        "path": "FrontDeskAppClientProdStack.template.json",
+        "path": "LSITCoalAppProdStack.template.json",
         "packaging": "file"
       },
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "2c73a96417db6dc2c8a98d5b2141b85d7e62ebc44ef7859e66ffb94d88489c05.json",
+          "objectKey": "46b92d1d89aa2c19c063ac9ca044bfeef5da59cd9707aa1f831a3c1546b8572f.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }
