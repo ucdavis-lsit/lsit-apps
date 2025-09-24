@@ -1,7 +1,7 @@
 {
   "version": "36.0.0",
   "files": {
-    "c5fffea287e259eb36140c01ccdb854b7c528cb7d7c9812b2a117aa668fb66e0": {
+    "ca5c93e1ed2e5ac4e66de657cf2d91219c01d47dc58cdfc9e576fd65adfebdf9": {
       "source": {
         "path": "LSITCoalAppCronProdStack.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "042277129213-us-west-2": {
           "bucketName": "cdk-hnb659fds-assets-042277129213-us-west-2",
-          "objectKey": "c5fffea287e259eb36140c01ccdb854b7c528cb7d7c9812b2a117aa668fb66e0.json",
+          "objectKey": "ca5c93e1ed2e5ac4e66de657cf2d91219c01d47dc58cdfc9e576fd65adfebdf9.json",
           "region": "us-west-2",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::042277129213:role/cdk-hnb659fds-file-publishing-role-042277129213-us-west-2"
         }
