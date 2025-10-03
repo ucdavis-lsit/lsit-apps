@@ -631,7 +631,8 @@ qualtrics_tools_stack = LSITStack(
         ],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/1c9afea1-244f-4e98-a460-7dc585b67205"],
         "is_private": True,
-        "monitoring_stack": monitoring_stack
+        "monitoring_stack": monitoring_stack,
+        "resource_multiplier": 2,
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
 )

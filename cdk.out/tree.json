@@ -19222,10 +19222,10 @@
                   "aws:cdk:cloudformation:props": {
                     "containerDefinitions": [
                       {
-                        "cpu": 256,
+                        "cpu": 512,
                         "essential": true,
                         "image": "042277129213.dkr.ecr.us-west-2.amazonaws.com/qualtrics-tools-production:latest",
-                        "memory": 512,
+                        "memory": 1024,
                         "name": "qualtrics-tools-production",
                         "portMappings": [
                           {
@@ -19287,7 +19287,7 @@
                         ]
                       }
                     ],
-                    "cpu": "256",
+                    "cpu": "512",
                     "executionRoleArn": {
                       "Fn::GetAtt": [
                         "QualtricstoolsProductionRoleB55D2C4D",
@@ -19295,7 +19295,7 @@
                       ]
                     },
                     "family": "qualtrics-tools-production",
-                    "memory": "512",
+                    "memory": "1024",
                     "networkMode": "awsvpc",
                     "requiresCompatibilities": [
                       "FARGATE"
