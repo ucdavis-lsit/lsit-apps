@@ -193,7 +193,8 @@ frontdesk_frontend_stack = LSITStack(
             "lspeercoaching.advisingfrontdesk.lsit.ucdavis.edu",
             "ses.advisingfrontdesk.lsit.ucdavis.edu",
             "registrar.advisingfrontdesk.lsit.ucdavis.edu",
-            "bao.advisingfrontdesk.lsit.ucdavis.edu"
+            "bao.advisingfrontdesk.lsit.ucdavis.edu",
+            "ggcs.advisingfrontdesk.lsit.ucdavis.edu",
         ],
         "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/1a7b4790-62e1-460a-aa90-52d63fda54d9", "arn:aws:acm:us-west-2:042277129213:certificate/6da950e7-0463-406d-b80f-077d5f20226b"],
         "is_private": True,
