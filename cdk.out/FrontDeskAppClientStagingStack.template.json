@@ -471,7 +471,8 @@
        "Values": [
         "cs.stage.advisingfrontdesk.lsit.ucdavis.edu",
         "langlit.stage.advisingfrontdesk.lsit.ucdavis.edu",
-        "orangecluster.stage.advisingfrontdesk.lsit.ucdavis.edu"
+        "orangecluster.stage.advisingfrontdesk.lsit.ucdavis.edu",
+        "our.stage.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
@@ -505,7 +506,8 @@
        "Values": [
         "cs.stage.advisingfrontdesk.lsit.ucdavis.edu",
         "langlit.stage.advisingfrontdesk.lsit.ucdavis.edu",
-        "orangecluster.stage.advisingfrontdesk.lsit.ucdavis.edu"
+        "orangecluster.stage.advisingfrontdesk.lsit.ucdavis.edu",
+        "our.stage.advisingfrontdesk.lsit.ucdavis.edu"
        ]
       }
      }
