@@ -325,6 +325,7 @@
     "FrontdeskappclientProductionHttpsListenerRule151B0FB233",
     "FrontdeskappclientProductionHttpsListenerRule16FF3088FC",
     "FrontdeskappclientProductionHttpsListenerRule17B85DE61B",
+    "FrontdeskappclientProductionHttpsListenerRule19E3D93B47",
     "FrontdeskappclientProductionHttpsListenerRule99C6FA131",
     "FrontdeskappclientProductionRoleDefaultPolicy20DD2DC7",
     "FrontdeskappclientProductionRole5A8F4A11"
@@ -1177,6 +1178,68 @@
    },
    "Metadata": {
     "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule17/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpsListenerRule19E3D93B47": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "FrontdeskappclientProductionTargetGroup408F5B4D"
+      },
+      "Type": "forward"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "asac.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpsListener997DB417"
+    },
+    "Priority": 19
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpsListenerRule19/Resource"
+   }
+  },
+  "FrontdeskappclientProductionHttpListenerRule19F423FF88": {
+   "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+   "Properties": {
+    "Actions": [
+     {
+      "RedirectConfig": {
+       "Port": "443",
+       "Protocol": "HTTPS",
+       "StatusCode": "HTTP_301"
+      },
+      "Type": "redirect"
+     }
+    ],
+    "Conditions": [
+     {
+      "Field": "host-header",
+      "HostHeaderConfig": {
+       "Values": [
+        "asac.advisingfrontdesk.lsit.ucdavis.edu"
+       ]
+      }
+     }
+    ],
+    "ListenerArn": {
+     "Ref": "FrontdeskappclientProductionHttpListenerCB1B66FA"
+    },
+    "Priority": 19
+   },
+   "Metadata": {
+    "aws:cdk:path": "FrontDeskAppClientProdStack/Frontdesk-app-clientProductionHttpListenerRule19/Resource"
    }
   },
   "CDKMetadata": {
