@@ -7371,7 +7371,8 @@
                         "field": "host-header",
                         "hostHeaderConfig": {
                           "values": [
-                            "asac.advisingfrontdesk.lsit.ucdavis.edu"
+                            "asac.advisingfrontdesk.lsit.ucdavis.edu",
+                            "esp.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
@@ -7418,7 +7419,8 @@
                         "field": "host-header",
                         "hostHeaderConfig": {
                           "values": [
-                            "asac.advisingfrontdesk.lsit.ucdavis.edu"
+                            "asac.advisingfrontdesk.lsit.ucdavis.edu",
+                            "esp.advisingfrontdesk.lsit.ucdavis.edu"
                           ]
                         }
                       }
