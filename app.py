@@ -448,7 +448,7 @@ LSITStack(
         "https_load_balancer_priority": 6,
         "http_load_balancer_priority": 6,
         "host_headers": ["stage.websocket.frontdesk.lsit.ucdavis.edu"],
-        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/cf2a64a9-a102-4fc0-b366-e3fc0db14d02"],
+        "certificate_arns": ["arn:aws:acm:us-west-2:042277129213:certificate/4dc5c23e-cf7c-4513-b6a5-c1e5955ad3eb"],
         "is_private": True,
     },
     env=Environment(account=CDK_DEFAULT_ACCOUNT, region=CDK_DEFAULT_REGION),
